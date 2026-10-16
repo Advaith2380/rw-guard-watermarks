@@ -6,3 +6,10 @@ Pillow>=10.0
 tqdm>=4.66
 matplotlib>=3.7
 datasets>=2.19        # only used by download_data.py to fetch the PACS cross-domain set
+
+# Optional: only needed for the real neural-watermarker integrations (test_trustmark*.py,
+# test_stegastamp*.py, build_*_cache.py, train_with_neural.py). Not needed for the core
+# 7-scheme classical testbed (sanity_check.py, train.py, evaluate.py).
+trustmark>=0.5.0      # pip package with bundled pretrained weights
+onnxruntime>=1.17      # StegaStamp runs via ONNX; use onnxruntime-gpu instead on a CUDA machine
+requests>=2.31          # auto-downloads the pretrained StegaStamp ONNX weights on first use

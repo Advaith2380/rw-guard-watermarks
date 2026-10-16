@@ -42,6 +42,45 @@ Each method hides a 32-bit message inside an image's luminance (brightness) chan
 
 `example.png` shows this visually: the clean, single-watermarked and re-watermarked images look identical, while difference maps (amplified 20x) reveal the hidden patterns each method leaves behind.
 
+## Real neural watermarkers (TrustMark, StegaStamp)
+
+Beyond the 7 hand-built classical schemes above, the testbed also integrates two real, pretrained
+neural watermarkers, so the detector's generalisation claim isn't limited to code we wrote ourselves.
+
+**TrustMark** (available as a pip package with bundled weights):
+```bash
+pip install trustmark
+python test_trustmark.py --data data/coco --n 10              # standalone sanity check (PSNR + bit accuracy)
+python test_trustmark_detector.py --ckpt runs/baseline_e9/best.pt --data data/coco --n 150   # zero-shot detector test
+```
+
+**StegaStamp** (Tancik et al., CVPR 2020) has no official pip package, so `rewm_stegastamp.py`
+wraps a real, pretrained encoder/decoder exported to ONNX by the open-source [ISPRAS WIBE
+benchmark](https://github.com/ispras/wibe) (Apache-2.0), built from the original authors'
+released checkpoints. Weights (~tens of MB) auto-download on first use from a public,
+unauthenticated host -- no TensorFlow, no HuggingFace token needed.
+```bash
+pip install onnxruntime requests    # or onnxruntime-gpu instead of onnxruntime, on a CUDA machine
+python test_stegastamp.py --data data/coco --n 10
+python test_stegastamp_detector.py --ckpt runs/baseline_e9/best.pt --data data/coco --n 150
+```
+
+**Training with neural watermarkers mixed in.** Running a real neural watermarker on every
+training sample, every epoch, is too slow (it's a full forward pass through a CNN, vs. the
+classical schemes' near-instant numpy ops), so both are precomputed once into an image cache
+and then mixed into training at a chosen rate:
+```bash
+python build_trustmark_cache.py --data data/coco --out data/trustmark_cache --n-train 500 --n-val 100
+python build_stegastamp_cache.py --data data/coco --out data/stegastamp_cache --n-train 500 --n-val 100
+
+# train with classical schemes + TrustMark + StegaStamp all mixed together
+python train_with_neural.py --data data/coco --out runs/neural_mix \
+    --trustmark-dir data/trustmark_cache --trustmark-p 0.15 \
+    --stegastamp-dir data/stegastamp_cache --stegastamp-p 0.15
+```
+A GPU with more memory/compute (recommended) mainly speeds up the one-time cache-building step
+above -- that's the actual bottleneck, not training itself.
+
 ## The detector (`rewm/model.py`)
 
 **ForensicNet** is a small (2.47M-parameter) CNN with two deliberate design choices:
@@ -92,4 +131,12 @@ python test_realistic_attack.py --ckpt runs/baseline/best.pt --data data/coco
 | `train.py` | Trains the detector (baseline, hold-one-scheme-out, adversarial training) |
 | `evaluate.py` | Full 6-axis evaluation harness (in-distribution, benign ops, resolution, unseen scheme, cross-domain, adversarial) |
 | `test_realistic_attack.py` | Combined crop+JPEG attack test, same fixed-threshold methodology as `evaluate.py` |
+| `rewm_stegastamp.py` | Pretrained StegaStamp wrapper (ONNX): `encode`/`decode`, auto-downloads weights |
+| `rewm_stegastamp_cache.py` | Training-time dataset reading a precomputed StegaStamp cache |
+| `rewm_trustmark.py` | Training-time dataset reading a precomputed TrustMark cache |
+| `rewm_mixing.py` | Generic dataset mixer: classical schemes + any number of neural-watermarker caches |
+| `build_stegastamp_cache.py` / `build_trustmark_cache.py` | Precompute a neural-watermarker image cache for training |
+| `train_with_neural.py` | `train.py` plus mixing in TrustMark and/or StegaStamp caches |
+| `test_stegastamp.py` / `test_trustmark.py` | Standalone sanity check for each neural watermarker (invisibility + bit accuracy) |
+| `test_stegastamp_detector.py` / `test_trustmark_detector.py` | Zero-shot test: an already-trained classical-only detector against each neural watermarker |
 | `requirements.txt` | Python dependencies |
