@@ -1,0 +1,409 @@
+{
+  "results": {
+    "threshold": -0.0018574967980384827,
+    "1 in-distribution": {
+      "COCO 256px (seen schemes)": {
+        "n": 40,
+        "auc": 0.53,
+        "tpr_at_1pct_fpr": 0.05,
+        "tpr_at_0p1pct_fpr": 0.05,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.05
+      }
+    },
+    "in_distribution_ci_95": {
+      "auc": {
+        "point_estimate": 0.53,
+        "bootstrap_mean": 0.5419250000000001,
+        "bootstrap_std": 0.0950923597088641,
+        "ci_95": [
+          0.3611875,
+          0.7275
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "point_estimate": 0.05,
+        "bootstrap_mean": 0.09370000000000002,
+        "bootstrap_std": 0.09557881564447218,
+        "ci_95": [
+          0.0,
+          0.35
+        ]
+      },
+      "tpr_at_0p1pct_fpr": {
+        "point_estimate": 0.05,
+        "bootstrap_mean": 0.09370000000000002,
+        "bootstrap_std": 0.09557881564447218,
+        "ci_95": [
+          0.0,
+          0.35
+        ]
+      },
+      "tpr_fixed_thr": {
+        "point_estimate": 0.05,
+        "bootstrap_mean": 0.050800000000000005,
+        "bootstrap_std": 0.048055800898538774,
+        "ci_95": [
+          0.0,
+          0.15
+        ]
+      },
+      "fpr_fixed_thr": {
+        "point_estimate": 0.05,
+        "bootstrap_mean": 0.045200000000000004,
+        "bootstrap_std": 0.047717502030177564,
+        "ci_95": [
+          0.0,
+          0.15
+        ]
+      }
+    },
+    "2 benign post-processing": {
+      "none": {
+        "n": 40,
+        "auc": 0.5275,
+        "tpr_at_1pct_fpr": 0.05,
+        "tpr_at_0p1pct_fpr": 0.05,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.05
+      },
+      "jpeg95": {
+        "n": 40,
+        "auc": 0.5325,
+        "tpr_at_1pct_fpr": 0.1,
+        "tpr_at_0p1pct_fpr": 0.1,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.0
+      },
+      "jpeg85": {
+        "n": 40,
+        "auc": 0.45,
+        "tpr_at_1pct_fpr": 0.0,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.0,
+        "fpr_fixed_thr": 0.0
+      },
+      "jpeg75": {
+        "n": 40,
+        "auc": 0.5425,
+        "tpr_at_1pct_fpr": 0.15,
+        "tpr_at_0p1pct_fpr": 0.15,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.0
+      },
+      "noise1": {
+        "n": 40,
+        "auc": 0.4825,
+        "tpr_at_1pct_fpr": 0.0,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.05
+      },
+      "noise2": {
+        "n": 40,
+        "auc": 0.4525,
+        "tpr_at_1pct_fpr": 0.0,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.05
+      },
+      "blur0.5": {
+        "n": 40,
+        "auc": 0.5075,
+        "tpr_at_1pct_fpr": 0.05,
+        "tpr_at_0p1pct_fpr": 0.05,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.0
+      },
+      "bright": {
+        "n": 40,
+        "auc": 0.5225,
+        "tpr_at_1pct_fpr": 0.05,
+        "tpr_at_0p1pct_fpr": 0.05,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.05
+      }
+    },
+    "3 resolution": {
+      "128px": {
+        "n": 40,
+        "auc": 0.54,
+        "tpr_at_1pct_fpr": 0.0,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.0,
+        "fpr_fixed_thr": 0.0
+      },
+      "256px": {
+        "n": 40,
+        "auc": 0.53,
+        "tpr_at_1pct_fpr": 0.05,
+        "tpr_at_0p1pct_fpr": 0.05,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.05
+      },
+      "384px": {
+        "n": 40,
+        "auc": 0.4975,
+        "tpr_at_1pct_fpr": 0.0,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.0,
+        "fpr_fixed_thr": 0.05
+      }
+    },
+    "4 unseen scheme": {
+      "unseen attacker ['nmp_freq', 'svd_qim', 'dct_svd']": {
+        "n": 40,
+        "auc": 0.5275,
+        "tpr_at_1pct_fpr": 0.0,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.05
+      },
+      "unseen victim+attacker ['nmp_freq', 'svd_qim', 'dct_svd']": {
+        "n": 40,
+        "auc": 0.505,
+        "tpr_at_1pct_fpr": 0.05,
+        "tpr_at_0p1pct_fpr": 0.05,
+        "tpr_fixed_thr": 0.05,
+        "fpr_fixed_thr": 0.05
+      }
+    },
+    "6 adversarial": {
+      "clean positives detected": 0.0,
+      "PGD-3 eps=1.0/255 (r=1)": 0.0
+    }
+  },
+  "breakdown": {
+    "in-distribution": {
+      "clean": {
+        "n": 10,
+        "flagged": 0.1,
+        "label": 0
+      },
+      "dct_qim>dwt_qim": {
+        "n": 5,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dct_qim>fft_ring": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dwt_qim>dct_qim": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dwt_qim>dwt_qim": {
+        "n": 2,
+        "flagged": 0.5,
+        "label": 1
+      },
+      "dwt_qim>fft_ring": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "fft_ring>dct_qim": {
+        "n": 3,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "fft_ring>dwt_qim": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "fft_ring>fft_ring": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "fft_ring>ss_spatial": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "single:dwt_qim": {
+        "n": 3,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:fft_ring": {
+        "n": 5,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:ss_spatial": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "ss_spatial>dwt_qim": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "ss_spatial>fft_ring": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      }
+    },
+    "unseen attacker": {
+      "clean": {
+        "n": 10,
+        "flagged": 0.1,
+        "label": 0
+      },
+      "dct_qim>dct_svd": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dct_qim>nmp_freq": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dct_qim>svd_qim": {
+        "n": 3,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dwt_qim>dct_svd": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dwt_qim>nmp_freq": {
+        "n": 3,
+        "flagged": 0.3333333333333333,
+        "label": 1
+      },
+      "fft_ring>dct_svd": {
+        "n": 3,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "fft_ring>nmp_freq": {
+        "n": 4,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "fft_ring>svd_qim": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "single:dct_svd": {
+        "n": 3,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:dwt_qim": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:nmp_freq": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:ss_spatial": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:svd_qim": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "ss_spatial>dct_svd": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "ss_spatial>svd_qim": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      }
+    },
+    "unseen both": {
+      "clean": {
+        "n": 10,
+        "flagged": 0.1,
+        "label": 0
+      },
+      "dct_svd>dct_svd": {
+        "n": 4,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dct_svd>nmp_freq": {
+        "n": 4,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dct_svd>svd_qim": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "nmp_freq>dct_svd": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "nmp_freq>nmp_freq": {
+        "n": 3,
+        "flagged": 0.3333333333333333,
+        "label": 1
+      },
+      "nmp_freq>svd_qim": {
+        "n": 3,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "single:dct_svd": {
+        "n": 3,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:dwt_qim": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:nmp_freq": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:ss_spatial": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:svd_qim": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "svd_qim>dct_svd": {
+        "n": 1,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "svd_qim>nmp_freq": {
+        "n": 2,
+        "flagged": 0.0,
+        "label": 1
+      }
+    }
+  }
+}

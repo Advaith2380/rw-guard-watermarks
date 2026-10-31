@@ -139,4 +139,22 @@ python test_realistic_attack.py --ckpt runs/baseline/best.pt --data data/coco
 | `train_with_neural.py` | `train.py` plus mixing in TrustMark and/or StegaStamp caches |
 | `test_stegastamp.py` / `test_trustmark.py` | Standalone sanity check for each neural watermarker (invisibility + bit accuracy) |
 | `test_stegastamp_detector.py` / `test_trustmark_detector.py` | Zero-shot test: an already-trained classical-only detector against each neural watermarker |
+| `rewm/srnet.py` | Authentic 12-layer deep residual steganalysis architecture (Boroumand et al., *IEEE TIFS* 2019) |
+| `run_tests.py` | Automated test suite (18 unit/regression tests covering determinism, metrics, models, outcomes, watermarks) |
+| `evaluate_outcomes.py` | Attack outcome stratification (overwriting vs. dual-survival) with 0.75 bit-accuracy threshold |
+| `shortcut_baseline.py` | Shortcut learning investigation: residual energy and FFT frequency baselines vs ForensicNet |
+| `matched_controls.py` | Distortion-matched (PSNR-matched) controls to isolate watermark artifact forensics from compression |
+| `pacs_calibration.py` | Cross-domain calibration audit across Photo, Art, Cartoon, and Sketch |
+| `seed_ensemble.py` | Multi-seed ensembling evaluation (Seeds 0, 1, 2) on held-out COCO test set |
+| `bootstrap_ci.py` | Non-parametric stratified bootstrap confidence intervals (1,000 iterations) |
+| `audit/` | Complete verification logs, traceability matrix (25/25 Review 1 requirements), and JSON manifests |
 | `requirements.txt` | Python dependencies |
+
+## Running the Automated Test Suite
+
+To run all 18 unit and regression tests:
+```bash
+python run_tests.py
+```
+This validates determinism, metrics calculation, all 8 model architectures forward pass (including SRNet), attack outcome classification, and live watermark embedding/decoding (including StegaStamp).
+

@@ -23,6 +23,7 @@ from rewm.engine import pgd_attack, predict
 from rewm.metrics import breakdown, roc_curve, summarize, threshold_at_fpr
 from rewm.model import build_model
 from rewm.watermarks import SCHEMES
+from bootstrap_ci import compute_bootstrap_cis
 
 
 def get_args():
@@ -35,10 +36,14 @@ def get_args():
     p.add_argument("--sizes", type=int, nargs="*", default=[128, 256, 384])
     p.add_argument("--benign", nargs="*", default=["none", "jpeg95", "jpeg85", "jpeg75", "noise1", "noise2", "blur0.5", "bright"])
     p.add_argument("--adv-eps-list", type=float, nargs="*", default=[0.5, 1.0, 2.0], help="PGD eps in /255 units")
+    p.add_argument("--adv-steps", type=int, default=10, help="Number of PGD optimization steps")
+    p.add_argument("--adv-restarts", type=int, default=1, help="Number of random restarts for PGD")
     p.add_argument("--adv-n", type=int, default=100, help="positives attacked per eps")
     p.add_argument("--adv-size", type=int, default=128)
     p.add_argument("--bs", type=int, default=32)
     p.add_argument("--workers", type=int, default=4)
+    p.add_argument("--bootstrap-ci", action="store_true", default=True, help="Compute 95% bootstrap CIs")
+    p.add_argument("--save-preds", action="store_true", default=True, help="Save predictions to test_preds.npz")
     return p.parse_args()
 
 
@@ -96,6 +101,14 @@ def main():
     record("1 in-distribution", "COCO 256px (seen schemes)", s, y, k)
     kinds_out["in-distribution"] = breakdown(y, s, k, thr)
 
+    if a.save_preds:
+        np.savez_compressed(os.path.join(a.out, "test_preds.npz"), scores=s, labels=y, kinds=k, threshold=thr)
+
+    if a.bootstrap_ci:
+        print("Computing 95% bootstrap confidence intervals for in-distribution test set...")
+        ci_res = compute_bootstrap_cis(y, s, thr=thr, n_bootstraps=500, seed=42)
+        results["in_distribution_ci_95"] = ci_res["metrics"]
+
     # 2 benign post-processing
     for b in a.benign:
         s, y, k = run(te, size=256, benign=b, **seen_kw)
@@ -141,12 +154,12 @@ def main():
         for e in a.adv_eps_list:
             adv = []
             for i in range(0, len(x), 16):
-                xa = pgd_attack(model, x[i:i + 16], y[i:i + 16], e / 255.0, steps=10)
+                xa = pgd_attack(model, x[i:i + 16], y[i:i + 16], e / 255.0, steps=a.adv_steps, restarts=a.adv_restarts)
                 with torch.no_grad():
                     adv.append(model(xa).cpu().numpy())
             adv = np.concatenate(adv)
-            results["6 adversarial"][f"PGD-10 eps={e}/255"] = float((adv > thr).mean())
-            print(f"[6 adversarial] PGD-10 eps={e}/255: {(adv > thr).mean():.3f} of positives still flagged")
+            results["6 adversarial"][f"PGD-{a.adv_steps} eps={e}/255 (r={a.adv_restarts})"] = float((adv > thr).mean())
+            print(f"[6 adversarial] PGD-{a.adv_steps} eps={e}/255 (r={a.adv_restarts}): {(adv > thr).mean():.3f} of positives still flagged")
 
     with open(os.path.join(a.out, "results.json"), "w") as f:
         json.dump(dict(results=results, breakdown=kinds_out), f, indent=2)

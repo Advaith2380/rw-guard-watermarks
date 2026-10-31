@@ -1,0 +1,52 @@
+{
+  "threshold": 1.1413229703903198,
+  "n_samples": 100,
+  "n_bootstraps": 500,
+  "metrics": {
+    "auc": {
+      "point_estimate": 0.8764,
+      "bootstrap_mean": 0.8773447999999999,
+      "bootstrap_std": 0.03369995360471584,
+      "ci_95": [
+        0.80775,
+        0.94
+      ]
+    },
+    "tpr_at_1pct_fpr": {
+      "point_estimate": 0.24,
+      "bootstrap_mean": 0.28668,
+      "bootstrap_std": 0.10178102770163014,
+      "ci_95": [
+        0.14,
+        0.54
+      ]
+    },
+    "tpr_at_0p1pct_fpr": {
+      "point_estimate": 0.24,
+      "bootstrap_mean": 0.28668,
+      "bootstrap_std": 0.10178102770163014,
+      "ci_95": [
+        0.14,
+        0.54
+      ]
+    },
+    "tpr_fixed_thr": {
+      "point_estimate": 0.3,
+      "bootstrap_mean": 0.29663999999999996,
+      "bootstrap_std": 0.06617484718531658,
+      "ci_95": [
+        0.16,
+        0.42
+      ]
+    },
+    "fpr_fixed_thr": {
+      "point_estimate": 0.02,
+      "bootstrap_mean": 0.019399999999999997,
+      "bootstrap_std": 0.01923642378406132,
+      "ci_95": [
+        0.0,
+        0.06
+      ]
+    }
+  }
+}

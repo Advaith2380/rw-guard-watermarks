@@ -76,10 +76,13 @@ def apply_benign(img, name, rng):
     raise ValueError(f"unknown benign op: {name}")
 
 
+from rewm.outcomes import classify_attack_outcome
+
+
 class ReWMDataset(Dataset):
     def __init__(self, paths, size=256, crop=0, train=False, seed=0, repeat=None,
                  victim_schemes=None, attacker_schemes=None, single_schemes=None,
-                 benign=None, benign_p=0.5):
+                 benign=None, benign_p=0.5, track_outcomes=False):
         self.paths, self.size, self.crop, self.train, self.seed = list(paths), size, crop, train, seed
         allowed = list(SCHEMES)
         self.victim = list(victim_schemes or allowed)
@@ -87,13 +90,19 @@ class ReWMDataset(Dataset):
         self.single = list(single_schemes or allowed)
         self.benign, self.benign_p = benign, benign_p
         self.repeat = repeat if repeat is not None else (1 if train else 2)
+        self.track_outcomes = track_outcomes
+
+    def _train_rng(self):
+        worker_info = torch.utils.data.get_worker_info()
+        worker_id = worker_info.id if worker_info is not None else 0
+        return np.random.default_rng([self.seed, worker_id])
 
     def __len__(self):
         return len(self.paths) * self.repeat
 
     def __getitem__(self, idx):
         if self.train:
-            rng = np.random.default_rng()
+            rng = self._train_rng()
             img = load_image(self.paths[idx % len(self.paths)], self.size, rng)
             label = int(rng.random() < 0.5)
         else:  # deterministic: every source image appears once as negative and once as positive
@@ -101,9 +110,17 @@ class ReWMDataset(Dataset):
             img = load_image(self.paths[idx // 2], self.size, None)
             label = idx % 2
 
+        outcome = "negative" if label == 0 else "unstratified"
         if label == 1:
             a, b = str(rng.choice(self.victim)), str(rng.choice(self.attacker))
-            img = embed_random(embed_random(img, a, rng), b, rng)
+            if self.track_outcomes:
+                o1, info1 = embed_random(img, a, rng, return_info=True)
+                o2, info2 = embed_random(o1, b, rng, return_info=True)
+                img = o2
+                res = classify_attack_outcome(img, info1, info2)
+                outcome = res["outcome"]
+            else:
+                img = embed_random(embed_random(img, a, rng), b, rng)
             kind = f"{a}>{b}"
         elif rng.random() < 0.5:
             kind = "clean"
@@ -123,4 +140,4 @@ class ReWMDataset(Dataset):
             img = img[t:t + self.crop, l:l + self.crop]
 
         x = torch.from_numpy(np.array(img, dtype=np.uint8)).permute(2, 0, 1).float() / 255.0
-        return {"x": x, "y": torch.tensor(float(label)), "kind": kind}
+        return {"x": x, "y": torch.tensor(float(label)), "kind": kind, "outcome": outcome}

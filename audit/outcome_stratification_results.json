@@ -1,0 +1,181 @@
+{
+  "checkpoint": "D:/projects/rewm-guard/runs/baseline_e9/best.pt",
+  "operating_threshold": 1.1413229703903198,
+  "overall_metrics": {
+    "n": 100,
+    "auc": 0.8764,
+    "tpr_at_1pct_fpr": 0.24,
+    "tpr_at_0p1pct_fpr": 0.24,
+    "tpr_fixed_thr": 0.3,
+    "fpr_fixed_thr": 0.02
+  },
+  "confidence_intervals": {
+    "auc": {
+      "point_estimate": 0.8764,
+      "bootstrap_mean": 0.8773447999999999,
+      "bootstrap_std": 0.03369995360471584,
+      "ci_95": [
+        0.80775,
+        0.94
+      ]
+    },
+    "tpr_at_1pct_fpr": {
+      "point_estimate": 0.24,
+      "bootstrap_mean": 0.28668,
+      "bootstrap_std": 0.10178102770163014,
+      "ci_95": [
+        0.14,
+        0.54
+      ]
+    },
+    "tpr_at_0p1pct_fpr": {
+      "point_estimate": 0.24,
+      "bootstrap_mean": 0.28668,
+      "bootstrap_std": 0.10178102770163014,
+      "ci_95": [
+        0.14,
+        0.54
+      ]
+    },
+    "tpr_fixed_thr": {
+      "point_estimate": 0.3,
+      "bootstrap_mean": 0.29663999999999996,
+      "bootstrap_std": 0.06617484718531658,
+      "ci_95": [
+        0.16,
+        0.42
+      ]
+    },
+    "fpr_fixed_thr": {
+      "point_estimate": 0.02,
+      "bootstrap_mean": 0.019399999999999997,
+      "bootstrap_std": 0.01923642378406132,
+      "ci_95": [
+        0.0,
+        0.06
+      ]
+    }
+  },
+  "outcome_stratification": {
+    "dual_survival": {
+      "n": 42,
+      "flagged_rate": 0.30952380952380953,
+      "mean_score": 0.6052910089492798,
+      "std_score": 0.807016909122467
+    },
+    "negative": {
+      "n": 50,
+      "flagged_rate": 0.02,
+      "mean_score": -1.9884737730026245,
+      "std_score": 1.9242795705795288
+    },
+    "successful_overwrite": {
+      "n": 8,
+      "flagged_rate": 0.25,
+      "mean_score": 0.18437427282333374,
+      "std_score": 0.9980648756027222
+    }
+  },
+  "kind_stratification": {
+    "clean": {
+      "n": 30,
+      "flagged_rate": 0.0,
+      "mean_score": -3.094897985458374
+    },
+    "dct_qim>dct_qim": {
+      "n": 3,
+      "flagged_rate": 0.3333333333333333,
+      "mean_score": 0.960943877696991
+    },
+    "dct_qim>dwt_qim": {
+      "n": 7,
+      "flagged_rate": 0.7142857142857143,
+      "mean_score": 1.365628957748413
+    },
+    "dct_qim>fft_ring": {
+      "n": 4,
+      "flagged_rate": 0.25,
+      "mean_score": 0.3091810345649719
+    },
+    "dct_qim>ss_spatial": {
+      "n": 2,
+      "flagged_rate": 0.0,
+      "mean_score": -0.8046879768371582
+    },
+    "dwt_qim>dct_qim": {
+      "n": 2,
+      "flagged_rate": 0.5,
+      "mean_score": 0.6812797784805298
+    },
+    "dwt_qim>dwt_qim": {
+      "n": 5,
+      "flagged_rate": 0.6,
+      "mean_score": 0.961790919303894
+    },
+    "dwt_qim>fft_ring": {
+      "n": 5,
+      "flagged_rate": 0.0,
+      "mean_score": 0.5100975036621094
+    },
+    "dwt_qim>ss_spatial": {
+      "n": 2,
+      "flagged_rate": 0.0,
+      "mean_score": -0.6229898929595947
+    },
+    "fft_ring>dct_qim": {
+      "n": 4,
+      "flagged_rate": 0.0,
+      "mean_score": 0.7116719484329224
+    },
+    "fft_ring>dwt_qim": {
+      "n": 2,
+      "flagged_rate": 0.0,
+      "mean_score": 0.4371778666973114
+    },
+    "fft_ring>fft_ring": {
+      "n": 3,
+      "flagged_rate": 0.0,
+      "mean_score": -0.8695459961891174
+    },
+    "fft_ring>ss_spatial": {
+      "n": 2,
+      "flagged_rate": 0.0,
+      "mean_score": -0.5305574536323547
+    },
+    "single:dct_qim": {
+      "n": 4,
+      "flagged_rate": 0.0,
+      "mean_score": 0.13978345692157745
+    },
+    "single:dwt_qim": {
+      "n": 4,
+      "flagged_rate": 0.0,
+      "mean_score": 0.4889073371887207
+    },
+    "single:fft_ring": {
+      "n": 7,
+      "flagged_rate": 0.0,
+      "mean_score": -1.180568814277649
+    },
+    "single:ss_spatial": {
+      "n": 5,
+      "flagged_rate": 0.2,
+      "mean_score": -0.16550612449645996
+    },
+    "ss_spatial>dct_qim": {
+      "n": 2,
+      "flagged_rate": 0.0,
+      "mean_score": 0.9181520938873291
+    },
+    "ss_spatial>dwt_qim": {
+      "n": 4,
+      "flagged_rate": 1.0,
+      "mean_score": 1.4554678201675415
+    },
+    "ss_spatial>fft_ring": {
+      "n": 3,
+      "flagged_rate": 0.0,
+      "mean_score": -0.1192842349410057
+    }
+  }
+}

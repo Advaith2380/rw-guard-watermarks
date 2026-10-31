@@ -26,13 +26,18 @@ class TrustMarkCacheDataset(Dataset):
         assert self.names, f"no cached images in {clean_dir} -- run build_trustmark_cache.py first"
         self.crop, self.train, self.benign_p, self.seed = crop, train, benign_p, seed
 
+    def _train_rng(self):
+        worker_info = torch.utils.data.get_worker_info()
+        worker_id = worker_info.id if worker_info is not None else 0
+        return np.random.default_rng([self.seed, worker_id])
+
     def __len__(self):
         return len(self.names) * 2  # one negative-slot + one positive-slot per cached source image
 
     def __getitem__(self, idx):
         name = self.names[(idx // 2) % len(self.names)]
         if self.train:
-            rng = np.random.default_rng()
+            rng = self._train_rng()
             label = int(rng.random() < 0.5)
         else:
             rng = np.random.default_rng([self.seed, idx])

@@ -1,0 +1,75 @@
+{
+  "baseline_name": "Residual-Energy & Frequency-Statistics Logistic Regression",
+  "n_train_samples": 100,
+  "n_val_samples": 60,
+  "n_test_samples": 100,
+  "operating_threshold_val_1pct": 4.731606483459473,
+  "metrics": {
+    "n": 100,
+    "auc": 0.4976,
+    "tpr_at_1pct_fpr": 0.0,
+    "tpr_at_0p1pct_fpr": 0.0,
+    "tpr_fixed_thr": 0.0,
+    "fpr_fixed_thr": 0.0
+  },
+  "confidence_intervals": {
+    "auc": {
+      "point_estimate": 0.4976,
+      "bootstrap_mean": 0.4954944,
+      "bootstrap_std": 0.05709421029001102,
+      "ci_95": [
+        0.38599,
+        0.60922
+      ]
+    },
+    "tpr_at_1pct_fpr": {
+      "point_estimate": 0.0,
+      "bootstrap_mean": 0.009319999999999998,
+      "bootstrap_std": 0.02024691581451358,
+      "ci_95": [
+        0.0,
+        0.06
+      ]
+    },
+    "tpr_at_0p1pct_fpr": {
+      "point_estimate": 0.0,
+      "bootstrap_mean": 0.009319999999999998,
+      "bootstrap_std": 0.02024691581451358,
+      "ci_95": [
+        0.0,
+        0.06
+      ]
+    },
+    "tpr_fixed_thr": {
+      "point_estimate": 0.0,
+      "bootstrap_mean": 0.0,
+      "bootstrap_std": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ]
+    },
+    "fpr_fixed_thr": {
+      "point_estimate": 0.0,
+      "bootstrap_mean": 0.0,
+      "bootstrap_std": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "coefficients": {
+    "hp_mean_abs": 0.0047318944707512856,
+    "hp_var": -0.20492763817310333,
+    "hp_energy": 0.029863012954592705,
+    "hp_r_energy": 0.051752474159002304,
+    "hp_g_energy": 0.0381975993514061,
+    "hp_b_energy": 0.03397717326879501,
+    "lap_energy": -0.05082185938954353,
+    "lap_var": 0.09081119298934937,
+    "hf_fft_ratio": -0.0011057936353608966,
+    "local_var": 0.010258612222969532
+  },
+  "intercept": 4.699199199676514
+}

@@ -27,7 +27,8 @@ def get_args():
     p = argparse.ArgumentParser()
     p.add_argument("--data", default="data/coco")
     p.add_argument("--out", default="runs/baseline")
-    p.add_argument("--arch", default="forensic", choices=["forensic", "forensic_nohp", "simple", "resnet18"])
+    p.add_argument("--arch", default="forensic", choices=["forensic", "forensic_nohp", "simple", "simple_hp", "resnet18", "resnet18_hp", "srnet", "srnet_hp"])
+    p.add_argument("--scheme-set", default="v1_four", choices=["v1_four", "v2_seven", "all", "custom"], help="Named watermark protocol")
     p.add_argument("--width", type=int, default=32)
     p.add_argument("--size", type=int, default=256, help="images are resized/cropped to this before watermarking")
     p.add_argument("--crop", type=int, default=128, help="random crop fed to the network (0 = no crop)")
@@ -49,6 +50,21 @@ def get_args():
     return p.parse_args()
 
 
+def load_scheme_set(scheme_set_name):
+    cfg_file = "scheme_sets.json"
+    if os.path.isfile(cfg_file):
+        try:
+            with open(cfg_file) as f:
+                data = json.load(f)
+                if scheme_set_name in data.get("protocols", {}):
+                    return data["protocols"][scheme_set_name]["schemes"]
+        except Exception:
+            pass
+    if scheme_set_name == "v1_four":
+        return ["dct_qim", "dwt_qim", "ss_spatial", "fft_ring"]
+    return list(SCHEMES)
+
+
 def main():
     args = get_args()
     torch.manual_seed(args.seed)
@@ -59,12 +75,40 @@ def main():
 
     paths = list_images(args.data)
     assert paths, f"no images found in {args.data} - run download_data.py first"
-    tr, va, _ = split_paths(paths)
+    tr, va, te = split_paths(paths)
     if args.n_train:
         tr = tr[: args.n_train]
     va = va[: args.n_val]
-    schemes = [s for s in SCHEMES if s not in args.holdout]
-    print(f"train images: {len(tr)}  val images: {len(va)}  schemes seen in training: {schemes}")
+    
+    if args.scheme_set in ["v1_four", "v2_seven"]:
+        base_schemes = load_scheme_set(args.scheme_set)
+    else:
+        base_schemes = list(SCHEMES)
+    schemes = [s for s in base_schemes if s not in args.holdout]
+    print(f"protocol: {args.scheme_set}  train images: {len(tr)}  val images: {len(va)}  schemes seen: {schemes}")
+
+    # REQ-U: Save plain-text provenance configuration and split manifest
+    config_record = {
+        "args": vars(args),
+        "protocol_version": args.scheme_set,
+        "train_schemes": schemes,
+        "n_train_sources": len(tr),
+        "n_val_sources": len(va),
+        "torch_version": torch.__version__,
+        "cuda_available": torch.cuda.is_available(),
+        "device": device,
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S")
+    }
+    with open(os.path.join(args.out, "config.json"), "w") as f:
+        json.dump(config_record, f, indent=2)
+
+    split_manifest = {
+        "train_files": tr,
+        "val_files": va,
+        "test_files": te
+    }
+    with open(os.path.join(args.out, "split_manifest.json"), "w") as f:
+        json.dump(split_manifest, f, indent=2)
 
     common = dict(victim_schemes=schemes, attacker_schemes=schemes, single_schemes=schemes)
     ds_tr = ReWMDataset(tr, size=args.size, crop=args.crop, train=True, repeat=args.repeat,

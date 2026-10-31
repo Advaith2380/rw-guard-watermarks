@@ -1,0 +1,82 @@
+{
+  "project_name": "Forensic Detection of Re-Watermarking Attacks (RW-Guard)",
+  "version": "Submission Final Version",
+  "audit_timestamp": "2026-11-01T00:00:00+05:30",
+  "verified_metrics": {
+    "in_distribution": {
+      "full_test_n3000": {
+        "roc_auc": 0.8586,
+        "tpr_at_1pct_fpr": 0.1647,
+        "fixed_thr_tpr": 0.2947,
+        "fixed_thr_fpr": 0.0353
+      },
+      "stratified_test_n300": {
+        "roc_auc": 0.8770,
+        "ci95_auc": [0.8388, 0.9111],
+        "tpr_at_1pct_fpr": 0.2133,
+        "ci95_tpr_at_1pct": [0.1533, 0.3635],
+        "fixed_thr_tpr": 0.1333,
+        "fixed_thr_fpr": 0.0000
+      }
+    },
+    "shortcut_baseline": {
+      "roc_auc": 0.5713,
+      "ci95_auc": [0.5262, 0.6166],
+      "tpr_at_1pct_fpr": 0.0100,
+      "conclusion": "Disproved simple low-dimensional residual-energy / frequency-statistics explanation."
+    },
+    "attack_outcome_stratification": {
+      "dual_survival_ratio": 0.8867,
+      "dual_survival_mean_logit": 0.6279,
+      "overwrite_ratio": 0.1133,
+      "overwrite_mean_logit": -0.1144,
+      "negative_controls_mean_logit": -1.7760
+    },
+    "distortion_matched_controls": {
+      "re-watermarked_positive_score": 0.7991,
+      "scaled_single_watermark_score": 0.5367,
+      "single_plus_matched_noise_score": -0.0795,
+      "standard_single_negative_score": -0.0952,
+      "clean_controls_score": -3.2388
+    },
+    "neural_watermarkers": {
+      "trustmark": {
+        "stratified_zero_shot_auc": 0.5344,
+        "stratified_zero_shot_ci95": [0.4531, 0.6053],
+        "historical_unstratified_auc": 0.6960,
+        "supervised_adapted_auc": 0.8505,
+        "supervised_adapted_ci95": [0.7958, 0.8998],
+        "supervised_adapted_tpr_at_1pct": 0.2200
+      },
+      "stegastamp": {
+        "verified_live": true,
+        "weights_path": "model_files/stega_stamp/stega_stamp.onnx",
+        "single_embed_psnr_db": 29.4,
+        "single_embed_bit_acc": 1.000,
+        "overwrite_victim_bit_acc": 0.516,
+        "overwrite_attacker_bit_acc": 0.994
+      }
+    },
+    "steganalysis_baselines": {
+      "srnet": {
+        "verified_live": true,
+        "parameters": 9628097,
+        "smoke_train_checkpoint": "runs/smoke_srnet/best.pt"
+      }
+    },
+    "seed_ensemble": {
+      "seed0_auc": 0.8695,
+      "seed1_auc": 0.8620,
+      "seed2_auc": 0.8641,
+      "ensemble_auc": 0.8673,
+      "ensemble_tpr_at_1pct": 0.0600,
+      "overhead_multiplier": 3.0
+    },
+    "pacs_calibration": {
+      "photo": {"auc": 0.7585, "fixed_tpr": 0.1400, "recal_tpr": 0.0500, "ece": 0.0852, "brier": 0.2069},
+      "art_painting": {"auc": 0.8126, "fixed_tpr": 0.1600, "recal_tpr": 0.0700, "ece": 0.1128, "brier": 0.1889},
+      "cartoon": {"auc": 0.8666, "fixed_tpr": 0.0300, "recal_tpr": 0.1300, "ece": 0.3404, "brier": 0.3014},
+      "sketch": {"auc": 0.8561, "fixed_tpr": 0.0000, "recal_tpr": 0.1600, "ece": 0.3768, "brier": 0.3385}
+    }
+  }
+}

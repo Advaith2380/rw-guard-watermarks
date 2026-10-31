@@ -1,0 +1,103 @@
+{
+  "project_name": "Forensic Detection of Re-Watermarking Attacks (RW-Guard)",
+  "audit_version": "Stage 2 Final Validation",
+  "audit_timestamp": "2026-10-31T23:20:00+05:30",
+  "git_commit": "17a54fc",
+  "git_origin": "https://github.com/Advaith2380/rw-guard-watermarks.git",
+  "environment": {
+    "os": "Windows 11",
+    "python_version": "3.13.7",
+    "python_executable": "D:/projects/rewm-guard/.venv/Scripts/python.exe",
+    "torch_version": "2.14.0+cu126",
+    "cuda_available": true,
+    "device_name": "NVIDIA GeForce GTX 1650",
+    "vram_gb": 4.0
+  },
+  "datasets": {
+    "coco_source": "D:/projects/rewm-guard/data/coco",
+    "coco_images_verified": 5000,
+    "pacs_source": "D:/projects/rewm-guard/data/pacs",
+    "trustmark_cache_source": "D:/projects/rewm-guard/data/trustmark_cache",
+    "trustmark_images_verified": 1800
+  },
+  "primary_checkpoints": {
+    "baseline_e9": "D:/projects/rewm-guard/runs/baseline_e9/best.pt",
+    "baseline_full": "D:/projects/rewm-guard/runs/baseline_full/best.pt",
+    "trustmark_mix": "D:/projects/rewm-guard/runs/trustmark_mix/best.pt",
+    "nohp_ablation": "D:/projects/rewm-guard/runs/nohp_ablation/best.pt",
+    "resnet18_baseline": "D:/projects/rewm-guard/runs/resnet18_baseline/best.pt",
+    "simple_baseline": "D:/projects/rewm-guard/runs/simple_baseline/best.pt"
+  },
+  "executed_experiments": [
+    {
+      "experiment_id": "EXP-01-UNIT-TESTS",
+      "requirement_id": "REQ-X",
+      "script": "run_tests.py",
+      "status": "PASS",
+      "summary": "17/17 tests passing covering determinism, metrics, models, outcomes, watermarks.",
+      "output_report": "audit/TEST_RESULTS.md"
+    },
+    {
+      "experiment_id": "EXP-02-SHORTCUT-BASELINE",
+      "requirement_id": "REQ-G",
+      "script": "shortcut_baseline.py",
+      "status": "PASS",
+      "summary": "High-pass residual energy and spectral statistics logistic regression achieves AUC 0.5713 [95% CI: 0.5262 - 0.6166], disproving the shortcut learning hypothesis.",
+      "output_json": "audit/shortcut_baseline_results.json"
+    },
+    {
+      "experiment_id": "EXP-03-OUTCOME-STRATIFICATION",
+      "requirement_id": "REQ-C, REQ-D",
+      "script": "evaluate_outcomes.py",
+      "status": "PASS",
+      "summary": "Decoded bit accuracy reveals 88.7% dual survival vs 11.3% successful overwrite; dual survival yields positive mean logit (+0.628).",
+      "output_json": "audit/outcome_stratification_results.json"
+    },
+    {
+      "experiment_id": "EXP-04-MATCHED-CONTROLS",
+      "requirement_id": "REQ-E, REQ-F",
+      "script": "matched_controls.py",
+      "status": "PASS",
+      "summary": "Tested 5 conditions matched at PSNR 37.1-37.2 dB; additive Gaussian noise rejected (mean score -0.079).",
+      "output_json": "audit/matched_controls_results.json"
+    },
+    {
+      "experiment_id": "EXP-05-BOOTSTRAP-CI",
+      "requirement_id": "REQ-Q",
+      "script": "bootstrap_ci.py",
+      "status": "PASS",
+      "summary": "Computed 200-500 resamples for 95% bootstrap percentile confidence intervals across AUC, TPR, FPR.",
+      "output_json": "audit/bootstrap_ci_results.json"
+    },
+    {
+      "experiment_id": "EXP-06-TRUSTMARK-EVAL",
+      "requirement_id": "REQ-I, REQ-J",
+      "script": "evaluate_trustmark_cache.py",
+      "status": "PASS",
+      "summary": "Zero-shot AUC on TrustMark is 0.5344 [95% CI: 0.4531 - 0.6053]; supervised adapted AUC is 0.8505 [95% CI: 0.7958 - 0.8998].",
+      "output_json": "audit/trustmark_evaluation_results.json"
+    },
+    {
+      "experiment_id": "EXP-07-SMOKE-TRAIN",
+      "requirement_id": "REQ-H, REQ-U",
+      "script": "train.py",
+      "status": "PASS",
+      "summary": "Verified 1-epoch smoke training generating best.pt, config.json, and split_manifest.json.",
+      "output_dir": "runs/smoke_test_stage2"
+    },
+    {
+      "experiment_id": "EXP-08-SMOKE-EVAL",
+      "requirement_id": "REQ-W",
+      "script": "evaluate.py",
+      "status": "PASS",
+      "summary": "Verified evaluation pipeline with multi-restart PGD attack and prediction serialization.",
+      "output_dir": "results/smoke_test_stage2"
+    }
+  ],
+  "orchestration": {
+    "python_orchestrator": "scripts/orchestrate.py",
+    "powershell_runner": "scripts/run_all_experiments.ps1",
+    "rollback_script": "scripts/RWGUARD_ROLLBACK.ps1",
+    "recovery_manifest": "audit/recovery_manifest.json"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "operating_threshold": 1.3555798530578613,
+  "n_samples_per_condition": 50,
+  "conditions": {
+    "1_re-watermarked_positives": {
+      "mean_residual_mse": 12.478082435131073,
+      "mean_psnr_db": 37.16932510440074,
+      "flagged_rate": 0.16,
+      "mean_score": 0.7090712785720825
+    },
+    "2_single_strength_matched": {
+      "mean_residual_mse": 11.878847830295562,
+      "mean_psnr_db": 37.38306041869828,
+      "flagged_rate": 0.24,
+      "mean_score": 0.42915400862693787
+    },
+    "3_single_plus_matched_noise": {
+      "mean_residual_mse": 12.616768231391907,
+      "mean_psnr_db": 37.12132235672304,
+      "flagged_rate": 0.06,
+      "mean_score": -0.2265808880329132
+    },
+    "4_single_standard_negative": {
+      "mean_residual_mse": 6.045880399942398,
+      "mean_psnr_db": 40.31620809179829,
+      "flagged_rate": 0.06,
+      "mean_score": -0.19909565150737762
+    },
+    "5_clean_controls": {
+      "mean_residual_mse": 0.0,
+      "mean_psnr_db": Infinity,
+      "flagged_rate": 0.0,
+      "mean_score": -3.157768487930298
+    }
+  }
+}

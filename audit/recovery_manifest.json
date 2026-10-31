@@ -1,0 +1,38 @@
+{
+  "checkpoint_id": "recovery-checkpoint-17a54fc-20261031",
+  "created_at": "2026-10-31T22:46:00+05:30",
+  "git_commit": "17a54fc",
+  "git_branch": "main",
+  "backup_directory": "_recovery_checkpoint_17a54fc",
+  "tracked_files_backed_up": [
+    "rewm/",
+    "sanity/",
+    "build_stegastamp_cache.py",
+    "build_trustmark_cache.py",
+    "download_data.py",
+    "evaluate.py",
+    "README.md",
+    "requirements.txt",
+    "rewm_mixing.py",
+    "rewm_stegastamp.py",
+    "rewm_stegastamp_cache.py",
+    "rewm_trustmark.py",
+    "sanity_check.py",
+    "test_realistic_attack.py",
+    "test_stegastamp.py",
+    "test_stegastamp_detector.py",
+    "test_trustmark.py",
+    "test_trustmark_detector.py",
+    "train.py",
+    "train_with_neural.py",
+    ".gitignore"
+  ],
+  "original_external_data": {
+    "coco_path": "D:/projects/rewm-guard/data/coco",
+    "pacs_path": "D:/projects/rewm-guard/data/pacs",
+    "trustmark_cache_path": "D:/projects/rewm-guard/data/trustmark_cache",
+    "original_runs_path": "D:/projects/rewm-guard/runs",
+    "original_results_path": "D:/projects/rewm-guard/results"
+  },
+  "status": "VERIFIED"
+}

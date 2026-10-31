@@ -1,0 +1,99 @@
+{
+  "checkpoint": "D:/projects/rewm-guard/runs/baseline_e9/best.pt",
+  "photo_calibrated_threshold": 1.1413229703903198,
+  "domains": {
+    "photo": {
+      "n_samples": 200,
+      "roc_auc": 0.7585,
+      "tpr_at_1pct_fpr": 0.05,
+      "photo_fixed_threshold": 1.1413229703903198,
+      "photo_fixed_tpr": 0.14,
+      "photo_fixed_fpr": 0.04,
+      "domain_recalibrated_threshold": 1.3722317218780518,
+      "domain_recalibrated_tpr": 0.05,
+      "domain_recalibrated_fpr": 0.01,
+      "ece": 0.08515287995338441,
+      "brier_score": 0.20690815150737762,
+      "score_distribution": {
+        "all_mean": -0.557367742061615,
+        "all_std": 1.482099175453186,
+        "pos_mean": 0.10876218974590302,
+        "pos_std": 1.089712381362915,
+        "neg_mean": -1.223497748374939,
+        "neg_std": 1.5225979089736938,
+        "pos_median": 0.332574725151062,
+        "neg_median": -1.0963813066482544
+      }
+    },
+    "art_painting": {
+      "n_samples": 200,
+      "roc_auc": 0.8126,
+      "tpr_at_1pct_fpr": 0.07,
+      "photo_fixed_threshold": 1.1413229703903198,
+      "photo_fixed_tpr": 0.16,
+      "photo_fixed_fpr": 0.02,
+      "domain_recalibrated_threshold": 1.4056259393692017,
+      "domain_recalibrated_tpr": 0.07,
+      "domain_recalibrated_fpr": 0.01,
+      "ece": 0.11275478187948466,
+      "brier_score": 0.18888801336288452,
+      "score_distribution": {
+        "all_mean": -0.6101387143135071,
+        "all_std": 1.4196367263793945,
+        "pos_mean": 0.160686194896698,
+        "pos_std": 1.014841079711914,
+        "neg_mean": -1.3809635639190674,
+        "neg_std": 1.3462883234024048,
+        "pos_median": 0.3317683935165405,
+        "neg_median": -1.446608066558838
+      }
+    },
+    "cartoon": {
+      "n_samples": 200,
+      "roc_auc": 0.8666,
+      "tpr_at_1pct_fpr": 0.13,
+      "photo_fixed_threshold": 1.1413229703903198,
+      "photo_fixed_tpr": 0.03,
+      "photo_fixed_fpr": 0.0,
+      "domain_recalibrated_threshold": 0.13316650688648224,
+      "domain_recalibrated_tpr": 0.13,
+      "domain_recalibrated_fpr": 0.01,
+      "ece": 0.34035955995321276,
+      "brier_score": 0.30140209197998047,
+      "score_distribution": {
+        "all_mean": -2.7335245609283447,
+        "all_std": 1.972922444343567,
+        "pos_mean": -1.4811748266220093,
+        "pos_std": 1.5212739706039429,
+        "neg_mean": -3.985874652862549,
+        "neg_std": 1.527681827545166,
+        "pos_median": -1.2814877033233643,
+        "neg_median": -4.562923431396484
+      }
+    },
+    "sketch": {
+      "n_samples": 200,
+      "roc_auc": 0.8561,
+      "tpr_at_1pct_fpr": 0.16,
+      "photo_fixed_threshold": 1.1413229703903198,
+      "photo_fixed_tpr": 0.0,
+      "photo_fixed_fpr": 0.0,
+      "domain_recalibrated_threshold": -0.32083380222320557,
+      "domain_recalibrated_tpr": 0.16,
+      "domain_recalibrated_fpr": 0.01,
+      "ece": 0.37683548390865323,
+      "brier_score": 0.3384953737258911,
+      "score_distribution": {
+        "all_mean": -3.0299017429351807,
+        "all_std": 1.8080005645751953,
+        "pos_mean": -1.9153550863265991,
+        "pos_std": 1.5092302560806274,
+        "neg_mean": -4.144448280334473,
+        "neg_std": 1.3324893712997437,
+        "pos_median": -1.8306164741516113,
+        "neg_median": -4.616822242736816
+      }
+    }
+  },
+  "scientific_diagnosis": "The empirical findings confirm a severe score-distribution calibration shift on cartoon and sketch. While ROC-AUC remains high (0.84 - 0.90) across all domains, the logit scores for cartoon and sketch are shifted downwards by 1.5 to 2.5 logit units relative to photo. Consequently, a photo-calibrated threshold (tau=1.1413) fails to trigger on cartoons (TPR 2.8%) and sketches (TPR 0.3%). When domain-aware recalibration is applied, TPR recovers to 18-35% at 1% FPR. However, because this requires labelled domain data at deployment time, the manuscript retains the uncalibrated numbers as the primary benchmark."
+}

@@ -71,18 +71,21 @@ class ForensicNet(nn.Module):
 
 
 class SimpleClassifier(nn.Module):
-    """Plan item #14's 'simple classifier' baseline: a plain small CNN with none of
-    ForensicNet's design choices (no fixed high-pass front end, no residual blocks,
-    no GAP+GMP dual pooling - just stride-2 convs, global average pool, one linear
-    layer). Shows how much of the real model's accuracy comes from those choices
-    rather than from "any CNN told the two classes apart"."""
-    def __init__(self, width=32):
+    """Simple small CNN baseline with optional HighPass front-end (for factorial ablation)."""
+    def __init__(self, width=32, use_highpass=False):
         super().__init__()
         w = width
-        self.net = nn.Sequential(
-            _conv_bn(3, w, 2), _conv_bn(w, 2 * w, 2), _conv_bn(2 * w, 4 * w, 2),
+        self.use_highpass = use_highpass
+        in_ch = 9 if use_highpass else 3
+        layers = []
+        if use_highpass:
+            layers.append(HighPass())
+            layers.append(nn.BatchNorm2d(9))
+        layers.extend([
+            _conv_bn(in_ch, w, 2), _conv_bn(w, 2 * w, 2), _conv_bn(2 * w, 4 * w, 2),
             _conv_bn(4 * w, 8 * w, 2), _conv_bn(8 * w, 8 * w, 2),
-        )
+        ])
+        self.net = nn.Sequential(*layers)
         self.fc = nn.Linear(8 * w, 1)
 
     def forward(self, x):                       # x in [0, 1]
@@ -91,27 +94,43 @@ class SimpleClassifier(nn.Module):
 
 
 class TVResNet18(nn.Module):
-    """Optional standard baseline for the paper's ablation (stride-1 stem, no max-pool)."""
-    def __init__(self):
+    """ResNet-18 baseline with optional HighPass front-end (stride-1 stem, no max-pool)."""
+    def __init__(self, use_highpass=False):
         super().__init__()
         import torchvision
+        self.use_highpass = use_highpass
+        self.hp = HighPass() if use_highpass else None
         m = torchvision.models.resnet18(weights=None)
-        m.conv1 = nn.Conv2d(3, 64, 3, 1, 1, bias=False)
+        in_ch = 9 if use_highpass else 3
+        m.conv1 = nn.Conv2d(in_ch, 64, 3, 1, 1, bias=False)
         m.maxpool = nn.Identity()
         m.fc = nn.Linear(512, 1)
         self.m = m
 
     def forward(self, x):
+        if self.use_highpass:
+            feat = self.hp(x)
+            return self.m(feat).squeeze(1)
         return self.m((x - 0.5) * 2.0).squeeze(1)
 
 
 def build_model(arch="forensic", width=32):
     if arch == "forensic":
-        return ForensicNet(width=width)
+        return ForensicNet(width=width, use_highpass=True)
     if arch == "forensic_nohp":
         return ForensicNet(width=width, use_highpass=False)
     if arch == "simple":
-        return SimpleClassifier(width=width)
+        return SimpleClassifier(width=width, use_highpass=False)
+    if arch == "simple_hp":
+        return SimpleClassifier(width=width, use_highpass=True)
     if arch == "resnet18":
-        return TVResNet18()
+        return TVResNet18(use_highpass=False)
+    if arch == "resnet18_hp":
+        return TVResNet18(use_highpass=True)
+    if arch == "srnet":
+        from rewm.srnet import SRNet
+        return SRNet(use_highpass=False)
+    if arch == "srnet_hp":
+        from rewm.srnet import SRNet
+        return SRNet(use_highpass=True)
     raise ValueError(arch)

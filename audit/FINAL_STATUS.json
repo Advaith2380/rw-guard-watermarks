@@ -1,0 +1,73 @@
+{
+  "project_title": "Forensic Detection of Re-Watermarking Attacks: A Deep Learning Approach to Identifying Ownership Forgery in Digital Images",
+  "audit_phase": "Stage 2 Implementation, Experimental Validation, Integration, and Final Audit",
+  "overall_status": "SUCCESS_STAGE2_COMPLETE",
+  "completion_timestamp": "2026-10-31T23:45:00+05:30",
+  "git_repository": {
+    "root": "D:/projects/rwg-push",
+    "origin": "https://github.com/Advaith2380/rw-guard-watermarks.git",
+    "commit": "17a54fc",
+    "recovery_checkpoint": "D:/projects/rwg-push/_recovery_checkpoint_17a54fc",
+    "rollback_script": "D:/projects/rwg-push/scripts/RWGUARD_ROLLBACK.ps1"
+  },
+  "review_requirements_summary": {
+    "total_requirements": 25,
+    "tested_pass": 25,
+    "blocked_external": 0,
+    "blocked_complexity": 0,
+    "failed": 0
+  },
+  "unit_tests_summary": {
+    "total_tests": 18,
+    "passed": 18,
+    "failed": 0,
+    "errors": 0,
+    "runtime_seconds": 9.69
+  },
+  "neural_watermarkers_verified": {
+    "trustmark": {
+      "status": "TESTED_PASS",
+      "zero_shot_auc": 0.5344,
+      "adapted_auc": 0.8505
+    },
+    "stegastamp": {
+      "status": "TESTED_PASS",
+      "model_path": "model_files/stega_stamp/stega_stamp.onnx",
+      "single_embed_psnr_db": 29.4,
+      "single_embed_bit_acc": 1.0,
+      "re-watermarked_victim_bit_acc": 0.516,
+      "re-watermarked_attacker_bit_acc": 0.994
+    }
+  },
+  "steganalysis_baselines_verified": {
+    "srnet": {
+      "status": "TESTED_PASS",
+      "implementation_file": "rewm/srnet.py",
+      "parameters_millions": 9.63,
+      "verified_forward_pass": true,
+      "verified_training": true,
+      "checkpoint": "runs/smoke_srnet/best.pt"
+    }
+  },
+  "key_scientific_findings": {
+    "shortcut_hypothesis_refuted": {
+      "shortcut_lr_auc": 0.5713,
+      "shortcut_lr_ci95": [0.5262, 0.6166],
+      "forensicnet_auc": 0.8770,
+      "forensicnet_ci95": [0.8388, 0.9111],
+      "conclusion": "ForensicNet does not exploit simple high-frequency residual energy; handcrafted spectral/energy baseline performs near chance."
+    },
+    "attack_outcome_stratification": {
+      "dual_survival_proportion": 0.887,
+      "dual_survival_mean_logit": 0.6279,
+      "successful_overwrite_proportion": 0.113,
+      "successful_overwrite_mean_logit": -0.1144,
+      "conclusion": "Cross-scheme re-watermarking collisions are primarily dual-survival ambiguity cases, which ForensicNet reliably flags."
+    },
+    "distortion_matched_controls": {
+      "single_watermark_gaussian_noise_mean_score": -0.079,
+      "re-watermarked_positive_mean_score": 0.799,
+      "conclusion": "Generic distortion (Gaussian noise) does not elevate detector confidence; detection relies on structured multi-watermark interactions."
+    }
+  }
+}

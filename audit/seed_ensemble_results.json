@@ -1,0 +1,57 @@
+{
+  "n_test_samples": 600,
+  "single_models": [
+    {
+      "seed": 0,
+      "checkpoint": "D:/projects/rewm-guard/runs/seed0/best.pt",
+      "val_threshold_1pct": 1.4324314594268799,
+      "test_auc": 0.8694555555555555,
+      "tpr_at_1pct_fpr": 0.06666666666666667,
+      "tpr_at_0p1pct_fpr": 0.016666666666666666,
+      "tpr_fixed_thr": 0.12333333333333334,
+      "fpr_fixed_thr": 0.02,
+      "inference_time_sec": 16.19258451461792
+    },
+    {
+      "seed": 1,
+      "checkpoint": "D:/projects/rewm-guard/runs/seed1/best.pt",
+      "val_threshold_1pct": 1.440341591835022,
+      "test_auc": 0.8620222222222222,
+      "tpr_at_1pct_fpr": 0.043333333333333335,
+      "tpr_at_0p1pct_fpr": 0.013333333333333334,
+      "tpr_fixed_thr": 0.15666666666666668,
+      "fpr_fixed_thr": 0.02,
+      "inference_time_sec": 16.209189653396606
+    },
+    {
+      "seed": 2,
+      "checkpoint": "D:/projects/rewm-guard/runs/seed2/best.pt",
+      "val_threshold_1pct": 1.3327926397323608,
+      "test_auc": 0.8640888888888889,
+      "tpr_at_1pct_fpr": 0.08666666666666667,
+      "tpr_at_0p1pct_fpr": 0.02,
+      "tpr_fixed_thr": 0.17666666666666667,
+      "fpr_fixed_thr": 0.02,
+      "inference_time_sec": 15.996795892715454
+    }
+  ],
+  "ensemble": {
+    "ensemble_type": "Logit Mean of 3 Independently Trained Seeds",
+    "val_threshold_1pct": 1.3888784646987915,
+    "test_auc": 0.8673444444444445,
+    "tpr_at_1pct_fpr": 0.06,
+    "tpr_at_0p1pct_fpr": 0.01,
+    "tpr_fixed_thr": 0.15,
+    "fpr_fixed_thr": 0.02,
+    "inference_time_sec": 48.39857006072998,
+    "latency_overhead_multiplier": 3.0
+  },
+  "comparison": {
+    "mean_single_auc": 0.8651888888888889,
+    "ensemble_auc": 0.8673444444444445,
+    "auc_delta": 0.002155555555555577,
+    "mean_single_tpr_at_1pct": 0.06555555555555555,
+    "ensemble_tpr_at_1pct": 0.06,
+    "tpr_delta": -0.00555555555555555
+  }
+}
