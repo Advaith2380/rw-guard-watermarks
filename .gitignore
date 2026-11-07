@@ -16,12 +16,18 @@ model_files/
 *.onnx
 runs/
 *.pt
+!checkpoints/final/rwguard_final_7scheme.pt
 
-# Temporary office lock files
+# Temporary office lock files and docx backups
 ~$*.docx
 ~$*.doc
+*_backup*.docx
 
 # Python environment
 .venv/
 venv/
 env/
+
+# Scratch directory
+scratch/
+audit/current_master_prompt.txt

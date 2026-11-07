@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "description": "Single watermark plus uncorrelated Gaussian noise calibrated to match double-watermarking MSE",
+  "n_sources": 300,
+  "n_samples": 600,
+  "matching_target": "MSE approximately 9.13",
+  "metrics": {
+    "n": 600,
+    "auc": 0.7295777777777778,
+    "tpr_at_1pct_fpr": 0.05,
+    "tpr_at_0p1pct_fpr": 0.0,
+    "tpr_fixed_thr": 0.21666666666666667,
+    "fpr_fixed_thr": 0.06333333333333334
+  },
+  "confidence_intervals_95": {
+    "auc": {
+      "point_estimate": 0.7295777777777778,
+      "bootstrap_mean": 0.7301587388888888,
+      "bootstrap_std": 0.013471460534792172,
+      "ci_95": [
+        0.7032205555555555,
+        0.7566675
+      ]
+    },
+    "tpr_at_1pct_fpr": {
+      "point_estimate": 0.05,
+      "bootstrap_mean": 0.05538166666666667,
+      "bootstrap_std": 0.022343005306160384,
+      "ci_95": [
+        0.016666666666666666,
+        0.10333333333333333
+      ]
+    },
+    "tpr_at_0p1pct_fpr": {
+      "point_estimate": 0.0,
+      "bootstrap_mean": 0.011859999999999999,
+      "bootstrap_std": 0.018187185965215544,
+      "ci_95": [
+        0.0,
+        0.06
+      ]
+    },
+    "tpr_fixed_thr": {
+      "point_estimate": 0.21666666666666667,
+      "bootstrap_mean": 0.21583166666666664,
+      "bootstrap_std": 0.023782287935445668,
+      "ci_95": [
+        0.17,
+        0.2633333333333333
+      ]
+    },
+    "fpr_fixed_thr": {
+      "point_estimate": 0.06333333333333334,
+      "bootstrap_mean": 0.063085,
+      "bootstrap_std": 0.014353067713132888,
+      "ci_95": [
+        0.03666666666666667,
+        0.09333333333333334
+      ]
+    }
+  },
+  "finding": "Noise-matched control yields AUC 0.7296 [95% CI: 0.7032, 0.7567]. The gap between 0.7296 and 0.8543 proves ForensicNet detects structured frequency-domain interference patterns beyond energy."
+}

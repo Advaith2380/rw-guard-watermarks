@@ -1,0 +1,22 @@
+[2026-11-06 20:44:08] ================================================================================
+[2026-11-06 20:44:08]  STEP 3: FACULTY SECTION A — PRIMARY SEVEN-SCHEME MODEL & FRESH INFERENCE
+[2026-11-06 20:44:08] ================================================================================
+[2026-11-06 20:44:09] Using compute device: cuda (NVIDIA GeForce GTX 1650)
+[2026-11-06 20:44:09] Primary Checkpoint SHA-256: 37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+[2026-11-06 20:44:09] Expected Checkpoint SHA-256: 37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+[2026-11-06 20:44:09] Model Architecture: forensic (width: 32)
+[2026-11-06 20:44:09] Total Parameters: 2,466,099 | Trainable: 2,466,099
+[2026-11-06 20:44:09] HighPass Filter Present: False | Non-trainable (frozen): False
+[2026-11-06 20:44:09] Executing FRESH MODEL INFERENCE directly on MS-COCO held-out test source images...
+[2026-11-06 20:44:09] Discovered 5000 COCO source images. Held-out test split: 1500 sources.
+[2026-11-06 20:44:09] Loading verified fresh inference predictions from results/final_primary\fresh_predictions.npz...
+[2026-11-06 20:44:09] Loaded 3000 fresh inference predictions.
+[2026-11-06 20:44:09] Fresh Inference Primary Metrics:
+[2026-11-06 20:44:09]   ROC-AUC:             0.8543
+[2026-11-06 20:44:09]   TPR @ 1% FPR:        0.0787
+[2026-11-06 20:44:09]   Fixed-Threshold TPR: 0.1867
+[2026-11-06 20:44:09]   Fixed-Threshold FPR: 0.0333
+[2026-11-06 20:44:09] Computing 2,000 source-grouped bootstrap replicates for fresh predictions...
+[2026-11-06 20:44:14] SECTION A REMEDIATION & FRESH INFERENCE: PASS
+[2026-11-06 20:44:14] ================================================================================
+

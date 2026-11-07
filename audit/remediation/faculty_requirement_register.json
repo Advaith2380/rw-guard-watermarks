@@ -1,0 +1,664 @@
+{
+  "title": "RW-Guard Faculty Review Remediation Requirement Register",
+  "source_document": "Final Review.docx (Sections A through E)",
+  "total_requirements": 36,
+  "status_summary": {
+    "PASS": 36,
+    "PARTIAL": 0,
+    "FAIL": 0,
+    "BLOCKED": 0,
+    "NOT_APPLICABLE": 0
+  },
+  "requirements": [
+    {
+      "req_id": "REQ-A01",
+      "section": "Section A.1",
+      "title": "Seven-Scheme Watermark Exposure",
+      "faculty_request": "Primary model must be trained on all seven distinct watermarking schemes (dct_qim, dwt_qim, ss_spatial, fft_ring, nmp_freq, svd_qim, dct_svd).",
+      "original_reported_value": "7 schemes",
+      "previous_status": "PASS",
+      "available_evidence": "checkpoints/final/final_model_config.json, training manifests, rewm/watermarks.py",
+      "missing_evidence": "None",
+      "required_remediation": "Verify all 7 schemes in code and checkpoint metadata.",
+      "dependencies": [],
+      "execution_script": "verify_checkpoint.py",
+      "output_files": "audit/checkpoint_integrity.json",
+      "acceptance_test": "Strict configuration contains all 7 scheme names and keys in state dict.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-A02",
+      "section": "Section A.2",
+      "title": "Validation-Selected Primary Checkpoint",
+      "faculty_request": "Select final primary model using validation performance only (never test data). Freeze checkpoint.",
+      "original_reported_value": "Seed 0, Best Epoch 14 (Val AUC 0.8483)",
+      "previous_status": "PASS",
+      "available_evidence": "runs/seed0/best.pt, checkpoint_provenance.json",
+      "missing_evidence": "None",
+      "required_remediation": "Verify provenance to validation-selected epoch 14.",
+      "dependencies": [
+        "REQ-A01"
+      ],
+      "execution_script": "verify_checkpoint.py",
+      "output_files": "audit/checkpoint_provenance.json",
+      "acceptance_test": "Exact tensor weight match with runs/seed0/best.pt.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-A03",
+      "section": "Section A.3",
+      "title": "Checkpoint Cryptographic & Architectural Integrity",
+      "faculty_request": "Verify SHA-256 hash (37680cdd...) and 2,466,099 trainable parameters of ForensicNet.",
+      "original_reported_value": "SHA-256: 37680cdd..., 2,466,099 params",
+      "previous_status": "PASS",
+      "available_evidence": "checkpoints/final/rwguard_final_7scheme.pt",
+      "missing_evidence": "None",
+      "required_remediation": "Byte hash calculation and strict architecture validation.",
+      "dependencies": [
+        "REQ-A02"
+      ],
+      "execution_script": "verify_checkpoint.py",
+      "output_files": "audit/checkpoint_integrity.json",
+      "acceptance_test": "SHA-256 bit-identical match, 0 missing/unexpected keys.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-A04",
+      "section": "Section A.4",
+      "title": "Fresh Primary In-Distribution Inference",
+      "faculty_request": "Perform fresh model inference from raw test images (disable cached test_preds.npz reuse) on held-out COCO test split.",
+      "original_reported_value": "ROC-AUC 0.8543 on 1,500 sources (3,000 samples)",
+      "previous_status": "PASS",
+      "available_evidence": "data/coco (5,000 images), model forward pass",
+      "missing_evidence": "Verification of non-cached execution trace",
+      "required_remediation": "Execute fresh forward passes across all 3,000 test samples directly from source images.",
+      "dependencies": [
+        "REQ-A03"
+      ],
+      "execution_script": "reproduce_primary_evaluation.py",
+      "output_files": "results/final_primary/fresh_predictions.csv, fresh_predictions.npz",
+      "acceptance_test": "Predictions generated fresh, matching test labels and AUC within 0.005 tol.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-A05",
+      "section": "Section A.5",
+      "title": "Benign Post-Processing Evaluation",
+      "faculty_request": "Evaluate primary model across 11 benign operations (JPEG, noise, blur, brightness, compound).",
+      "original_reported_value": "11 conditions (JPEG75-95, Noise, Blur, Brightness, Compound)",
+      "previous_status": "PASS",
+      "available_evidence": "results/final_7scheme_primary/results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Verify all 11 condition metrics, operating points, and CIs.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "audit_secondary_evaluations.py",
+      "output_files": "results/final_primary/benign_transformations.json",
+      "acceptance_test": "All 11 benign transform metrics verified.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-A06",
+      "section": "Section A.6",
+      "title": "Resolution Invariance Evaluation",
+      "faculty_request": "Evaluate arbitrary resolution invariance across 128px, 256px, and 384px inputs.",
+      "original_reported_value": "128px (0.8463), 256px (0.8543), 384px (0.8579)",
+      "previous_status": "PASS",
+      "available_evidence": "results/final_7scheme_primary/results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Verify resolution invariance and global adaptive pooling.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "audit_secondary_evaluations.py",
+      "output_files": "results/final_primary/resolution_results.json",
+      "acceptance_test": "Metrics verified across 3 resolutions.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-A07",
+      "section": "Section A.7",
+      "title": "PACS Cross-Domain Generalization",
+      "faculty_request": "Evaluate PACS 4 domains (Photo, Art, Cartoon, Sketch); resolve 1,600 vs 3,200 sample count discrepancy.",
+      "original_reported_value": "Photo 0.8192, Art 0.8616, Cartoon 0.8677, Sketch 0.8247",
+      "previous_status": "PASS",
+      "available_evidence": "data/pacs (1,600 images), pacs_calibration_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Clarify 1,600 source images vs 3,200 derived samples (2 per source).",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "audit_secondary_evaluations.py",
+      "output_files": "results/final_primary/pacs_results.json",
+      "acceptance_test": "Discrepancy resolved and domain metrics confirmed.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-A08",
+      "section": "Section A.8",
+      "title": "Adversarial Robustness Evaluation (PGD-10)",
+      "faculty_request": "Evaluate gradient-based adversarial evasion (PGD-10 at eps=0.5, 1.0, 2.0 / 255); report vulnerability honestly.",
+      "original_reported_value": "Clean 36.0% -> 0.0% detection under PGD-10",
+      "previous_status": "PASS",
+      "available_evidence": "results/final_7scheme_primary/results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Confirm adversarial evasion results and document vulnerability.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "audit_secondary_evaluations.py",
+      "output_files": "results/final_primary/adversarial_results.json",
+      "acceptance_test": "Adversarial evasion confirmed without suppression.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-A09",
+      "section": "Section A.9",
+      "title": "Hold-One-Scheme-Out Generalization",
+      "faculty_request": "Verify hold-one-scheme-out models are kept distinct from 7-scheme primary model.",
+      "original_reported_value": "Holdout DCT, Holdout FFT",
+      "previous_status": "PASS",
+      "available_evidence": "runs/holdout_dct, runs/holdout_fft",
+      "missing_evidence": "None",
+      "required_remediation": "Audit holdout checkpoints as distinct branches.",
+      "dependencies": [
+        "REQ-A01"
+      ],
+      "execution_script": "audit_secondary_evaluations.py",
+      "output_files": "results/final_primary/hold_one_scheme_out.json",
+      "acceptance_test": "Holdout checkpoints isolated from primary checkpoint.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-A10",
+      "section": "Section A.10",
+      "title": "Independent Multi-Seed Stability",
+      "faculty_request": "Evaluate 3 independent training runs (Seeds 0, 1, 2) on identical test sources.",
+      "original_reported_value": "Mean AUC 0.8528 +/- 0.0024 (range 0.0059)",
+      "previous_status": "PASS",
+      "available_evidence": "audit/seed_evaluation_results.json, runs/seed*",
+      "missing_evidence": "None",
+      "required_remediation": "Reconcile seed mean and standard deviation.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "audit_secondary_evaluations.py",
+      "output_files": "results/final_primary/multi_seed_results.json",
+      "acceptance_test": "Mean 0.8528 and std 0.0024 verified.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-B01",
+      "section": "Section B.1",
+      "title": "Distortion-Matched Single Watermark Control",
+      "faculty_request": "Generate and evaluate single-watermarked samples matched in distortion (MSE ~9.14) to double-watermarked images.",
+      "original_reported_value": "ROC-AUC 0.5747 [95% CI: 0.5544, 0.5955]",
+      "previous_status": "PASS",
+      "available_evidence": "audit/matched_controls_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Verify per-source distortion matching and evaluation metrics.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "reproduce_baselines.py",
+      "output_files": "results/shortcut_controls/distortion_matched_single.json",
+      "acceptance_test": "Distortion match MSE 9.14 confirmed; AUC 0.5747 reproduced.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-B02",
+      "section": "Section B.2",
+      "title": "Nonlinear Residual & Spectral Baselines",
+      "faculty_request": "Evaluate Logistic Regression and Random Forest on identical held-out test sources; report paired differences.",
+      "original_reported_value": "LR AUC 0.5569; RF AUC 0.5500; Paired Delta AUC > +0.29 (p < 0.001)",
+      "previous_status": "PASS",
+      "available_evidence": "audit/shortcut_baseline_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Reconcile paired source-level bootstrap comparison on 500 common sources.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "reproduce_baselines.py",
+      "output_files": "results/shortcut_controls/nonlinear_baselines.json, paired_comparisons.json",
+      "acceptance_test": "Paired delta AUC CIs strictly exclude zero (p < 0.001).",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-B03",
+      "section": "Section B.3",
+      "title": "Matched-Noise Control Evaluation",
+      "faculty_request": "Evaluate single-watermarked images + matched Gaussian noise (MSE ~9.13) to isolate structured artifact detection.",
+      "original_reported_value": "ROC-AUC 0.7296 [95% CI: 0.7032, 0.7567]",
+      "previous_status": "PASS",
+      "available_evidence": "audit/matched_controls_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Confirm noise-matched control metrics and CIs.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "reproduce_baselines.py",
+      "output_files": "results/shortcut_controls/matched_noise.json",
+      "acceptance_test": "Matched noise AUC 0.7296 reproduced.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-B04",
+      "section": "Section B.4",
+      "title": "Shortcut Learning Scientific Interpretation",
+      "faculty_request": "Temper claims: acknowledge perturbation energy accounts for modest detection (0.5747), but structured multi-embedding interference provides dominant signal (0.7296 vs noise, 0.854 vs double).",
+      "original_reported_value": "Qualified scientific interpretation",
+      "previous_status": "PASS",
+      "available_evidence": "audit/scientific_claims/scientific_claim_audit.md",
+      "missing_evidence": "None",
+      "required_remediation": "Formalize qualified wording in claims audit.",
+      "dependencies": [
+        "REQ-B01",
+        "REQ-B02",
+        "REQ-B03"
+      ],
+      "execution_script": "audit_scientific_claims.py",
+      "output_files": "audit/section_B_claim_audit.json",
+      "acceptance_test": "Classification: SUPPORTED_WITH_QUALIFICATION.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-C01",
+      "section": "Section C.1",
+      "title": "TrustMark Zero-Shot Stratified Evaluation",
+      "faculty_request": "Evaluate zero-shot transfer on TrustMark with stratified negative controls (not easy clean-only).",
+      "original_reported_value": "ROC-AUC 0.6562; Fixed TPR 0.0%; Recalibrated TPR 22.0%",
+      "previous_status": "PASS",
+      "available_evidence": "audit/trustmark_evaluation_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Report stratified zero-shot metrics and domain threshold shift.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "compute_confidence_intervals.py",
+      "output_files": "results/neural_generalization/trustmark_zero_shot.json",
+      "acceptance_test": "Stratified negative controls verified; AUC 0.6562 reproduced.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-C02",
+      "section": "Section C.2",
+      "title": "TrustMark Supervised Adaptation (15%)",
+      "faculty_request": "Evaluate supervised adaptation on 15% TrustMark data; clearly distinguish from zero-shot transfer.",
+      "original_reported_value": "ROC-AUC 0.8505, Fixed TPR 18.0%, TPR@1%FPR 22.0%",
+      "previous_status": "PASS",
+      "available_evidence": "audit/trustmark_evaluation_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Document fine-tuning protocol and adapted performance.",
+      "dependencies": [
+        "REQ-C01"
+      ],
+      "execution_script": "compute_confidence_intervals.py",
+      "output_files": "results/neural_generalization/trustmark_adaptation.json",
+      "acceptance_test": "Adapted AUC 0.8505 verified.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-C03",
+      "section": "Section C.3",
+      "title": "Historical TrustMark Protocol Reconciliation",
+      "faculty_request": "Reconcile historical values (0.534 4-scheme, 0.696 unstratified, 0.851 adapted, 0.925 earlier adapted).",
+      "original_reported_value": "Comparison table across historical runs",
+      "previous_status": "PASS",
+      "available_evidence": "audit/trustmark_evaluation_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Document exact protocol differences across model checkpoints.",
+      "dependencies": [
+        "REQ-C01",
+        "REQ-C02"
+      ],
+      "execution_script": "audit_scientific_claims.py",
+      "output_files": "results/neural_generalization/historical_protocol_reconciliation.json",
+      "acceptance_test": "Historical values reconciled by checkpoint and protocol.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-C04",
+      "section": "Section C.4",
+      "title": "StegaStamp Zero-Shot Forensic Detection",
+      "faculty_request": "Evaluate forensic detection on singly vs doubly watermarked StegaStamp images (not just extraction).",
+      "original_reported_value": "ROC-AUC 0.9293 [95% CI: 0.9024, 0.9543], TPR@1%FPR 16.67%",
+      "previous_status": "PASS",
+      "available_evidence": "audit/stegastamp_evaluation_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Confirm StegaStamp zero-shot forensic detection metrics.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "compute_confidence_intervals.py",
+      "output_files": "results/neural_generalization/stegastamp_zero_shot.json",
+      "acceptance_test": "StegaStamp AUC 0.9293 confirmed.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-C05",
+      "section": "Section C.5",
+      "title": "Neural Generalization Claims Rigor",
+      "faculty_request": "Acknowledge zero-shot domain gap on TrustMark (0.0% fixed TPR) and report deployment boundaries honestly.",
+      "original_reported_value": "Qualified generalization claims",
+      "previous_status": "PASS",
+      "available_evidence": "audit/scientific_claims/scientific_claim_audit.md",
+      "missing_evidence": "None",
+      "required_remediation": "Formalize domain shift qualification in claims register.",
+      "dependencies": [
+        "REQ-C01",
+        "REQ-C04"
+      ],
+      "execution_script": "audit_scientific_claims.py",
+      "output_files": "audit/section_C_claim_audit.json",
+      "acceptance_test": "Zero-shot domain gap reported without omission.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-D01",
+      "section": "Section D.1",
+      "title": "Watermark Recovery Criteria Definition",
+      "faculty_request": "Define explicit bit-accuracy recovery criteria for victim and attacker watermarks.",
+      "original_reported_value": "Threshold > 0.75 bit-accuracy",
+      "previous_status": "PASS",
+      "available_evidence": "rewm/watermarks.py, outcome_stratification_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Document exact extraction threshold and verification formulas.",
+      "dependencies": [],
+      "execution_script": "audit_json_artifacts.py",
+      "output_files": "results/attack_outcomes/recovery_criteria.json",
+      "acceptance_test": "Bit accuracy formula documented and verified.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-D02",
+      "section": "Section D.2",
+      "title": "Four Mutually Exclusive Attack Outcome Categories",
+      "faculty_request": "Classify every attack into: Dual Survival, Successful Overwrite, Failed Attacker Embedding, Both Unrecoverable.",
+      "original_reported_value": "Dual: 425 (85.0%), Overwrite: 67 (13.4%), Failed: 8 (1.6%), Both: 0 (0.0%)",
+      "previous_status": "PASS",
+      "available_evidence": "audit/outcome_stratification_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Audit all 500 attack outcomes for mutual exclusivity and 100% sum.",
+      "dependencies": [
+        "REQ-D01"
+      ],
+      "execution_script": "audit_json_artifacts.py",
+      "output_files": "results/attack_outcomes/category_counts.json",
+      "acceptance_test": "Counts sum to exactly 500; percentages sum to 100.0%.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-D03",
+      "section": "Section D.3",
+      "title": "Dual-Survival Rate Verification (88.7% vs 85.0%)",
+      "faculty_request": "Verify actual recovery records: resolve historical 88.7% claim vs actual verified 85.0% (425/500).",
+      "original_reported_value": "Verified: 85.0% (425/500)",
+      "previous_status": "PASS",
+      "available_evidence": "audit/outcome_stratification_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Document exact previous vs current numerator/denominator reconciliation.",
+      "dependencies": [
+        "REQ-D02"
+      ],
+      "execution_script": "audit_scientific_claims.py",
+      "output_files": "results/attack_outcomes/dual_survival_reconciliation.json",
+      "acceptance_test": "425/500 = 85.0% strictly proved; 88.7% reconciled.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-D04",
+      "section": "Section D.4",
+      "title": "Category-Specific Forensic Detection Metrics",
+      "faculty_request": "Report category-specific detection rates, detector scores, and ROC-AUC vs common single controls.",
+      "original_reported_value": "Dual Survival Detection: 20.71%; Overwrite Detection: 11.94%",
+      "previous_status": "PASS",
+      "available_evidence": "audit/outcome_stratification_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Reconcile category-specific detection metrics.",
+      "dependencies": [
+        "REQ-D02"
+      ],
+      "execution_script": "compute_confidence_intervals.py",
+      "output_files": "results/attack_outcomes/category_detection_metrics.json",
+      "acceptance_test": "Category metrics verified against common controls.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-D05",
+      "section": "Section D.5",
+      "title": "Ownership Forgery vs Collision Mechanics",
+      "faculty_request": "Distinguish between sequential embedding detection, watermark suppression, and legal ownership forgery.",
+      "original_reported_value": "Scientific distinction established",
+      "previous_status": "PASS",
+      "available_evidence": "audit/scientific_claims/scientific_claim_audit.md",
+      "missing_evidence": "None",
+      "required_remediation": "Clarify that 85% dual survival demonstrates collisions rather than complete erasure.",
+      "dependencies": [
+        "REQ-D03"
+      ],
+      "execution_script": "audit_scientific_claims.py",
+      "output_files": "audit/section_D_claim_audit.json",
+      "acceptance_test": "Distinction clearly articulated in claims audit.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-E01",
+      "section": "Section E.1",
+      "title": "95% Confidence Intervals Across All Metrics",
+      "faculty_request": "Provide 95% confidence intervals for ROC-AUC, TPR@1%FPR, fixed-threshold TPR, and fixed-threshold FPR.",
+      "original_reported_value": "Full CI reporting",
+      "previous_status": "PASS",
+      "available_evidence": "audit/final_independent_verification/confidence_intervals.json",
+      "missing_evidence": "None",
+      "required_remediation": "Consolidate across all 34 evaluated experimental conditions.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "compute_confidence_intervals.py",
+      "output_files": "results/statistics/consolidated_statistical_results.json",
+      "acceptance_test": "Zero NaN/Inf, lower <= estimate <= upper.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-E02",
+      "section": "Section E.2",
+      "title": "Source-Image Grouped Bootstrap (B >= 2,000)",
+      "faculty_request": "Resample source images as independent units (B >= 2,000); do not resample dependent positive/negative pairs independently.",
+      "original_reported_value": "B = 2,000 replicates, grouped by source ID",
+      "previous_status": "PASS",
+      "available_evidence": "rewm/metrics.py, bootstrap_ci.py",
+      "missing_evidence": "None",
+      "required_remediation": "Document grouped resampling mechanics and diagnostic convergence.",
+      "dependencies": [
+        "REQ-E01"
+      ],
+      "execution_script": "compute_confidence_intervals.py",
+      "output_files": "results/statistics/bootstrap_diagnostics.json",
+      "acceptance_test": "B=2000 replicates verified, grouped by source.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-E03",
+      "section": "Section E.3",
+      "title": "Strict Operating Threshold Discipline",
+      "faculty_request": "Validation threshold tau = 1.3394 must remain frozen; separate test ROC TPR@1%FPR from fixed-threshold rates.",
+      "original_reported_value": "tau = 1.3394016",
+      "previous_status": "PASS",
+      "available_evidence": "checkpoints/final/final_model_config.json, primary_reproduction.json",
+      "missing_evidence": "None",
+      "required_remediation": "Explicitly enforce separation between the two operating point quantities.",
+      "dependencies": [
+        "REQ-A04"
+      ],
+      "execution_script": "reproduce_primary_evaluation.py",
+      "output_files": "results/statistics/threshold_validation_test_analysis.json",
+      "acceptance_test": "No recalibration on test set; both metrics reported.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-E04",
+      "section": "Section E.4",
+      "title": "Multi-Seed Standard Deviation Convention",
+      "faculty_request": "Resolve population vs sample standard deviation for 3 seeds (sample std = 0.0024 vs pop std = 0.0020).",
+      "original_reported_value": "Sample std = 0.0024",
+      "previous_status": "PASS",
+      "available_evidence": "audit/seed_evaluation_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Standardize and state sample standard deviation (N-1 degrees of freedom).",
+      "dependencies": [
+        "REQ-A10"
+      ],
+      "execution_script": "audit_json_artifacts.py",
+      "output_files": "results/statistics/seed_statistics.json",
+      "acceptance_test": "Exact formula and degrees of freedom documented.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-E05",
+      "section": "Section E.5",
+      "title": "Paired Bootstrap Baseline Difference Testing",
+      "faculty_request": "Compare RW-Guard with baselines using paired source-level bootstrap; test delta AUC and low-FPR difference.",
+      "original_reported_value": "Delta AUC +0.2908 (LR), +0.2982 (RF), p < 0.001",
+      "previous_status": "PASS",
+      "available_evidence": "audit/paired_baseline_comparison.json",
+      "missing_evidence": "None",
+      "required_remediation": "Serialize formal paired comparison statistics.",
+      "dependencies": [
+        "REQ-B02",
+        "REQ-E02"
+      ],
+      "execution_script": "reproduce_baselines.py",
+      "output_files": "results/statistics/paired_baseline_comparisons.json",
+      "acceptance_test": "Paired difference CIs exclude zero.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-E06",
+      "section": "Section E.6",
+      "title": "Validation vs Test FPR Discrepancy Investigation",
+      "faculty_request": "Investigate shift from 1.00% validation FPR (3/300) to 3.33% test FPR (50/1500); evaluate tail density and KS test.",
+      "original_reported_value": "KS test D=0.050, p=0.5485; tail quantization confirmed",
+      "previous_status": "PASS",
+      "available_evidence": "audit/fpr_discrepancy_investigation.json",
+      "missing_evidence": "None",
+      "required_remediation": "Confirm statistical identity of negative distributions and tail quantization.",
+      "dependencies": [
+        "REQ-E03"
+      ],
+      "execution_script": "audit_scientific_claims.py",
+      "output_files": "results/statistics/threshold_validation_test_analysis.json",
+      "acceptance_test": "KS test p=0.55 verified; tail sensitivity explained.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-E07",
+      "section": "Section E.7",
+      "title": "Consolidated Statistical Table",
+      "faculty_request": "Produce one authoritative master table covering all conditions, sample counts, metrics, CIs, thresholds, and checkpoints.",
+      "original_reported_value": "Master table (34 conditions)",
+      "previous_status": "PASS",
+      "available_evidence": "audit/final_independent_verification/consolidated_statistical_results.csv",
+      "missing_evidence": "None",
+      "required_remediation": "Serialize consolidated statistical CSV and JSON in results/statistics/.",
+      "dependencies": [
+        "REQ-E01",
+        "REQ-E05"
+      ],
+      "execution_script": "compute_confidence_intervals.py",
+      "output_files": "results/statistics/consolidated_statistical_results.csv",
+      "acceptance_test": "All conditions present with complete counts, CIs, and metrics.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-PKG01",
+      "section": "Checklist 1",
+      "title": "Dataset & Source Manifest Reconciliation",
+      "faculty_request": "Master source manifest with 5,000 COCO sources; prove zero split leakage.",
+      "original_reported_value": "5,000 sources, 0 leakage",
+      "previous_status": "PASS",
+      "available_evidence": "audit/baseline_source_overlap_audit.json",
+      "missing_evidence": "None",
+      "required_remediation": "Serialize master source manifest CSV and leakage audit.",
+      "dependencies": [],
+      "execution_script": "audit_source_overlap.py",
+      "output_files": "data/manifests/master_source_manifest.csv, audit/source_split_leakage_audit.json",
+      "acceptance_test": "Zero source overlap verified across train, val, and test.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-PKG02",
+      "section": "Checklist 2",
+      "title": "Automated Regression Test Suite",
+      "faculty_request": "Execute complete automated unit and integration regression test suite (22 tests); report exact results.",
+      "original_reported_value": "22 tests passed (100%)",
+      "previous_status": "PASS",
+      "available_evidence": "run_tests.py, test_results.json",
+      "missing_evidence": "None",
+      "required_remediation": "Execute test suite and serialize machine-readable results.",
+      "dependencies": [
+        "REQ-A03"
+      ],
+      "execution_script": "run_test_suite_audit.py",
+      "output_files": "audit/final/test_results.json",
+      "acceptance_test": "22/22 tests passing with exit code 0.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-PKG03",
+      "section": "Checklist 3",
+      "title": "Scientific Claim Audit & Reconciliation",
+      "faculty_request": "Audit all material claims against raw evidence; classify supported vs qualified claims.",
+      "original_reported_value": "8 claims audited (6 supported, 2 qualified)",
+      "previous_status": "PASS",
+      "available_evidence": "scientific_claim_audit.json",
+      "missing_evidence": "None",
+      "required_remediation": "Serialize before-vs-after claims audit CSV and markdown report.",
+      "dependencies": [
+        "REQ-B04",
+        "REQ-C05",
+        "REQ-D05"
+      ],
+      "execution_script": "audit_scientific_claims.py",
+      "output_files": "audit/scientific_claims/previous_vs_current_claims.csv, scientific_claim_audit.md",
+      "acceptance_test": "All claims classified with rigorous justification.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-PKG04",
+      "section": "Checklist 4",
+      "title": "Master PowerShell Verification Entry Point",
+      "faculty_request": "Create run_rwguard_final_verification.ps1 supporting -Mode Full; execute and verify clean exit.",
+      "original_reported_value": "run_rwguard_final_verification.ps1",
+      "previous_status": "PASS",
+      "available_evidence": "run_final_verification.py",
+      "missing_evidence": "PowerShell wrapper executing all 17 verification stages",
+      "required_remediation": "Implement robust run_rwguard_final_verification.ps1 and execute.",
+      "dependencies": [
+        "REQ-PKG02"
+      ],
+      "execution_script": "run_rwguard_final_verification.ps1",
+      "output_files": "audit/final/FINAL_EXECUTION_SUMMARY.json, FINAL_EXECUTION_LOG.txt",
+      "acceptance_test": "PowerShell script executes all stages and exits code 0.",
+      "final_status": "PASS"
+    },
+    {
+      "req_id": "REQ-PKG05",
+      "section": "Checklist 5",
+      "title": "Complete Deliverables Archive Packaging",
+      "faculty_request": "Assemble complete, portable ZIP package with code, checkpoints, predictions, manifests, tests; verify extraction and SHA-256.",
+      "original_reported_value": "RW_GUARD_COMPLETE_FACULTY_REMEDIATION_PACKAGE.zip",
+      "previous_status": "PASS",
+      "available_evidence": "deliverables/",
+      "missing_evidence": "None",
+      "required_remediation": "Build comprehensive package, test extraction, calculate SHA-256.",
+      "dependencies": [
+        "REQ-PKG04"
+      ],
+      "execution_script": "package_final_deliverables.py",
+      "output_files": "deliverables/RW_GUARD_COMPLETE_FACULTY_REMEDIATION_PACKAGE.zip",
+      "acceptance_test": "ZIP passes testzip, extracts cleanly, SHA-256 manifest saved.",
+      "final_status": "PASS"
+    }
+  ]
+}

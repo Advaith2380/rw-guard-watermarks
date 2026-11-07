@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "description": "Hold-one-scheme-out generalization models",
+  "checkpoints": {
+    "holdout_dct": "D:/projects/rewm-guard/runs/holdout_dct/best.pt",
+    "holdout_fft": "D:/projects/rewm-guard/runs/holdout_fft/best.pt"
+  },
+  "isolated_from_primary": true
+}

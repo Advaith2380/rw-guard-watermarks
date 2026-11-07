@@ -1,0 +1,16 @@
+{
+  "architecture_name": "forensic",
+  "width": 32,
+  "total_parameters": 2466099,
+  "trainable_parameters": 2466099,
+  "expected_parameters": 2466099,
+  "parameter_count_verified": true,
+  "high_pass_filter_present": false,
+  "high_pass_filter_shape": null,
+  "strict_load_missing_keys": [],
+  "strict_load_unexpected_keys": [],
+  "all_parameters_finite": true,
+  "nan_tensors": [],
+  "inf_tensors": [],
+  "status": "PASS"
+}

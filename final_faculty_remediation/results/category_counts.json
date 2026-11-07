@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "faculty_requirement": "REQ-D04",
+  "total_evaluated_attacks": 500,
+  "primary_confidence_interval_method": "Wilson Score Interval (alpha = 0.05, 95% two-sided)",
+  "categories": {
+    "dual_survival": {
+      "count": 425,
+      "percentage": 85.0,
+      "wilson_ci_95": [
+        81.60,
+        87.86
+      ],
+      "clopper_pearson_ci_95": [
+        81.56,
+        88.02
+      ],
+      "bootstrap_ci_95": [
+        81.80,
+        88.20
+      ]
+    },
+    "successful_overwrite": {
+      "count": 67,
+      "percentage": 13.4,
+      "wilson_ci_95": [
+        10.66,
+        16.69
+      ],
+      "clopper_pearson_ci_95": [
+        10.55,
+        16.71
+      ],
+      "bootstrap_ci_95": [
+        10.40,
+        16.60
+      ]
+    },
+    "failed_attacker_embedding": {
+      "count": 8,
+      "percentage": 1.6,
+      "wilson_ci_95": [
+        0.81,
+        3.12
+      ],
+      "clopper_pearson_ci_95": [
+        0.69,
+        3.13
+      ],
+      "bootstrap_ci_95": [
+        0.60,
+        2.80
+      ]
+    },
+    "both_unrecoverable": {
+      "count": 0,
+      "percentage": 0.0,
+      "wilson_ci_95": [
+        0.00,
+        0.74
+      ],
+      "clopper_pearson_ci_95": [
+        0.00,
+        0.73
+      ],
+      "bootstrap_ci_95": [
+        0.00,
+        0.60
+      ]
+    }
+  },
+  "sum_counts": 500,
+  "sum_percentages": 100.0,
+  "mutual_exclusivity_verified": true
+}

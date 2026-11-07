@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "common_source_population": "Exact held-out test split sources (te[:500])",
+  "n_common_source_images": 500,
+  "n_common_test_samples": 1000,
+  "bootstrap_replicates": 2000,
+  "paired_comparisons": {
+    "rwguard_vs_logistic_regression": {
+      "delta_auc": 0.290752452,
+      "delta_auc_95_ci": [
+        0.2672475,
+        0.31421619999999995
+      ],
+      "delta_tpr_at_1pct_fpr": 0.04899100000000001,
+      "is_statistically_significant": true
+    },
+    "rwguard_vs_random_forest": {
+      "delta_auc": 0.298182915,
+      "delta_auc_95_ci": [
+        0.26541929999999997,
+        0.33143675000000006
+      ],
+      "delta_tpr_at_1pct_fpr": 0.04042400000000001,
+      "is_statistically_significant": true
+    }
+  }
+}

@@ -3,8 +3,8 @@ param (
     [switch]$ConfirmRollback
 )
 
-$CheckpointId = "recovery-checkpoint-17a54fc-20261031"
-$BackupDir = "_recovery_checkpoint_17a54fc"
+$CheckpointId = "recovery-checkpoint-238b319-20261106"
+$BackupDir = "_recovery_checkpoint_238b319"
 $ManifestPath = "audit/recovery_manifest.json"
 
 Write-Host "================================================="

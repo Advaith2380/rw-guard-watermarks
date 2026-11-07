@@ -1,0 +1,1042 @@
+[
+  {
+    "idx": 0,
+    "style": "Title",
+    "text": "RW-Guard: Key-free Forensic Detection of\nSequential Re-Watermarking in Digital Images"
+  },
+  {
+    "idx": 1,
+    "style": "Author",
+    "text": "Advaith Rajesh1, Asrar1, Riz Eapen1\n1Vellore Institute of Technology, Vellore, Tamil Nadu, India"
+  },
+  {
+    "idx": 2,
+    "style": "Date",
+    "text": "Code and reproducibility repository: https://github.com/Advaith2380/rw-guard-watermarks"
+  },
+  {
+    "idx": 3,
+    "style": "Abstract Title",
+    "text": "Abstract"
+  },
+  {
+    "idx": 4,
+    "style": "Abstract",
+    "text": "Re-watermarking, embedding the second watermark over one more existing one, can create ownership ambiguity without necessarily removing the original signal, all things considered. The detector is reaching AUC 0.859 on held-out data (threshold set on validation to target 1% FPR; gathered test FPR 3.5%), AUC 0.830-0.885 under the benign edits and resolution changes, and generalises partially to withheld strategies (AUC 0.82 unseen-scheme, 0.58 unseen-both), at least in practice; we introduce RW-Guard, one convolutional classifier with any fixed high-pass front end and residual backbone distinguishing re-watermarked from singly- or un-watermarked images, trained on a seven-scheme simulated testbed (block-DCT, wavelet, spread-spectrum, Fourier-ring, SVD, PECCVAI-inspired\u00a0) over 5,000 MS-COCO images. Against a real pretrained neural watermarker, TrustMark, zero-shot AUC is 0.696, rising to 0.925 after mixing TrustMark examples into the training without degrading classical-scheme accuracy; this rests on this design are being revealed by an ablation, such as removing the high-pass front end or residual backbone collapses AUC to chance (0.50-0.52). Prior forensic work targets watermark removal\u00a0; key-free detection of sequential embedding is comparatively unexplored; and thus, a calibration gap under cross-domain shift (PACS) and near-complete failure under white-box PGD are , in practice, reported as shortcomings. Taken together, we provide this as indication for a cross-scheme, partially generalising detector, not a scheme-agnostic one, and release code, seeds, and checkpoints for reproduction."
+  },
+  {
+    "idx": 5,
+    "style": "Abstract",
+    "text": "Keywords: image watermarking; re-watermarking; digital forensics; watermark attacks; provenance; steganalysis."
+  },
+  {
+    "idx": 6,
+    "style": "Heading 1",
+    "text": "Introduction"
+  },
+  {
+    "idx": 7,
+    "style": "First Paragraph",
+    "text": "Digital image watermarking has become a central operation for claiming content provenance, protecting intellectual characteristic, and following with emerging disclosure regulations for AI-generated media, in many respects. That is to say, California SB 942 (the AI Transparency Act) is needing covered providers to encompass latent disclosures in qualifying AI-generated image, video and audio content, subject to stipulated conditions, at least empirically. The EU AI Act\u2019s Article 50 separately needs providers creating synthetic audio, image, video, or text content to guarantee outputs are specifically marked in a machine-readable format and detectable as artificially yielded or manipulated, subject to stated technical and scope qualifications; this is a broad detectability requirement, not a command for one particular invisible-watermarking scheme, at least for now. All these measures motivate the broader adoption of invisible watermarking schemes that embed ownership or provenance signals imperceptibly to a human viewer yet robustly against ordinary image processing, without by themselves recommending the exact strategy examined here, in real-world scenarios."
+  },
+  {
+    "idx": 8,
+    "style": "Body Text",
+    "text": "Deep-learning-based watermarking methods, built on CNNs, GANs, transformers and diffusion models, have showed strong imperceptibility, robustness trade-offs. Along these dimensions, contemporary strategies such as StegaStamp, Stable Signature, Tree-Ring, and related post-hoc encoder, decoder or diffusion-native frameworks represent the current state of the art. Still, Bulychev, Marchant and Rubinstein\u00a0 lately showed that these approaches share a prevalent vulnerability: because watermark embedding and watermark removal are, mathematically, closely related optimisation problems, a second watermark implemented on top of an existing one can hide the original signal almost as successfully as a dedicated removal attack, while simultaneously installing a fully decodable attacker watermark; this re-watermarking attack is cheap, needs no access to the victim's decoding key, and, unlike pure removal, leaves the image carrying an alternative, verifiable claim of ownership, which is a materially more damaging outcome than removal alone."
+  },
+  {
+    "idx": 9,
+    "style": "Body Text",
+    "text": "Parallel forensic work has disclosed that watermark removal attacks leave detectable statistical and spectral artefacts, giving rise to Watermark Removal Detection (WRD) classifiers that are reaching very high true-positive rates at low false-positive rates, on the whole; and thus, critically, this forensic line of work targets removal specifically. Prior work has examined re-watermarking as an attack, watermark-method identification, watermark-presence detection, and forensic traces left by watermark-removal pipelines, in the main; a separate passive processing-history task is conversely inspected, like computing from image pixels alone whether sequential autonomous watermark embedding has emerged, without watermark keys or a scheme-specific decoder, and gauging transfer to watermark families excluded from training. This narrower combination, passive, key-free category of sequential watermark embedding, tested for generalisation to unseen watermark families, is, to the authors' knowledge, not the central task of prior published work; contrastingly, the surrounding field (watermark-attack forensics, watermark-presence detection) is considerably more formulated than a first reading implies (Section\u00a02). In this broader context, what this report outlines is , in effect, our attempt to close that specific gap."
+  },
+  {
+    "idx": 10,
+    "style": "Heading 2",
+    "text": "Research Goals"
+  },
+  {
+    "idx": 11,
+    "style": "First Paragraph",
+    "text": "The project is notably organised around six concrete goals, each person targeting a shortcoming spotted in the literature review (Section\u00a02):"
+  },
+  {
+    "idx": 12,
+    "style": "Body Text",
+    "text": "G1, Reproducible attack testbed. Against this backdrop, execute a multi-scheme watermark embedding/extraction testbed covering classic transform-domain techniques and at least one embedding approach inspired by 2026-era research (semantically-localised embedding, following PECCVAI\u00a0), so that the detector is uniformly not overfit to a person watermarking family, in actual application."
+  },
+  {
+    "idx": 13,
+    "style": "Body Text",
+    "text": "Train a binary forensic classifier that is deciding whether an image has been re-watermarked applying only pixel proof, no secret key, no fingerprint database, and no access to the watermark encoder/decoder, tackling the scalability and database-overhead shortcoming raised in the reviewed literature, broadly speaking; and thus, g2, Key- and database-free detection."
+  },
+  {
+    "idx": 14,
+    "style": "Body Text",
+    "text": "G3, Resolution invariance. In parallel with this, design the classifier to operate at unspecified input resolution, since most reviewed forensic classifiers are, in essence, gauged only at fixed sizes (256 or 512 px), at least in principle."
+  },
+  {
+    "idx": 15,
+    "style": "Body Text",
+    "text": "G4, Cross-domain strength. Assess generalisation from photographic training data to stylistically diverse areas (art, cartoon, sketch), tackling the recorded failure of photo-trained forensic classifiers on non-photorealistic content, to a significant degree."
+  },
+  {
+    "idx": 16,
+    "style": "Body Text",
+    "text": "G5, Adversarial robustness characterisation. Building on this observation, quantify the detector's vulnerability to an adaptive, white-box adversary, motivated by the recorded evadability of forensic classifiers, under the optimisation-based attacks, at least empirically."
+  },
+  {
+    "idx": 17,
+    "style": "Body Text",
+    "text": "G6, Benchmarking. Viewed through this lens, position the subsequent detector against published watermark-forensics findings acquired on comparable data, to give an honest, quantitative sense of how far the current model is from the state of the art, on the whole."
+  },
+  {
+    "idx": 18,
+    "style": "Body Text",
+    "text": "Sections 2-7 outline, respectively, the positioning of the current examination within the prevailing body of scholarship, the system design, the dataset, the experimental protocol and findings, a comparison against published benchmarks, and our findings, shortcomings and planned future work, in actual application."
+  },
+  {
+    "idx": 19,
+    "style": "Heading 1",
+    "text": "Literature Review, like Research Gaps and Positioning"
+  },
+  {
+    "idx": 20,
+    "style": "Heading 2",
+    "text": "The Robustness, Stealthiness Paradox and Pattern Leakage"
+  },
+  {
+    "idx": 21,
+    "style": "First Paragraph",
+    "text": "A central tension in watermark design is the trade-off between robustness to environmental distortion and security against analytical adversaries\u00a0. To survive JPEG compression, blurring and scaling, both classic and deep-learning watermarks (e.g.\u00a0HiDDeN\u00a0, StegaStamp\u00a0) are trained with differentiable noise layers, which increases the statistical redundancy of the embedded pattern\u00a0. Ba et al.\u00a0 show that this redundancy leaks into the feature space of the carrier image: in a no-box threat model, an adversary using only pretrained vision features can separate the watermark fingerprint from a single image without ever querying the victim's detector, turning robustness-by-design into a security liability. Yang et al.\u00a0 reach a related conclusion via classical steganalysis: a watermark's own robustness-driving redundancy is, from a steganalyst's perspective, exactly the kind of statistical regularity standard steganalysis detectors are built to find, so stronger robustness does not imply stronger security against passive third-party detection."
+  },
+  {
+    "idx": 22,
+    "style": "Heading 2",
+    "text": "Re-Watermarking as a Generic Removal and Forgery Mechanism"
+  },
+  {
+    "idx": 23,
+    "style": "First Paragraph",
+    "text": "Earlier work treated watermark removal as a denoising or \u201cpurification\u201d issue, modelling the watermark as additive, pixel-level noise to be removed with generative priors, to a significant degree; bulychev et al. rather gather that watermark embedding and watermark removal are nearly matching optimisation problems, both search for a small, perceptually-bounded perturbation that is changing a detector\u2019s decision, in the main. Under their \u201cWatermarks Attack Watermarks\u201d (WAW) framing, applying a naive secondary watermark is a cheap and highly effective removal method: across 96 combinations of dataset, victim scheme and attacker scheme, re-watermarking drove the victim true-positive rate to near zero while simultaneously installing a fully valid, decodable attacker watermark, creating total vagueness about rightful ownership\u00a0."
+  },
+  {
+    "idx": 24,
+    "style": "Body Text",
+    "text": "Overwriting as an attack primitive predates this project's framing; and thus, chen et al. study an overwriting attack and defence for image-processing neural network watermarks, revealing high-frequency components of the embedded signal are the key point of attack and defence, broadly speaking. From this perspective, the overwriting pattern is also not unique to image content watermarks, including a concurrent systematic study of audio watermarking\u00a0 uncovers that overwriting attacks, embedding a forged watermark over an existing one so the original can no longer be recovered, reach near-100% success against three deployed neural audio watermarkers (AudioSeal, Timbre, WavMark) across the white-, gray- and black-box attacker knowledge levels, with no detector suggested; this cross-modal recurrence implies overwriting is a structural weakness of the watermark-as-robust-perturbation strategy itself, not an image-specific quirk, which is strengthening the case for a broad forensic response rather than a per-modality patch, all things considered."
+  },
+  {
+    "idx": 25,
+    "style": "Body Text",
+    "text": "A broader body of 2024-2026 work independently is meeting on the same conclusion from the removal side, such as ordinary diffusion-based image editing, not just dedicated attacks, is often enough to erase a watermark, at least for now. To explain, guo et al. and Qi et al. show that routine diffusion-based editing undermines solid invisible watermarks and destroys forensic indication of change as a side effect; Gu et al. give a theoretical and empirical account of why diffusion-based denoising is equal to \"unsigning\" a watermark; M\u00fcller et al. show black-box forgery attacks against semantic watermarks specifically, the same embedding family RW-Guard's nmp_freq scheme is drawn from; and Fairoze et al. flavouredly result on the limits of simultaneously solid and publicly-detectable watermarking. On the defence side, Lei et al. Xian et al. and Evennou et al. propose watermarking and semantic-forgery-detection approaches designed to be more tough to exactly this class of editing/removal attack, on the whole. None of this literature, spanning the forensic-detection papers, appraises the re-watermarking (overwriting) attack specifically, it is broadly treated, where mentioned at all, as a version of removal rather than as its own forgery primitive with a separate forensic signature, in real-world scenarios."
+  },
+  {
+    "idx": 26,
+    "style": "Heading 2",
+    "text": "The Forensic Cost of Removal, and the Detection Gap"
+  },
+  {
+    "idx": 27,
+    "style": "First Paragraph",
+    "text": "Removal attacks are not forensically free. Evennou and Kijak\u00a0 and Goonatilake and Ateniese\u00a0 independently are revealing that generative/adversarial removal pipelines leave characteristic statistical and spectral artefacts, motivating forensic stealth as a third evaluation axis beyond evasion success and visual quality. Lightweight ConvNeXt-based classifiers are reaching 92% detection at a  false-positive rate across the removal methods\u00a0. Within this framework, also, autonomous forensic classifiers are reaching over 98% true-positive rate at 1% false-positive rate across six removal attacks incorporating UnMarker, WatermarkAttacker and CtrlRegen+\u00a0."
+  },
+  {
+    "idx": 28,
+    "style": "Body Text",
+    "text": "Two contemporaneous 2026 frameworks narrow the specific gap the current examination targets further than the removal-forensics literature above, in many respects; and thus, neither paper\u2019s central task is the precise single-vs-double, passive, key-free forensic grouping gauged in the current inquiry, but both greatly narrow the novelty claim relative to an earlier draft of this report, in the main. Ao et al.\u2019s AWPD/FSNet\u00a0 introduces agnostic watermark-presence detection, computing whether an image carries an invisible watermark at all without decoding information, applying frequency-sensitive modelling to generalise, across the embedding algorithms; it is tackling a related but separate question (presence vs. sequential re-embedding) to the one inspected here. Under these conditions, remTraceNet\u00a0 studies watermark-attack-specific forensics directly, separating attacked images from both clean and unattacked-watermarked controls to avoid a watermark-presence shortcut, and reports three-seed macro TPR@1%FPR of 82.75-88.17% across its evaluation settings; its control design, checking against unattacked-watermarked images, not only clean ones, is directly pertinent to how RW-Guard\u2019s own clean/single/re-watermarked controls should be read (Section\u00a07.3)."
+  },
+  {
+    "idx": 29,
+    "style": "Body Text",
+    "text": "This is exactly the gap this project targets - the WRD literature\u00a0 is built and assessed for watermark removal, and the attack literature\u00a0 analyses re-watermarking as an evasion/forgery strategy without revealing a detector for it, on the whole. In light of this dynamic, no framework in the reviewed literature attempts to classify whether an image carries one watermark or two applying the particular control design appraised here, gauged jointly, across the resolution, cross-domain and adversarial-robustness axes spotted as open shortcomings below, in many respects."
+  },
+  {
+    "idx": 30,
+    "style": "Heading 2",
+    "text": "Shortcomings of the prevailing body of scholarship Tackled by The current inquiry"
+  },
+  {
+    "idx": 31,
+    "style": "Table Caption",
+    "text": "Literature gaps and how RW-Guard tackles each."
+  },
+  {
+    "idx": 32,
+    "style": "Normal",
+    "text": ""
+  },
+  {
+    "idx": 33,
+    "style": "Table Caption",
+    "text": "Taxonomy of watermark embedding and forensic detection strategies in the reviewed literature."
+  },
+  {
+    "idx": 34,
+    "style": "Heading 1",
+    "text": "System Overview"
+  },
+  {
+    "idx": 35,
+    "style": "First Paragraph",
+    "text": "The end-to-end data and control flow are, put simply, laid out by figure\u00a01. In parallel with this, rW-Guard consists of three constituents: (i) a bank of seven watermark embedding/extraction methods applied to synthesise clean, singly-watermarked and re-watermarked training/test data on the fly; (ii) a resolution-agnostic convolutional detector; and (iii) an evaluation harness covering six robustness axes, at least in practice."
+  },
+  {
+    "idx": 36,
+    "style": "Captioned Figure",
+    "text": ""
+  },
+  {
+    "idx": 37,
+    "style": "Image Caption",
+    "text": "RW-Guard pipeline. Every training sample is produced on the fly, like an image is labelled 0 (clean or singly watermarked) or 1 (victim watermark followed by an independently-keyed attacker watermark), a harmless post-processing operation is employed with probability 0.5 to every class, in actual application; also the subsequent image is passed to the detector. Taken together, pACS images enter only at evaluation time (Section\u00a05)."
+  },
+  {
+    "idx": 38,
+    "style": "Heading 2",
+    "text": "Watermark Embedding Schemes"
+  },
+  {
+    "idx": 39,
+    "style": "First Paragraph",
+    "text": "Because, openly available neural watermarkers (StegaStamp\u00a0, Stable Signature\u00a0) need large pretrained models that are impractical to reproduce end-to-end within this project's scope, seven watermark schemes were directly implemented, covering four families and drawing on established and recent (2026) watermarking research. In light of this dynamic, a 32-bit message is embedded into the luminance channel of an image by each scheme applying a pseudo-random key; unless recognized otherwise, embedding employs quantisation-index modulation (QIM): a coefficient is rounded to the nearest point on a \"bit-0\" or \"bit-1\" lattice with spacing  (the strength parameter), in many respects. Also the message is recovered by testing which lattice the coefficient sits closer to, at least for now."
+  },
+  {
+    "idx": 40,
+    "style": "Table Caption",
+    "text": "The seven watermark embedding approaches realized and authenticated in this project."
+  },
+  {
+    "idx": 41,
+    "style": "Body Text",
+    "text": "Re-watermarking is modeled by applying two strategies in sequence with independently sampled keys, messages and strengths, such as a victim embedding followed by an attacker embedding, exactly mirroring the attack outlined in, at least in practice; and thus, on real photographs, section\u00a04 reports quantitative validation of this pipeline (invisibility and message survival), all things considered."
+  },
+  {
+    "idx": 42,
+    "style": "Heading 2",
+    "text": "Algorithm 1: Training Sample Generation"
+  },
+  {
+    "idx": 43,
+    "style": "First Paragraph",
+    "text": " sample victim scheme , attacker scheme  (independently) sample  random;  random   with probability 0.5:  else: sample scheme ;  with probability 0.5:  "
+  },
+  {
+    "idx": 44,
+    "style": "Heading 2",
+    "text": "Detector Architecture"
+  },
+  {
+    "idx": 45,
+    "style": "First Paragraph",
+    "text": "The detector (ForensicNet) is substantially designed around a person restriction from Section\u00a02, such as forensic signal from watermarking lives in high-frequency residuals, not image content, and must be detectable regardless of input resolution, on the whole."
+  },
+  {
+    "idx": 46,
+    "style": "Normal",
+    "text": "Fixed high-pass front end. From this perspective, non-trainable KV () and second-order directional-difference filters per RGB channel, hiding image content and preserving high-frequency residuals, the standard first stage of steganalysis-style forensic networks, are implemented by the first layer and directly motivated by the channel-leakage findings of Ba et al., in actual application; indeed, without this layer, an early prototype of the detector failed to learn above chance, in real-world scenarios."
+  },
+  {
+    "idx": 47,
+    "style": "Normal",
+    "text": "Full-resolution early layers. Building on this observation, two convolutional layers operate at the input resolution before any downsampling, so fine-grained watermark residuals are not lost early, to a significant degree."
+  },
+  {
+    "idx": 48,
+    "style": "Normal",
+    "text": "Residual backbone. In this broader context, four residual blocks (stride-2 downsampling) pull progressively higher-level features, widths 32-64, 128-256."
+  },
+  {
+    "idx": 49,
+    "style": "Normal",
+    "text": "Pooling over the full spatial extent (rather than a fixed-size flatten) makes the network agnostic to input resolution: the same weights are applied to score 128, 256 and 384-pixel inputs (Section\u00a05), in the main. Building on this observation, global average + max pooling head."
+  },
+  {
+    "idx": 50,
+    "style": "First Paragraph",
+    "text": "The ensuing network has 2.47 million factors, small enough to train and run inference on a person consumer GPU (Section\u00a05.1), and outputs a single logit, in actual application; a positive logit is construed as \"re-watermarked\"."
+  },
+  {
+    "idx": 51,
+    "style": "Heading 2",
+    "text": "Algorithm 2: Detector Forward Pass"
+  },
+  {
+    "idx": 52,
+    "style": "First Paragraph",
+    "text": " ;     "
+  },
+  {
+    "idx": 53,
+    "style": "Heading 1",
+    "text": "Dataset"
+  },
+  {
+    "idx": 54,
+    "style": "Heading 2",
+    "text": "Source Data"
+  },
+  {
+    "idx": 55,
+    "style": "First Paragraph",
+    "text": "Training and in-distribution evaluation data is educed from MS-COCO val2017 (5,000 natural photographs of everyday scenes and objects, alongside people), at least for now, and cross-domain evaluation applies PACS (Photo, Art-painting, Cartoon, Sketch), a 4-area, 7-class benchmark originally designed for domain-generalisation research; we sample 400 images per area, in actual application. In parallel with this, also, apply PACS only as an out-of-distribution test set, the detector never trains on PACS imagery, directly supporting research goal G4."
+  },
+  {
+    "idx": 56,
+    "style": "Body Text",
+    "text": "COCO images are split by source image into the training (3,000), validation (500) and test (1,500) subsets; no image is appearing in more than one split. Building on this observation, every watermark embedding employs freshly sampled random keys, messages and strengths at data-loading time (Algorithm\u00a01), so no watermark configuration is reused between the splits."
+  },
+  {
+    "idx": 57,
+    "style": "Captioned Figure",
+    "text": ""
+  },
+  {
+    "idx": 58,
+    "style": "Image Caption",
+    "text": "Left: COCO val2017 split by source image (3,000 / 500 / 1,500). Right: PACS cross-domain test images per style domain (400 each), applied only for out-of-distribution check, at least in practice."
+  },
+  {
+    "idx": 59,
+    "style": "Heading 2",
+    "text": "Watermark Construction and Validation"
+  },
+  {
+    "idx": 60,
+    "style": "First Paragraph",
+    "text": "To verify that the seven methods outlined in Section\u00a03.1 generate data that is realistic for this issue, i.e. genuinely unnoticeable watermarks that carry a genuinely readable message, at least in practice. A re-watermarking attack that genuinely interferes with the original signal, we ran a validation pass on 9 held-out natural photographs (OpenCV sample imagery, such as lena, fruits, baboon, messi5, building, butterfly, board, apple, orange), autonomous of the COCO/PACS corpora applied for training and check, at least empirically."
+  },
+  {
+    "idx": 61,
+    "style": "Table Caption",
+    "text": "Over 9 photographs were averaged by single-embedding invisibility (PSNR) and message survival (bit accuracy) per strategy, in actual application."
+  },
+  {
+    "idx": 62,
+    "style": "Body Text",
+    "text": "All seven strategies are reaching PSNR above 39\u2006dB (unnoticeable to human observers, uniform with imperceptibility levels reported for classic and deep watermarking methods\u00a0) with 94-100% message recovery accuracy, at least for now."
+  },
+  {
+    "idx": 63,
+    "style": "Table Caption",
+    "text": "Full 49-pair table is offered in the accompanying repository (sanity_check.py output); in turn, chosen re-watermarking outcomes (victim method > attacker scheme), at least empirically."
+  },
+  {
+    "idx": 64,
+    "style": "Table Caption",
+    "text": ""
+  },
+  {
+    "idx": 65,
+    "style": "Body Text",
+    "text": "Same-scheme re-watermarking with dct_qim, dwt_qim and fft_ring drives victim message survival close to chance (0.52-0.76), verifying the embeddings are, in effect, genuinely overwritten, the behaviour reported by Bulychev et al. at least in principle, and both messages readable are left by the additive ss_spatial approach and most cross-scheme pairs, reproducing the \"ownership ambiguity\" outcome outlined in; that behaviour is visually disclosed by figure 2, at least in practice. Taken together, the two SVD-based methods are overwritten only partially (0.73-0.83), coherent with the literature's characterisation of SVD watermarks as more resistant to interference."
+  },
+  {
+    "idx": 66,
+    "style": "Captioned Figure",
+    "text": ""
+  },
+  {
+    "idx": 67,
+    "style": "Image Caption",
+    "text": "Top row, such as same-scheme re-watermarking (dct_qim  dct_qim) is leaving one packed difference pattern spread, across this image, in real-world scenarios; middle row, such as SVD-based re-watermarking (svd_qim  svd_qim) is widely block-localised. In parallel with this, bottom row, like NMP-restricted embedding (nmp_freq victim, ss_spatial attacker) confines the victim watermark to any subset of blocks, on the whole; and thus, during this period, the additive attacker watermark is spreading uniformly. Difference maps magnified 20."
+  },
+  {
+    "idx": 68,
+    "style": "Heading 2",
+    "text": "Suitability of the Dataset for the Problem Statement"
+  },
+  {
+    "idx": 69,
+    "style": "Normal",
+    "text": "Scale and diversity. From this perspective, 5,000 COCO photographs are spanning a further varied assortment of scene content, lighting and texture, vital, because watermark residuals interact with local image statistics, on the whole."
+  },
+  {
+    "idx": 70,
+    "style": "Normal",
+    "text": "Split integrity. In parallel with this, splitting by source image prevents the same photograph's content-specific statistics from appearing in both training and test data, to a significant degree."
+  },
+  {
+    "idx": 71,
+    "style": "Normal",
+    "text": "Weigh domain shift. Along these dimensions, four visually separate areas are, in practice, offered by PACS, directly supporting cross-domain sturdiness (G4), all things considered."
+  },
+  {
+    "idx": 72,
+    "style": "Normal",
+    "text": "Watermark configuration is systematically resampled on every training access, so the effective training distribution is frequently far larger than the 3,000 source images alone would indicate, at least in practice. In light of this dynamic, regeneration on every access."
+  },
+  {
+    "idx": 73,
+    "style": "Heading 1",
+    "text": "Experimental Setup, Results and Examination"
+  },
+  {
+    "idx": 74,
+    "style": "Heading 2",
+    "text": "Experimental Setup"
+  },
+  {
+    "idx": 75,
+    "style": "First Paragraph",
+    "text": "Metrics. AUC (domain under the ROC curve is reported; 0.5 = chance, 1.0 = perfect), TPR@1%FPR (true-positive rate when the threshold is set to allow at most 1% false positives on that condition's own negatives), and TPR/FPR at a person fixed threshold chosen once on the validation split (threshold picked on validation to target 1% FPR, logit  1.141) and reused unchanged across every evaluation condition below, the realistic deployment setting, where a defender can't re-calibrate per test condition."
+  },
+  {
+    "idx": 76,
+    "style": "Body Text",
+    "text": "Scale of experimentation and reported checkpoint. All headline numbers in Sections\u00a05.2-5.5 and 6 are from runs/baseline_e9/best.pt, evaluated on the full 1,500-image COCO test split and the full PACS cross-domain set (not the 500-image initial subset applied in earlier drafts of this report); this checkpoint predates the addition of three watermark schemes (nmp_freq, svd_qim, dct_svd) to the testbed and was trained on the remaining four (dct_qim, dwt_qim, ss_spatial, fft_ring); this is applied deliberately in Section 5.4 (hold-one-out) as a free, already-available unseen-scheme test, in many respects. Sections\u00a05.4 (hold-one-out), 5.6 (ablations) and 5.7 (seeds) report autonomous models trained from scratch on the complete, current seven-scheme testbed, run to 15/15 epochs each, complementarily viewing scheme generalisation, on the whole; in fact, the evaluation harness (evaluate.py) runs six arranged experiment groups (Table\u00a07); all six are now complete."
+  },
+  {
+    "idx": 77,
+    "style": "Table Caption",
+    "text": "Experimental setup, final findings."
+  },
+  {
+    "idx": 78,
+    "style": "Normal",
+    "text": ""
+  },
+  {
+    "idx": 79,
+    "style": "Table Caption",
+    "text": "Evaluation groups run by gauge.py, final status."
+  },
+  {
+    "idx": 80,
+    "style": "Heading 2",
+    "text": "Training Convergence"
+  },
+  {
+    "idx": 81,
+    "style": "First Paragraph",
+    "text": "Validation AUC for the reported checkpoint is reaching 0.860 at epoch 9 (logit threshold fixed at that point, Section\u00a05.1), broadly speaking. Taken together, three independently-seeded 15-epoch runs on the harder, complete seven-scheme testbed (Section\u00a05.7) are reaching 0.845-0.848, i.e. within 0.015 of the reported checkpoint despite a rigorously larger scheme space, revealing the architecture scales to extra watermark diversity without a material accuracy cost, broadly speaking."
+  },
+  {
+    "idx": 82,
+    "style": "Heading 2",
+    "text": "In-Distribution, Resolution and Benign Post-Processing Robustness (G2, G3)"
+  },
+  {
+    "idx": 83,
+    "style": "First Paragraph",
+    "text": "Auc is stable across all three tested resolutions (0.859-0.860) despite training only on 128 px crops, substantiating the resolution-agnostic pooling design (G3) transfers to unseen input sizes, and stays within 0.83-0.88 across all benign edits; at the fixed threshold, JPEG compression and brightness/contrast measurably lower the hit true-positive rate (0.35 0.16-0.25), reconfirming that ranking sturdiness (AUC) does not hint threshold robustness, in actual application. On the full test split, in-distribution AUC is 0.859 (Table\u00a08), closely matching the introductory 500-image estimate from earlier in the project and inspecting that figure was not a small-sample artefact, at least for now."
+  },
+  {
+    "idx": 84,
+    "style": "Heading 2",
+    "text": "Unseen Watermark Scheme Generalisation (G1)"
+  },
+  {
+    "idx": 85,
+    "style": "First Paragraph",
+    "text": "Two complementary experiments test generalisation to a watermark scheme never seen in training."
+  },
+  {
+    "idx": 86,
+    "style": "Captioned Figure",
+    "text": ""
+  },
+  {
+    "idx": 87,
+    "style": "Image Caption",
+    "text": "The reported checkpoint is reaching its best validation AUC (0.860) at epoch 9 of 15; autonomous from-scratch 15-epoch runs on the full seven-scheme testbed (Section\u00a05.7) meet to a comparable 0.845-0.848 band, verifying epoch 9's finding is representative rather than an outlier, on the whole; and thus, Validation AUC across the training."
+  },
+  {
+    "idx": 88,
+    "style": "Captioned Figure",
+    "text": ""
+  },
+  {
+    "idx": 89,
+    "style": "Image Caption",
+    "text": "AUC by input resolution and by harmless post-processing operation, full 1,500-image test split."
+  },
+  {
+    "idx": 90,
+    "style": "Body Text",
+    "text": "(a) Scheme-expansion test. From this perspective, the reported checkpoint saw only four of the testbed's seven strategies during the training; nmp_freq, svd_qim and dct_svd were added afterwards and are therefore genuinely unseen to it, in real-world scenarios."
+  },
+  {
+    "idx": 91,
+    "style": "Body Text",
+    "text": "(b) Dedicated hold-one-scheme-out. In light of this dynamic, two extra models were trained from scratch on the complete seven-scheme testbed with one method withheld wholly (, holdout): holdout_dct (withholding dct_qim; best validation AUC 0.852) and holdout_fft (withholding fft_ring; best validation AUC 0.858), each person then assessed for detection of re-watermarking that is using the withheld approach as attacker and/or victim, in real-world scenarios."
+  },
+  {
+    "idx": 92,
+    "style": "Body Text",
+    "text": "The two experiments are agreeing closely (AUC 0.82 unseen-attacker, 0.58-0.59 unseen-both), despite using independently trained models and different held-out schemes, which is reassuring evidence that the pattern is a property of the task rather than of one particular run, at least in principle. In parallel with this, some signal is clearly retained by the detector when only the attacker scheme is novel (AUC well above chance, though TPR@1%FPR is dropping sharply to 3%), because the victim watermark it was trained to recognise is still present underneath, at least in principle, and generalisation is degrading greatly further, to near-chance AUC, when both victim and attacker schemes are novel simultaneously, the hardest and most realistic zero-knowledge setting, and the clearest unresolved shortcoming surfaced by the present investigation (G1)."
+  },
+  {
+    "idx": 93,
+    "style": "Table Caption",
+    "text": "In-distribution, resolution and gentle post-processing findings, full 1,500-image test split (Table\u00a07, Groups 1-3), at least in practice."
+  },
+  {
+    "idx": 94,
+    "style": "Normal",
+    "text": ""
+  },
+  {
+    "idx": 95,
+    "style": "Table Caption",
+    "text": "Unseen watermark scheme generalisation (Table\u00a07, Group\u00a04)."
+  },
+  {
+    "idx": 96,
+    "style": "Heading 2",
+    "text": "Cross-Domain Generalisation (G4)"
+  },
+  {
+    "idx": 97,
+    "style": "Table Caption",
+    "text": "Cross-domain (PACS) findings, full test split (Table\u00a07, Group\u00a05)."
+  },
+  {
+    "idx": 98,
+    "style": "Captioned Figure",
+    "text": ""
+  },
+  {
+    "idx": 99,
+    "style": "Image Caption",
+    "text": "AUC (teal) and fixed-threshold detection rate (amber) on PACS, trained on photographs only."
+  },
+  {
+    "idx": 100,
+    "style": "Body Text",
+    "text": "AUC is remaining high (0.82-0.90) across all four PACS domains, more exactly highest on cartoon and sketch, in actual application, and still the photo-calibrated fixed threshold is catching only 2.8% of re-watermarked cartoons and 0.3% of sketches, versus 35-36% on photo/art-painting (Table\u00a010), in real-world scenarios. High AUC alongside a poor fixed operating point accords harmoniously with a calibration gap rather than a representation failure, the network still ranks sketches and cartoons correctly, showing it is biased toward lower logits on those areas than the photo-fixed threshold expects, though this is not yet formally verified: a calibration analysis (reliability diagrams, Brier score/ECE, score histograms) would be needed to rule out a genuine representation shift, and is left to future work (Section\u00a07.4); this is still a concrete, quantified instance of the cross-domain shortcoming flagged in ."
+  },
+  {
+    "idx": 101,
+    "style": "Heading 2",
+    "text": "Architecture Ablations"
+  },
+  {
+    "idx": 102,
+    "style": "First Paragraph",
+    "text": "To test whether the three design choices motivated in Section\u00a03.3 (fixed high-pass front end, residual backbone, resolution-agnostic pooling) are actually load-bearing, three alternative architectures were trained from scratch on the equivalent data pipeline, for the full 15 epochs each, including SimpleClassifier (a plain stride-2 convolutional stack, no high-pass filter, no residual connections), ForensicNet with the high-pass front end removed (forensic_nohp, residual backbone otherwise unchanged), and a standard TVResNet-18 (11.17M parameters, over 4 larger than ForensicNet), all things considered."
+  },
+  {
+    "idx": 103,
+    "style": "Table Caption",
+    "text": "range across the reported checkpoint and the three seeded reruns of Section\u00a05.7; thus, architecture ablations (Table\u00a07, extra examination for G1/G2), at least in practice."
+  },
+  {
+    "idx": 104,
+    "style": "Body Text",
+    "text": "The finding is a clean three-way collapse - removing only the fixed high-pass filter (holding the rest of ForensicNet's architecture constant) drops validation AUC from 0.85 to 0.515, i.e. to chance; an architecturally unrelated plain CNN of comparable parameter count is reaching 0.502; in the main. Also, a much larger, standard ResNet-18 backbone, over 4 the coefficients, with no re-watermarking-specific inductive bias, is reaching only 0.503, broadly speaking. All three alternatives are statistically indistinguishable from random guessing on this task, uniform with the suggested high-pass-plus-residual design driving this finding rather than model capacity alone; a fuller factorial ablation (differing the high-pass filter independently, across all three backbones, rather than only on ForensicNet) would strengthen this claim further and is left to future work (Section\u00a07.4)."
+  },
+  {
+    "idx": 105,
+    "style": "Heading 2",
+    "text": "Reproducibility Across Seeds"
+  },
+  {
+    "idx": 106,
+    "style": "Table Caption",
+    "text": "Validation AUC across the three autonomous training runs (indistinguishable config, full seven-scheme testbed, 15 epochs), differing only in random seed, in real-world scenarios."
+  },
+  {
+    "idx": 107,
+    "style": "Body Text",
+    "text": "Three independent runs of the full training configuration, differing only in random seed, converge to a tight 0.845-0.848 band (mean 0.847, range 0.003); this both is confirming the finding is not seed-sensitive and, combined with Section 5.6, lays out the ablated architectures' chance-level AUC (0.50-0.52) is not explainable by run-to-run noise, namely it is a 30-point AUC gap, two orders of scale larger than the seed-to-seed spread of the full model, at least empirically."
+  },
+  {
+    "idx": 108,
+    "style": "Heading 2",
+    "text": "Strength to a Combined, Realistic Attack"
+  },
+  {
+    "idx": 109,
+    "style": "First Paragraph",
+    "text": "Section\u00a05.3's benign-post-processing test implements exactly one operation at a time (JPEG or noise or blur or brightness), which likely understates what a real redistribution pipeline does. A added script (test_realistic_attack.py) rather employs, to every image of both classes, a random 5-15% border crop (hiding provenance near image edges) followed by re-encoding at a standard JPEG quality (75-90), applying the same fixed threshold (picked on validation to target 1% FPR) with no other recalibration. On 300 held-out test images this combined attack gives AUC 0.846 (vs.\u00a00.859 single-op in-distribution), TPR@1%FPR 0.100, and fixed-threshold TPR 0.187 at FPR 0.017. The ranking quality (AUC) is basically unaffected by combining two harmless operations, but the realised true-positive rate at the fixed operating point drops by roughly a third relative to the single-op gentle condition (Table\u00a08), strengthening that threshold calibration, not representational capacity, is this detector's principal deployment risk."
+  },
+  {
+    "idx": 110,
+    "style": "Heading 2",
+    "text": "Adversarial Robustness (G5)"
+  },
+  {
+    "idx": 111,
+    "style": "Captioned Figure",
+    "text": ""
+  },
+  {
+    "idx": 112,
+    "style": "Image Caption",
+    "text": "Detection rate on 100 re-watermarked positives under the white-box PGD-10 attacks of increasing  budget  (per 255), undefended model, at least empirically."
+  },
+  {
+    "idx": 113,
+    "style": "Table Caption",
+    "text": "Adversarial robustness, undefended model and two adversarial-training attempts (Table\u00a07, Group\u00a06). Against this backdrop, in-distribution val./test AUC, not the 100-positive fixed-threshold statistic employed for the undefended row. $\\S$see Section\u00a05.9.1."
+  },
+  {
+    "idx": 114,
+    "style": "Body Text",
+    "text": "The undefended reported checkpoint flags 40.0% of re-watermarked positives at the fixed operating threshold with no attack, to a significant degree. In light of this dynamic, under a 10-step PGD attack with, smaller than the watermark signal itself, detection collapses to 0.0% and remains 0.0% for larger budgets; this is validating, for re-watermarking detection specifically, the broad evadability of forensic classifiers under the adaptive white-box adversaries reported in, in many respects."
+  },
+  {
+    "idx": 115,
+    "style": "Heading 3",
+    "text": "Two Adversarial Training Attempts (Negative Findings)"
+  },
+  {
+    "idx": 116,
+    "style": "First Paragraph",
+    "text": "We attacked to close this gap with standard PGD adversarial training (train.py, adv-eps), and report both honestly as they did not succeed, rather than skipping them, at least empirically."
+  },
+  {
+    "idx": 117,
+    "style": "Body Text",
+    "text": "Attempt 1 (weak train-time attack). The detector was trained with a 2-epoch clean warm-up followed by 3-step PGD adversarial examples at  substituted into the half of every batch; this reached a reasonable clean exactness (in-distribution AUC 0.812), in the main. Nonetheless, conferred zero measured adversarial robustness, including PGD-10 evaluation (the stronger, 10-step attack employed throughout Section\u00a05.9) still reduced detection to 0.000 at every tested , equivalent to the undefended baseline, all things considered. We attribute this to a train/test attack-strength mismatch, including a 3-step train-time attack is too weak relative to the 10-step evaluation attack to teach the network a genuinely solid decision boundary, a known pitfall in adversarial training consistent with Madry et al.\u2019s methodological guidance that train- and test-time attack strength must be matched."
+  },
+  {
+    "idx": 118,
+    "style": "Body Text",
+    "text": "Attempt 2 (stronger train-time attack). Training did not meet, such as after the 2-epoch clean warm-up, validation AUC oscillated at chance level (0.49-0.52) for the remaining 13 epochs: the stronger adversarial attack, combined with the OneCycleLR schedule tuned for clean training, destabilised optimisation wholly rather than simply failing to generalise, on the whole. Within this framework, the run's logged \"best\" validation AUC (0.650) is an artefact of the pre-adversarial epoch\u00a02 checkpoint, not a genuine adversarially-trained finding, and is excluded from Table\u00a013, in real-world scenarios, and to tackle the mismatch, we retrained with a stronger 7-step PGD attack at the same ."
+  },
+  {
+    "idx": 119,
+    "style": "Body Text",
+    "text": "Given two recorded failures and a limited remaining time budget before submission, we deliberately decided not to attempt a third run (e.g. with a schedule re-tuned specifically for adversarial training, or a curriculum that ramps  and attack strength progressively) and rather report adversarial defence as open future work (Section\u00a07.4), with the two attempts documented here as proof of what does not work for this architecture and training budget, information we analyse as worthwhile to report as a success would have been, at least in practice."
+  },
+  {
+    "idx": 120,
+    "style": "Heading 2",
+    "text": "Generalisation to a Real Neural Watermarker (TrustMark)"
+  },
+  {
+    "idx": 121,
+    "style": "First Paragraph",
+    "text": "Sections\u00a05.2-5.9 employ only the seven hand-implemented approaches of Section\u00a03.2. Along these dimensions, to test whether the learned signal generalises beyond our own embedding code, we also gauged the detector against TrustMark, a publicly available, pretrained neural watermarker, first zero-shot and then after mixing a controlled fraction of TrustMark-watermarked images into the training (train_with_neural.py), alongside all seven classical schemes, via a precomputed image cache (build_trustmark_cache.py; 500 train / 100 validation source images), at least for now. In every condition below the detector is assessed zero-shot on 300 held-out TrustMark-watermarked images never seen during the related training run, applying the same fixed-threshold methodology as Section\u00a05 (threshold recomputed once per checkpoint on its own classical-scheme validation split), to a significant degree."
+  },
+  {
+    "idx": 122,
+    "style": "Table Caption",
+    "text": "Zero-shot detection of TrustMark re-watermarking, , across the four training conditions (standard in-distribution reference for comparison - AUC 0.859, TPR@fixed 0.295, FPR@fixed 0.035), at least for now."
+  },
+  {
+    "idx": 123,
+    "style": "Body Text",
+    "text": "Without any exposure to TrustMark during the training, the classical-only checkpoint already generalises above chance (AUC 0.696), uniform with Section\u00a05.4's finding that the detector learns a signal that partially transfers to unfamiliar watermarking methods, at least in principle. In parallel with this, mixing a modest fraction of TrustMark examples into the training closes most of the remaining gap to the classic in-distribution baseline: at  for 15 epochs, AUC rises to 0.909, at least empirically; and thus, also the fixed-threshold true-positive rate (0.320) exceeds the standard in-distribution figure (0.295) at a comparable false-positive rate. Raising the mixing rate to  at 20 epochs reaches the best finding acquired, AUC 0.925, TPR@1%FPR 0.287."
+  },
+  {
+    "idx": 124,
+    "style": "Body Text",
+    "text": "A secondary, unplanned note is methodologically valuable: at the fixed  mixing rate, expanding training from 15 to 20 epochs augmented classical-scheme in-distribution AUC (0.844  0.853, verified by the full six-axis evaluation of Section\u00a05 run on both checkpoints) but reduced TrustMark generalisation (AUC 0.909  0.891). Both  checkpoints reveal no other regression either: benign-edit, resolution and cross-domain PACS results stay within the same range at 15 and 20 epochs (e.g.\u00a0PACS AUC 0.79-0.87 at both), and PGD-10 adversarial detection remains 0.0% at both, coherent with Section\u00a05.9. Because checkpoint selection during the mixed training applies classical-only validation (Section\u00a05.1, to keep the reported AUC comparable across the runs), the checkpoint judged \"best\" is not guaranteed to be the one that generalises best to the neural watermarker mixed into the training, the two goals are connected but not perfectly aligned."
+  },
+  {
+    "idx": 125,
+    "style": "Body Text",
+    "text": "Unlike the  case, this decoupling did not recur at , such as the full six-axis evaluation of Section\u00a05, later re-run on the, 20-epoch checkpoint (Table\u00a01, best row), corroborates classical-scheme performance is kept at this higher mixing rate, on the whole; indeed, in-distribution AUC is 0.855 (vs. 0.859 baseline, within the normal seed-to-seed deviation; fixed-threshold TPR 0.225 at FPR 0.036), all things considered. Also benign-edit (AUC 0.832-0.879), resolution (AUC 0.844-0.855, across 128-384px) and cross-domain PACS (AUC 0.794-0.867) findings are similarly unchanged within the noise from the classical-only checkpoint reported earlier in Section\u00a05; in fact, adversarial robustness remains unresolved as in Section\u00a05.9: PGD-10 lowers detection from 43.0% (clean) to 0.0% at every tested ."
+  },
+  {
+    "idx": 126,
+    "style": "Body Text",
+    "text": "With full six-axis evaluations now verified and unregressed for all three mixed-training checkpoints in Table\u00a01, this suggests the classical/TrustMark checkpoint-selection misalignment gathered above is particular to the  configuration rather than a broad feature of mixed training: at, standard in-distribution AUC and TrustMark generalisation raised together, across the same epoch range, at least empirically. Along these dimensions, a cheap mitigation, validating on a small held-out TrustMark split alongside the classical schemes, rather than classical schemes alone, is put forward as future work (Section\u00a07.4) to make checkpoint selection track both goals directly rather than relying on this post-hoc check, all things considered."
+  },
+  {
+    "idx": 127,
+    "style": "Heading 1",
+    "text": "Comparison with State-of-the-Art Methods"
+  },
+  {
+    "idx": 128,
+    "style": "First Paragraph",
+    "text": "Direct comparison is generally not possible because, to the authors' knowledge, no prior published system targets re-watermarking detection specifically (Section\u00a02.3); the closest published baselines tackle watermark-removal detection (WRD), evaluated on comparable natural-image corpora, broadly speaking."
+  },
+  {
+    "idx": 129,
+    "style": "Table Caption",
+    "text": "Comparison with published watermark-removal-detection benchmarks (context, not apples-to-apples)."
+  },
+  {
+    "idx": 130,
+    "style": "Body Text",
+    "text": "The gap between our TPR@1%FPR (16.5%) and the removal-detection benchmarks (92-98%) should not be read as proof of built-in task difficulty or architectural inferiority. Confounds:"
+  },
+  {
+    "idx": 131,
+    "style": "Normal",
+    "text": "Task difference. Removal attacks in\u00a0 ordinarily perturb the entire image; re-watermarking is implementing a second, equally unnoticeable embedding, generating a smaller, more localised size that is intrinsically harder to pick out at a strict 1%-FPR tail, all things considered."
+  },
+  {
+    "idx": 132,
+    "style": "Normal",
+    "text": "Model capacity. In light of this dynamic, forensicNet (2.47M params) is far smaller than ConvNeXt-based classifiers in\u00a0, a deliberate laptop-deployable design choice (G2); Section\u00a05.6 is revealing a 4-larger ResNet-18 does not close this gap and in fact crashes outright without the high-pass front end, in many respects."
+  },
+  {
+    "idx": 133,
+    "style": "Normal",
+    "text": "Evaluation scale. Within this framework, unlike the earlier draft of this report, the TPR@1%FPR figure above is now computed on the full 1,500-image test split rather than a 500-image subset, in real-world scenarios; indeed, still, it is no longer a small-sample estimate."
+  },
+  {
+    "idx": 134,
+    "style": "First Paragraph",
+    "text": "On AUC (0.859) and qualitative robustness pattern, our findings are directionally uniform with the WRD literature: the foundational signal is learnable, generalises to withheld watermark schemes (Section\u00a05.4) and reproduces reliably across the random seeds (Section\u00a05.7), and the same two weaknesses, domain-shift calibration (Section\u00a05.5) and adversarial evasion (Section\u00a05.9), recorded in\u00a0 are reproduced here for the re-watermarking setting specifically. Closing the TPR@1%FPR gap at a fixed deployment threshold, rather than the AUC ranking gap, is the most direct next step toward the matching published WRD performance (Section\u00a07.4)."
+  },
+  {
+    "idx": 135,
+    "style": "Heading 1",
+    "text": "Findings and Conclusion"
+  },
+  {
+    "idx": 136,
+    "style": "Heading 2",
+    "text": "Key Findings"
+  },
+  {
+    "idx": 137,
+    "style": "Normal",
+    "text": "The re-watermarking attack behaves as outlined in\u00a0. Viewed through this lens, same-scheme re-watermarking drives victim message survival to near-chance (0.52-0.76); cross-scheme/additive attacks are leaving both messages readable, both are creating genuine ownership ambiguity, at least in practice."
+  },
+  {
+    "idx": 138,
+    "style": "Normal",
+    "text": "This signal can be learned by a key-free, database-free detector, on the full test set, broadly speaking; in fact, in-distribution AUC is 0.859 on the complete 1,500-image test split, applying only 2.47M parameters, in many respects."
+  },
+  {
+    "idx": 139,
+    "style": "Normal",
+    "text": "The design choices are load-bearing, not cosmetic. Within this framework, removing the fixed high-pass front end, swapping to a plain CNN, or swapping to a 4-larger ResNet-18 all collapse validation AUC from 0.85 to 0.50-0.52 (chance); three reruns with diverse seeds reproduce the full model's AUC within a 0.003 band, so this is a genuine architectural effect, not noise, at least empirically."
+  },
+  {
+    "idx": 140,
+    "style": "Normal",
+    "text": "The detector generalises, with a warning, to watermark schemes withheld from training; AUC stays at 0.82 when only the attacker scheme is novel, but falls to 0.58-0.59 when both victim and attacker approaches are simultaneously novel, corroborated by two autonomous hold-one-scheme-out runs, alongside a scheme-expansion test, in actual application."
+  },
+  {
+    "idx": 141,
+    "style": "Normal",
+    "text": "The detector is particularly resolution- and edit-robust in ranking quality, spanning, under a combined realistic attack, at least for now, and AUC is varying by 0.01 across 128-384\u2006px and by 0.05 across the benign edits and a combined crop+JPEG attack, at least empirically. Within this framework, despite this, the fixed threshold is commonly more sensitive to JPEG and to brightness/contrast."
+  },
+  {
+    "idx": 142,
+    "style": "Normal",
+    "text": "Cross-domain shift is coherent with a calibration failure rather than a representation failure, though this is not yet verified. On PACS, AUC stays 0.82-0.90. However, a photo-calibrated threshold is catching 3% of re-watermarked cartoons/sketches; high AUC alongside a poor fixed operating point is uniform with score-distribution shift, but does not by itself prove the internal representation is unaffected, a calibration analysis (reliability diagrams, Brier score/ECE) is left to future work (Section\u00a07.4)."
+  },
+  {
+    "idx": 143,
+    "style": "Normal",
+    "text": "The undefended detector is not adversarially solid, and two attempts to fix this with PGD adversarial training did not succeed, in real-world scenarios; in fact, both are reported as negative findings (Section\u00a05.9.1). Viewed through this lens, a PGD perturbation of only 0.5/255 is reducing detection from 40% to 0%; a weak-attack adversarial-training run converged but discussed no measured robustness, and a stronger-attack run destabilised training wholly, in real-world scenarios."
+  },
+  {
+    "idx": 144,
+    "style": "Normal",
+    "text": "The detector generalises to a real, pretrained neural watermarker; indeed, also, this generalisation is sharpening greatly with tackled mixed training. In this broader context, zero-shot AUC against TrustMark is 0.696; mixing TrustMark examples into the training raises this to 0.925 (TPR@1%FPR 0.287), exceeding the standard in-distribution fixed-threshold TPR, without degrading classical-scheme accuracy at the corroborated configuration (Section\u00a05.10), now corroborated across the both reported mixed-training checkpoints, not only the best one, in the main."
+  },
+  {
+    "idx": 145,
+    "style": "Normal",
+    "text": "A shortcut-learning explanation for the headline result has not yet been ruled out. Under these conditions, positive examples receive two watermark-embedding operations and negative examples receive zero or one, so an AUC of 0.859 is not yet sufficient evidence the network recognises a signature particular to overwriting rather than simply \u201cmore watermark-like high-frequency perturbation.\u201d This is tackled further in Section\u00a07.3, in real-world scenarios."
+  },
+  {
+    "idx": 146,
+    "style": "Heading 2",
+    "text": "Contributions"
+  },
+  {
+    "idx": 147,
+    "style": "Normal",
+    "text": "A reproducible, seven-scheme watermark embedding/extraction testbed, verified for invisibility and re-watermarking behaviour on real photographs, cross-checked against a real neural watermarker (TrustMark), with zero-shot generalisation (AUC 0.696) sharpened to AUC 0.925 via a controlled, cache-based mixed-training procedure, now fully verified not to regress classical-scheme performance at the best configuration (Section\u00a05.10), in real-world scenarios."
+  },
+  {
+    "idx": 148,
+    "style": "Normal",
+    "text": "A resolution-agnostic, key-free forensic classifier for re-watermarking detection specifically, with a three-way architecture ablation isolating which design choices actually drive its exactness, in actual application."
+  },
+  {
+    "idx": 149,
+    "style": "Normal",
+    "text": "A six-axis evaluation protocol, run to completion on the full test set, surfacing concrete failure modes: threshold miscalibration under the domain shift, degraded (but non-chance) generalisation to fully unseen scheme pairs, and collapse under the white-box attack, in real-world scenarios."
+  },
+  {
+    "idx": 150,
+    "style": "Normal",
+    "text": "Two honestly-reported negative findings on adversarial training, with a particular, falsifiable diagnosis for each failure (train/test attack-strength mismatch; schedule instability, under a stronger attack), on the whole."
+  },
+  {
+    "idx": 151,
+    "style": "Normal",
+    "text": "A seed-level reproducibility study and an unambiguous, quantified comparison against published WRD benchmarks, at least in practice."
+  },
+  {
+    "idx": 152,
+    "style": "Normal",
+    "text": "A fully reproducible training pipeline, such as all random sampling applied during the training (crop location, label assignment, watermark scheme/key/message selection, benign-operation selection) is now seeded per DataLoader worker from a person, seed argument, replacing an earlier unseeded generator that exactly reproduced impossible (Section\u00a07.5), at least for now."
+  },
+  {
+    "idx": 153,
+    "style": "Heading 2",
+    "text": "Limitations"
+  },
+  {
+    "idx": 154,
+    "style": "Normal",
+    "text": "One real neural watermarker gauged end-to-end; a second integrated but not yet fully trained against, to a significant degree. Within this framework, a second, heavier neural watermarker, StegaStamp\u00a0, has been integrated via a pretrained ONNX export with the same caching and mixed-training pipeline, but full training and six-axis evaluation against it had not completed at the time of writing, in the main; the primary testbed applies seven hand-implemented classical/semi-classical schemes, cross-checked quantitatively against TrustMark (Section\u00a05.10)."
+  },
+  {
+    "idx": 155,
+    "style": "Normal",
+    "text": "The headline full-test-set numbers (Sections\u00a05.2-5.5, 6) come from a checkpoint trained on four of the seven strategies; this is employed deliberately as a free unseen-scheme test (Section 5.4a) and cross-checked against two from-scratch, full-seven-scheme hold-one-out runs (Section 5.4b) that are agreeing closely; it means the reported checkpoint and the ablation/seed/holdout checkpoints are not from an indistinguishable training configuration, on the whole."
+  },
+  {
+    "idx": 156,
+    "style": "Normal",
+    "text": "Restricted attacker model. Viewed through this lens, re-watermarking is largely modelled as a second embedding, optionally combined with one or two benign/geometric operations (Section\u00a05.8); more fancy combined attacks (generative regeneration, multiple re-watermarking passes, focused adaptive attacks against the particular detector weights) are primarily out of scope, in real-world scenarios."
+  },
+  {
+    "idx": 157,
+    "style": "Normal",
+    "text": "A third, more carefully scheduled attempt was deliberately delayed rather than rushed before submission; in turn, Two PGD adversarial-training attempts (Section\u00a05.9.1) did not yield a model with measured robustness, to a significant degree. In light of this dynamic, no working adversarial defence."
+  },
+  {
+    "idx": 158,
+    "style": "Normal",
+    "text": "The PACS calibration failure (Section\u00a05.5) is quantified but have not operationalized or appraised a domain-aware recalibration method, in the main. From this perspective, domain-shift calibration is principally spotted but not fixed."
+  },
+  {
+    "idx": 159,
+    "style": "Normal",
+    "text": "A shortcut-learning explanation has not been ruled out. Building on this observation, positive examples receive two watermark-embedding operations and negative examples receive zero or one; because ForensicNet\u2019s fixed high-pass front end emphasises residual energy, an AUC of 0.859 is not yet sufficient evidence that the network recognises a signature particular to overwriting rather than simply \u201cmore watermark-like high-frequency perturbation.\u201d RemTraceNet\u00a0 tackles an similar risk in the removal setting by assessing against unattacked-watermarked controls, not only clean ones; the put forward work\u2019s singly-watermarked negatives are a step in that direction, to a significant degree. Nonetheless, perturbation-matched controls (equal-strength person watermarking, matched-energy noise or gentle double-processing) have not yet been added for the isolation of this explanation, and are left as the highest-priority item for future work (below), in the main."
+  },
+  {
+    "idx": 160,
+    "style": "Heading 2",
+    "text": "Future Work"
+  },
+  {
+    "idx": 161,
+    "style": "Normal",
+    "text": "Add perturbation-matched controls (person watermarking at augmented strength to match re-watermarked residual energy; person watermarking plus matched-energy noise; two harmless processing passes with matched residual energy) and a residual-energy/frequency-statistics logistic-regression baseline, to test whether the detector's signal is precise to overwriting rather than to the number of embedding operations applied, in many respects."
+  },
+  {
+    "idx": 162,
+    "style": "Normal",
+    "text": "Re-attempt adversarial training with a schedule tuned specifically for the adversarial phase (e.g. a separate, lower-LR cosine schedule after clean warm-up, or a curriculum that ramps PGD steps and  steadily) rather than reusing the clean OneCycleLR schedule, in many respects."
+  },
+  {
+    "idx": 163,
+    "style": "Normal",
+    "text": "Execute and evaluate domain-aware or per-domain threshold calibration to close the PACS cross-domain gap spotted in Section\u00a05.5, on the whole."
+  },
+  {
+    "idx": 164,
+    "style": "Normal",
+    "text": "Expand the schematize-out study to cover all seven strategies separately, and to the harder unseen-victim-and-attacker setting, to better characterise the AUC\u00a00.58-0.82 generalisation range found here, at least in practice."
+  },
+  {
+    "idx": 165,
+    "style": "Normal",
+    "text": "Complete training and the full six-axis evaluation against StegaStamp\u00a0, already integrated into the pipeline (Section\u00a07.3), and broaden to a detector mixed-trained against both real neural watermarkers simultaneously, to test generalisation beyond classic transform-domain, TrustMark and any person neural approach, at least empirically."
+  },
+  {
+    "idx": 166,
+    "style": "Normal",
+    "text": "Examine why standard validation AUC and TrustMark generalisation are not perfectly aligned during the mixed-training checkpoint selection at  (Section\u00a05.10), since this misalignment did not recur at ; proving on a small held-out TrustMark split, alongside the classical schemes is a cheap first mitigation, to a significant degree."
+  },
+  {
+    "idx": 167,
+    "style": "Normal",
+    "text": "Study whether a cheap, training-free ensemble, across the three reproducibility seeds (Section\u00a05.7) narrows the TPR@1%FPR gap to the published WRD benchmarks (Section\u00a06) without further architectural changes, in many respects."
+  },
+  {
+    "idx": 168,
+    "style": "Normal",
+    "text": "Assess against a wider range of combined attacks (e.g. regeneration followed by re-watermarking) beyond the crop+JPEG combination tested in Section\u00a05.8, broadly speaking."
+  },
+  {
+    "idx": 169,
+    "style": "Heading 2",
+    "text": "Reproducibility"
+  },
+  {
+    "idx": 170,
+    "style": "First Paragraph",
+    "text": "All code, the seven-scheme watermark testbed, the three ablation architectures, trained checkpoints for the reported model, the three reproducibility seeds, the two hold-one-scheme-out models, and both adversarial-training runs (incorporating the unsuccessful one) are offered in the accompanying repository, at least in practice. Every experiment is using a fixed, logged random seed (Section\u00a05.7 varies only this seed, holding all other hyperparameters constant) and a deterministic, file-level train/validation/test split by source image (Section\u00a04.1), so no image appears in more than one split in any run, at least for now. Along these dimensions, the fixed threshold employed throughout Section\u00a05, picked on validation to target 1% FPR, is recomputed once per checkpoint on that checkpoint\u2019s own validation split and then held constant across every evaluation condition for that checkpoint, rather than re-tuned per condition, reflecting a realistic deployment constraint and ensuring the reported TPR/FPR-at-fixed-threshold numbers are not cherry-picked post hoc. The training dataset\u2019s random sampling (crop location, label assignment, watermark scheme/key/message selection, benign-operation selection) is seeded per DataLoader worker from, seed, so two runs with matching seed and worker count draw the same training examples in the same order; this does not yet generalize to CUDA/cuDNN non-determinism, which is not pinned."
+  },
+  {
+    "idx": 171,
+    "style": "Heading 2",
+    "text": "Data Availability"
+  },
+  {
+    "idx": 172,
+    "style": "First Paragraph",
+    "text": "The code, seven-scheme watermark testbed, training/evaluation scripts, trained checkpoints, logged random seeds, and result files underlying this report are available at https://github.com/Advaith2380/rw-guard-watermarks, on the whole; MS-COCO source images are publicly available from the COCO dataset and are not redistributed in the store; the exact subset applied is reproducible from the logged, deterministic source-image split (Section\u00a04.1), in real-world scenarios."
+  },
+  {
+    "idx": 173,
+    "style": "Heading 2",
+    "text": "Competing Interests"
+  },
+  {
+    "idx": 174,
+    "style": "First Paragraph",
+    "text": "No competing interests are, in practice, declared by the authors."
+  },
+  {
+    "idx": 175,
+    "style": "Heading 2",
+    "text": "Author Contributions"
+  },
+  {
+    "idx": 176,
+    "style": "First Paragraph",
+    "text": "A.R., A., and R.E. jointly designed the watermark testbed, detector architecture, and evaluation protocol, so all authors contributed to running tests, analysing findings, and writing the manuscript, at least in principle."
+  },
+  {
+    "idx": 177,
+    "style": "Heading 2",
+    "text": "Conclusion"
+  },
+  {
+    "idx": 178,
+    "style": "First Paragraph",
+    "text": "This report introduces RW-Guard, a forensic classifier for the re-watermarking attack sketched by Bulychev et al. built and gauged to directly tackle six shortcomings spotted in the reviewed watermark-forensics literature. Judged on the full 1,500-image test split, an in-distribution AUC of 0.859 is pulled off by the detector, generalises across the image resolution, standard benign edits and a combined realistic attack, keeps above-chance accuracy on watermark schemes withheld wholly from training, and reproduces within a tight band across the random seeds. A three-way architecture ablation is coherent with the suggested high-pass-plus-residual design driving this finding rather than model capacity alone, though a fuller factorial ablation (Section\u00a07.4) would strengthen this claim further. The detector also exposes concrete, quantified weaknesses, cross-domain threshold miscalibration, a not-yet-excluded shortcut-learning explanation for the headline result, and adversarial fragility that two attempted adversarial-training fixes did not solve, that mirror known shortcomings of watermark-removal detectors\u00a0 and directly motivate the future work in Section\u00a07.4. All code, the watermark testbed, trained checkpoints, seeds and evaluation scripts are offered in the accompanying repository for autonomous reproduction. We signal here as supporting a cross-scheme, partially generalising detector for sequential watermark embedding, not a universal or scheme-agnostic one."
+  },
+  {
+    "idx": 179,
+    "style": "Body Text",
+    "text": "99"
+  },
+  {
+    "idx": 180,
+    "style": "Body Text",
+    "text": "Ba, Z., Zhang, Y., Cheng, P., Gong, B., Zhang, X., Wang, Q., & Ren, K. (2025), in many respects; Robust Watermarks Leak, like Channel-Aware Feature Extraction Enables Adversarial Watermark Manipulation. arXiv preprint arXiv:2502.06418."
+  },
+  {
+    "idx": 181,
+    "style": "Body Text",
+    "text": "Bulychev, M., Marchant, N. G., & Rubinstein, B. I. P. (2026); in turn, Watermarks Attack Watermarks - Re-Watermarking as a Generic Removal Strategy, in actual application. arXiv preprint arXiv:2605.16796."
+  },
+  {
+    "idx": 182,
+    "style": "Body Text",
+    "text": "Chen, H., Zhu, T., Liu, C., Yu, S., & Zhou, W. (2023). High-frequency Matters - An Overwriting Attack and Defence for Image-processing Neural Network Watermarking. arXiv preprint arXiv:2302.08637."
+  },
+  {
+    "idx": 183,
+    "style": "Body Text",
+    "text": "Evennou, G., & Kijak, E. (2026). The Forensic Cost of Watermark Removal: From Dedicated Attacks to Image Editing. arXiv preprint arXiv:2604.25491."
+  },
+  {
+    "idx": 184,
+    "style": "Body Text",
+    "text": "Fernandez, P., Couairon, G., J\u00e9gou, H., Douze, M., & Furon, T. (2023). The Stable Signature, such as Rooting Watermarks in Latent Diffusion Models. ICCV."
+  },
+  {
+    "idx": 185,
+    "style": "Body Text",
+    "text": "Goonatilake, Y. N., & Ateniese, G. (2026). Removing the Watermark Is regularly not Enough, namely Forensic Stealth in Generative-AI Watermark Removal. arXiv preprint arXiv:2605.09203."
+  },
+  {
+    "idx": 186,
+    "style": "Body Text",
+    "text": "Yang, J., Yu, H., Li, Q., Miao, Y., Zong, W., Chow, Y.-W., Susilo, W., Wang, C., & Gao, S. (2026), all things considered. RemTraceNet, like Few-Shot Forensic Detection of Invisible Watermark Attacks. arXiv preprint arXiv:2609.31694."
+  },
+  {
+    "idx": 187,
+    "style": "Body Text",
+    "text": "Ao, X. Du, Y. Wang, Z. Chen, M. & Lu, S. (2026); AWPD: Frequency Shield Network for Agnostic Watermark Presence Detection. CVPR Workshops, 390-399."
+  },
+  {
+    "idx": 188,
+    "style": "Body Text",
+    "text": "Guo, F., Kang, J., Ming, Q., Davis, E., & Carter, F. (2026); indeed, Vanishing Watermarks, like Diffusion-Based Image Editing Undermines Robust Invisible Watermarking. arXiv preprint arXiv:2602.20680."
+  },
+  {
+    "idx": 189,
+    "style": "Body Text",
+    "text": "Lei, Q., Gai, K., Yu, J., Zhu, L., & Wu, Q. (2024). DiffuseTrace - A transparent and flexible watermarking method for latent diffusion model. arXiv preprint arXiv:2405.02696."
+  },
+  {
+    "idx": 190,
+    "style": "Body Text",
+    "text": "Liu, Y., Song, Y., Ci, H., Zhang, Y., Wang, H., Shou, M. Z., & Bu, Y. (2024), in actual application. Image watermarks are removable applying controllable regeneration from clean noise. arXiv preprint arXiv:2410.05470."
+  },
+  {
+    "idx": 191,
+    "style": "Body Text",
+    "text": "M\u00fcller, A., Lukovnikov, D., Thietke, J., Fischer, A., & Quiring, E. (2025); indeed, black-box forgery attacks on semantic watermarks for diffusion models. CVPR."
+  },
+  {
+    "idx": 192,
+    "style": "Body Text",
+    "text": "Tallam, K., Cava, J. K., Geniesse, C., Erichson, N. B., & Mahoney, M. W. (2025), in actual application; in fact, Removing Watermarks with Partial Regeneration applying Semantic Information. arXiv preprint arXiv:2505.08234."
+  },
+  {
+    "idx": 193,
+    "style": "Body Text",
+    "text": "Xian, X., Wang, G., Bi, X., Srinivasa, J., Kundu, A., Hong, M., & Ding, J. (2024), all things considered; in fact, RAW: A Solid and Agile Plug-and-Play Watermark Framework for AI-Generated Images with Provable Guarantees, broadly speaking. arXiv preprint arXiv:2403.18774."
+  },
+  {
+    "idx": 194,
+    "style": "Body Text",
+    "text": "Yang, P., Ci, H., Song, Y., & Shou, M. Z. (2024), which is why steganalysis on Digital Watermarking: Is Your Defense Truly Impervious? arXiv preprint arXiv:2406.09026."
+  },
+  {
+    "idx": 195,
+    "style": "Body Text",
+    "text": "Zhao, X. Zhang, K. Su, Z. Vasan, S. Grishchenko, I. Kruegel, C. Vigna, G. Wang, Y.-X. & Li, L. (2024), broadly speaking; and thus, invisible image watermarks are, in effect, provably removable applying generative AI. arXiv preprint arXiv:2306.01953."
+  },
+  {
+    "idx": 196,
+    "style": "Body Text",
+    "text": "Wen, Y., Kirchenbauer, J., Geiping, J., & Goldstein, T. (2023), and Tree-Ring watermarks, such as Fingerprints for diffusion images that are normally invisible and solid, all things considered. arXiv preprint arXiv:2305.20030."
+  },
+  {
+    "idx": 197,
+    "style": "Body Text",
+    "text": "Tancik, M., Mildenhall, B., & Ng, R. (2020); and thus, StegaStamp, namely Invisible Hyperlinks in Physical Photographs. CVPR."
+  },
+  {
+    "idx": 198,
+    "style": "Body Text",
+    "text": "Zhu, J., Kaplan, R., Johnson, J., & Fei-Fei, L. (2018); indeed, HiDDeN, such as Hiding Data With Deep Networks. ECCV."
+  },
+  {
+    "idx": 199,
+    "style": "Body Text",
+    "text": "Qi, Q., Tang, J., Lee, J., Davis, E., & Carter, F. (2026); in fact, Editing Away the Indication - Diffusion-Based Image Manipulation and the Failure Modes of Robust Watermarking, to a significant degree. arXiv preprint arXiv:2603.12949."
+  },
+  {
+    "idx": 200,
+    "style": "Body Text",
+    "text": "Gu, F., Tang, Q., Wen, T., Davis, E., & Carter, F. (2026); indeed, when Denoising Becomes Unsigning, such as Theoretical and Empirical Analysis of Watermark Fragility, under Diffusion-Based Image Editing, in the main. arXiv preprint arXiv:2603.04696."
+  },
+  {
+    "idx": 201,
+    "style": "Body Text",
+    "text": "Fairoze, J., Ortiz-Jim\u00e9nez, G., Vecerik, M., Jha, S., & Gowal, S. (2025), and on the Obstacle of Constructing a Solid and Publicly-Detectable Watermark. arXiv preprint arXiv:2502.04901."
+  },
+  {
+    "idx": 202,
+    "style": "Body Text",
+    "text": "Evennou, G., Chappelier, V., Kijak, E., & Furon, T. (2024). Swift: Semantic Watermarking for Image Forgery Thwarting. WIFS."
+  },
+  {
+    "idx": 203,
+    "style": "Body Text",
+    "text": "Dixit, S., Aziz, A., Bajpai, S., Sharma, V., Chadha, A., Jain, V., & Das, A. (2026), in many respects; PECCVAI, like Overcoming the Brittleness of AI Image Watermarking Under Visual Paraphrasing Attacks. CVPR."
+  },
+  {
+    "idx": 204,
+    "style": "Body Text",
+    "text": "Liu, R. & Tan, T. (2002). IEEE Transactions on Multimedia, 4(1), 121-128. A SVD-based watermarking scheme for protecting rightful ownership."
+  },
+  {
+    "idx": 205,
+    "style": "Body Text",
+    "text": "Li, D., Yang, Y., Song, Y.-Z., & Hospedales, T. M. (2017). Deeper, Broader and Artier Domain Generalization. ICCV."
+  },
+  {
+    "idx": 206,
+    "style": "Body Text",
+    "text": "Yao, L., Huang, C., Wang, S., Xue, J., Guo, H., Liu, J., Lin, P., Ohtsuki, T., & Pan, M. (2025), broadly speaking. Yours or Mine? Overwriting Attacks Against Neural Audio Watermarking. arXiv preprint arXiv:2509.05835."
+  },
+  {
+    "idx": 207,
+    "style": "Body Text",
+    "text": "Bui, T., Agarwal, S., & Collomosse, J. (2025). TrustMark, namely Robust Watermarking and Watermark Removal for Arbitrary Resolution Images. ICCV."
+  }
+]

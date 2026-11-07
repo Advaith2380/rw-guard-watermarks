@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "datasets": {
+    "ms_coco_val2017": {
+      "source_path": "D:/projects/rewm-guard/data/coco",
+      "archive_path": "D:/projects/rewm-guard/data/val2017.zip",
+      "archive_size_bytes": 815585330,
+      "total_source_images": 5000,
+      "train_sources": 3200,
+      "val_sources": 300,
+      "test_sources": 1500,
+      "license": "Creative Commons Attribution 4.0 International",
+      "format": "JPEG (short side resized to evaluation scale)"
+    },
+    "pacs_cross_domain": {
+      "source_path": "D:/projects/rewm-guard/data/pacs",
+      "total_source_images": 1600,
+      "domains": {
+        "photo": 400,
+        "art_painting": 400,
+        "cartoon": 400,
+        "sketch": 400
+      },
+      "derived_test_samples": 3200,
+      "samples_per_domain": 800
+    },
+    "trustmark_benchmark": {
+      "source_path": "D:/projects/rewm-guard/data/trustmark_cache",
+      "total_test_samples": 500,
+      "derived_from_sources": 250,
+      "architecture": "Deep Neural Watermark (TrustMark)"
+    },
+    "stegastamp_benchmark": {
+      "total_test_samples": 300,
+      "derived_from_sources": 150,
+      "architecture": "Deep Spatial Watermarking (StegaStamp)"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "primary_checkpoint": "D:/projects/rwg-push/checkpoints/final/rwguard_final_7scheme.pt",
+  "seed0_checkpoint_path": "D:/projects/rwg-push/runs/seed0/best.pt",
+  "seed0_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+  "byte_identical_to_seed0": true,
+  "weights_identical_to_seed0": true,
+  "metadata": {
+    "epoch": 14,
+    "validation_auc": 0.8482555555555555,
+    "training_schemes": [
+      "dct_qim",
+      "dwt_qim",
+      "ss_spatial",
+      "fft_ring",
+      "nmp_freq",
+      "svd_qim",
+      "dct_svd"
+    ],
+    "training_args": {
+      "data": "data/coco",
+      "out": "runs/seed0",
+      "arch": "forensic",
+      "width": "32",
+      "size": "256",
+      "crop": "128",
+      "epochs": "15",
+      "bs": "32",
+      "lr": "0.001",
+      "n_train": "0",
+      "n_val": "300",
+      "repeat": "4",
+      "holdout": "[]",
+      "benign_p": "0.5",
+      "adv_eps": "0.0",
+      "adv_steps": "3",
+      "adv_start": "2",
+      "workers": "0",
+      "init": "",
+      "seed": "0"
+    }
+  },
+  "provenance_verified": true,
+  "status": "PASS"
+}

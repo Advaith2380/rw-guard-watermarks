@@ -1,0 +1,61 @@
+{
+  "model_name": "RW-Guard Final Seven-Scheme Primary Model",
+  "checkpoint_path": "checkpoints/final\\rwguard_final_7scheme.pt",
+  "sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+  "file_size_bytes": 9909673,
+  "architecture": {
+    "type": "ForensicNet",
+    "arch_name": "forensic",
+    "base_width": 32,
+    "parameter_count": 2466099,
+    "high_pass_preprocessing": true,
+    "pooling": "global_avg_and_max"
+  },
+  "training_protocol": {
+    "dataset": "MS-COCO val2017",
+    "training_source_images": 3000,
+    "validation_source_images": 300,
+    "random_seed": 0,
+    "epochs": 15,
+    "best_epoch": 14,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "input_crop_size": 128,
+    "training_size": 256,
+    "benign_augmentation_prob": 0.5,
+    "seven_schemes": [
+      "dct_qim",
+      "dwt_qim",
+      "ss_spatial",
+      "fft_ring",
+      "nmp_freq",
+      "svd_qim",
+      "dct_svd"
+    ]
+  },
+  "operating_point": {
+    "calibration_dataset": "MS-COCO validation split (300 source images, 600 samples)",
+    "target_fpr": 0.01,
+    "frozen_threshold": 1.3394016027450562,
+    "calibration_rule": "Threshold selected on validation negative scores at 99th percentile (FPR=0.01)",
+    "validation_auc": 0.8566888888888889,
+    "validation_tpr_at_frozen_threshold": 0.17666666666666667,
+    "validation_fpr_at_frozen_threshold": 0.01,
+    "validation_neg_score_stats": {
+      "mean": -1.5426806211471558,
+      "std": 1.9368312358856201,
+      "p50": -1.1971919536590576,
+      "p90": 0.7514491081237793,
+      "p99": 1.3397845029830933,
+      "max": 1.7274795770645142
+    },
+    "validation_pos_score_stats": {
+      "mean": 0.6445820331573486,
+      "std": 0.7856049537658691,
+      "p50": 0.7414683103561401,
+      "min": -3.1522152423858643,
+      "max": 2.2554373741149902
+    }
+  },
+  "status": "FROZEN_VALIDATED"
+}

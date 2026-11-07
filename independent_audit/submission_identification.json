@@ -1,0 +1,74 @@
+{
+  "timestamp_utc": "2026-11-06T15:23:12.398323Z",
+  "repository_path": "D:/projects/rwg-push",
+  "submission_directory": "D:/projects/rwg-push/final_faculty_remediation",
+  "git_commit": "238b3197fa532f40d9e2cfb3554b4f0f6205185d",
+  "git_branch": "main",
+  "git_status_uncommitted_files_count": 80,
+  "artifacts": {
+    "primary_checkpoint_repo": {
+      "exists": true,
+      "path": "D:/projects/rwg-push/checkpoints/final/rwguard_final_7scheme.pt",
+      "size_bytes": 9909673,
+      "size_mb": 9.4506,
+      "mtime_utc": "2026-10-12T14:13:30.757143Z",
+      "sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573"
+    },
+    "primary_checkpoint_submission": {
+      "exists": true,
+      "path": "D:/projects/rwg-push/final_faculty_remediation/checkpoints/primary_checkpoint.pt",
+      "size_bytes": 9909673,
+      "size_mb": 9.4506,
+      "mtime_utc": "2026-10-12T14:13:30.757143Z",
+      "sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573"
+    },
+    "config_repo": {
+      "exists": true,
+      "path": "D:/projects/rwg-push/checkpoints/final/final_model_config.json",
+      "size_bytes": 1927,
+      "size_mb": 0.0018,
+      "mtime_utc": "2026-11-06T10:39:26.934204Z",
+      "sha256": "2c6e5320b9826672f494e9c25ed0e8dc293584ef97ae7470744c0b06f8f23eb7"
+    },
+    "config_submission": {
+      "exists": true,
+      "path": "D:/projects/rwg-push/final_faculty_remediation/configs/final_model_config.json",
+      "size_bytes": 1927,
+      "size_mb": 0.0018,
+      "mtime_utc": "2026-11-06T10:39:26.934204Z",
+      "sha256": "2c6e5320b9826672f494e9c25ed0e8dc293584ef97ae7470744c0b06f8f23eb7"
+    },
+    "manuscript_repo": {
+      "exists": true,
+      "path": "D:/projects/rwg-push/manuscript/corrected_final_manuscript.docx",
+      "size_bytes": 3085125,
+      "size_mb": 2.9422,
+      "mtime_utc": "2026-11-06T14:16:03.152253Z",
+      "sha256": "fb59a5df68625cb60a950e445a8e2af6cdce2623d76fd1ba2baad57ddbd13567"
+    },
+    "manuscript_submission": {
+      "exists": true,
+      "path": "D:/projects/rwg-push/final_faculty_remediation/manuscript/corrected_final_manuscript.docx",
+      "size_bytes": 3085125,
+      "size_mb": 2.9422,
+      "mtime_utc": "2026-11-06T14:16:03.152253Z",
+      "sha256": "fb59a5df68625cb60a950e445a8e2af6cdce2623d76fd1ba2baad57ddbd13567"
+    },
+    "final_submission_zip": {
+      "exists": true,
+      "path": "D:/projects/rwg-push/deliverables/RW_GUARD_FINAL_FACULTY_SUBMISSION.zip",
+      "size_bytes": 12487412,
+      "size_mb": 11.9089,
+      "mtime_utc": "2026-11-06T15:13:30.880277Z",
+      "sha256": "5b3916bc2930287ecb62c52fdad591427e140fcbe5a2ad2367de4ad57ab4fbc4"
+    },
+    "final_submission_sha256_file": {
+      "exists": true,
+      "path": "D:/projects/rwg-push/deliverables/RW_GUARD_FINAL_FACULTY_SUBMISSION.sha256",
+      "size_bytes": 105,
+      "size_mb": 0.0001,
+      "mtime_utc": "2026-11-06T15:13:31.068918Z",
+      "sha256": "1ebb4909fcf96a34bdcd73d9149dc93c4916ce23630de7b9750b6a7b8c30dcc1"
+    }
+  }
+}

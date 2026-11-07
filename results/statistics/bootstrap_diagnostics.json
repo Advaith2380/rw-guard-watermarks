@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "bootstrap_parameters": {
+    "replicates_B": 2000,
+    "resampling_unit": "independent_source_image_id",
+    "confidence_level": 0.95,
+    "ci_method": "empirical_percentile",
+    "random_seed": 42
+  },
+  "convergence_checks": {
+    "monte_carlo_standard_error_bound": "< 0.0003",
+    "source_level_clustering": "verified (samples from same source stay together in each resample)",
+    "paired_resampling": "verified (same bootstrap source index set applied to RW-Guard and baseline)",
+    "nan_inf_tolerance": "0 occurrences across all B replicates"
+  },
+  "coverage_summary": {
+    "total_evaluated_conditions": 34,
+    "primary_auc_ci": [
+      0.8407867,
+      0.8674106
+    ],
+    "paired_delta_auc_ci_lr": [
+      0.2672475,
+      0.31421619999999995
+    ],
+    "paired_delta_auc_ci_rf": [
+      0.26541929999999997,
+      0.33143675000000006
+    ]
+  }
+}

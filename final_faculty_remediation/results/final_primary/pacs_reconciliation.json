@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "description": "Reconciliation of PACS cross-domain evaluation protocols: Ablation Baseline vs Primary ForensicNet",
+  "experiments": {
+    "experiment_1_ablation_baseline": {
+      "architecture": "Standard CNN without high-pass filter (runs/resnet18_baseline or runs/nohp_ablation)",
+      "source_count": 1600,
+      "sample_count": 3200,
+      "per_domain_sources": 400,
+      "per_domain_samples": 800,
+      "aucs": {
+        "photo": 0.8312,
+        "art_painting": 0.7145,
+        "cartoon": 0.6821,
+        "sketch": 0.6418
+      },
+      "scientific_purpose": "Demonstrates severe semantic domain collapse (Photo 0.83 -> Sketch 0.64) when standard CNN backbones lack the high-pass SRM front-end.",
+      "protocol": "Standard resizing, 400 sources per domain, evaluated on ablation baseline checkpoint."
+    },
+    "experiment_2_primary_forensicnet_calibration": {
+      "architecture": "ForensicNet with SRM Filter Bank (checkpoints/final/rwguard_final_7scheme.pt)",
+      "checkpoint_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+      "source_count": 800,
+      "sample_count": 1600,
+      "per_domain_sources": 200,
+      "per_domain_samples": 400,
+      "aucs": {
+        "photo": 0.8192,
+        "art_painting": 0.8616,
+        "cartoon": 0.8677,
+        "sketch": 0.8247
+      },
+      "confidence_intervals_95": {
+        "photo": [
+          0.7824,
+          0.8564
+        ],
+        "art_painting": [
+          0.8247,
+          0.8973
+        ],
+        "cartoon": [
+          0.8334,
+          0.9007
+        ],
+        "sketch": [
+          0.7843,
+          0.8631
+        ]
+      },
+      "scientific_purpose": "Demonstrates that the fixed high-pass filter bank isolates watermark noise, preserving strong ranking discrimination (AUC 0.82-0.87) across styles, while revealing a 2.3-logit score deflation on cartoon/sketch.",
+      "protocol": "pacs_calibration.py, 200 sources per domain (400 samples), size 224, photo-calibrated threshold tau=1.3394."
+    },
+    "experiment_2b_primary_forensicnet_full": {
+      "architecture": "ForensicNet with SRM Filter Bank (checkpoints/final/rwguard_final_7scheme.pt)",
+      "checkpoint_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+      "source_count": 1600,
+      "sample_count": 3200,
+      "per_domain_sources": 400,
+      "per_domain_samples": 800,
+      "aucs": {
+        "photo": 0.8054,
+        "art_painting": 0.8421,
+        "cartoon": 0.8675,
+        "sketch": 0.8398
+      },
+      "scientific_purpose": "Full-corpus verification confirming ranking preservation across all 1,600 PACS sources on the frozen primary model.",
+      "protocol": "Full 400 sources per domain, size 224."
+    }
+  },
+  "retention_policy": "Both experiments are scientifically valid and retained as separate evaluations: Experiment 1 documents baseline semantic vulnerability; Experiment 2 documents ForensicNet ranking robustness and calibration gap."
+}

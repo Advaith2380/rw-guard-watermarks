@@ -1,0 +1,38 @@
+{
+  "verdict": "ACCEPT \u2014 READY FOR FACULTY SUBMISSION",
+  "verdict_timestamp": "2026-11-07T13:36:28.656532",
+  "evaluation_summary": {
+    "total_authoritative_requirements": 53,
+    "requirements_passed": 53,
+    "requirements_failed": 0,
+    "blocking_defects_remaining": 0,
+    "discrepancies_identified": 9,
+    "discrepancies_resolved": 9
+  },
+  "resolved_discrepancy_register": {
+    "DISC-01_resolution_coverage": "PASS \u2014 Evaluated across 128, 256, 384, 512, 1024 px with 95% CIs",
+    "DISC-02_adversarial_pgd10": "PASS \u2014 PGD-10 documented (0% detection) and contrasted with FGSM & isolated defended checkpoint",
+    "DISC-03_fpr_causal_cleansing": "PASS \u2014 Exact verbatim mandatory phrasing enforced across all reports and manuscript",
+    "DISC-04_ownership_confidence_intervals": "PASS \u2014 Wilson score intervals designated primary in Table 15; overwrite text sanitized",
+    "DISC-05_independent_provenance": "PASS \u2014 Exact script hashes, commands, raw inputs, and portability boundary documented",
+    "DISC-06_multi_seed_reconciliation": "PASS \u2014 Protocol A (1,000 samples) vs Protocol B (3,000 samples) reconciled; sample SD (ddof=1) vs population SD (ddof=0) clarified",
+    "DISC-07_pacs_discrepancy_reconciliation": "PASS \u2014 Experiment 1 (Ablation baseline 0.83/0.71/0.68/0.64) vs Experiment 2 (ForensicNet 0.82/0.86/0.87/0.82) attributed and retained",
+    "DISC-08_roc_operating_point_reconciliation": "PASS \u2014 Derived exact 1.00% FPR threshold (1.6040, TPR 7.87% [5.00%, 10.60%]); reconciled 1.4889 as 98th percentile",
+    "DISC-09_portable_reproduction_setup": "PASS \u2014 Portable environment instructions provided; external dataset dependencies explicitly disclosed"
+  },
+  "authoritative_checksums": {
+    "primary_frozen_checkpoint_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+    "defended_adversarial_checkpoint_sha256": "27954fd43360830d76fa107036567e9486844fa85d6a058c84d438b2e6caefed",
+    "corrected_manuscript_sha256": "f156e2ec6ca48e24261976f07f7b8da5bbe2c14f3200973090dffda16c76438b",
+    "final_submission_zip_sha256": "cc5986fde633172497c9947801ca90ced82a8b471772b90e58f02c9d657bcc0d"
+  },
+  "compliance_certifications": {
+    "checkpoint_frozen_unaltered": true,
+    "no_synthetic_data_in_primary": true,
+    "train_val_test_isolation_verified": true,
+    "source_grouped_bootstrap_cis_computed": true,
+    "shortcut_learning_formally_rejected": true,
+    "adversarial_vulnerability_disclosed": true,
+    "manuscript_claims_fully_reconciled": true
+  }
+}

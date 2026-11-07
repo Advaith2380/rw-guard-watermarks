@@ -1,0 +1,46 @@
+{
+  "status": "ESTABLISHED",
+  "order_of_evidence": [
+    {
+      "rank": 1,
+      "tier": "Original source image bytes and identifiers",
+      "authority": "MS-COCO val2017 5,000 images & master source manifest"
+    },
+    {
+      "rank": 2,
+      "tier": "Actual model checkpoint bytes",
+      "authority": "checkpoints/final/rwguard_final_7scheme.pt (SHA: 37680cdd...)"
+    },
+    {
+      "rank": 3,
+      "tier": "Actual experiment configurations and code",
+      "authority": "Training parameters, scheme definitions, and seed values"
+    },
+    {
+      "rank": 4,
+      "tier": "Per-sample predictions generated via fresh model inference",
+      "authority": "Fresh forward passes without cached npz reuse"
+    },
+    {
+      "rank": 5,
+      "tier": "Executed experiment execution logs",
+      "authority": "Timestamped execution traces with environment telemetry"
+    },
+    {
+      "rank": 6,
+      "tier": "Reproducible calculations from raw prediction scores",
+      "authority": "Grouped source-level bootstrap and confusion matrices"
+    },
+    {
+      "rank": 7,
+      "tier": "Historical JSON result files",
+      "authority": "Reference artifacts subject to audit and verification"
+    },
+    {
+      "rank": 8,
+      "tier": "Manuscript claims and report narratives",
+      "authority": "Final text to be reconciled against lower tiers"
+    }
+  ],
+  "non_fabrication_guarantee": "All metrics reported are computed strictly from raw predictions and verified checkpoint tensors. No metrics are copied without validation."
+}

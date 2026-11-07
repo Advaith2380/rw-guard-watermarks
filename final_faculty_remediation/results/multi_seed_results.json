@@ -1,0 +1,237 @@
+{
+  "status": "PASS",
+  "multi_seed_results": {
+    "n_seeds": 3,
+    "test_source_images": 500,
+    "test_sample_count": 1000,
+    "metrics_summary": {
+      "roc_auc": {
+        "individual": [
+          0.855564,
+          0.853104,
+          0.84968
+        ],
+        "mean": 0.8527826666666666,
+        "std": 0.0024128552012547748,
+        "min": 0.84968,
+        "max": 0.855564,
+        "range": 0.005884
+      },
+      "tpr_at_1pct_fpr": {
+        "individual": [
+          0.06,
+          0.118,
+          0.1
+        ],
+        "mean": 0.09266666666666667,
+        "std": 0.024239545283597123,
+        "range": 0.057999999999999996
+      },
+      "fixed_threshold_tpr": {
+        "individual": [
+          0.194,
+          0.164,
+          0.188
+        ],
+        "mean": 0.18200000000000002,
+        "std": 0.01296148139681572,
+        "range": 0.03
+      },
+      "fixed_threshold_fpr": {
+        "individual": [
+          0.034,
+          0.018,
+          0.03
+        ],
+        "mean": 0.027333333333333334,
+        "std": 0.006798692684790381,
+        "range": 0.016000000000000004
+      }
+    },
+    "individual_runs": {
+      "Seed 0 (Primary)": {
+        "seed_index": 0,
+        "checkpoint_path": "runs/seed0/best.pt",
+        "validation_auc": 0.8566888888888889,
+        "validation_threshold": 1.3394016027450562,
+        "test_metrics": {
+          "n": 1000,
+          "auc": 0.855564,
+          "tpr_at_1pct_fpr": 0.06,
+          "tpr_at_0p1pct_fpr": 0.004,
+          "tpr_fixed_thr": 0.194,
+          "fpr_fixed_thr": 0.034
+        },
+        "confidence_intervals": {
+          "auc": {
+            "point_estimate": 0.855564,
+            "bootstrap_mean": 0.855567266,
+            "bootstrap_std": 0.011970403924230962,
+            "ci_95": [
+              0.8308837,
+              0.8779772
+            ]
+          },
+          "tpr_at_1pct_fpr": {
+            "point_estimate": 0.06,
+            "bootstrap_mean": 0.068334,
+            "bootstrap_std": 0.020924637248946516,
+            "ci_95": [
+              0.032,
+              0.108
+            ]
+          },
+          "tpr_at_0p1pct_fpr": {
+            "point_estimate": 0.004,
+            "bootstrap_mean": 0.010593000000000002,
+            "bootstrap_std": 0.015553981837458857,
+            "ci_95": [
+              0.0,
+              0.06
+            ]
+          },
+          "tpr_fixed_thr": {
+            "point_estimate": 0.194,
+            "bootstrap_mean": 0.19417099999999998,
+            "bootstrap_std": 0.017601498771411487,
+            "ci_95": [
+              0.16,
+              0.228
+            ]
+          },
+          "fpr_fixed_thr": {
+            "point_estimate": 0.034,
+            "bootstrap_mean": 0.034134,
+            "bootstrap_std": 0.008180344980500517,
+            "ci_95": [
+              0.018,
+              0.05
+            ]
+          }
+        }
+      },
+      "Seed 1": {
+        "seed_index": 1,
+        "checkpoint_path": "runs/seed1/best.pt",
+        "validation_auc": 0.8539222222222222,
+        "validation_threshold": 1.4631222486495972,
+        "test_metrics": {
+          "n": 1000,
+          "auc": 0.853104,
+          "tpr_at_1pct_fpr": 0.118,
+          "tpr_at_0p1pct_fpr": 0.002,
+          "tpr_fixed_thr": 0.164,
+          "fpr_fixed_thr": 0.018
+        },
+        "confidence_intervals": {
+          "auc": {
+            "point_estimate": 0.853104,
+            "bootstrap_mean": 0.853061932,
+            "bootstrap_std": 0.011728800422011451,
+            "ci_95": [
+              0.8288713000000001,
+              0.8756873
+            ]
+          },
+          "tpr_at_1pct_fpr": {
+            "point_estimate": 0.118,
+            "bootstrap_mean": 0.11203300000000002,
+            "bootstrap_std": 0.039549828204430926,
+            "ci_95": [
+              0.039950000000000006,
+              0.19404999999999972
+            ]
+          },
+          "tpr_at_0p1pct_fpr": {
+            "point_estimate": 0.002,
+            "bootstrap_mean": 0.012987000000000002,
+            "bootstrap_std": 0.020977984436070116,
+            "ci_95": [
+              0.002,
+              0.072
+            ]
+          },
+          "tpr_fixed_thr": {
+            "point_estimate": 0.164,
+            "bootstrap_mean": 0.164438,
+            "bootstrap_std": 0.016587710993383024,
+            "ci_95": [
+              0.132,
+              0.198
+            ]
+          },
+          "fpr_fixed_thr": {
+            "point_estimate": 0.018,
+            "bootstrap_mean": 0.018083,
+            "bootstrap_std": 0.005991920476775372,
+            "ci_95": [
+              0.008,
+              0.032
+            ]
+          }
+        }
+      },
+      "Seed 2": {
+        "seed_index": 2,
+        "checkpoint_path": "runs/seed2/best.pt",
+        "validation_auc": 0.8482666666666666,
+        "validation_threshold": 1.348831295967102,
+        "test_metrics": {
+          "n": 1000,
+          "auc": 0.84968,
+          "tpr_at_1pct_fpr": 0.1,
+          "tpr_at_0p1pct_fpr": 0.006,
+          "tpr_fixed_thr": 0.188,
+          "fpr_fixed_thr": 0.03
+        },
+        "confidence_intervals": {
+          "auc": {
+            "point_estimate": 0.84968,
+            "bootstrap_mean": 0.849603382,
+            "bootstrap_std": 0.011946096628860658,
+            "ci_95": [
+              0.8259279,
+              0.8720760999999999
+            ]
+          },
+          "tpr_at_1pct_fpr": {
+            "point_estimate": 0.1,
+            "bootstrap_mean": 0.09534900000000002,
+            "bootstrap_std": 0.024833972678570782,
+            "ci_95": [
+              0.053950000000000005,
+              0.146
+            ]
+          },
+          "tpr_at_0p1pct_fpr": {
+            "point_estimate": 0.006,
+            "bootstrap_mean": 0.016996,
+            "bootstrap_std": 0.022946371913659905,
+            "ci_95": [
+              0.0,
+              0.084
+            ]
+          },
+          "tpr_fixed_thr": {
+            "point_estimate": 0.188,
+            "bootstrap_mean": 0.18809399999999998,
+            "bootstrap_std": 0.0172580173832338,
+            "ci_95": [
+              0.154,
+              0.222
+            ]
+          },
+          "fpr_fixed_thr": {
+            "point_estimate": 0.03,
+            "bootstrap_mean": 0.029986000000000006,
+            "bootstrap_std": 0.007655834637712599,
+            "ci_95": [
+              0.016,
+              0.046
+            ]
+          }
+        }
+      }
+    }
+  }
+}

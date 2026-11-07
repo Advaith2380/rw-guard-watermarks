@@ -1,0 +1,84 @@
+{
+  "checkpoint": "checkpoints/final/rwguard_final_7scheme.pt",
+  "operating_threshold": 1.3394,
+  "n_samples": 300,
+  "n_source_images": 150,
+  "metrics": {
+    "n": 300,
+    "auc": 0.9292888888888889,
+    "tpr_at_1pct_fpr": 0.16666666666666666,
+    "tpr_at_0p1pct_fpr": 0.006666666666666667,
+    "tpr_fixed_thr": 0.05333333333333334,
+    "fpr_fixed_thr": 0.006666666666666667
+  },
+  "confidence_intervals": {
+    "auc": {
+      "point_estimate": 0.9292888888888889,
+      "bootstrap_mean": 0.9296441777777777,
+      "bootstrap_std": 0.013660424082060132,
+      "ci_95": [
+        0.9023511111111111,
+        0.9542677777777778
+      ]
+    },
+    "tpr_at_1pct_fpr": {
+      "point_estimate": 0.16666666666666666,
+      "bootstrap_mean": 0.17811,
+      "bootstrap_std": 0.1231905710226594,
+      "ci_95": [
+        0.013333333333333334,
+        0.4
+      ]
+    },
+    "tpr_at_0p1pct_fpr": {
+      "point_estimate": 0.006666666666666667,
+      "bootstrap_mean": 0.08231999999999999,
+      "bootstrap_std": 0.10135458022868693,
+      "ci_95": [
+        0.006666666666666667,
+        0.31333333333333335
+      ]
+    },
+    "tpr_fixed_thr": {
+      "point_estimate": 0.05333333333333334,
+      "bootstrap_mean": 0.05377,
+      "bootstrap_std": 0.01871447419631245,
+      "ci_95": [
+        0.02,
+        0.09333333333333334
+      ]
+    },
+    "fpr_fixed_thr": {
+      "point_estimate": 0.006666666666666667,
+      "bootstrap_mean": 0.00658,
+      "bootstrap_std": 0.006551780080422589,
+      "ci_95": [
+        0.0,
+        0.02
+      ]
+    }
+  },
+  "kind_breakdown": {
+    "clean": {
+      "n": 75,
+      "flagged_rate_at_tau": 0.013333333333333334,
+      "mean_score": -2.7479967921972275,
+      "std_score": 1.7046425815311363,
+      "median_score": -2.687424898147583
+    },
+    "single_stegastamp": {
+      "n": 75,
+      "flagged_rate_at_tau": 0.0,
+      "mean_score": -0.9611298721035322,
+      "std_score": 0.8826386674502095,
+      "median_score": -0.979914665222168
+    },
+    "stegastamp>stegastamp": {
+      "n": 150,
+      "flagged_rate_at_tau": 0.05333333333333334,
+      "mean_score": 0.4037301331323882,
+      "std_score": 0.6305988291680965,
+      "median_score": 0.46072307229042053
+    }
+  }
+}

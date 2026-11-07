@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-11-06 12:19:22Z",
+  "os_platform": "Windows-11-10.0.26300-SP0",
+  "python_version": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "python_executable": "D:\\projects\\rewm-guard\\.venv\\Scripts\\python.exe",
+  "torch_version": "2.14.0+cu126",
+  "cuda_available": true,
+  "cuda_device_name": "NVIDIA GeForce GTX 1650",
+  "numpy_version": "2.5.2",
+  "scikit_learn_version": "1.7.2",
+  "git": {
+    "git_available": true,
+    "commit": "238b3197fa532f40d9e2cfb3554b4f0f6205185d",
+    "branch": "main",
+    "status": "M RWGuard_Final_Report.docx\n M audit/matched_controls_results.json\n M audit/outcome_stratification_results.json\n M audit/pacs_calibration_results.json\n M audit/shortcut_baseline_results.json\n M audit/trustmark_evaluation_results.json\n M bootstrap_ci.py\n M evaluate.py\n M evaluate_outcomes.py\n M evaluate_trustmark_cache.py\n M matched_controls.py\n M pacs_calibration.py\n M rewm/data.py\n M rewm/outcomes.py\n M scripts/RWGUARD_ROLLBACK.ps1\n M shortcut_baseline.py\n M test_stegastamp_detector.py\n M tests/test_outcomes.py\n?? RWGuard_Final_Report_v2_backup.docx\n?? RWGuard_Final_Report_v3_Faculty_Approved.docx\n?? audit/FINAL_VERIFIED_RESULTS_SEVEN_SCHEME.md\n?? audit/checkpoint_audit.json\n?? audit/final_consolidated_results.json\n?? audit/final_independent_verification/\n?? audit/fpr_discrepancy_investigation.json\n?? audit/seed_evaluation_results.json\n?? audit/stegastamp_evaluation_results.json\n?? audit_historical_backup/\n?? audit_json_artifacts.py\n?? audit_scientific_claims.py\n?? audit_secondary_evaluations.py\n?? audit_source_overlap.py\n?? checkpoints/\n?? compute_confidence_intervals.py\n?? deliverables/\n?? generate_final_evidence_report.py\n?? package_final_deliverables.py\n?? reproduce_baselines.py\n?? reproduce_primary_evaluation.py\n?? results/final_7scheme_primary/\n?? run_final_verification.py\n?? run_test_suite_audit.py\n?? scratch/\n?? scripts/audit_checkpoints.py\n?? scripts/build_faculty_approved_manuscript.py\n?? scripts/consolidate_final_results.py\n?? scripts/evaluate_three_seeds.py\n?? scripts/freeze_primary_model.py\n?? scripts/investigate_fpr_discrepancy.py\n?? scripts/orchestrate_faculty_review.py\n?? scripts/verification/\n?? tests/test_integration_faculty.py\n?? verify_checkpoint.py"
+  }
+}

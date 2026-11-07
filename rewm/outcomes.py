@@ -1,11 +1,14 @@
 """Attack outcome classification and stratification for RW-Guard.
 
-Distinguishes between:
-1. 'successful_overwrite': Attacker message successfully recovered (bit-acc >= tau),
-   victim message suppressed below readability (bit-acc < tau). True ownership forgery.
-2. 'dual_survival': Both victim and attacker messages remain reliably recoverable
-   (both bit-acc >= tau). Creates forensic ownership ambiguity / conflict.
-3. 'failed_attack': Attacker watermark fails to embed or decode reliably (bit-acc < tau).
+Distinguishes between four explicit categories (Section 7.2 of Faculty Review):
+1. 'successful_overwrite': Attacker watermark passes verification (bit-acc >= tau),
+   victim watermark fails verification (bit-acc < tau). True ownership forgery.
+2. 'dual_survival': Both victim and attacker watermarks pass verification
+   (both bit-acc >= tau). Forensic ownership ambiguity / conflict.
+3. 'failed_attacker_embedding': Victim watermark passes verification (bit-acc >= tau),
+   attacker watermark fails verification (bit-acc < tau).
+4. 'both_unrecoverable': Both victim and attacker watermarks fail verification
+   (both bit-acc < tau). Severe destruction / collision.
 
 Review Requirements: REQ-C, REQ-D.
 """
@@ -62,12 +65,20 @@ def classify_attack_outcome(img_uint8, victim_info, attacker_info, threshold=DEF
         outcome = "successful_overwrite"
     elif a_acc >= threshold and v_acc >= threshold:
         outcome = "dual_survival"
+    elif a_acc < threshold and v_acc >= threshold:
+        outcome = "failed_attacker_embedding"
     else:
-        outcome = "failed_attack"
+        outcome = "both_unrecoverable"
         
     return {
         "outcome": outcome,
         "victim_bitacc": v_acc,
         "attacker_bitacc": a_acc,
-        "threshold": threshold
+        "threshold": threshold,
+        "category_id": {
+            "successful_overwrite": 1,
+            "dual_survival": 2,
+            "failed_attacker_embedding": 3,
+            "both_unrecoverable": 4
+        }[outcome]
     }

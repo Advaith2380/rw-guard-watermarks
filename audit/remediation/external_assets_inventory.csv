@@ -1,0 +1,20 @@
+Source_Path,Asset_Type,Size_or_Count,SHA256,Description,Intended_Remediation_Role
+D:/projects/rewm-guard/data/coco,Directory,5000,N/A,"Authoritative MS-COCO val2017 source images (5,000 files)",Evaluation / Fresh Inference
+D:/projects/rewm-guard/data/val2017.zip,Archive,815585330,SKIPPED_LARGE_FILE,Original MS-COCO val2017 distribution archive (815 MB),Reference distribution archive
+D:/projects/rewm-guard/data/pacs,Directory,1600,N/A,"Authoritative PACS cross-domain source images (1,600 images)",PACS Cross-Domain Reproduction
+D:/projects/rewm-guard/data/trustmark_cache,Directory,1800,N/A,TrustMark pre-encoded watermark samples,Neural Generalization Reproduction
+D:/projects/rewm-guard/runs\adv_eps1\best.pt,PyTorch Checkpoint,9909673,27954fd43360830d76fa107036567e9486844fa85d6a058c84d438b2e6caefed,Training run checkpoint: adv_eps1,Model comparison & provenance
+D:/projects/rewm-guard/runs\adv_eps1_strong\best.pt,PyTorch Checkpoint,9909673,de0133575e2a633c718f356f37bcf991df2533a0d7c2955bf81181f87bcea7c2,Training run checkpoint: adv_eps1_strong,Model comparison & provenance
+D:/projects/rewm-guard/runs\baseline\best.pt,PyTorch Checkpoint,9909609,c3bae0ba2ec25505aff5e743ea2c38d9dd7f7fc4bc61d74e19a1afe96e2e6272,Training run checkpoint: baseline,Model comparison & provenance
+D:/projects/rewm-guard/runs\baseline_e9\best.pt,PyTorch Checkpoint,9909609,c3bae0ba2ec25505aff5e743ea2c38d9dd7f7fc4bc61d74e19a1afe96e2e6272,Training run checkpoint: baseline_e9,Model comparison & provenance
+D:/projects/rewm-guard/runs\baseline_full\best.pt,PyTorch Checkpoint,9909673,245ff35328879b1b8d5eb3b6c2335f9f324a2b2f3762f0c8a1a0ffbbf9460c56,Training run checkpoint: baseline_full,Model comparison & provenance
+D:/projects/rewm-guard/runs\holdout_dct\best.pt,PyTorch Checkpoint,9909673,2a5954e01ad1266023f2a6456e1af9e789f3bef5351a42682f0720f1f8247101,Training run checkpoint: holdout_dct,Model comparison & provenance
+D:/projects/rewm-guard/runs\holdout_fft\best.pt,PyTorch Checkpoint,9909673,5107ac964e46bb4f779cc3a23842e5dce302c6553a7e206292a33e5736dbf225,Training run checkpoint: holdout_fft,Model comparison & provenance
+D:/projects/rewm-guard/runs\nohp_ablation\best.pt,PyTorch Checkpoint,9901487,55c575df5d760e12a35c2b21bfab23885e42d73e945edcf64a0cc76d5c3c160b,Training run checkpoint: nohp_ablation,Model comparison & provenance
+D:/projects/rewm-guard/runs\resnet18_baseline\best.pt,PyTorch Checkpoint,44750859,a173825ac69c186dd0cbe5840fdfba8544fb8ff1ab09dcbd1c63d3492cf682da,Training run checkpoint: resnet18_baseline,Model comparison & provenance
+D:/projects/rewm-guard/runs\seed0\best.pt,PyTorch Checkpoint,9909673,37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573,Training run checkpoint: seed0,Model comparison & provenance
+D:/projects/rewm-guard/runs\seed1\best.pt,PyTorch Checkpoint,9909673,c074415b70d96dd0086d580bc5fae8fc4542b60bee7163872fab810d5ec476a6,Training run checkpoint: seed1,Model comparison & provenance
+D:/projects/rewm-guard/runs\seed2\best.pt,PyTorch Checkpoint,9909673,d0c8f6e6fd4da4f1281490f3d26f11a6e91cd394f69348ea4bed2cc016b4507d,Training run checkpoint: seed2,Model comparison & provenance
+D:/projects/rewm-guard/runs\simple_baseline\best.pt,PyTorch Checkpoint,3933713,0e37eaa00156b5010ad4caf6567dd562ee36011f06b3f066f37abcc4122754cf,Training run checkpoint: simple_baseline,Model comparison & provenance
+D:/projects/rewm-guard/runs\test\best.pt,PyTorch Checkpoint,9909545,083fadfa6b6bf137eba6706cf38d03be5b07b2f86ceb43ed91d81e58dfeff4c7,Training run checkpoint: test,Model comparison & provenance
+D:/projects/rewm-guard/runs\trustmark_mix\best.pt,PyTorch Checkpoint,9908457,5c103f7d2a0365098f591bb24c8d5287316612da0cc29475dedaed998f00ec09,Training run checkpoint: trustmark_mix,Model comparison & provenance

@@ -1,0 +1,507 @@
+{
+  "results": {
+    "threshold": 1.3394,
+    "1 in-distribution": {
+      "COCO 256px (seen schemes)": {
+        "n": 3000,
+        "auc": 0.8542675555555556,
+        "tpr_at_1pct_fpr": 0.07866666666666666,
+        "tpr_at_0p1pct_fpr": 0.006,
+        "tpr_fixed_thr": 0.18666666666666668,
+        "fpr_fixed_thr": 0.03333333333333333
+      }
+    },
+    "in_distribution_ci_95": {
+      "auc": {
+        "point_estimate": 0.8542675555555556,
+        "bootstrap_mean": 0.8541818377777778,
+        "bootstrap_std": 0.006779207294957496,
+        "ci_95": [
+          0.8407867,
+          0.8674106
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "point_estimate": 0.07866666666666666,
+        "bootstrap_mean": 0.07707533333333333,
+        "bootstrap_std": 0.015309216265592,
+        "ci_95": [
+          0.05,
+          0.106
+        ]
+      },
+      "tpr_at_0p1pct_fpr": {
+        "point_estimate": 0.006,
+        "bootstrap_mean": 0.008786333333333333,
+        "bootstrap_std": 0.009877702831236736,
+        "ci_95": [
+          0.0013333333333333333,
+          0.04268333333333324
+        ]
+      },
+      "tpr_fixed_thr": {
+        "point_estimate": 0.18666666666666668,
+        "bootstrap_mean": 0.186661,
+        "bootstrap_std": 0.010029189127519511,
+        "ci_95": [
+          0.168,
+          0.20666666666666667
+        ]
+      },
+      "fpr_fixed_thr": {
+        "point_estimate": 0.03333333333333333,
+        "bootstrap_mean": 0.03362533333333333,
+        "bootstrap_std": 0.0047534855515599175,
+        "ci_95": [
+          0.024666666666666667,
+          0.043333333333333335
+        ]
+      }
+    },
+    "2 benign post-processing": {
+      "none": {
+        "n": 3000,
+        "auc": 0.8684711111111111,
+        "tpr_at_1pct_fpr": 0.07666666666666666,
+        "tpr_at_0p1pct_fpr": 0.008,
+        "tpr_fixed_thr": 0.218,
+        "fpr_fixed_thr": 0.036
+      },
+      "jpeg95": {
+        "n": 3000,
+        "auc": 0.8490657777777778,
+        "tpr_at_1pct_fpr": 0.088,
+        "tpr_at_0p1pct_fpr": 0.009333333333333334,
+        "tpr_fixed_thr": 0.17466666666666666,
+        "fpr_fixed_thr": 0.03133333333333333
+      },
+      "jpeg85": {
+        "n": 3000,
+        "auc": 0.83392,
+        "tpr_at_1pct_fpr": 0.07133333333333333,
+        "tpr_at_0p1pct_fpr": 0.011333333333333334,
+        "tpr_fixed_thr": 0.07733333333333334,
+        "fpr_fixed_thr": 0.010666666666666666
+      },
+      "jpeg75": {
+        "n": 3000,
+        "auc": 0.8343502222222222,
+        "tpr_at_1pct_fpr": 0.06466666666666666,
+        "tpr_at_0p1pct_fpr": 0.008666666666666666,
+        "tpr_fixed_thr": 0.078,
+        "fpr_fixed_thr": 0.013333333333333334
+      },
+      "noise1": {
+        "n": 3000,
+        "auc": 0.8624746666666666,
+        "tpr_at_1pct_fpr": 0.07933333333333334,
+        "tpr_at_0p1pct_fpr": 0.01,
+        "tpr_fixed_thr": 0.226,
+        "fpr_fixed_thr": 0.038
+      },
+      "noise2": {
+        "n": 3000,
+        "auc": 0.8492577777777778,
+        "tpr_at_1pct_fpr": 0.07266666666666667,
+        "tpr_at_0p1pct_fpr": 0.018666666666666668,
+        "tpr_fixed_thr": 0.248,
+        "fpr_fixed_thr": 0.04466666666666667
+      },
+      "blur0.5": {
+        "n": 3000,
+        "auc": 0.8538311111111111,
+        "tpr_at_1pct_fpr": 0.04533333333333334,
+        "tpr_at_0p1pct_fpr": 0.01,
+        "tpr_fixed_thr": 0.12933333333333333,
+        "fpr_fixed_thr": 0.02266666666666667
+      },
+      "bright": {
+        "n": 3000,
+        "auc": 0.8547995555555555,
+        "tpr_at_1pct_fpr": 0.056666666666666664,
+        "tpr_at_0p1pct_fpr": 0.004666666666666667,
+        "tpr_fixed_thr": 0.16066666666666668,
+        "fpr_fixed_thr": 0.02666666666666667
+      },
+      "jpeg85+noise1": {
+        "n": 3000,
+        "auc": 0.8322622222222222,
+        "tpr_at_1pct_fpr": 0.048666666666666664,
+        "tpr_at_0p1pct_fpr": 0.012666666666666666,
+        "tpr_fixed_thr": 0.08133333333333333,
+        "fpr_fixed_thr": 0.013333333333333334
+      },
+      "blur0.5+jpeg85": {
+        "n": 3000,
+        "auc": 0.8329142222222222,
+        "tpr_at_1pct_fpr": 0.059333333333333335,
+        "tpr_at_0p1pct_fpr": 0.006666666666666667,
+        "tpr_fixed_thr": 0.08266666666666667,
+        "fpr_fixed_thr": 0.016666666666666666
+      },
+      "bright+jpeg85": {
+        "n": 3000,
+        "auc": 0.8122524444444444,
+        "tpr_at_1pct_fpr": 0.046,
+        "tpr_at_0p1pct_fpr": 0.011333333333333334,
+        "tpr_fixed_thr": 0.062,
+        "fpr_fixed_thr": 0.013333333333333334
+      }
+    },
+    "3 resolution": {
+      "128px": {
+        "n": 3000,
+        "auc": 0.8463155555555556,
+        "tpr_at_1pct_fpr": 0.06933333333333333,
+        "tpr_at_0p1pct_fpr": 0.008666666666666666,
+        "tpr_fixed_thr": 0.326,
+        "fpr_fixed_thr": 0.06666666666666667
+      },
+      "256px": {
+        "n": 3000,
+        "auc": 0.8542675555555556,
+        "tpr_at_1pct_fpr": 0.07866666666666666,
+        "tpr_at_0p1pct_fpr": 0.006,
+        "tpr_fixed_thr": 0.18666666666666668,
+        "fpr_fixed_thr": 0.03333333333333333
+      },
+      "384px": {
+        "n": 3000,
+        "auc": 0.8579324444444445,
+        "tpr_at_1pct_fpr": 0.08333333333333333,
+        "tpr_at_0p1pct_fpr": 0.004666666666666667,
+        "tpr_fixed_thr": 0.08866666666666667,
+        "fpr_fixed_thr": 0.011333333333333334
+      }
+    },
+    "5 cross-domain (PACS)": {
+      "art_painting": {
+        "n": 800,
+        "auc": 0.83966875,
+        "tpr_at_1pct_fpr": 0.08,
+        "tpr_at_0p1pct_fpr": 0.01,
+        "tpr_fixed_thr": 0.2325,
+        "fpr_fixed_thr": 0.0325
+      },
+      "cartoon": {
+        "n": 800,
+        "auc": 0.86515625,
+        "tpr_at_1pct_fpr": 0.145,
+        "tpr_at_0p1pct_fpr": 0.0275,
+        "tpr_fixed_thr": 0.2075,
+        "fpr_fixed_thr": 0.03
+      },
+      "photo": {
+        "n": 800,
+        "auc": 0.80833125,
+        "tpr_at_1pct_fpr": 0.095,
+        "tpr_at_0p1pct_fpr": 0.01,
+        "tpr_fixed_thr": 0.135,
+        "fpr_fixed_thr": 0.0125
+      },
+      "sketch": {
+        "n": 800,
+        "auc": 0.84330625,
+        "tpr_at_1pct_fpr": 0.2,
+        "tpr_at_0p1pct_fpr": 0.14,
+        "tpr_fixed_thr": 0.175,
+        "fpr_fixed_thr": 0.005
+      }
+    },
+    "6 adversarial": {
+      "clean positives detected": 0.36,
+      "PGD-10 eps=0.5/255 (r=1)": 0.0,
+      "PGD-10 eps=1.0/255 (r=1)": 0.0,
+      "PGD-10 eps=2.0/255 (r=1)": 0.0
+    }
+  },
+  "breakdown": {
+    "in-distribution": {
+      "clean": {
+        "n": 762,
+        "flagged": 0.0013123359580052493,
+        "label": 0
+      },
+      "dct_qim>dct_qim": {
+        "n": 37,
+        "flagged": 0.10810810810810811,
+        "label": 1
+      },
+      "dct_qim>dct_svd": {
+        "n": 35,
+        "flagged": 0.14285714285714285,
+        "label": 1
+      },
+      "dct_qim>dwt_qim": {
+        "n": 27,
+        "flagged": 0.4444444444444444,
+        "label": 1
+      },
+      "dct_qim>fft_ring": {
+        "n": 32,
+        "flagged": 0.375,
+        "label": 1
+      },
+      "dct_qim>nmp_freq": {
+        "n": 25,
+        "flagged": 0.16,
+        "label": 1
+      },
+      "dct_qim>ss_spatial": {
+        "n": 32,
+        "flagged": 0.25,
+        "label": 1
+      },
+      "dct_qim>svd_qim": {
+        "n": 32,
+        "flagged": 0.15625,
+        "label": 1
+      },
+      "dct_svd>dct_qim": {
+        "n": 32,
+        "flagged": 0.125,
+        "label": 1
+      },
+      "dct_svd>dct_svd": {
+        "n": 24,
+        "flagged": 0.041666666666666664,
+        "label": 1
+      },
+      "dct_svd>dwt_qim": {
+        "n": 34,
+        "flagged": 0.20588235294117646,
+        "label": 1
+      },
+      "dct_svd>fft_ring": {
+        "n": 40,
+        "flagged": 0.025,
+        "label": 1
+      },
+      "dct_svd>nmp_freq": {
+        "n": 26,
+        "flagged": 0.07692307692307693,
+        "label": 1
+      },
+      "dct_svd>ss_spatial": {
+        "n": 31,
+        "flagged": 0.3225806451612903,
+        "label": 1
+      },
+      "dct_svd>svd_qim": {
+        "n": 25,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "dwt_qim>dct_qim": {
+        "n": 38,
+        "flagged": 0.39473684210526316,
+        "label": 1
+      },
+      "dwt_qim>dct_svd": {
+        "n": 35,
+        "flagged": 0.2571428571428571,
+        "label": 1
+      },
+      "dwt_qim>dwt_qim": {
+        "n": 23,
+        "flagged": 0.08695652173913043,
+        "label": 1
+      },
+      "dwt_qim>fft_ring": {
+        "n": 38,
+        "flagged": 0.18421052631578946,
+        "label": 1
+      },
+      "dwt_qim>nmp_freq": {
+        "n": 31,
+        "flagged": 0.3225806451612903,
+        "label": 1
+      },
+      "dwt_qim>ss_spatial": {
+        "n": 35,
+        "flagged": 0.42857142857142855,
+        "label": 1
+      },
+      "dwt_qim>svd_qim": {
+        "n": 23,
+        "flagged": 0.17391304347826086,
+        "label": 1
+      },
+      "fft_ring>dct_qim": {
+        "n": 24,
+        "flagged": 0.08333333333333333,
+        "label": 1
+      },
+      "fft_ring>dct_svd": {
+        "n": 25,
+        "flagged": 0.08,
+        "label": 1
+      },
+      "fft_ring>dwt_qim": {
+        "n": 31,
+        "flagged": 0.25806451612903225,
+        "label": 1
+      },
+      "fft_ring>fft_ring": {
+        "n": 24,
+        "flagged": 0.08333333333333333,
+        "label": 1
+      },
+      "fft_ring>nmp_freq": {
+        "n": 36,
+        "flagged": 0.027777777777777776,
+        "label": 1
+      },
+      "fft_ring>ss_spatial": {
+        "n": 51,
+        "flagged": 0.2549019607843137,
+        "label": 1
+      },
+      "fft_ring>svd_qim": {
+        "n": 23,
+        "flagged": 0.043478260869565216,
+        "label": 1
+      },
+      "nmp_freq>dct_qim": {
+        "n": 36,
+        "flagged": 0.3888888888888889,
+        "label": 1
+      },
+      "nmp_freq>dct_svd": {
+        "n": 24,
+        "flagged": 0.041666666666666664,
+        "label": 1
+      },
+      "nmp_freq>dwt_qim": {
+        "n": 29,
+        "flagged": 0.27586206896551724,
+        "label": 1
+      },
+      "nmp_freq>fft_ring": {
+        "n": 28,
+        "flagged": 0.07142857142857142,
+        "label": 1
+      },
+      "nmp_freq>nmp_freq": {
+        "n": 31,
+        "flagged": 0.03225806451612903,
+        "label": 1
+      },
+      "nmp_freq>ss_spatial": {
+        "n": 32,
+        "flagged": 0.28125,
+        "label": 1
+      },
+      "nmp_freq>svd_qim": {
+        "n": 23,
+        "flagged": 0.043478260869565216,
+        "label": 1
+      },
+      "single:dct_qim": {
+        "n": 106,
+        "flagged": 0.10377358490566038,
+        "label": 0
+      },
+      "single:dct_svd": {
+        "n": 116,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:dwt_qim": {
+        "n": 86,
+        "flagged": 0.13953488372093023,
+        "label": 0
+      },
+      "single:fft_ring": {
+        "n": 97,
+        "flagged": 0.041237113402061855,
+        "label": 0
+      },
+      "single:nmp_freq": {
+        "n": 116,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "single:ss_spatial": {
+        "n": 115,
+        "flagged": 0.19130434782608696,
+        "label": 0
+      },
+      "single:svd_qim": {
+        "n": 102,
+        "flagged": 0.0,
+        "label": 0
+      },
+      "ss_spatial>dct_qim": {
+        "n": 27,
+        "flagged": 0.2222222222222222,
+        "label": 1
+      },
+      "ss_spatial>dct_svd": {
+        "n": 41,
+        "flagged": 0.21951219512195122,
+        "label": 1
+      },
+      "ss_spatial>dwt_qim": {
+        "n": 25,
+        "flagged": 0.4,
+        "label": 1
+      },
+      "ss_spatial>fft_ring": {
+        "n": 33,
+        "flagged": 0.21212121212121213,
+        "label": 1
+      },
+      "ss_spatial>nmp_freq": {
+        "n": 20,
+        "flagged": 0.15,
+        "label": 1
+      },
+      "ss_spatial>ss_spatial": {
+        "n": 32,
+        "flagged": 0.34375,
+        "label": 1
+      },
+      "ss_spatial>svd_qim": {
+        "n": 26,
+        "flagged": 0.19230769230769232,
+        "label": 1
+      },
+      "svd_qim>dct_qim": {
+        "n": 33,
+        "flagged": 0.09090909090909091,
+        "label": 1
+      },
+      "svd_qim>dct_svd": {
+        "n": 32,
+        "flagged": 0.0,
+        "label": 1
+      },
+      "svd_qim>dwt_qim": {
+        "n": 39,
+        "flagged": 0.3333333333333333,
+        "label": 1
+      },
+      "svd_qim>fft_ring": {
+        "n": 32,
+        "flagged": 0.09375,
+        "label": 1
+      },
+      "svd_qim>nmp_freq": {
+        "n": 30,
+        "flagged": 0.06666666666666667,
+        "label": 1
+      },
+      "svd_qim>ss_spatial": {
+        "n": 29,
+        "flagged": 0.20689655172413793,
+        "label": 1
+      },
+      "svd_qim>svd_qim": {
+        "n": 29,
+        "flagged": 0.0,
+        "label": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "audit_version": "1.0-FINAL",
+  "timestamp_utc": "2026-11-06T12:22:36.511243+00:00",
+  "project": "RW-Guard \u2014 Forensic Detection of Re-Watermarking Attacks",
+  "lead_auditor": "Antigravity Forensic ML Audit Engine",
+  "overall_verification_status": "VERIFIED",
+  "criteria": {
+    "checkpoint_sha256": {
+      "name": "Primary Checkpoint Cryptographic Integrity",
+      "status": "PASS",
+      "expected_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+      "actual_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+      "match": true,
+      "trainable_parameters": 2466099,
+      "parameter_match": true
+    },
+    "primary_evaluation_reproduction": {
+      "name": "Held-Out In-Distribution Performance Reproduction",
+      "status": "PASS",
+      "test_sources": 1500,
+      "test_samples": 3000,
+      "roc_auc_reproduced": 0.8542675555555556,
+      "roc_auc_reported": 0.8543,
+      "roc_auc_diff": 3.244444444439054e-05,
+      "tpr_at_1pct_fpr_reproduced": 0.07866666666666666,
+      "fixed_tpr_tau_reproduced": 0.18666666666666668,
+      "fixed_fpr_tau_reproduced": 0.03333333333333333,
+      "within_tolerance": true
+    },
+    "baseline_fairness": {
+      "name": "Handcrafted Baseline Evaluation Fairness on Identical Sources",
+      "status": "PASS",
+      "common_test_sources": 500,
+      "common_test_samples": 1000,
+      "rwguard_auc_on_common_500": 0.847696,
+      "logistic_regression_auc": 0.55686,
+      "random_forest_auc": 0.549974,
+      "delta_auc_vs_lr": 0.290752452,
+      "delta_auc_vs_rf": 0.298182915,
+      "paired_bootstrap_replicates": 2000,
+      "statistically_significant": true
+    },
+    "confidence_intervals": {
+      "name": "Comprehensive Source-Grouped Bootstrap Statistical Auditing",
+      "status": "PASS",
+      "total_evaluated_conditions": 32,
+      "bootstrap_replicates": 2000,
+      "resampling_scheme": "Independent Source-Image Level",
+      "primary_auc_95_ci": [
+        0.8407867,
+        0.8674106
+      ],
+      "paired_delta_auc_lr_ci": [
+        0.2672475,
+        0.31421619999999995
+      ],
+      "paired_delta_auc_rf_ci": [
+        0.26541929999999997,
+        0.33143675000000006
+      ],
+      "nan_inf_free": true
+    },
+    "json_artifact_audit": {
+      "name": "Repository JSON Artifact Integrity & Numerical Reconciliation",
+      "status": "PASS",
+      "total_artifacts_audited": 16,
+      "valid_syntax_rate": "100%",
+      "nan_inf_errors": 0,
+      "outcome_percentage_sum": "100.0%",
+      "seed_std_recomputed": "0.0024",
+      "verified_backups_created": true
+    },
+    "scientific_claim_audit": {
+      "name": "Scientific Claim Audit & Theoretical Rigor",
+      "status": "PASS",
+      "total_claims_audited": 8,
+      "supported_fully": 6,
+      "supported_with_qualification": 2,
+      "contradicted_or_unsupported": 0
+    }
+  },
+  "regression_test_suite": {
+    "status": "PASS",
+    "tests_run": 22,
+    "tests_passed": 22,
+    "failures": 0,
+    "errors": 0,
+    "execution_time_seconds": 38.752
+  }
+}

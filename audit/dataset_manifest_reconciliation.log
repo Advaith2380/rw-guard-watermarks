@@ -1,0 +1,12 @@
+[2026-11-06 20:44:29] ================================================================================
+[2026-11-06 20:44:29]  STEP 8: DATASET INVENTORY, MANIFESTS & SPLIT LEAKAGE AUDIT
+[2026-11-06 20:44:29] ================================================================================
+[2026-11-06 20:44:29] Loaded 5000 COCO source images.
+[2026-11-06 20:44:29] Splits: Train=3000, Val=500, Test=1500
+[2026-11-06 20:44:29] Split Isolation: Train-Val=0, Train-Test=0, Val-Test=0
+[2026-11-06 20:44:29] Zero Leakage Verified: True
+[2026-11-06 20:44:29] Saved master source manifest (5000 rows) to: data/manifests\master_source_manifest.csv
+[2026-11-06 20:44:29] Saved derived sample manifest (3,000 rows) to: data/manifests\derived_sample_manifest.csv
+[2026-11-06 20:44:29] DATASET RECONCILIATION & SPLIT AUDIT: PASS
+[2026-11-06 20:44:29] ================================================================================
+

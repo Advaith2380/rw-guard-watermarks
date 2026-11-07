@@ -1,0 +1,1752 @@
+[
+  {
+    "relative_path": "audit_json_artifacts.py",
+    "size_bytes": 14458,
+    "sha256": "2300a446f8ea9981bbba340fec4846a9362d11c106f2c6cbec9c14725e332961",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_scientific_claims.py",
+    "size_bytes": 15156,
+    "sha256": "fc597cdc4139fef7822633f5f7bfb11c3182403d50cff2c28d59b1d1c3de57a0",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_secondary_evaluations.py",
+    "size_bytes": 10224,
+    "sha256": "6b777dec3117ef51a0ea387af511531188baa99c03f53cacfdf3aa4ffe01c8aa",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_source_overlap.py",
+    "size_bytes": 5082,
+    "sha256": "9dff28ff5c6db994bab8bc8a8976bf64dc757ace9d1321121701f1b56a70036f",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "bootstrap_ci.py",
+    "size_bytes": 7681,
+    "sha256": "4f38fcc06248633f64e9624bd90eb003506b7f0d33ce526e283a326269e4bece",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "build_final_manuscript.py",
+    "size_bytes": 20725,
+    "sha256": "b084a477b4e66b6ae15ffe047bba5168bff32dfed5131eb8963c653ab3fffba7",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "build_stegastamp_cache.py",
+    "size_bytes": 3176,
+    "sha256": "453e827717365b9b0a1a7a8423f1d66d4a0216682a5a3afe7d813ced242ff9f7",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "build_trustmark_cache.py",
+    "size_bytes": 2766,
+    "sha256": "35bb4aee7656b27fb4a5432d471e8207334602779058ab0b5b30d8d28e7ab85e",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "compute_confidence_intervals.py",
+    "size_bytes": 28395,
+    "sha256": "c7941a16682dfcb0557144d275859bfb839fdfbd5078ca3a45964dce31fc46d6",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "download_data.py",
+    "size_bytes": 2823,
+    "sha256": "f3d443cb94e5c273141ffddf86d38bde29d8481af2776db10d3dcaeede2f8281",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "evaluate.py",
+    "size_bytes": 10527,
+    "sha256": "5ed40691ccb659e7560b4500f7e539a12d501116899d325043d832cf4f83db5e",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "evaluate_outcomes.py",
+    "size_bytes": 10964,
+    "sha256": "c02656bd511317ba9ec0801eba03ff5ccf5798d4979c3f08dc53ef6ccb8f1ace",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "evaluate_trustmark_cache.py",
+    "size_bytes": 7902,
+    "sha256": "ab3f51230776b0f16dcbed4ea59a430c32195b213b3d7f106e5c78741539b9e2",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "example.png",
+    "size_bytes": 3710634,
+    "sha256": "9de61b21e32a85956817002e39108023ae3b2f8b3f37bf440f417e1cbf52ecf4",
+    "extension": ".png",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "generate_final_evidence_report.py",
+    "size_bytes": 32495,
+    "sha256": "d8f0f343008377e7c63280b6588e33236501bf0d9341389e55b5b8d6a5e9da42",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "humanized_RWGuard_report_revised_v2.docx",
+    "size_bytes": 3147596,
+    "sha256": "aa1795c218707e691bdb4ba780ac7e676b88a130a5c37f5813dd5210700037de",
+    "extension": ".docx",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "matched_controls.py",
+    "size_bytes": 12857,
+    "sha256": "03120b57d69a8167cb1e82498856133944fd0168a1613ba50554228a825e38af",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "package_final_deliverables.py",
+    "size_bytes": 12437,
+    "sha256": "8345ccc2332456124396132f4ac4ad24dfa095ea745ea0102d465cf33ae8ef21",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "pacs_calibration.py",
+    "size_bytes": 7277,
+    "sha256": "4436b2ca3d583bd056d43eeb849190e882a166ad02d47240b8932e0c91a9afe4",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "README.md",
+    "size_bytes": 12272,
+    "sha256": "7001376f1d3b192691429c362088b1f880a29d3cf4f6ea8209e13db61b3098a7",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "reproduce_baselines.py",
+    "size_bytes": 13996,
+    "sha256": "712616c00eda8009d54a2602b2be71e945a22c825dc5703d3c4f386f5dd24bea",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "reproduce_primary_evaluation.py",
+    "size_bytes": 14859,
+    "sha256": "437d183e1e8d4948567e90e486a64e56122bcf1c600a8086223601a4571218d3",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "requirements.txt",
+    "size_bytes": 848,
+    "sha256": "0134026b70a7c9f08ff9ba1ee83cd7315d16a60ca32f4f8102c6f55cc884713c",
+    "extension": ".txt",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "review 1.docx",
+    "size_bytes": 40300,
+    "sha256": "8d25a99c2dd4a2728c475a345dde3f5fc012a923c54b3ee39f3d8a2d749d4447",
+    "extension": ".docx",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm_mixing.py",
+    "size_bytes": 1576,
+    "sha256": "b847f5b342b825bcec78781b8b1078aa9d0275170b900903c83abb5cc16cb865",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm_stegastamp.py",
+    "size_bytes": 7518,
+    "sha256": "9740c98ba3fdcdde2955d71aa71ef9ea381460e5c2814307459f8481ecb7d295",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm_stegastamp_cache.py",
+    "size_bytes": 3098,
+    "sha256": "98a2a366c0083545e6fbed33b3750ce76006ceb251123be609813a7d05b41177",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm_trustmark.py",
+    "size_bytes": 3860,
+    "sha256": "08a898ac113e68010e4af4ffdba69ee240b8e40b91d0815b11efd8bd632d4f1d",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "run_final_verification.py",
+    "size_bytes": 5085,
+    "sha256": "f82401731fbed58922139172a8af6708f5b8582d5f98557824fec0bf632de237",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "run_tests.py",
+    "size_bytes": 579,
+    "sha256": "1b1b14fb5d8beda8831439d6c37dc4ce6b6129528d54c305399e0000d0ab774e",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "run_test_suite_audit.py",
+    "size_bytes": 4964,
+    "sha256": "328c999323fc5fec1daeaf47718cf297b01a11d3f575e12c449023e092f2e872",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "RWGuard_Final_Report.docx",
+    "size_bytes": 3085182,
+    "sha256": "e041c57e314df7482134bfe2bfa59b0914b9908b78ac0eab8d84c96517467942",
+    "extension": ".docx",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "RWGuard_Final_Report_v2_backup.docx",
+    "size_bytes": 3084482,
+    "sha256": "00b99ab69b8c7e7b29b19dba1b91805c2281f8af5b9a60638dfbe629becf694f",
+    "extension": ".docx",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "RWGuard_Final_Report_v3_Faculty_Approved.docx",
+    "size_bytes": 3085182,
+    "sha256": "e041c57e314df7482134bfe2bfa59b0914b9908b78ac0eab8d84c96517467942",
+    "extension": ".docx",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "sanity_check.py",
+    "size_bytes": 3436,
+    "sha256": "6d86f2dad5694f2e8a106de475a68e1a69aba1ac82af76c84e0023e3cde447de",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scheme_sets.json",
+    "size_bytes": 875,
+    "sha256": "5ae097ed34490f9de480214ceca97406f0ddc50cded18a59a8afbd5cd46aa2a6",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "seed_ensemble.py",
+    "size_bytes": 5716,
+    "sha256": "bff2479f7d65847e23cc68560c1bdf8b3b4ec0f62416a9fa46d7eb9c060ff5a5",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "shortcut_baseline.py",
+    "size_bytes": 16105,
+    "sha256": "f48fe1aad110e69701bd1d85060b99d7d0663a187d6187acd8c7e7731a86b54e",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "test_realistic_attack.py",
+    "size_bytes": 4731,
+    "sha256": "3fd67327b86500273c513a9e38710a38edb2fda0dc39883495212ea37081b7fe",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "test_stegastamp.py",
+    "size_bytes": 4068,
+    "sha256": "dbe51dd396953efdec8eb3d658dee8c0e0118800dea632ae34884231f7c2bfbc",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "test_stegastamp_detector.py",
+    "size_bytes": 6545,
+    "sha256": "88e1806c4ceee64f5e886a42198970c6983c3cf8ff6910ff6df262a6ada4ebe8",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "test_trustmark.py",
+    "size_bytes": 3995,
+    "sha256": "1f418053d04e77e06d5178aaaac54838075bab52d2e1feda740b181919296fb3",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "test_trustmark_detector.py",
+    "size_bytes": 4787,
+    "sha256": "eac4b7ea193647ee7ec2e93546828bb99e2217ed07f01a2309c1ad4acaa5231a",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "train.py",
+    "size_bytes": 7954,
+    "sha256": "85c1b69175de95038ca0669a0aa570b16289627beb62c2837b77c389322671f9",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "train_with_neural.py",
+    "size_bytes": 8519,
+    "sha256": "f35a868cd3785487e783169b11881448ef8475c8c73dec15e497e4f1e7bf9e41",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "verify_checkpoint.py",
+    "size_bytes": 9201,
+    "sha256": "8891c0300905aa4d2b945058a39d4816680343581c869427cd9910b8f49e51f3",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "~$Guard_Final_Report.docx",
+    "size_bytes": 162,
+    "sha256": "e2689212f967b0dff395d40b25f1bb074eb9671d4c14ec19b9555c6180c795b7",
+    "extension": ".docx",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "~$Guard_Final_Report_v3_Faculty_Approved.docx",
+    "size_bytes": 162,
+    "sha256": "ec93adda29823571e33f1adcd1be99164c9fbe3cb9458e4a1f82853d97a6f988",
+    "extension": ".docx",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/baseline_manifest.json",
+    "size_bytes": 3608,
+    "sha256": "30eb6f9c5f67be45a25d2841c09329d0089cd47f65e3b7e604b631c434e37748",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/BASELINE_PERFORMANCE.md",
+    "size_bytes": 4165,
+    "sha256": "39a6264c8a3f11862a586b240a2b11c19796a4eb08bb088b4150e25b9f80abbf",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/bootstrap_ci_results.json",
+    "size_bytes": 1130,
+    "sha256": "ef41ebd1c32775b34cd8efef4228f6c6a1430c21d70de0c1aec6cd45bddf93e0",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/checkpoint_audit.json",
+    "size_bytes": 10876,
+    "sha256": "751375854ce0b8e663d2fe3d6abfe9bf8c7e3e050068eae6d0d7e1b1b9ba2060",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/EXPERIMENT_MANIFEST.json",
+    "size_bytes": 4356,
+    "sha256": "b0da70e60e4b9a843c10671982cb5c0664036f76cd3d6f3ad965c6731d76a22c",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/EXPERIMENT_READINESS.md",
+    "size_bytes": 2004,
+    "sha256": "c4b9cb50fe873f32b4dff117bac3de25f1f5ac7b3be3332f36ac9f116ccdb1b7",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/FINAL_AUDIT_REPORT.md",
+    "size_bytes": 31812,
+    "sha256": "e21bfe7d7cf4f857a283ad43eae817b423116a33ac46b4e75a6a4e8a82cfd56a",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/final_consolidated_results.json",
+    "size_bytes": 81480,
+    "sha256": "717660de0135702856e1fdadf4933ccae2cece350e20cb6f1c11c14fbf978e81",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/FINAL_IMPLEMENTATION_STATUS.md",
+    "size_bytes": 4083,
+    "sha256": "ee288994d989bac624bbaa128c7af7b55cc9be675b255e2eb2d88be410a153c1",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/final_results_manifest.json",
+    "size_bytes": 2913,
+    "sha256": "a7ae87810c2b01a343797cb424bf43d0ae65796304df33ce1d5cf1b3f6b667e1",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/final_review_status.json",
+    "size_bytes": 893,
+    "sha256": "e0ddbf43c26734858221044c935021f79963e65ddcb54da7bc9636c84582dd29",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/FINAL_REVIEW_TRACEABILITY.md",
+    "size_bytes": 6612,
+    "sha256": "1149a4e63e8b2ca513ea5254964275d9e998b637667265cb6e4413651a5aa5b5",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/FINAL_STATUS.json",
+    "size_bytes": 2760,
+    "sha256": "c8bd865e1ce4f880d7a0a838e20418086c935d2b6da55f55dbc02c725bfb0119",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/FINAL_SUBMISSION_CHECKLIST.md",
+    "size_bytes": 2811,
+    "sha256": "094cfb04b1aa66bb2700e64cc8188c234a53e4a16f5b3ea3813cc011fad6ca39",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/FINAL_VERIFIED_RESULTS.md",
+    "size_bytes": 15705,
+    "sha256": "1491aa6158ca09a901d25d53ca279a3beb23aa73ce3941f9116fdfd110570abd",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/FINAL_VERIFIED_RESULTS_SEVEN_SCHEME.md",
+    "size_bytes": 2909,
+    "sha256": "01e4ce6da87619d6c0294467447781e7e7e9e6b34b991ce8507fadc517bef9a6",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/fpr_discrepancy_investigation.json",
+    "size_bytes": 7560,
+    "sha256": "0c4481ae4925a9b6329c0aa62c622f9d08b983b9ee651896f1ab64bd6eaf1463",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/MANUSCRIPT_CONSISTENCY_AUDIT.md",
+    "size_bytes": 9367,
+    "sha256": "836974384cd3513b557405d45a39a6f999d395f22e738641e027be6645c7ee97",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/matched_controls_results.json",
+    "size_bytes": 8991,
+    "sha256": "93f8547d9a1ca8ddb638ba160b3645936a75d7ec2c616be73051268e7d7ae2f9",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/original_paragraphs.json",
+    "size_bytes": 78159,
+    "sha256": "fd098a4da7962e977c0ff42a89b657de0892add936b572250018718584727688",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/outcome_stratification_results.json",
+    "size_bytes": 4323,
+    "sha256": "f54b2094bdfed9d379a00649c86f08d8e2904c4796883eb3c5a7b102eca5e46a",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/pacs_calibration_results.json",
+    "size_bytes": 8609,
+    "sha256": "463062e9eaead15e0cfa24619dd2b329c778074becb275825a54f41904d41206",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/PERFORMANCE_COMPARISON.csv",
+    "size_bytes": 4605,
+    "sha256": "56e81ca6a6fbd09bf331349b70139c5cc8ffdebc0254c3bdcf48686837a62baf",
+    "extension": ".csv",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/RECOVERY_INSTRUCTIONS.md",
+    "size_bytes": 1122,
+    "sha256": "404ffc6ebe0225f2b52dac3cb90f30299606e2fc00e3184c33358db19f56c9e2",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/recovery_manifest.json",
+    "size_bytes": 1124,
+    "sha256": "6fceb0cac08b59f18e4ff7be053790d29aa17cba17d59c8c3774c5b164eb7311",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/RESOURCE_AUDIT.md",
+    "size_bytes": 2126,
+    "sha256": "8060f7d09e897ccf2c691c8f1ea1f6892676b05fef1efb76f519b89fefaee6f2",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/REVIEW_REQUIREMENTS.md",
+    "size_bytes": 8034,
+    "sha256": "81481029e329f1cbe66375c4492c72b823e0423983dc79d3a9f8809e70478e46",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/seed_ensemble_results.json",
+    "size_bytes": 1917,
+    "sha256": "d179787e4d507c912fef945b8c15bc7d171dee9109da3d60c13434e392e1e7d8",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/seed_evaluation_results.json",
+    "size_bytes": 6156,
+    "sha256": "bea1b3270907ae8a47419229c4e4cb76fae63f8766dc88d0c8a90f4fa776287c",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/shortcut_baseline_results.json",
+    "size_bytes": 5925,
+    "sha256": "91179aa35fd510c68b4dcba16f0913a371a47a8152567b056a5bfa722ce7050a",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/stegastamp_evaluation_results.json",
+    "size_bytes": 2291,
+    "sha256": "e17279dfe900c467fa23756884e38328b5e5ae0a85398e60ae4ea8bdaf4b6f02",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/TEST_RESULTS.md",
+    "size_bytes": 4431,
+    "sha256": "3c0cc541ade16eec7d8dadda75f18c6f66a5e636bc602e2dc12aacae9a80179e",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/trustmark_evaluation_results.json",
+    "size_bytes": 13326,
+    "sha256": "898b9f61904e27e465c1964a665e662f64d949a3b46dc912096d89f1add28022",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit/UPDATED_PERFORMANCE.md",
+    "size_bytes": 10856,
+    "sha256": "519aceea83c5078266cf1be0795c01a8f73f21760f85013a0656732d29ee6de4",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/baseline_manifest.json",
+    "size_bytes": 3608,
+    "sha256": "30eb6f9c5f67be45a25d2841c09329d0089cd47f65e3b7e604b631c434e37748",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/BASELINE_PERFORMANCE.md",
+    "size_bytes": 4165,
+    "sha256": "39a6264c8a3f11862a586b240a2b11c19796a4eb08bb088b4150e25b9f80abbf",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/bootstrap_ci_results.json",
+    "size_bytes": 1130,
+    "sha256": "ef41ebd1c32775b34cd8efef4228f6c6a1430c21d70de0c1aec6cd45bddf93e0",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/checkpoint_audit.json",
+    "size_bytes": 10876,
+    "sha256": "751375854ce0b8e663d2fe3d6abfe9bf8c7e3e050068eae6d0d7e1b1b9ba2060",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/EXPERIMENT_MANIFEST.json",
+    "size_bytes": 4356,
+    "sha256": "b0da70e60e4b9a843c10671982cb5c0664036f76cd3d6f3ad965c6731d76a22c",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/EXPERIMENT_READINESS.md",
+    "size_bytes": 2004,
+    "sha256": "c4b9cb50fe873f32b4dff117bac3de25f1f5ac7b3be3332f36ac9f116ccdb1b7",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/FINAL_AUDIT_REPORT.md",
+    "size_bytes": 31812,
+    "sha256": "e21bfe7d7cf4f857a283ad43eae817b423116a33ac46b4e75a6a4e8a82cfd56a",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/FINAL_IMPLEMENTATION_STATUS.md",
+    "size_bytes": 4083,
+    "sha256": "ee288994d989bac624bbaa128c7af7b55cc9be675b255e2eb2d88be410a153c1",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/final_results_manifest.json",
+    "size_bytes": 2913,
+    "sha256": "a7ae87810c2b01a343797cb424bf43d0ae65796304df33ce1d5cf1b3f6b667e1",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/final_review_status.json",
+    "size_bytes": 893,
+    "sha256": "e0ddbf43c26734858221044c935021f79963e65ddcb54da7bc9636c84582dd29",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/FINAL_REVIEW_TRACEABILITY.md",
+    "size_bytes": 6612,
+    "sha256": "1149a4e63e8b2ca513ea5254964275d9e998b637667265cb6e4413651a5aa5b5",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/FINAL_STATUS.json",
+    "size_bytes": 2760,
+    "sha256": "c8bd865e1ce4f880d7a0a838e20418086c935d2b6da55f55dbc02c725bfb0119",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/FINAL_SUBMISSION_CHECKLIST.md",
+    "size_bytes": 2811,
+    "sha256": "094cfb04b1aa66bb2700e64cc8188c234a53e4a16f5b3ea3813cc011fad6ca39",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/FINAL_VERIFIED_RESULTS.md",
+    "size_bytes": 15705,
+    "sha256": "1491aa6158ca09a901d25d53ca279a3beb23aa73ce3941f9116fdfd110570abd",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/MANUSCRIPT_CONSISTENCY_AUDIT.md",
+    "size_bytes": 9367,
+    "sha256": "836974384cd3513b557405d45a39a6f999d395f22e738641e027be6645c7ee97",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/matched_controls_results.json",
+    "size_bytes": 1095,
+    "sha256": "929f568b5cc5a0a2a96e3c86236e79d7a9c5a1677c8815c1999242eed5598f13",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/original_paragraphs.json",
+    "size_bytes": 78159,
+    "sha256": "fd098a4da7962e977c0ff42a89b657de0892add936b572250018718584727688",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/outcome_stratification_results.json",
+    "size_bytes": 4307,
+    "sha256": "bf592e06ad0f1c0d5df030bf6ed05e2f73f7fbaeb1ded0de05c3eed93bfba863",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/pacs_calibration_results.json",
+    "size_bytes": 4036,
+    "sha256": "3b691884477ea3955e0944ebc5825d96fd0840146ef3a34658bff6c7d229f3ca",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/PERFORMANCE_COMPARISON.csv",
+    "size_bytes": 4605,
+    "sha256": "56e81ca6a6fbd09bf331349b70139c5cc8ffdebc0254c3bdcf48686837a62baf",
+    "extension": ".csv",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/RECOVERY_INSTRUCTIONS.md",
+    "size_bytes": 1122,
+    "sha256": "404ffc6ebe0225f2b52dac3cb90f30299606e2fc00e3184c33358db19f56c9e2",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/recovery_manifest.json",
+    "size_bytes": 1124,
+    "sha256": "6fceb0cac08b59f18e4ff7be053790d29aa17cba17d59c8c3774c5b164eb7311",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/RESOURCE_AUDIT.md",
+    "size_bytes": 2126,
+    "sha256": "8060f7d09e897ccf2c691c8f1ea1f6892676b05fef1efb76f519b89fefaee6f2",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/REVIEW_REQUIREMENTS.md",
+    "size_bytes": 8034,
+    "sha256": "81481029e329f1cbe66375c4492c72b823e0423983dc79d3a9f8809e70478e46",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/seed_ensemble_results.json",
+    "size_bytes": 1917,
+    "sha256": "d179787e4d507c912fef945b8c15bc7d171dee9109da3d60c13434e392e1e7d8",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/shortcut_baseline_results.json",
+    "size_bytes": 1859,
+    "sha256": "8e2571f7fb313307a298e45d66c87344f24a815d3fc909bd585b9279960ba1b9",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/TEST_RESULTS.md",
+    "size_bytes": 4431,
+    "sha256": "3c0cc541ade16eec7d8dadda75f18c6f66a5e636bc602e2dc12aacae9a80179e",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/trustmark_evaluation_results.json",
+    "size_bytes": 3921,
+    "sha256": "c445c4b69e57499bbecf65251b1aadc84defe3f9bce2dc09b9b43cdaf8f0038a",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "audit_historical_backup/UPDATED_PERFORMANCE.md",
+    "size_bytes": 10856,
+    "sha256": "519aceea83c5078266cf1be0795c01a8f73f21760f85013a0656732d29ee6de4",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "checkpoints/final/final_model_config.json",
+    "size_bytes": 1927,
+    "sha256": "2c6e5320b9826672f494e9c25ed0e8dc293584ef97ae7470744c0b06f8f23eb7",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "checkpoints/final/rwguard_final_7scheme.pt",
+    "size_bytes": 9909673,
+    "sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "deliverables/RW_GUARD_FINAL_VERIFICATION_PACKAGE.sha256",
+    "size_bytes": 107,
+    "sha256": "2c4669fc6c249e2d979808aea62d3d6fdcfed196e31d0e8208112e214d668d9d",
+    "extension": ".sha256",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "deliverables/RW_GUARD_FINAL_VERIFICATION_PACKAGE.zip",
+    "size_bytes": 18672374,
+    "sha256": "1879aad7df736fdf3fdeef063b552cca02362552b2e7899541c3b133d0a74ead",
+    "extension": ".zip",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "handover/ANTIGRAVITY_CONTINUATION_PROMPT.md",
+    "size_bytes": 4734,
+    "sha256": "cc786581bd712d916b2b40c08aed8b78d909e8d3171314ea3664132b5e878fda",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/CURRENT_STATE.md",
+    "size_bytes": 4592,
+    "sha256": "680aec49ef5e9485227cea11cc8e1e46d1cd853c49cb47da856c552f4a2e9a8b",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/EXPERIMENT_READINESS.md",
+    "size_bytes": 5510,
+    "sha256": "4c9bf445e22321947c61051ee15c07e433bb6e1368f70b446604675d8d0e1a4e",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/FILE_CHANGELOG.md",
+    "size_bytes": 6702,
+    "sha256": "40b65c8e07ecf2294db61d7d2ca283db4075d9677df91325391b7d316befd7d9",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/IMPLEMENTATION_PLAN.md",
+    "size_bytes": 12113,
+    "sha256": "0d83f1d72ae4b9e043c4f5e5f893c5170d7a33965eb027805045f9e015d56d7a",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/README.md",
+    "size_bytes": 5552,
+    "sha256": "dd88ca73d33a0b8d4fdcd982dcc2fb9542e7b7ad6d507a39f1b947a1a488d08a",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/REPOSITORY_INVENTORY.md",
+    "size_bytes": 7370,
+    "sha256": "342f4ed8d97768e53a5a2da7178e7aaf560809c3b7c68ad1e63200203e5da6ee",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/RESOURCE_AUDIT.md",
+    "size_bytes": 11755,
+    "sha256": "05404de04f5e79e40caf84535c4409ca14b72722a80c961e910112e15c1e55b2",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/REVIEW_TRACEABILITY.md",
+    "size_bytes": 6501,
+    "sha256": "a069323070629b5dde2dce0ee10433020a872e7d5d7fa38898a135c1c152b061",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/state.json",
+    "size_bytes": 2840,
+    "sha256": "53777cd34be5396064849c36437da484c9509eea22201729f449b485c68abc57",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "handover/TEST_STATUS.md",
+    "size_bytes": 4292,
+    "sha256": "786039c246475a90a4649f8f84aa1f6b22d422d8f73f389b838c88e4d9e01f33",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "model_files/stega_stamp/stega_stamp.onnx",
+    "size_bytes": 218974214,
+    "sha256": "SKIPPED_LARGE_FILE",
+    "extension": ".onnx",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "model_files/stega_stamp/stega_stamp/LICENSE.txt",
+    "size_bytes": 1095,
+    "sha256": "597e4c8e3110b6b9e67a5b1fee1d7461cdb25e03df590119583b26c9aade5f7f",
+    "extension": ".txt",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "model_files/stega_stamp/stega_stamp/README.md",
+    "size_bytes": 95,
+    "sha256": "4ac2c49ccf99e7838be9faa6268940043ce7f24397861188fede10a275d92136",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "results/final_7scheme_primary/results.json",
+    "size_bytes": 13092,
+    "sha256": "f2b56140b9acc7168e0647a99fc284b2d774467e76f33fbf65cd4ca30a8b1195",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "results/final_7scheme_primary/results.md",
+    "size_bytes": 4600,
+    "sha256": "88dff0c21a43e6285ab5a566490ff61c3faf556a397cd6db3588c74307e377b9",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "results/final_7scheme_primary/roc.png",
+    "size_bytes": 93786,
+    "sha256": "3f873308f848d94242022b2461ee5a7d165acc15a90cdc0fd51650bc48b4c262",
+    "extension": ".png",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "results/final_7scheme_primary/test_preds.npz",
+    "size_bytes": 18416,
+    "sha256": "7ff605e58b02c1d511a5a528153209866e1aeefa5fdc3bb8e9e19d42ed98e845",
+    "extension": ".npz",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "results/smoke_test_stage2/results.json",
+    "size_bytes": 9086,
+    "sha256": "f72353dd08a7e616d2bef79e9d1b780c1a315c71e62f09ca7f8c4066738fd180",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "results/smoke_test_stage2/results.md",
+    "size_bytes": 2584,
+    "sha256": "33498ee017598b648e45c784e8da4bf223a43d83532033d6915ed2fd14a4e7f7",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "results/smoke_test_stage2/roc.png",
+    "size_bytes": 53306,
+    "sha256": "26aa604711e031a35dfdf7eaef8ffac4701f5fc07d942e19b5285e2c4413bde4",
+    "extension": ".png",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "results/smoke_test_stage2/test_preds.npz",
+    "size_bytes": 1129,
+    "sha256": "e8646a8cbb201866fc1333fd7cb964bf6b50b992cebaf53b6498384d635fe5fd",
+    "extension": ".npz",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm/data.py",
+    "size_bytes": 6710,
+    "sha256": "954030952c58d96c3c5fed6dff8d5030948eedee3b8e0caa0d6e5174b07a4e0d",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm/engine.py",
+    "size_bytes": 2284,
+    "sha256": "e0f6860630eab12b07837f2f97218c4b7f4a8ce8b10768ab37fe5755e637ea10",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm/metrics.py",
+    "size_bytes": 2001,
+    "sha256": "afdeb65ad81f49ba6363033f28e7573520280d613e740e4b9e0046ec1b482bee",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm/model.py",
+    "size_bytes": 5906,
+    "sha256": "0f8179e5673d8066315d892af2fc99ec4bb34c649cbde45d999af1ad474d3209",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm/outcomes.py",
+    "size_bytes": 3300,
+    "sha256": "72aa3bb26f91f068ff9355386c1a4ac03e8fa45fbf2400f8f37075b6b999ca59",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm/srnet.py",
+    "size_bytes": 5196,
+    "sha256": "31d8baa0e98a1d6fdf87675aaa88027ef6e28a7d47f72a775567727ef84ec55f",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm/watermarks.py",
+    "size_bytes": 17940,
+    "sha256": "160ad347d797ca7b0783d14816f2ab1e2416c780a37b866a24e7c2cc7378fd13",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "rewm/__init__.py",
+    "size_bytes": 64,
+    "sha256": "cff9258b414198943dbdff28a094fa7ecf19bd3b3dd47b2c11befb2f66d741a4",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/baseline_e9/best.pt",
+    "size_bytes": 9909609,
+    "sha256": "c3bae0ba2ec25505aff5e743ea2c38d9dd7f7fc4bc61d74e19a1afe96e2e6272",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/baseline_e9/history.json",
+    "size_bytes": 2130,
+    "sha256": "25aea25d5b666b8539278cf15de9d639d6916681758248e8ebba7572129f6ed7",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/baseline_e9/last.pt",
+    "size_bytes": 9909609,
+    "sha256": "dc9c6850c32d76bd030215d15c3f89379ec20d574900c7225f065b2115aa0a70",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/seed0/best.pt",
+    "size_bytes": 9909673,
+    "sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/seed0/history.json",
+    "size_bytes": 3645,
+    "sha256": "7dc47e5ed5ca77c8c3d974029a49fe226b125d5a0afca2ddc75f3441ea2e3751",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/seed0/last.pt",
+    "size_bytes": 9909673,
+    "sha256": "6a5e2a71f114a0602f62d1aec5ce8afad1f96c7a15452aa5fbfe9ada53908e3e",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/seed1/best.pt",
+    "size_bytes": 9909673,
+    "sha256": "c074415b70d96dd0086d580bc5fae8fc4542b60bee7163872fab810d5ec476a6",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/seed1/history.json",
+    "size_bytes": 3652,
+    "sha256": "4f602a1fa52cf40647ea7c01da2e7152a4a49b23b8ac21ab381d7a14576056d4",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/seed1/last.pt",
+    "size_bytes": 9909673,
+    "sha256": "594223ca8cf3e20437960f4cdaf4fd98f2ac63a553a63d61b4ed4e371b8aae64",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/seed2/best.pt",
+    "size_bytes": 9909673,
+    "sha256": "d0c8f6e6fd4da4f1281490f3d26f11a6e91cd394f69348ea4bed2cc016b4507d",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/seed2/history.json",
+    "size_bytes": 3666,
+    "sha256": "9b8e72cdee1298c7304011d37971643efc77a1630d851c58c08aa286ecbbab60",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/seed2/last.pt",
+    "size_bytes": 9909673,
+    "sha256": "e79ce215f4aa45110119d95b9766b4c337330dd0e1db33a7e6a8f6a3a6659132",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_srnet/best.pt",
+    "size_bytes": 38579159,
+    "sha256": "ede89ed446eb8444a69e7e3ed490dfe84567a1b8a7e7c4813d03d61ba7497190",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_srnet/config.json",
+    "size_bytes": 773,
+    "sha256": "cbf09102b606c8e5658c3adbab5b02bfbaae32c7695744945333afeaa1fbcd37",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_srnet/history.json",
+    "size_bytes": 212,
+    "sha256": "78ee226ce9f8cee72bfddcee70b26678a57f930f84f148e70332c7fb83a7b397",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_srnet/last.pt",
+    "size_bytes": 38579159,
+    "sha256": "c060fb5198d9a115b0d61f834b886e71eef6b02e538c8d9ddfe32b48466a53d1",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_srnet/split_manifest.json",
+    "size_bytes": 90345,
+    "sha256": "9a130b5628fa8400b0a6baea259e9612d7e4fa7128ad7536a962500f3857d37a",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_test_stage2/best.pt",
+    "size_bytes": 9909673,
+    "sha256": "ce07a46a5ec00e4422230fc5392190e1f8a6b50438fe288c205babd9c9f2bd71",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_test_stage2/config.json",
+    "size_bytes": 783,
+    "sha256": "63e760b774a5d5bc60955ef81a4d68946f8088c21b6a19324cb135e3c6b4b3ed",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_test_stage2/history.json",
+    "size_bytes": 227,
+    "sha256": "df3c8f91dc5c12f16b3a5e1dea05e347f1e4696494cba302a94d164591a2e2fb",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_test_stage2/last.pt",
+    "size_bytes": 9909673,
+    "sha256": "f00133294983b52a4d74b82768ec47c149fc06e7ca2c91fd57a50692de8d0efe",
+    "extension": ".pt",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "runs/smoke_test_stage2/split_manifest.json",
+    "size_bytes": 93295,
+    "sha256": "1870053342eff1277a084da9347c6b8e527c029a1862412517158709b06db5d3",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "sanity/example.png",
+    "size_bytes": 3591772,
+    "sha256": "e5e57fbf4ef5e4561d308451edc31d46e9b749daa3ce660c899651a3e135cd40",
+    "extension": ".png",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "scratch/final_review_text.txt",
+    "size_bytes": 17487,
+    "sha256": "6835fe53df944e845de9a147289102d98d6a6ababe35576b51c15cb3ac4ca17f",
+    "extension": ".txt",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "scratch/paragraphs_dump.txt",
+    "size_bytes": 59894,
+    "sha256": "c127ebc860f6fb0c769400ac654248adaef896f5ac4a4a337162f2d4c8d7818c",
+    "extension": ".txt",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "scratch/tables_summary.txt",
+    "size_bytes": 7252,
+    "sha256": "76397f0f484e881cc72a92d40f61137afc9135b33556f3c71ba77c2bd58712b9",
+    "extension": ".txt",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "scripts/audit_checkpoints.py",
+    "size_bytes": 1986,
+    "sha256": "47b3d1b8963b624b1dcf44a26819645f0241fc3d4f31fc6da379e057b356532e",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/build_faculty_approved_manuscript.py",
+    "size_bytes": 44810,
+    "sha256": "65fd5ed3befc46f4b6742e335d8e9d564f10733195121943aba8a4f65e63da7b",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/consolidate_final_results.py",
+    "size_bytes": 11702,
+    "sha256": "76307262c6154c7e624e723e2870adfbac1239f8f596303ae47faad21419bc1b",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/evaluate_three_seeds.py",
+    "size_bytes": 7711,
+    "sha256": "a9145c205a3ca7075ea9ecf8bed815328db5cbeed34d82a053f6f5629234ca71",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/freeze_primary_model.py",
+    "size_bytes": 7035,
+    "sha256": "0012f903f1fadcdf703722a80e4fb36d239ff370310391a188bc3bac65d6eef4",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/investigate_fpr_discrepancy.py",
+    "size_bytes": 10974,
+    "sha256": "fe969e9bb6671ee002a9aa588f5bcea2beb375ccd44524dd4164ee01c0b4e8aa",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/orchestrate.py",
+    "size_bytes": 4513,
+    "sha256": "90aa7941e29c6c372d424f172fed2b530b26c2b722f3187a99d04c1a91c347fd",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/orchestrate_faculty_review.py",
+    "size_bytes": 6095,
+    "sha256": "3d68eb9437e01d253340428e6a5925098a248eed40768c94466c29866089773b",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/run_all_experiments.ps1",
+    "size_bytes": 1862,
+    "sha256": "c78744c16013e4f08e99d1f035b442343397e743cff2c7ed5cff153b73900675",
+    "extension": ".ps1",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/RWGUARD_ROLLBACK.ps1",
+    "size_bytes": 1955,
+    "sha256": "624107c575dede0aace5a3a20ecfa005334691126c3024d7b5b2a1f507279f8a",
+    "extension": ".ps1",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "scripts/verification/phase1_repository_audit.py",
+    "size_bytes": 7313,
+    "sha256": "071922ff3cd3f6eb7939f38603c93a7b2e734e82e535d7795017d4199347c808",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "stegastamp_out/example_rewatermarked.png",
+    "size_bytes": 383038,
+    "sha256": "84715f14815e1d215c6a22f6839444175cf62a77d0688954fa2018b4c96b2fe1",
+    "extension": ".png",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "stegastamp_out/example_single.png",
+    "size_bytes": 352042,
+    "sha256": "451ae1a4e4da4585239626547daeff50036fb6d0a26324dc0efd5a59cbe5fa87",
+    "extension": ".png",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "tests/test_determinism.py",
+    "size_bytes": 2003,
+    "sha256": "6f481e2757511c04dd738d6a2bed1984f400dd1b161f732d7d277f9eb4b7176a",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "tests/test_integration_faculty.py",
+    "size_bytes": 3102,
+    "sha256": "2921e63a2a6618fcb160cbf407b895cad6f825afab5c538281d92938e026f630",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "tests/test_metrics.py",
+    "size_bytes": 2815,
+    "sha256": "afc69da2166fc1035506c2fca7bcfcd65d2d25aba85ba8b0ec5a833f4c7a66ee",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "tests/test_models.py",
+    "size_bytes": 1361,
+    "sha256": "029b00c428957855eec55498bd813fb61a7bf8d71bd5e317c15c7112fcfa4bce",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "tests/test_outcomes.py",
+    "size_bytes": 2061,
+    "sha256": "d0c95042035753d99c449a556824f3f393ac7274671ac5f59c85b65565c4a1cf",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "tests/test_watermarks.py",
+    "size_bytes": 3199,
+    "sha256": "40e28036869b1a7f092b1e4d8bc2b2bd5232bc380b32546390c372f8484d0271",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "tests/__init__.py",
+    "size_bytes": 37,
+    "sha256": "1f66d6062e25bf8903e69c69495c4a3994b16cdacc660fbd5992e2240ddaee84",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/.gitignore",
+    "size_bytes": 44,
+    "sha256": "c4048ae4420fd821fa403d32bb9ff7f6dbe725bda2b709ed0db0bcf18f0ad5f7",
+    "extension": "",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/build_stegastamp_cache.py",
+    "size_bytes": 3176,
+    "sha256": "453e827717365b9b0a1a7a8423f1d66d4a0216682a5a3afe7d813ced242ff9f7",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/build_trustmark_cache.py",
+    "size_bytes": 2766,
+    "sha256": "35bb4aee7656b27fb4a5432d471e8207334602779058ab0b5b30d8d28e7ab85e",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/download_data.py",
+    "size_bytes": 2823,
+    "sha256": "f3d443cb94e5c273141ffddf86d38bde29d8481af2776db10d3dcaeede2f8281",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/evaluate.py",
+    "size_bytes": 8777,
+    "sha256": "7a58212a5b3b2d93d42fc1f0a97d43e86d28decfa0ae7565ca7a3377236aa694",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/README.md",
+    "size_bytes": 10929,
+    "sha256": "f5cc8572edf373be244f88dd0603b88efc484a06a898a125d3197acec68977cd",
+    "extension": ".md",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/requirements.txt",
+    "size_bytes": 848,
+    "sha256": "0134026b70a7c9f08ff9ba1ee83cd7315d16a60ca32f4f8102c6f55cc884713c",
+    "extension": ".txt",
+    "is_relevant_to_evaluation": false
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm_mixing.py",
+    "size_bytes": 1576,
+    "sha256": "b847f5b342b825bcec78781b8b1078aa9d0275170b900903c83abb5cc16cb865",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm_stegastamp.py",
+    "size_bytes": 7518,
+    "sha256": "9740c98ba3fdcdde2955d71aa71ef9ea381460e5c2814307459f8481ecb7d295",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm_stegastamp_cache.py",
+    "size_bytes": 2890,
+    "sha256": "c6f897080a4b4f51027b70daa8bd5f687de340269b57817605a970e9541a74b4",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm_trustmark.py",
+    "size_bytes": 3652,
+    "sha256": "1800775e5a1f9460740ae1b8adadfe4d91c56a8fec082dc489dcec087cd958dd",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/sanity_check.py",
+    "size_bytes": 3436,
+    "sha256": "6d86f2dad5694f2e8a106de475a68e1a69aba1ac82af76c84e0023e3cde447de",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/test_realistic_attack.py",
+    "size_bytes": 4731,
+    "sha256": "3fd67327b86500273c513a9e38710a38edb2fda0dc39883495212ea37081b7fe",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/test_stegastamp.py",
+    "size_bytes": 4068,
+    "sha256": "dbe51dd396953efdec8eb3d658dee8c0e0118800dea632ae34884231f7c2bfbc",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/test_stegastamp_detector.py",
+    "size_bytes": 4946,
+    "sha256": "cd6239706bf40d54d37372b5748161b7c0823560cde77ffdecbd61346cf9ff76",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/test_trustmark.py",
+    "size_bytes": 3995,
+    "sha256": "1f418053d04e77e06d5178aaaac54838075bab52d2e1feda740b181919296fb3",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/test_trustmark_detector.py",
+    "size_bytes": 4787,
+    "sha256": "eac4b7ea193647ee7ec2e93546828bb99e2217ed07f01a2309c1ad4acaa5231a",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/train.py",
+    "size_bytes": 6291,
+    "sha256": "fba164636b0015c1b5a268e840ae93b437add0fa219b0864bee81d893f901a61",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/train_with_neural.py",
+    "size_bytes": 8519,
+    "sha256": "f35a868cd3785487e783169b11881448ef8475c8c73dec15e497e4f1e7bf9e41",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm/data.py",
+    "size_bytes": 5756,
+    "sha256": "e864b5ca312d1bea7f56055bca7c508d5249d35068c149cdcb7f270e2956f819",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm/engine.py",
+    "size_bytes": 1136,
+    "sha256": "aa315cef56d4b0f3775a07b7429810488aedfdf53afb936746eed6c69523d9a2",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm/metrics.py",
+    "size_bytes": 2001,
+    "sha256": "afdeb65ad81f49ba6363033f28e7573520280d613e740e4b9e0046ec1b482bee",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm/model.py",
+    "size_bytes": 5244,
+    "sha256": "8c2896c7377c17d6e9e7c3d7f30287fbaa6342133fb22eec2cd7468d64fb39bb",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm/watermarks.py",
+    "size_bytes": 17940,
+    "sha256": "160ad347d797ca7b0783d14816f2ab1e2416c780a37b866a24e7c2cc7378fd13",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_17a54fc/rewm/__init__.py",
+    "size_bytes": 64,
+    "sha256": "cff9258b414198943dbdff28a094fa7ecf19bd3b3dd47b2c11befb2f66d741a4",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/bootstrap_ci.py",
+    "size_bytes": 6492,
+    "sha256": "8aa0365061290af2c89016d390ac36692207b38360ebff8dd0713111428af3af",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/build_final_manuscript.py",
+    "size_bytes": 20725,
+    "sha256": "b084a477b4e66b6ae15ffe047bba5168bff32dfed5131eb8963c653ab3fffba7",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/build_stegastamp_cache.py",
+    "size_bytes": 3176,
+    "sha256": "453e827717365b9b0a1a7a8423f1d66d4a0216682a5a3afe7d813ced242ff9f7",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/build_trustmark_cache.py",
+    "size_bytes": 2766,
+    "sha256": "35bb4aee7656b27fb4a5432d471e8207334602779058ab0b5b30d8d28e7ab85e",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/download_data.py",
+    "size_bytes": 2823,
+    "sha256": "f3d443cb94e5c273141ffddf86d38bde29d8481af2776db10d3dcaeede2f8281",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/evaluate.py",
+    "size_bytes": 9731,
+    "sha256": "8cf547dc638ca6c12b49faa403a7a4722f410d2e2ac97635e25a324169481c22",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/evaluate_outcomes.py",
+    "size_bytes": 5165,
+    "sha256": "fe7079ba9fe7625f6256e8276f27ce412035d108e295949fff8744f0e3a5f7d5",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/evaluate_trustmark_cache.py",
+    "size_bytes": 3875,
+    "sha256": "896370aaa6ccae552edb7e094d7b210acd2963b99cba4e97b1dc476793ab5255",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/matched_controls.py",
+    "size_bytes": 7814,
+    "sha256": "b20b453c4ef218acb52a27f371bbc645739ee5d8b8ec0f313cf80ee1a31ed11e",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/pacs_calibration.py",
+    "size_bytes": 6333,
+    "sha256": "c2c68c09a263510ba0559c13749eef731ee209e8580ae27b0834b4d88b8bea97",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm_mixing.py",
+    "size_bytes": 1576,
+    "sha256": "b847f5b342b825bcec78781b8b1078aa9d0275170b900903c83abb5cc16cb865",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm_stegastamp.py",
+    "size_bytes": 7518,
+    "sha256": "9740c98ba3fdcdde2955d71aa71ef9ea381460e5c2814307459f8481ecb7d295",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm_stegastamp_cache.py",
+    "size_bytes": 3098,
+    "sha256": "98a2a366c0083545e6fbed33b3750ce76006ceb251123be609813a7d05b41177",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm_trustmark.py",
+    "size_bytes": 3860,
+    "sha256": "08a898ac113e68010e4af4ffdba69ee240b8e40b91d0815b11efd8bd632d4f1d",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/run_tests.py",
+    "size_bytes": 579,
+    "sha256": "1b1b14fb5d8beda8831439d6c37dc4ce6b6129528d54c305399e0000d0ab774e",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/sanity_check.py",
+    "size_bytes": 3436,
+    "sha256": "6d86f2dad5694f2e8a106de475a68e1a69aba1ac82af76c84e0023e3cde447de",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/scheme_sets.json",
+    "size_bytes": 875,
+    "sha256": "5ae097ed34490f9de480214ceca97406f0ddc50cded18a59a8afbd5cd46aa2a6",
+    "extension": ".json",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/seed_ensemble.py",
+    "size_bytes": 5716,
+    "sha256": "bff2479f7d65847e23cc68560c1bdf8b3b4ec0f62416a9fa46d7eb9c060ff5a5",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/shortcut_baseline.py",
+    "size_bytes": 10626,
+    "sha256": "772dde808ffba0ea447d3715abbd35593bfa53c791cff366e4e26e833d4df19d",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/test_realistic_attack.py",
+    "size_bytes": 4731,
+    "sha256": "3fd67327b86500273c513a9e38710a38edb2fda0dc39883495212ea37081b7fe",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/test_stegastamp.py",
+    "size_bytes": 4068,
+    "sha256": "dbe51dd396953efdec8eb3d658dee8c0e0118800dea632ae34884231f7c2bfbc",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/test_stegastamp_detector.py",
+    "size_bytes": 4946,
+    "sha256": "cd6239706bf40d54d37372b5748161b7c0823560cde77ffdecbd61346cf9ff76",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/test_trustmark.py",
+    "size_bytes": 3995,
+    "sha256": "1f418053d04e77e06d5178aaaac54838075bab52d2e1feda740b181919296fb3",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/test_trustmark_detector.py",
+    "size_bytes": 4787,
+    "sha256": "eac4b7ea193647ee7ec2e93546828bb99e2217ed07f01a2309c1ad4acaa5231a",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/train.py",
+    "size_bytes": 7954,
+    "sha256": "85c1b69175de95038ca0669a0aa570b16289627beb62c2837b77c389322671f9",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/train_with_neural.py",
+    "size_bytes": 8519,
+    "sha256": "f35a868cd3785487e783169b11881448ef8475c8c73dec15e497e4f1e7bf9e41",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm/data.py",
+    "size_bytes": 6372,
+    "sha256": "d9da3b18b84140a4ed505e0a617d3854951fde1f6fefa489ade1899a710fd7ec",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm/engine.py",
+    "size_bytes": 2284,
+    "sha256": "e0f6860630eab12b07837f2f97218c4b7f4a8ce8b10768ab37fe5755e637ea10",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm/metrics.py",
+    "size_bytes": 2001,
+    "sha256": "afdeb65ad81f49ba6363033f28e7573520280d613e740e4b9e0046ec1b482bee",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm/model.py",
+    "size_bytes": 5906,
+    "sha256": "0f8179e5673d8066315d892af2fc99ec4bb34c649cbde45d999af1ad474d3209",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm/outcomes.py",
+    "size_bytes": 2779,
+    "sha256": "a6b0c442478391991e6084961b6c7437a93d16d4150362080ab255750fc98bbc",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm/srnet.py",
+    "size_bytes": 5196,
+    "sha256": "31d8baa0e98a1d6fdf87675aaa88027ef6e28a7d47f72a775567727ef84ec55f",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm/watermarks.py",
+    "size_bytes": 17940,
+    "sha256": "160ad347d797ca7b0783d14816f2ab1e2416c780a37b866a24e7c2cc7378fd13",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  },
+  {
+    "relative_path": "_recovery_checkpoint_238b319/rewm/__init__.py",
+    "size_bytes": 64,
+    "sha256": "cff9258b414198943dbdff28a094fa7ecf19bd3b3dd47b2c11befb2f66d741a4",
+    "extension": ".py",
+    "is_relevant_to_evaluation": true
+  }
+]

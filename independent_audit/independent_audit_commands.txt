@@ -1,0 +1,50 @@
+# ==============================================================================
+# RW-GUARD: INDEPENDENT AUDIT EXECUTION COMMANDS (PORTABLE)
+# ==============================================================================
+# All commands are fully reproducible on Windows 11 with PowerShell and Python 3.10+
+#
+# PORTABLE VIRTUAL ENVIRONMENT SETUP (RECOMMENDED):
+# python -m venv .venv
+# .\.venv\Scripts\Activate.ps1
+# pip install -r requirements.txt
+# pip install scikit-learn scipy python-docx pytest
+
+# 1. VERIFY SUBMISSION ZIP SHA-256 CHECKSUM
+powershell -Command "Get-FileHash -Algorithm SHA256 .\deliverables\RW_GUARD_FINAL_FACULTY_SUBMISSION.zip"
+# Expected: 0378571B12A3DF68038240F0A71F2E7E4421E7EC7E225B2214893528A598D4B4
+
+# 2. VERIFY PRIMARY FROZEN CHECKPOINT SHA-256
+powershell -Command "Get-FileHash -Algorithm SHA256 .\checkpoints\final\rwguard_final_7scheme.pt"
+# Expected: 37680CDD2D4E5100CBB8AA1642E78B9BB3DF373E79EFD9F8512F89E15D0C0573
+
+# 3. RUN COMPLETE AUTOMATED REGRESSION TEST SUITE (22 TESTS)
+powershell -NoProfile -ExecutionPolicy Bypass -File .\run_rwguard_final_verification.ps1 -Mode Quick
+
+# 4. RUN FULL AUDIT PIPELINE (FULL MODE)
+powershell -NoProfile -ExecutionPolicy Bypass -File .\run_rwguard_final_verification.ps1 -Mode Full
+
+# 5. RE-EXECUTE STANDALONE NUMERICAL RECALCULATION & 2,000 BOOTSTRAP REPLICATES
+python independent_audit/phase4_independent_recalculation.py
+
+# 6. TEST CLEAN EXTRACTION AND ARCHIVE CRC32 INTEGRITY
+python -c "
+import zipfile, hashlib, tempfile, os
+z = 'deliverables/RW_GUARD_FINAL_FACULTY_SUBMISSION.zip'
+with zipfile.ZipFile(z, 'r') as zipf:
+    assert zipf.testzip() is None, 'Archive corrupt!'
+    with tempfile.TemporaryDirectory() as td:
+        zipf.extractall(td)
+        ckpt = os.path.join(td, 'final_faculty_remediation', 'checkpoints', 'primary_checkpoint.pt')
+        with open(ckpt, 'rb') as f:
+            h = hashlib.sha256(f.read()).hexdigest()
+        assert h == '37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573'
+        print('Clean extraction and bit-identical checkpoint match: PASS')
+"
+
+# 7. INSPECT MANUSCRIPT ABSTRACT WORD COUNT & COMPLIANCE
+python scripts/remediation/verify_manuscript_compliance.py
+
+# 8. VIEW AUDIT DELIVERABLES
+Get-Content independent_audit/independent_audit_verdict.md
+Get-Content independent_audit/independent_metrics_report.md
+Get-Content independent_audit/evidence_manifest_sha256.csv

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "calibration_procedure": "Binary search on watermark alpha and Gaussian sigma to equalize mean squared error across all 300 control sources",
+  "double_watermarking_mse": 9.124,
+  "strength_matched_single_mse": 9.141,
+  "matched_noise_single_mse": 9.13,
+  "maximum_energy_discrepancy_pct": 0.19,
+  "conclusion": "Distortion matching verified within 0.2% tolerance across all evaluation conditions."
+}

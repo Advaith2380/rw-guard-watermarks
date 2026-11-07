@@ -1,0 +1,836 @@
+{
+  "D:\\projects\\rewm-guard": {
+    "path": "D:\\projects\\rewm-guard",
+    "is_git": false,
+    "git_info": {},
+    "top_level_items": [
+      {
+        "name": ".venv",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "build_trustmark_cache.py",
+        "is_dir": false,
+        "size_bytes": 2766
+      },
+      {
+        "name": "data",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "download_data.py",
+        "is_dir": false,
+        "size_bytes": 2749
+      },
+      {
+        "name": "eval",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "evaluate.py",
+        "is_dir": false,
+        "size_bytes": 8777
+      },
+      {
+        "name": "README.md",
+        "is_dir": false,
+        "size_bytes": 4591
+      },
+      {
+        "name": "requirements.txt",
+        "is_dir": false,
+        "size_bytes": 340
+      },
+      {
+        "name": "results",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "rewm",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "rewm_trustmark.py",
+        "is_dir": false,
+        "size_bytes": 3652
+      },
+      {
+        "name": "runs",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "sanity",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "sanity_check.py",
+        "is_dir": false,
+        "size_bytes": 3359
+      },
+      {
+        "name": "test_realistic_attack.py",
+        "is_dir": false,
+        "size_bytes": 4731
+      },
+      {
+        "name": "test_trustmark.py",
+        "is_dir": false,
+        "size_bytes": 3995
+      },
+      {
+        "name": "test_trustmark_detector.py",
+        "is_dir": false,
+        "size_bytes": 4787
+      },
+      {
+        "name": "train.py",
+        "is_dir": false,
+        "size_bytes": 6291
+      },
+      {
+        "name": "train_with_trustmark.py",
+        "is_dir": false,
+        "size_bytes": 7225
+      },
+      {
+        "name": "trustmark_out",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "__pycache__",
+        "is_dir": true,
+        "size_bytes": 0
+      }
+    ],
+    "python_modules": [],
+    "checkpoints": [
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\torchmetrics\\functional\\image\\dists_models\\weights.pt",
+        "size_bytes": 12288
+      },
+      {
+        "rel_path": "runs\\adv_eps1\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\adv_eps1\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\adv_eps1_strong\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\adv_eps1_strong\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\baseline\\best.pt",
+        "size_bytes": 9909609
+      },
+      {
+        "rel_path": "runs\\baseline\\last.pt",
+        "size_bytes": 9909609
+      },
+      {
+        "rel_path": "runs\\baseline_e9\\best.pt",
+        "size_bytes": 9909609
+      },
+      {
+        "rel_path": "runs\\baseline_e9\\last.pt",
+        "size_bytes": 9909609
+      },
+      {
+        "rel_path": "runs\\baseline_full\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\baseline_full\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\holdout_dct\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\holdout_dct\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\holdout_fft\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\holdout_fft\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\nohp_ablation\\best.pt",
+        "size_bytes": 9901487
+      },
+      {
+        "rel_path": "runs\\nohp_ablation\\last.pt",
+        "size_bytes": 9901487
+      },
+      {
+        "rel_path": "runs\\resnet18_baseline\\best.pt",
+        "size_bytes": 44750859
+      },
+      {
+        "rel_path": "runs\\resnet18_baseline\\last.pt",
+        "size_bytes": 44750859
+      },
+      {
+        "rel_path": "runs\\seed0\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed0\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed1\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed1\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed2\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed2\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\simple_baseline\\best.pt",
+        "size_bytes": 3933713
+      },
+      {
+        "rel_path": "runs\\simple_baseline\\last.pt",
+        "size_bytes": 3933713
+      },
+      {
+        "rel_path": "runs\\test\\best.pt",
+        "size_bytes": 9909545
+      },
+      {
+        "rel_path": "runs\\test\\last.pt",
+        "size_bytes": 9909545
+      },
+      {
+        "rel_path": "runs\\trustmark_mix\\best.pt",
+        "size_bytes": 9908457
+      },
+      {
+        "rel_path": "runs\\trustmark_mix\\last.pt",
+        "size_bytes": 9908457
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\distutils-precedence.pth",
+        "size_bytes": 151
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\system_packages.pth",
+        "size_bytes": 73
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\torchmetrics\\functional\\image\\lpips_models\\alex.pth",
+        "size_bytes": 6009
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\torchmetrics\\functional\\image\\lpips_models\\squeeze.pth",
+        "size_bytes": 10811
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\torchmetrics\\functional\\image\\lpips_models\\vgg.pth",
+        "size_bytes": 7289
+      }
+    ],
+    "manuscripts": [
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\docx\\templates\\default.docx",
+        "size_bytes": 38116
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\back.pdf",
+        "size_bytes": 1623
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\filesave.pdf",
+        "size_bytes": 1734
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\forward.pdf",
+        "size_bytes": 1630
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\hand.pdf",
+        "size_bytes": 4172
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\help.pdf",
+        "size_bytes": 1813
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\home.pdf",
+        "size_bytes": 1737
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\matplotlib.pdf",
+        "size_bytes": 22852
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\move.pdf",
+        "size_bytes": 1867
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\qt4_editor_options.pdf",
+        "size_bytes": 1568
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\subplots.pdf",
+        "size_bytes": 1714
+      },
+      {
+        "rel_path": ".venv\\Lib\\site-packages\\matplotlib\\mpl-data\\images\\zoom_to_rect.pdf",
+        "size_bytes": 1609
+      }
+    ],
+    "datasets": [
+      "data"
+    ],
+    "manifests": [],
+    "watermark_files": [
+      "rewm\\watermarks.py",
+      "rewm\\__pycache__\\watermarks.cpython-313.pyc",
+      "trustmark_out\\example_rewatermarked.png"
+    ]
+  },
+  "D:\\projects\\rw-guard-watermarks": {
+    "path": "D:\\projects\\rw-guard-watermarks",
+    "is_git": true,
+    "git_info": {
+      "branch": "main",
+      "commit": "8230378",
+      "remotes": "origin\thttps://github.com/Advaith2380/rw-guard-watermarks.git (fetch)\norigin\thttps://github.com/Advaith2380/rw-guard-watermarks.git (push)",
+      "status_lines_count": 1
+    },
+    "top_level_items": [
+      {
+        "name": ".git",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "download_data.py",
+        "is_dir": false,
+        "size_bytes": 2749
+      },
+      {
+        "name": "example.png",
+        "is_dir": false,
+        "size_bytes": 3710634
+      },
+      {
+        "name": "README.md",
+        "is_dir": false,
+        "size_bytes": 4322
+      },
+      {
+        "name": "requirements.txt",
+        "is_dir": false,
+        "size_bytes": 340
+      },
+      {
+        "name": "rewm",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "sanity_check.py",
+        "is_dir": false,
+        "size_bytes": 3359
+      }
+    ],
+    "python_modules": [],
+    "checkpoints": [],
+    "manuscripts": [],
+    "datasets": [],
+    "manifests": [],
+    "watermark_files": [
+      "rewm\\watermarks.py"
+    ]
+  },
+  "D:\\projects\\rwg-push": {
+    "path": "D:\\projects\\rwg-push",
+    "is_git": true,
+    "git_info": {
+      "branch": "main",
+      "commit": "238b319",
+      "remotes": "origin\thttps://github.com/Advaith2380/rw-guard-watermarks.git (fetch)\norigin\thttps://github.com/Advaith2380/rw-guard-watermarks.git (push)",
+      "status_lines_count": 77
+    },
+    "top_level_items": [
+      {
+        "name": ".git",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": ".gitignore",
+        "is_dir": false,
+        "size_bytes": 345
+      },
+      {
+        "name": "audit",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "audit_historical_backup",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "audit_json_artifacts.py",
+        "is_dir": false,
+        "size_bytes": 14458
+      },
+      {
+        "name": "audit_scientific_claims.py",
+        "is_dir": false,
+        "size_bytes": 15156
+      },
+      {
+        "name": "audit_secondary_evaluations.py",
+        "is_dir": false,
+        "size_bytes": 10224
+      },
+      {
+        "name": "audit_source_overlap.py",
+        "is_dir": false,
+        "size_bytes": 5082
+      },
+      {
+        "name": "bootstrap_ci.py",
+        "is_dir": false,
+        "size_bytes": 7681
+      },
+      {
+        "name": "build_final_manuscript.py",
+        "is_dir": false,
+        "size_bytes": 20725
+      },
+      {
+        "name": "build_stegastamp_cache.py",
+        "is_dir": false,
+        "size_bytes": 3176
+      },
+      {
+        "name": "build_trustmark_cache.py",
+        "is_dir": false,
+        "size_bytes": 2766
+      },
+      {
+        "name": "checkpoints",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "compute_confidence_intervals.py",
+        "is_dir": false,
+        "size_bytes": 28395
+      },
+      {
+        "name": "data",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "deliverables",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "download_data.py",
+        "is_dir": false,
+        "size_bytes": 2823
+      },
+      {
+        "name": "evaluate.py",
+        "is_dir": false,
+        "size_bytes": 10527
+      },
+      {
+        "name": "evaluate_outcomes.py",
+        "is_dir": false,
+        "size_bytes": 10964
+      },
+      {
+        "name": "evaluate_trustmark_cache.py",
+        "is_dir": false,
+        "size_bytes": 7902
+      },
+      {
+        "name": "example.png",
+        "is_dir": false,
+        "size_bytes": 3710634
+      },
+      {
+        "name": "generate_final_evidence_report.py",
+        "is_dir": false,
+        "size_bytes": 32495
+      },
+      {
+        "name": "handover",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "humanized_RWGuard_report_revised_v2.docx",
+        "is_dir": false,
+        "size_bytes": 3147596
+      },
+      {
+        "name": "matched_controls.py",
+        "is_dir": false,
+        "size_bytes": 12857
+      },
+      {
+        "name": "model_files",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "package_final_deliverables.py",
+        "is_dir": false,
+        "size_bytes": 12437
+      },
+      {
+        "name": "pacs_calibration.py",
+        "is_dir": false,
+        "size_bytes": 7277
+      },
+      {
+        "name": "README.md",
+        "is_dir": false,
+        "size_bytes": 12272
+      },
+      {
+        "name": "reproduce_baselines.py",
+        "is_dir": false,
+        "size_bytes": 13996
+      },
+      {
+        "name": "reproduce_primary_evaluation.py",
+        "is_dir": false,
+        "size_bytes": 14859
+      },
+      {
+        "name": "requirements.txt",
+        "is_dir": false,
+        "size_bytes": 848
+      },
+      {
+        "name": "results",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "review 1.docx",
+        "is_dir": false,
+        "size_bytes": 40300
+      },
+      {
+        "name": "rewm",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "rewm_mixing.py",
+        "is_dir": false,
+        "size_bytes": 1576
+      },
+      {
+        "name": "rewm_stegastamp.py",
+        "is_dir": false,
+        "size_bytes": 7518
+      },
+      {
+        "name": "rewm_stegastamp_cache.py",
+        "is_dir": false,
+        "size_bytes": 3098
+      },
+      {
+        "name": "rewm_trustmark.py",
+        "is_dir": false,
+        "size_bytes": 3860
+      },
+      {
+        "name": "runs",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "run_final_verification.py",
+        "is_dir": false,
+        "size_bytes": 5085
+      },
+      {
+        "name": "run_rwguard_final_verification.ps1",
+        "is_dir": false,
+        "size_bytes": 10721
+      },
+      {
+        "name": "run_tests.py",
+        "is_dir": false,
+        "size_bytes": 579
+      },
+      {
+        "name": "run_test_suite_audit.py",
+        "is_dir": false,
+        "size_bytes": 4964
+      },
+      {
+        "name": "RWGuard_Final_Report.docx",
+        "is_dir": false,
+        "size_bytes": 3085182
+      },
+      {
+        "name": "RWGuard_Final_Report_v2_backup.docx",
+        "is_dir": false,
+        "size_bytes": 3084482
+      },
+      {
+        "name": "RWGuard_Final_Report_v3_Faculty_Approved.docx",
+        "is_dir": false,
+        "size_bytes": 3085182
+      },
+      {
+        "name": "sanity",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "sanity_check.py",
+        "is_dir": false,
+        "size_bytes": 3436
+      },
+      {
+        "name": "scheme_sets.json",
+        "is_dir": false,
+        "size_bytes": 875
+      },
+      {
+        "name": "scratch",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "scripts",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "seed_ensemble.py",
+        "is_dir": false,
+        "size_bytes": 5716
+      },
+      {
+        "name": "shortcut_baseline.py",
+        "is_dir": false,
+        "size_bytes": 16105
+      },
+      {
+        "name": "stegastamp_out",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "tests",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "test_realistic_attack.py",
+        "is_dir": false,
+        "size_bytes": 4731
+      },
+      {
+        "name": "test_stegastamp.py",
+        "is_dir": false,
+        "size_bytes": 4068
+      },
+      {
+        "name": "test_stegastamp_detector.py",
+        "is_dir": false,
+        "size_bytes": 6545
+      },
+      {
+        "name": "test_trustmark.py",
+        "is_dir": false,
+        "size_bytes": 3995
+      },
+      {
+        "name": "test_trustmark_detector.py",
+        "is_dir": false,
+        "size_bytes": 4787
+      },
+      {
+        "name": "train.py",
+        "is_dir": false,
+        "size_bytes": 7954
+      },
+      {
+        "name": "train_with_neural.py",
+        "is_dir": false,
+        "size_bytes": 8519
+      },
+      {
+        "name": "verify_checkpoint.py",
+        "is_dir": false,
+        "size_bytes": 9201
+      },
+      {
+        "name": "_recovery_checkpoint_17a54fc",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "_recovery_checkpoint_238b319",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "__pycache__",
+        "is_dir": true,
+        "size_bytes": 0
+      },
+      {
+        "name": "~$Guard_Final_Report.docx",
+        "is_dir": false,
+        "size_bytes": 162
+      },
+      {
+        "name": "~$Guard_Final_Report_v3_Faculty_Approved.docx",
+        "is_dir": false,
+        "size_bytes": 162
+      }
+    ],
+    "python_modules": [],
+    "checkpoints": [
+      {
+        "rel_path": "audit\\final_independent_verification\\pre_verification_backup\\checkpoints_final\\rwguard_final_7scheme.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "checkpoints\\final\\rwguard_final_7scheme.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\baseline_e9\\best.pt",
+        "size_bytes": 9909609
+      },
+      {
+        "rel_path": "runs\\baseline_e9\\last.pt",
+        "size_bytes": 9909609
+      },
+      {
+        "rel_path": "runs\\seed0\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed0\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed1\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed1\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed2\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\seed2\\last.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\smoke_srnet\\best.pt",
+        "size_bytes": 38579159
+      },
+      {
+        "rel_path": "runs\\smoke_srnet\\last.pt",
+        "size_bytes": 38579159
+      },
+      {
+        "rel_path": "runs\\smoke_test_stage2\\best.pt",
+        "size_bytes": 9909673
+      },
+      {
+        "rel_path": "runs\\smoke_test_stage2\\last.pt",
+        "size_bytes": 9909673
+      }
+    ],
+    "manuscripts": [
+      {
+        "rel_path": "humanized_RWGuard_report_revised_v2.docx",
+        "size_bytes": 3147596
+      },
+      {
+        "rel_path": "review 1.docx",
+        "size_bytes": 40300
+      },
+      {
+        "rel_path": "RWGuard_Final_Report.docx",
+        "size_bytes": 3085182
+      },
+      {
+        "rel_path": "RWGuard_Final_Report_v2_backup.docx",
+        "size_bytes": 3084482
+      },
+      {
+        "rel_path": "RWGuard_Final_Report_v3_Faculty_Approved.docx",
+        "size_bytes": 3085182
+      },
+      {
+        "rel_path": "~$Guard_Final_Report.docx",
+        "size_bytes": 162
+      },
+      {
+        "rel_path": "~$Guard_Final_Report_v3_Faculty_Approved.docx",
+        "size_bytes": 162
+      }
+    ],
+    "datasets": [
+      "data"
+    ],
+    "manifests": [],
+    "watermark_files": [
+      "rewm\\watermarks.py",
+      "rewm\\__pycache__\\watermarks.cpython-313.pyc",
+      "stegastamp_out\\example_rewatermarked.png",
+      "tests\\test_watermarks.py",
+      "tests\\__pycache__\\test_watermarks.cpython-313.pyc",
+      "_recovery_checkpoint_17a54fc\\rewm\\watermarks.py",
+      "_recovery_checkpoint_17a54fc\\rewm\\__pycache__\\watermarks.cpython-313.pyc",
+      "_recovery_checkpoint_238b319\\rewm\\watermarks.py",
+      "_recovery_checkpoint_238b319\\rewm\\__pycache__\\watermarks.cpython-313.pyc"
+    ]
+  }
+}

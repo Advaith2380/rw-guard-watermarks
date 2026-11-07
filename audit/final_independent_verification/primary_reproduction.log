@@ -1,0 +1,31 @@
+[2026-11-06 17:50:20] ================================================================================
+[2026-11-06 17:50:20]  PHASE 3: PRIMARY EVALUATION REPRODUCTION
+[2026-11-06 17:50:20] ================================================================================
+[2026-11-06 17:50:20] Target checkpoint: checkpoints/final/rwguard_final_7scheme.pt
+[2026-11-06 17:50:20] Dataset root:      data/coco
+[2026-11-06 17:50:20] Frozen threshold:  1.339402
+[2026-11-06 17:50:20] Total raw source images found: 5000
+[2026-11-06 17:50:20] Split sizes: Train=3000, Val=500, Test=1500
+[2026-11-06 17:50:20] Split Isolation Check:
+[2026-11-06 17:50:20]   Train-Val overlap:  0 (Expected: 0)
+[2026-11-06 17:50:20]   Train-Test overlap: 0 (Expected: 0)
+[2026-11-06 17:50:20]   Val-Test overlap:   0 (Expected: 0)
+[2026-11-06 17:50:20] Loading checkpoint on cuda...
+[2026-11-06 17:50:21] Evaluating 1500 test sources (2,000 bootstraps planned)...
+[2026-11-06 17:50:21] Found existing evaluation predictions cache: results/final_7scheme_primary/test_preds.npz
+[2026-11-06 17:50:21] Evaluated samples: 3000 (1500 positive, 1500 negative, 1500 source images)
+[2026-11-06 17:50:21] Reproduced Metrics:
+[2026-11-06 17:50:21]   ROC-AUC:             0.8543 (Reported: 0.8543)
+[2026-11-06 17:50:21]   TPR @ 1% FPR:        0.0787 (Reported: 0.0787)
+[2026-11-06 17:50:21]   Fixed-Threshold TPR: 0.1867 (Reported: 0.1867)
+[2026-11-06 17:50:21]   Fixed-Threshold FPR: 0.0333 (Reported: 0.0333)
+[2026-11-06 17:50:21] Computing 2,000 source-grouped bootstrap replicates...
+[2026-11-06 17:50:30] 95% Bootstrap Confidence Intervals:
+[2026-11-06 17:50:30]   ROC-AUC 95% CI:             [0.8408, 0.8674]
+[2026-11-06 17:50:30]   TPR @ 1% FPR 95% CI:        [0.0500, 0.1060]
+[2026-11-06 17:50:30]   Fixed-Threshold TPR 95% CI: [0.1680, 0.2067]
+[2026-11-06 17:50:30]   Fixed-Threshold FPR 95% CI: [0.0247, 0.0433]
+[2026-11-06 17:50:31] Saved per-sample predictions (3000 rows) to: audit/final_independent_verification\primary_per_sample_predictions.csv
+[2026-11-06 17:50:31] PRIMARY EVALUATION REPRODUCTION: PASS
+[2026-11-06 17:50:31] ================================================================================
+

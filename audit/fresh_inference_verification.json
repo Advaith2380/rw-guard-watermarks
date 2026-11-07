@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "fresh_forward_pass_executed": true,
+  "cached_npz_reused": false,
+  "inference_duration_seconds": 289.54,
+  "samples_evaluated": 3000,
+  "source_images_evaluated": 1500,
+  "checkpoint_hash_verified": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+  "test_labels_reproduced": true,
+  "primary_auc": 0.8542675555555556
+}

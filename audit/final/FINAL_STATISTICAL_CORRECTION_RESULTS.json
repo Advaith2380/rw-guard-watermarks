@@ -1,0 +1,169 @@
+{
+  "timestamp_utc": "2026-11-06T15:03:37",
+  "audit_version": "FINAL_EVIDENCE_VALIDATION_V1",
+  "checkpoint_validation": {
+    "status": "PASS",
+    "checkpoint_path": "checkpoints/final/rwguard_final_7scheme.pt",
+    "sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+    "total_parameters": 2466099,
+    "trainable_parameters": 2466099,
+    "highpass_trainable_parameters": 0,
+    "training_schemes": [
+      "dct_qim",
+      "dwt_qim",
+      "ss_spatial",
+      "fft_ring",
+      "nmp_freq",
+      "svd_qim",
+      "dct_svd"
+    ],
+    "validation_selected_epoch": 14,
+    "validation_auc_reported": 0.8482555555555555
+  },
+  "dataset_integrity": {
+    "status": "PASS",
+    "total_sources_verified": 5000,
+    "training_sources": 3000,
+    "validation_sources_total": 500,
+    "calibration_sources_subset": 300,
+    "held_out_test_sources": 1500,
+    "missing_source_files": 0,
+    "zero_leakage_verified": true
+  },
+  "primary_and_threshold_metrics": {
+    "status": "PASS",
+    "roc_auc": 0.8542675555555556,
+    "operating_threshold": 1.3394016,
+    "validation_fpr": {
+      "false_positives": 3,
+      "total_negatives": 300,
+      "rate": 0.01
+    },
+    "held_out_test_fpr": {
+      "false_positives": 50,
+      "total_negatives": 1500,
+      "rate": 0.03333333333333333,
+      "wilson_ci_95": [
+        0.0254,
+        0.0437
+      ],
+      "clopper_pearson_ci_95": [
+        0.0248,
+        0.0437
+      ]
+    },
+    "held_out_test_tpr": {
+      "true_positives": 280,
+      "total_positives": 1500,
+      "rate": 0.18666666666666668,
+      "wilson_ci_95": [
+        0.1678,
+        0.2072
+      ],
+      "clopper_pearson_ci_95": [
+        0.1672,
+        0.2073
+      ]
+    },
+    "test_roc_tpr_at_1pct_fpr": 0.07866666666666666,
+    "two_sample_ks_test": {
+      "D": 0.05,
+      "p_value": 0.5485
+    },
+    "mann_whitney_u_test": {
+      "p_value": 0.8658
+    },
+    "mandated_statistical_wording": "The frozen validation threshold yielded an empirical validation FPR of 1.00% and a held-out test FPR of 3.33%. The two-sample KS test did not detect a statistically significant difference between the negative-score distributions (D = 0.0500, p = 0.5485). However, this does not establish distributional equivalence or identify the cause of the observed operating-point difference."
+  },
+  "attack_outcomes_audit": {
+    "status": "PASS",
+    "total_attacks_audited": 500,
+    "recovery_threshold": "bit_accuracy > 0.75",
+    "categories": {
+      "dual_survival": {
+        "count": 425,
+        "percentage": 85.0,
+        "wilson_ci_95": [
+          81.61,
+          87.89
+        ],
+        "clopper_pearson_ci_95": [
+          81.59,
+          87.98
+        ],
+        "bootstrap_percentile_ci_95": [
+          81.8,
+          88.2
+        ]
+      },
+      "successful_overwrite": {
+        "count": 67,
+        "percentage": 13.4,
+        "wilson_ci_95": [
+          10.68,
+          16.66
+        ],
+        "clopper_pearson_ci_95": [
+          10.55,
+          16.71
+        ],
+        "bootstrap_percentile_ci_95": [
+          10.4,
+          16.6
+        ]
+      },
+      "failed_attacker_embedding": {
+        "count": 8,
+        "percentage": 1.6,
+        "wilson_ci_95": [
+          0.81,
+          3.13
+        ],
+        "clopper_pearson_ci_95": [
+          0.69,
+          3.13
+        ],
+        "bootstrap_percentile_ci_95": [
+          0.6,
+          2.8
+        ]
+      },
+      "both_unrecoverable": {
+        "count": 0,
+        "percentage": 0.0,
+        "wilson_ci_95": [
+          0.0,
+          0.74
+        ],
+        "clopper_pearson_ci_95": [
+          0.0,
+          0.73
+        ],
+        "bootstrap_percentile_ci_95": [
+          0.0,
+          0.6
+        ]
+      }
+    }
+  },
+  "adversarial_defense_validation": {
+    "status": "PASS",
+    "baseline_primary_model_under_attack_auc": 0.612,
+    "adversarially_trained_defense_model_auc": 0.7845,
+    "defended_checkpoint_path": "D:/projects/rewm-guard/runs/adv_eps1/best.pt",
+    "defended_checkpoint_sha256": "27954fd43360830d76fa107036567e9486844fa85d6a058c84d438b2e6caefed",
+    "checkpoints_isolated": true,
+    "mandated_distinction": "Baseline model collapses under FGSM eps=1/255; Defended model is a separate adversarially trained run."
+  },
+  "shortcut_learning_audit": {
+    "status": "PASS",
+    "single_watermark_mse": 9.1428,
+    "rewatermarked_mse": 9.1257,
+    "mse_matching_difference_pct": 0.187,
+    "rwguard_auc_on_distortion_matched_control": 0.5747,
+    "logistic_regression_auc": 0.5569,
+    "random_forest_auc": 0.55,
+    "matched_noise_auc": 0.7296,
+    "mandated_qualified_conclusion": "The distortion-matched single-watermark control provides evidence against reliance on total distortion magnitude alone. The matched-noise result indicates residual sensitivity to high-frequency perturbations. These controls do not exclude every possible shortcut or learned nuisance feature."
+  }
+}

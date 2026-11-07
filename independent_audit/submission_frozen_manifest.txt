@@ -1,0 +1,60 @@
+================================================================================
+RW-GUARD INDEPENDENT AUDIT: SUBMISSION IDENTIFICATION & FREEZE RECORD
+================================================================================
+
+Audit Timestamp (UTC): 2026-11-06T15:23:12.398323Z
+Repository Root:       D:/projects/rwg-push
+Submission Directory:  D:/projects/rwg-push/final_faculty_remediation
+Git Commit Hash:       238b3197fa532f40d9e2cfb3554b4f0f6205185d
+Git Branch:            main
+
+PRIMARY SUBMISSION ARTIFACTS:
+--------------------------------------------------------------------------------
+Artifact:   primary_checkpoint_repo
+Path:       D:/projects/rwg-push/checkpoints/final/rwguard_final_7scheme.pt
+Size:       9,909,673 bytes (9.4506 MB)
+Timestamp:  2026-10-12T14:13:30.757143Z
+SHA-256:    37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+--------------------------------------------------------------------------------
+Artifact:   primary_checkpoint_submission
+Path:       D:/projects/rwg-push/final_faculty_remediation/checkpoints/primary_checkpoint.pt
+Size:       9,909,673 bytes (9.4506 MB)
+Timestamp:  2026-10-12T14:13:30.757143Z
+SHA-256:    37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+--------------------------------------------------------------------------------
+Artifact:   config_repo
+Path:       D:/projects/rwg-push/checkpoints/final/final_model_config.json
+Size:       1,927 bytes (0.0018 MB)
+Timestamp:  2026-11-06T10:39:26.934204Z
+SHA-256:    2c6e5320b9826672f494e9c25ed0e8dc293584ef97ae7470744c0b06f8f23eb7
+--------------------------------------------------------------------------------
+Artifact:   config_submission
+Path:       D:/projects/rwg-push/final_faculty_remediation/configs/final_model_config.json
+Size:       1,927 bytes (0.0018 MB)
+Timestamp:  2026-11-06T10:39:26.934204Z
+SHA-256:    2c6e5320b9826672f494e9c25ed0e8dc293584ef97ae7470744c0b06f8f23eb7
+--------------------------------------------------------------------------------
+Artifact:   manuscript_repo
+Path:       D:/projects/rwg-push/manuscript/corrected_final_manuscript.docx
+Size:       3,085,125 bytes (2.9422 MB)
+Timestamp:  2026-11-06T14:16:03.152253Z
+SHA-256:    fb59a5df68625cb60a950e445a8e2af6cdce2623d76fd1ba2baad57ddbd13567
+--------------------------------------------------------------------------------
+Artifact:   manuscript_submission
+Path:       D:/projects/rwg-push/final_faculty_remediation/manuscript/corrected_final_manuscript.docx
+Size:       3,085,125 bytes (2.9422 MB)
+Timestamp:  2026-11-06T14:16:03.152253Z
+SHA-256:    fb59a5df68625cb60a950e445a8e2af6cdce2623d76fd1ba2baad57ddbd13567
+--------------------------------------------------------------------------------
+Artifact:   final_submission_zip
+Path:       D:/projects/rwg-push/deliverables/RW_GUARD_FINAL_FACULTY_SUBMISSION.zip
+Size:       12,487,412 bytes (11.9089 MB)
+Timestamp:  2026-11-06T15:13:30.880277Z
+SHA-256:    5b3916bc2930287ecb62c52fdad591427e140fcbe5a2ad2367de4ad57ab4fbc4
+--------------------------------------------------------------------------------
+Artifact:   final_submission_sha256_file
+Path:       D:/projects/rwg-push/deliverables/RW_GUARD_FINAL_FACULTY_SUBMISSION.sha256
+Size:       105 bytes (0.0001 MB)
+Timestamp:  2026-11-06T15:13:31.068918Z
+SHA-256:    1ebb4909fcf96a34bdcd73d9149dc93c4916ce23630de7b9750b6a7b8c30dcc1
+--------------------------------------------------------------------------------

@@ -1,0 +1,372 @@
+{
+  "generated_at": "2026-11-06T20:45:59.074407",
+  "total_requirements": 36,
+  "status_summary": {
+    "PASS": 36,
+    "PARTIAL": 0,
+    "FAIL": 0,
+    "BLOCKED": 0
+  },
+  "compliance_details": [
+    {
+      "req_id": "REQ-A01",
+      "section": "Section A.1",
+      "title": "Seven-Scheme Watermark Exposure",
+      "faculty_request": "Primary model must be trained on all seven distinct watermarking schemes (dct_qim, dwt_qim, ss_spatial, fft_ring, nmp_freq, svd_qim, dct_svd).",
+      "status": "PASS",
+      "verified_files": "audit/checkpoint_integrity.json",
+      "acceptance_criteria": "Strict configuration contains all 7 scheme names and keys in state dict.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-A02",
+      "section": "Section A.2",
+      "title": "Validation-Selected Primary Checkpoint",
+      "faculty_request": "Select final primary model using validation performance only (never test data). Freeze checkpoint.",
+      "status": "PASS",
+      "verified_files": "audit/checkpoint_provenance.json",
+      "acceptance_criteria": "Exact tensor weight match with runs/seed0/best.pt.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-A03",
+      "section": "Section A.3",
+      "title": "Checkpoint Cryptographic & Architectural Integrity",
+      "faculty_request": "Verify SHA-256 hash (37680cdd...) and 2,466,099 trainable parameters of ForensicNet.",
+      "status": "PASS",
+      "verified_files": "audit/checkpoint_integrity.json",
+      "acceptance_criteria": "SHA-256 bit-identical match, 0 missing/unexpected keys.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-A04",
+      "section": "Section A.4",
+      "title": "Fresh Primary In-Distribution Inference",
+      "faculty_request": "Perform fresh model inference from raw test images (disable cached test_preds.npz reuse) on held-out COCO test split.",
+      "status": "PASS",
+      "verified_files": "results/final_primary/fresh_predictions.csv; results/final_primary/fresh_predictions.npz",
+      "acceptance_criteria": "Predictions generated fresh, matching test labels and AUC within 0.005 tol.",
+      "evidence_notes": "Verified against 2 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-A05",
+      "section": "Section A.5",
+      "title": "Benign Post-Processing Evaluation",
+      "faculty_request": "Evaluate primary model across 11 benign operations (JPEG, noise, blur, brightness, compound).",
+      "status": "PASS",
+      "verified_files": "results/final_primary/benign_transformations.json",
+      "acceptance_criteria": "All 11 benign transform metrics verified.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-A06",
+      "section": "Section A.6",
+      "title": "Resolution Invariance Evaluation",
+      "faculty_request": "Evaluate arbitrary resolution invariance across 128px, 256px, and 384px inputs.",
+      "status": "PASS",
+      "verified_files": "results/final_primary/resolution_results.json",
+      "acceptance_criteria": "Metrics verified across 3 resolutions.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-A07",
+      "section": "Section A.7",
+      "title": "PACS Cross-Domain Generalization",
+      "faculty_request": "Evaluate PACS 4 domains (Photo, Art, Cartoon, Sketch); resolve 1,600 vs 3,200 sample count discrepancy.",
+      "status": "PASS",
+      "verified_files": "results/final_primary/pacs_results.json",
+      "acceptance_criteria": "Discrepancy resolved and domain metrics confirmed.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-A08",
+      "section": "Section A.8",
+      "title": "Adversarial Robustness Evaluation (PGD-10)",
+      "faculty_request": "Evaluate gradient-based adversarial evasion (PGD-10 at eps=0.5, 1.0, 2.0 / 255); report vulnerability honestly.",
+      "status": "PASS",
+      "verified_files": "results/final_primary/adversarial_results.json",
+      "acceptance_criteria": "Adversarial evasion confirmed without suppression.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-A09",
+      "section": "Section A.9",
+      "title": "Hold-One-Scheme-Out Generalization",
+      "faculty_request": "Verify hold-one-scheme-out models are kept distinct from 7-scheme primary model.",
+      "status": "PASS",
+      "verified_files": "results/final_primary/hold_one_scheme_out.json",
+      "acceptance_criteria": "Holdout checkpoints isolated from primary checkpoint.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-A10",
+      "section": "Section A.10",
+      "title": "Independent Multi-Seed Stability",
+      "faculty_request": "Evaluate 3 independent training runs (Seeds 0, 1, 2) on identical test sources.",
+      "status": "PASS",
+      "verified_files": "results/final_primary/multi_seed_results.json",
+      "acceptance_criteria": "Mean 0.8528 and std 0.0024 verified.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-B01",
+      "section": "Section B.1",
+      "title": "Distortion-Matched Single Watermark Control",
+      "faculty_request": "Generate and evaluate single-watermarked samples matched in distortion (MSE ~9.14) to double-watermarked images.",
+      "status": "PASS",
+      "verified_files": "results/shortcut_controls/distortion_matched_single.json",
+      "acceptance_criteria": "Distortion match MSE 9.14 confirmed; AUC 0.5747 reproduced.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-B02",
+      "section": "Section B.2",
+      "title": "Nonlinear Residual & Spectral Baselines",
+      "faculty_request": "Evaluate Logistic Regression and Random Forest on identical held-out test sources; report paired differences.",
+      "status": "PASS",
+      "verified_files": "results/shortcut_controls/nonlinear_baselines.json; results/shortcut_controls/paired_comparisons.json",
+      "acceptance_criteria": "Paired delta AUC CIs strictly exclude zero (p < 0.001).",
+      "evidence_notes": "Verified against 2 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-B03",
+      "section": "Section B.3",
+      "title": "Matched-Noise Control Evaluation",
+      "faculty_request": "Evaluate single-watermarked images + matched Gaussian noise (MSE ~9.13) to isolate structured artifact detection.",
+      "status": "PASS",
+      "verified_files": "results/shortcut_controls/matched_noise.json",
+      "acceptance_criteria": "Matched noise AUC 0.7296 reproduced.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-B04",
+      "section": "Section B.4",
+      "title": "Shortcut Learning Scientific Interpretation",
+      "faculty_request": "Temper claims: acknowledge perturbation energy accounts for modest detection (0.5747), but structured multi-embedding interference provides dominant signal (0.7296 vs noise, 0.854 vs double).",
+      "status": "PASS",
+      "verified_files": "audit/section_B_claim_audit.json",
+      "acceptance_criteria": "Classification: SUPPORTED_WITH_QUALIFICATION.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-C01",
+      "section": "Section C.1",
+      "title": "TrustMark Zero-Shot Stratified Evaluation",
+      "faculty_request": "Evaluate zero-shot transfer on TrustMark with stratified negative controls (not easy clean-only).",
+      "status": "PASS",
+      "verified_files": "results/neural_generalization/trustmark_zero_shot.json",
+      "acceptance_criteria": "Stratified negative controls verified; AUC 0.6562 reproduced.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-C02",
+      "section": "Section C.2",
+      "title": "TrustMark Supervised Adaptation (15%)",
+      "faculty_request": "Evaluate supervised adaptation on 15% TrustMark data; clearly distinguish from zero-shot transfer.",
+      "status": "PASS",
+      "verified_files": "results/neural_generalization/trustmark_adaptation.json",
+      "acceptance_criteria": "Adapted AUC 0.8505 verified.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-C03",
+      "section": "Section C.3",
+      "title": "Historical TrustMark Protocol Reconciliation",
+      "faculty_request": "Reconcile historical values (0.534 4-scheme, 0.696 unstratified, 0.851 adapted, 0.925 earlier adapted).",
+      "status": "PASS",
+      "verified_files": "results/neural_generalization/historical_protocol_reconciliation.json",
+      "acceptance_criteria": "Historical values reconciled by checkpoint and protocol.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-C04",
+      "section": "Section C.4",
+      "title": "StegaStamp Zero-Shot Forensic Detection",
+      "faculty_request": "Evaluate forensic detection on singly vs doubly watermarked StegaStamp images (not just extraction).",
+      "status": "PASS",
+      "verified_files": "results/neural_generalization/stegastamp_zero_shot.json",
+      "acceptance_criteria": "StegaStamp AUC 0.9293 confirmed.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-C05",
+      "section": "Section C.5",
+      "title": "Neural Generalization Claims Rigor",
+      "faculty_request": "Acknowledge zero-shot domain gap on TrustMark (0.0% fixed TPR) and report deployment boundaries honestly.",
+      "status": "PASS",
+      "verified_files": "audit/section_C_claim_audit.json",
+      "acceptance_criteria": "Zero-shot domain gap reported without omission.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-D01",
+      "section": "Section D.1",
+      "title": "Watermark Recovery Criteria Definition",
+      "faculty_request": "Define explicit bit-accuracy recovery criteria for victim and attacker watermarks.",
+      "status": "PASS",
+      "verified_files": "results/attack_outcomes/recovery_criteria.json",
+      "acceptance_criteria": "Bit accuracy formula documented and verified.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-D02",
+      "section": "Section D.2",
+      "title": "Four Mutually Exclusive Attack Outcome Categories",
+      "faculty_request": "Classify every attack into: Dual Survival, Successful Overwrite, Failed Attacker Embedding, Both Unrecoverable.",
+      "status": "PASS",
+      "verified_files": "results/attack_outcomes/category_counts.json",
+      "acceptance_criteria": "Counts sum to exactly 500; percentages sum to 100.0%.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-D03",
+      "section": "Section D.3",
+      "title": "Dual-Survival Rate Verification (88.7% vs 85.0%)",
+      "faculty_request": "Verify actual recovery records: resolve historical 88.7% claim vs actual verified 85.0% (425/500).",
+      "status": "PASS",
+      "verified_files": "results/attack_outcomes/dual_survival_reconciliation.json",
+      "acceptance_criteria": "425/500 = 85.0% strictly proved; 88.7% reconciled.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-D04",
+      "section": "Section D.4",
+      "title": "Category-Specific Forensic Detection Metrics",
+      "faculty_request": "Report category-specific detection rates, detector scores, and ROC-AUC vs common single controls.",
+      "status": "PASS",
+      "verified_files": "results/attack_outcomes/category_detection_metrics.json",
+      "acceptance_criteria": "Category metrics verified against common controls.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-D05",
+      "section": "Section D.5",
+      "title": "Ownership Forgery vs Collision Mechanics",
+      "faculty_request": "Distinguish between sequential embedding detection, watermark suppression, and legal ownership forgery.",
+      "status": "PASS",
+      "verified_files": "audit/section_D_claim_audit.json",
+      "acceptance_criteria": "Distinction clearly articulated in claims audit.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-E01",
+      "section": "Section E.1",
+      "title": "95% Confidence Intervals Across All Metrics",
+      "faculty_request": "Provide 95% confidence intervals for ROC-AUC, TPR@1%FPR, fixed-threshold TPR, and fixed-threshold FPR.",
+      "status": "PASS",
+      "verified_files": "results/statistics/consolidated_statistical_results.json",
+      "acceptance_criteria": "Zero NaN/Inf, lower <= estimate <= upper.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-E02",
+      "section": "Section E.2",
+      "title": "Source-Image Grouped Bootstrap (B >= 2,000)",
+      "faculty_request": "Resample source images as independent units (B >= 2,000); do not resample dependent positive/negative pairs independently.",
+      "status": "PASS",
+      "verified_files": "results/statistics/bootstrap_diagnostics.json",
+      "acceptance_criteria": "B=2000 replicates verified, grouped by source.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-E03",
+      "section": "Section E.3",
+      "title": "Strict Operating Threshold Discipline",
+      "faculty_request": "Validation threshold tau = 1.3394 must remain frozen; separate test ROC TPR@1%FPR from fixed-threshold rates.",
+      "status": "PASS",
+      "verified_files": "results/statistics/threshold_validation_test_analysis.json",
+      "acceptance_criteria": "No recalibration on test set; both metrics reported.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-E04",
+      "section": "Section E.4",
+      "title": "Multi-Seed Standard Deviation Convention",
+      "faculty_request": "Resolve population vs sample standard deviation for 3 seeds (sample std = 0.0024 vs pop std = 0.0020).",
+      "status": "PASS",
+      "verified_files": "results/statistics/seed_statistics.json",
+      "acceptance_criteria": "Exact formula and degrees of freedom documented.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-E05",
+      "section": "Section E.5",
+      "title": "Paired Bootstrap Baseline Difference Testing",
+      "faculty_request": "Compare RW-Guard with baselines using paired source-level bootstrap; test delta AUC and low-FPR difference.",
+      "status": "PASS",
+      "verified_files": "results/statistics/paired_baseline_comparisons.json",
+      "acceptance_criteria": "Paired difference CIs exclude zero.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-E06",
+      "section": "Section E.6",
+      "title": "Validation vs Test FPR Discrepancy Investigation",
+      "faculty_request": "Investigate shift from 1.00% validation FPR (3/300) to 3.33% test FPR (50/1500); evaluate tail density and KS test.",
+      "status": "PASS",
+      "verified_files": "results/statistics/threshold_validation_test_analysis.json",
+      "acceptance_criteria": "KS test p=0.55 verified; tail sensitivity explained.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-E07",
+      "section": "Section E.7",
+      "title": "Consolidated Statistical Table",
+      "faculty_request": "Produce one authoritative master table covering all conditions, sample counts, metrics, CIs, thresholds, and checkpoints.",
+      "status": "PASS",
+      "verified_files": "results/statistics/consolidated_statistical_results.csv",
+      "acceptance_criteria": "All conditions present with complete counts, CIs, and metrics.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-PKG01",
+      "section": "Checklist 1",
+      "title": "Dataset & Source Manifest Reconciliation",
+      "faculty_request": "Master source manifest with 5,000 COCO sources; prove zero split leakage.",
+      "status": "PASS",
+      "verified_files": "data/manifests/master_source_manifest.csv; audit/source_split_leakage_audit.json",
+      "acceptance_criteria": "Zero source overlap verified across train, val, and test.",
+      "evidence_notes": "Verified against 2 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-PKG02",
+      "section": "Checklist 2",
+      "title": "Automated Regression Test Suite",
+      "faculty_request": "Execute complete automated unit and integration regression test suite (22 tests); report exact results.",
+      "status": "PASS",
+      "verified_files": "audit/final/test_results.json",
+      "acceptance_criteria": "22/22 tests passing with exit code 0.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-PKG03",
+      "section": "Checklist 3",
+      "title": "Scientific Claim Audit & Reconciliation",
+      "faculty_request": "Audit all material claims against raw evidence; classify supported vs qualified claims.",
+      "status": "PASS",
+      "verified_files": "audit/scientific_claims/previous_vs_current_claims.csv; audit/scientific_claims/scientific_claim_audit.md",
+      "acceptance_criteria": "All claims classified with rigorous justification.",
+      "evidence_notes": "Verified against 2 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-PKG04",
+      "section": "Checklist 4",
+      "title": "Master PowerShell Verification Entry Point",
+      "faculty_request": "Create run_rwguard_final_verification.ps1 supporting -Mode Full; execute and verify clean exit.",
+      "status": "PASS",
+      "verified_files": "audit/final/FINAL_EXECUTION_SUMMARY.json; audit/final/FINAL_EXECUTION_LOG.txt",
+      "acceptance_criteria": "PowerShell script executes all stages and exits code 0.",
+      "evidence_notes": "Verified against 2 generated evidence artifacts."
+    },
+    {
+      "req_id": "REQ-PKG05",
+      "section": "Checklist 5",
+      "title": "Complete Deliverables Archive Packaging",
+      "faculty_request": "Assemble complete, portable ZIP package with code, checkpoints, predictions, manifests, tests; verify extraction and SHA-256.",
+      "status": "PASS",
+      "verified_files": "deliverables/RW_GUARD_COMPLETE_FACULTY_REMEDIATION_PACKAGE.zip",
+      "acceptance_criteria": "ZIP passes testzip, extracts cleanly, SHA-256 manifest saved.",
+      "evidence_notes": "Verified against 1 generated evidence artifacts."
+    }
+  ]
+}

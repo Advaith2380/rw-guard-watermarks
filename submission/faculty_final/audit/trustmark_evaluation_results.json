@@ -1,0 +1,448 @@
+{
+  "protocol_documentation": {
+    "evaluation_type": "Stratified TrustMark Evaluation (Bui et al. ICCV 2025)",
+    "negative_controls": "50% clean original photographs, 50% single-watermarked TrustMark images",
+    "positive_samples": "100% sequential double TrustMark embeddings",
+    "historical_reconciliation": {
+      "zero_shot_stratified_auc": 0.5344,
+      "zero_shot_unstratified_auc": 0.696,
+      "supervised_adapted_auc_15pct": 0.8505,
+      "supervised_adapted_auc_earlier": 0.925,
+      "explanation": "Unstratified test evaluated only clean vs double watermarks (ignoring single watermarks as negatives), artificially inflating AUC to 0.696. Stratified negative controls correctly include single watermarks, revealing true zero-shot AUC is 0.534 (near random ranking). Supervised adaptation with 15% TrustMark exposure restores AUC to 0.851."
+    }
+  },
+  "experiments": {
+    "primary_7scheme_zero_shot": {
+      "checkpoint": "checkpoints/final/rwguard_final_7scheme.pt",
+      "n_samples": 200,
+      "n_positives": 100,
+      "n_negatives": 100,
+      "frozen_validation_threshold": 1.3394,
+      "domain_recalibrated_threshold": 0.52742999792099,
+      "metrics_at_frozen_threshold": {
+        "n": 200,
+        "auc": 0.6562,
+        "tpr_at_1pct_fpr": 0.03,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.0,
+        "fpr_fixed_thr": 0.01
+      },
+      "confidence_intervals_frozen_thr": {
+        "auc": {
+          "point_estimate": 0.6562,
+          "bootstrap_mean": 0.65762555,
+          "bootstrap_std": 0.022305914735726486,
+          "ci_95": [
+            0.6148,
+            0.7007049999999999
+          ]
+        },
+        "tpr_at_1pct_fpr": {
+          "point_estimate": 0.03,
+          "bootstrap_mean": 0.039990000000000005,
+          "bootstrap_std": 0.040570924317791926,
+          "ci_95": [
+            0.0,
+            0.14
+          ]
+        },
+        "tpr_at_0p1pct_fpr": {
+          "point_estimate": 0.0,
+          "bootstrap_mean": 0.01272,
+          "bootstrap_std": 0.024855615059780758,
+          "ci_95": [
+            0.0,
+            0.09
+          ]
+        },
+        "tpr_fixed_thr": {
+          "point_estimate": 0.0,
+          "bootstrap_mean": 0.0,
+          "bootstrap_std": 0.0,
+          "ci_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "fpr_fixed_thr": {
+          "point_estimate": 0.01,
+          "bootstrap_mean": 0.009965,
+          "bootstrap_std": 0.009640994502643385,
+          "ci_95": [
+            0.0,
+            0.03
+          ]
+        }
+      },
+      "metrics_at_recalibrated_threshold": {
+        "n": 200,
+        "auc": 0.6562,
+        "tpr_at_1pct_fpr": 0.03,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.03,
+        "fpr_fixed_thr": 0.01
+      },
+      "confidence_intervals_recal_thr": {
+        "auc": {
+          "point_estimate": 0.6562,
+          "bootstrap_mean": 0.65762555,
+          "bootstrap_std": 0.022305914735726486,
+          "ci_95": [
+            0.6148,
+            0.7007049999999999
+          ]
+        },
+        "tpr_at_1pct_fpr": {
+          "point_estimate": 0.03,
+          "bootstrap_mean": 0.039990000000000005,
+          "bootstrap_std": 0.040570924317791926,
+          "ci_95": [
+            0.0,
+            0.14
+          ]
+        },
+        "tpr_at_0p1pct_fpr": {
+          "point_estimate": 0.0,
+          "bootstrap_mean": 0.01272,
+          "bootstrap_std": 0.024855615059780758,
+          "ci_95": [
+            0.0,
+            0.09
+          ]
+        },
+        "tpr_fixed_thr": {
+          "point_estimate": 0.03,
+          "bootstrap_mean": 0.030060000000000003,
+          "bootstrap_std": 0.01754982620996573,
+          "ci_95": [
+            0.0,
+            0.07
+          ]
+        },
+        "fpr_fixed_thr": {
+          "point_estimate": 0.01,
+          "bootstrap_mean": 0.009965,
+          "bootstrap_std": 0.009640994502643385,
+          "ci_95": [
+            0.0,
+            0.03
+          ]
+        }
+      },
+      "kind_breakdown": {
+        "clean": {
+          "n": 51,
+          "flagged_rate_frozen_thr": 0.0196078431372549,
+          "flagged_rate_recal_thr": 0.0196078431372549,
+          "mean_score": -2.5808753967285156,
+          "std_score": 1.8020697832107544,
+          "median_score": -2.4536635875701904
+        },
+        "single:trustmark": {
+          "n": 49,
+          "flagged_rate_frozen_thr": 0.0,
+          "flagged_rate_recal_thr": 0.0,
+          "mean_score": -2.0100929737091064,
+          "std_score": 1.267892599105835,
+          "median_score": -1.8608189821243286
+        },
+        "trustmark>trustmark": {
+          "n": 100,
+          "flagged_rate_frozen_thr": 0.0,
+          "flagged_rate_recal_thr": 0.03,
+          "mean_score": -1.4236723184585571,
+          "std_score": 1.103869915008545,
+          "median_score": -1.5413463115692139
+        }
+      }
+    },
+    "supervised_adapted_15pct": {
+      "checkpoint": "D:/projects/rewm-guard/runs/trustmark_mix/best.pt",
+      "n_samples": 200,
+      "n_positives": 100,
+      "n_negatives": 100,
+      "frozen_validation_threshold": 1.3394,
+      "domain_recalibrated_threshold": 1.0402765274047852,
+      "metrics_at_frozen_threshold": {
+        "n": 200,
+        "auc": 0.8505,
+        "tpr_at_1pct_fpr": 0.22,
+        "tpr_at_0p1pct_fpr": 0.21,
+        "tpr_fixed_thr": 0.18,
+        "fpr_fixed_thr": 0.0
+      },
+      "confidence_intervals_frozen_thr": {
+        "auc": {
+          "point_estimate": 0.8505,
+          "bootstrap_mean": 0.85126075,
+          "bootstrap_std": 0.023138479734794593,
+          "ci_95": [
+            0.80338,
+            0.8937075
+          ]
+        },
+        "tpr_at_1pct_fpr": {
+          "point_estimate": 0.22,
+          "bootstrap_mean": 0.243675,
+          "bootstrap_std": 0.059162863140656066,
+          "ci_95": [
+            0.15,
+            0.38
+          ]
+        },
+        "tpr_at_0p1pct_fpr": {
+          "point_estimate": 0.21,
+          "bootstrap_mean": 0.22129500000000002,
+          "bootstrap_std": 0.045343940885194355,
+          "ci_95": [
+            0.14,
+            0.32
+          ]
+        },
+        "tpr_fixed_thr": {
+          "point_estimate": 0.18,
+          "bootstrap_mean": 0.1816,
+          "bootstrap_std": 0.038667040228080554,
+          "ci_95": [
+            0.11,
+            0.26
+          ]
+        },
+        "fpr_fixed_thr": {
+          "point_estimate": 0.0,
+          "bootstrap_mean": 0.0,
+          "bootstrap_std": 0.0,
+          "ci_95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "metrics_at_recalibrated_threshold": {
+        "n": 200,
+        "auc": 0.8505,
+        "tpr_at_1pct_fpr": 0.22,
+        "tpr_at_0p1pct_fpr": 0.21,
+        "tpr_fixed_thr": 0.22,
+        "fpr_fixed_thr": 0.01
+      },
+      "confidence_intervals_recal_thr": {
+        "auc": {
+          "point_estimate": 0.8505,
+          "bootstrap_mean": 0.85126075,
+          "bootstrap_std": 0.023138479734794593,
+          "ci_95": [
+            0.80338,
+            0.8937075
+          ]
+        },
+        "tpr_at_1pct_fpr": {
+          "point_estimate": 0.22,
+          "bootstrap_mean": 0.243675,
+          "bootstrap_std": 0.059162863140656066,
+          "ci_95": [
+            0.15,
+            0.38
+          ]
+        },
+        "tpr_at_0p1pct_fpr": {
+          "point_estimate": 0.21,
+          "bootstrap_mean": 0.22129500000000002,
+          "bootstrap_std": 0.045343940885194355,
+          "ci_95": [
+            0.14,
+            0.32
+          ]
+        },
+        "tpr_fixed_thr": {
+          "point_estimate": 0.22,
+          "bootstrap_mean": 0.22162,
+          "bootstrap_std": 0.04137844366333756,
+          "ci_95": [
+            0.14,
+            0.3
+          ]
+        },
+        "fpr_fixed_thr": {
+          "point_estimate": 0.01,
+          "bootstrap_mean": 0.009965,
+          "bootstrap_std": 0.010082101715416285,
+          "ci_95": [
+            0.0,
+            0.03
+          ]
+        }
+      },
+      "kind_breakdown": {
+        "clean": {
+          "n": 51,
+          "flagged_rate_frozen_thr": 0.0,
+          "flagged_rate_recal_thr": 0.0,
+          "mean_score": -2.447916030883789,
+          "std_score": 1.7686238288879395,
+          "median_score": -2.3970916271209717
+        },
+        "single:trustmark": {
+          "n": 49,
+          "flagged_rate_frozen_thr": 0.0,
+          "flagged_rate_recal_thr": 0.02040816326530612,
+          "mean_score": -0.7921092510223389,
+          "std_score": 0.8811767101287842,
+          "median_score": -0.7747032046318054
+        },
+        "trustmark>trustmark": {
+          "n": 100,
+          "flagged_rate_frozen_thr": 0.18,
+          "flagged_rate_recal_thr": 0.22,
+          "mean_score": 0.3349300026893616,
+          "std_score": 1.0807327032089233,
+          "median_score": 0.2616303563117981
+        }
+      }
+    },
+    "historical_4scheme_zero_shot": {
+      "checkpoint": "runs/baseline_e9/best.pt",
+      "n_samples": 200,
+      "n_positives": 100,
+      "n_negatives": 100,
+      "frozen_validation_threshold": 1.1413,
+      "domain_recalibrated_threshold": -0.08669435232877731,
+      "metrics_at_frozen_threshold": {
+        "n": 200,
+        "auc": 0.5344,
+        "tpr_at_1pct_fpr": 0.03,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.01,
+        "fpr_fixed_thr": 0.01
+      },
+      "confidence_intervals_frozen_thr": {
+        "auc": {
+          "point_estimate": 0.5344,
+          "bootstrap_mean": 0.5349233,
+          "bootstrap_std": 0.017012089439865995,
+          "ci_95": [
+            0.5023,
+            0.5691025000000001
+          ]
+        },
+        "tpr_at_1pct_fpr": {
+          "point_estimate": 0.03,
+          "bootstrap_mean": 0.02447,
+          "bootstrap_std": 0.021403716966919555,
+          "ci_95": [
+            0.0,
+            0.07
+          ]
+        },
+        "tpr_at_0p1pct_fpr": {
+          "point_estimate": 0.0,
+          "bootstrap_mean": 0.00809,
+          "bootstrap_std": 0.014786882700555922,
+          "ci_95": [
+            0.0,
+            0.05
+          ]
+        },
+        "tpr_fixed_thr": {
+          "point_estimate": 0.01,
+          "bootstrap_mean": 0.009965,
+          "bootstrap_std": 0.009640994502643385,
+          "ci_95": [
+            0.0,
+            0.03
+          ]
+        },
+        "fpr_fixed_thr": {
+          "point_estimate": 0.01,
+          "bootstrap_mean": 0.009965,
+          "bootstrap_std": 0.009640994502643385,
+          "ci_95": [
+            0.0,
+            0.03
+          ]
+        }
+      },
+      "metrics_at_recalibrated_threshold": {
+        "n": 200,
+        "auc": 0.5344,
+        "tpr_at_1pct_fpr": 0.03,
+        "tpr_at_0p1pct_fpr": 0.0,
+        "tpr_fixed_thr": 0.03,
+        "fpr_fixed_thr": 0.01
+      },
+      "confidence_intervals_recal_thr": {
+        "auc": {
+          "point_estimate": 0.5344,
+          "bootstrap_mean": 0.5349233,
+          "bootstrap_std": 0.017012089439865995,
+          "ci_95": [
+            0.5023,
+            0.5691025000000001
+          ]
+        },
+        "tpr_at_1pct_fpr": {
+          "point_estimate": 0.03,
+          "bootstrap_mean": 0.02447,
+          "bootstrap_std": 0.021403716966919555,
+          "ci_95": [
+            0.0,
+            0.07
+          ]
+        },
+        "tpr_at_0p1pct_fpr": {
+          "point_estimate": 0.0,
+          "bootstrap_mean": 0.00809,
+          "bootstrap_std": 0.014786882700555922,
+          "ci_95": [
+            0.0,
+            0.05
+          ]
+        },
+        "tpr_fixed_thr": {
+          "point_estimate": 0.03,
+          "bootstrap_mean": 0.029475,
+          "bootstrap_std": 0.016798046761454143,
+          "ci_95": [
+            0.0,
+            0.07
+          ]
+        },
+        "fpr_fixed_thr": {
+          "point_estimate": 0.01,
+          "bootstrap_mean": 0.009965,
+          "bootstrap_std": 0.009640994502643385,
+          "ci_95": [
+            0.0,
+            0.03
+          ]
+        }
+      },
+      "kind_breakdown": {
+        "clean": {
+          "n": 51,
+          "flagged_rate_frozen_thr": 0.0196078431372549,
+          "flagged_rate_recal_thr": 0.0196078431372549,
+          "mean_score": -3.024911880493164,
+          "std_score": 1.4504144191741943,
+          "median_score": -3.233822822570801
+        },
+        "single:trustmark": {
+          "n": 49,
+          "flagged_rate_frozen_thr": 0.0,
+          "flagged_rate_recal_thr": 0.0,
+          "mean_score": -3.060020685195923,
+          "std_score": 1.1916470527648926,
+          "median_score": -3.0505168437957764
+        },
+        "trustmark>trustmark": {
+          "n": 100,
+          "flagged_rate_frozen_thr": 0.01,
+          "flagged_rate_recal_thr": 0.03,
+          "mean_score": -2.8793458938598633,
+          "std_score": 1.3325001001358032,
+          "median_score": -3.141543388366699
+        }
+      }
+    }
+  }
+}

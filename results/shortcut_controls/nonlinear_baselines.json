@@ -1,0 +1,180 @@
+{
+  "status": "PASS",
+  "common_source_population": "Exact held-out test split sources (te[:500])",
+  "n_sources": 500,
+  "n_samples": 1000,
+  "logistic_regression": {
+    "feature_set": "10 residual-energy and spectral statistics",
+    "metrics": {
+      "n": 1000,
+      "auc": 0.55686,
+      "tpr_at_1pct_fpr": 0.01,
+      "tpr_at_0p1pct_fpr": 0.002,
+      "tpr_fixed_thr": 0.018,
+      "fpr_fixed_thr": 0.016
+    },
+    "confidence_intervals_95": {
+      "auc": {
+        "point_estimate": 0.55686,
+        "bootstrap_mean": 0.5570031639999999,
+        "bootstrap_std": 0.007731227629626747,
+        "ci_95": [
+          0.5425198,
+          0.5718932999999999
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "point_estimate": 0.01,
+        "bootstrap_mean": 0.012422000000000002,
+        "bootstrap_std": 0.003010965957960999,
+        "ci_95": [
+          0.006,
+          0.02
+        ]
+      },
+      "tpr_at_0p1pct_fpr": {
+        "point_estimate": 0.002,
+        "bootstrap_mean": 0.0024320000000000006,
+        "bootstrap_std": 0.0019670729523838205,
+        "ci_95": [
+          0.0,
+          0.0060499999999997275
+        ]
+      },
+      "tpr_fixed_thr": {
+        "point_estimate": 0.018,
+        "bootstrap_mean": 0.018021000000000002,
+        "bootstrap_std": 0.005885708028776147,
+        "ci_95": [
+          0.008,
+          0.03
+        ]
+      },
+      "fpr_fixed_thr": {
+        "point_estimate": 0.016,
+        "bootstrap_mean": 0.016047000000000006,
+        "bootstrap_std": 0.0055760013450500525,
+        "ci_95": [
+          0.006,
+          0.028
+        ]
+      }
+    }
+  },
+  "random_forest": {
+    "model_configuration": "100 trees, max_depth=8, tuned on validation data",
+    "metrics": {
+      "n": 1000,
+      "auc": 0.549974,
+      "tpr_at_1pct_fpr": 0.02,
+      "tpr_at_0p1pct_fpr": 0.012,
+      "tpr_fixed_thr": 0.006,
+      "fpr_fixed_thr": 0.0
+    },
+    "confidence_intervals_95": {
+      "auc": {
+        "point_estimate": 0.549974,
+        "bootstrap_mean": 0.549572701,
+        "bootstrap_std": 0.012829902829819056,
+        "ci_95": [
+          0.5249619000000001,
+          0.5747144
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "point_estimate": 0.02,
+        "bootstrap_mean": 0.020989000000000004,
+        "bootstrap_std": 0.007799222974117358,
+        "ci_95": [
+          0.008,
+          0.04
+        ]
+      },
+      "tpr_at_0p1pct_fpr": {
+        "point_estimate": 0.012,
+        "bootstrap_mean": 0.012726000000000003,
+        "bootstrap_std": 0.005281375199699412,
+        "ci_95": [
+          0.004,
+          0.024
+        ]
+      },
+      "tpr_fixed_thr": {
+        "point_estimate": 0.006,
+        "bootstrap_mean": 0.006004000000000001,
+        "bootstrap_std": 0.0033917523494500596,
+        "ci_95": [
+          0.0,
+          0.014
+        ]
+      },
+      "fpr_fixed_thr": {
+        "point_estimate": 0.0,
+        "bootstrap_mean": 0.0,
+        "bootstrap_std": 0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "rwguard_frozen_7scheme": {
+    "architecture": "ForensicNet (2.47M parameters)",
+    "metrics": {
+      "n": 1000,
+      "auc": 0.847696,
+      "tpr_at_1pct_fpr": 0.062,
+      "tpr_at_0p1pct_fpr": 0.002,
+      "tpr_fixed_thr": 0.198,
+      "fpr_fixed_thr": 0.026
+    },
+    "confidence_intervals_95": {
+      "auc": {
+        "point_estimate": 0.847696,
+        "bootstrap_mean": 0.8477556159999999,
+        "bootstrap_std": 0.01177682060577234,
+        "ci_95": [
+          0.8241474,
+          0.8701924
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "point_estimate": 0.062,
+        "bootstrap_mean": 0.06141300000000001,
+        "bootstrap_std": 0.040800948898279316,
+        "ci_95": [
+          0.01,
+          0.182
+        ]
+      },
+      "tpr_at_0p1pct_fpr": {
+        "point_estimate": 0.002,
+        "bootstrap_mean": 0.005471000000000001,
+        "bootstrap_std": 0.00862381348360457,
+        "ci_95": [
+          0.0,
+          0.02
+        ]
+      },
+      "tpr_fixed_thr": {
+        "point_estimate": 0.198,
+        "bootstrap_mean": 0.19764800000000002,
+        "bootstrap_std": 0.018122805963757378,
+        "ci_95": [
+          0.164,
+          0.234
+        ]
+      },
+      "fpr_fixed_thr": {
+        "point_estimate": 0.026,
+        "bootstrap_mean": 0.026044000000000005,
+        "bootstrap_std": 0.0072303571142786575,
+        "ci_95": [
+          0.012,
+          0.042
+        ]
+      }
+    }
+  }
+}

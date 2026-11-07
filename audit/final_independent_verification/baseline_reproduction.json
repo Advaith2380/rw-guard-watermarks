@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "models": {
+    "logistic_regression": {
+      "n_sources": 500,
+      "n_samples": 1000,
+      "auc": 0.55686,
+      "auc_ci_95": [
+        0.5425198,
+        0.5718932999999999
+      ],
+      "tpr_at_1pct_fpr": 0.01,
+      "tpr_at_1pct_fpr_ci_95": [
+        0.006,
+        0.02
+      ],
+      "fixed_threshold_tpr": 0.018,
+      "fixed_threshold_fpr": 0.016
+    },
+    "random_forest": {
+      "n_sources": 500,
+      "n_samples": 1000,
+      "auc": 0.549974,
+      "auc_ci_95": [
+        0.5249619000000001,
+        0.5747144
+      ],
+      "tpr_at_1pct_fpr": 0.02,
+      "tpr_at_1pct_fpr_ci_95": [
+        0.008,
+        0.04
+      ],
+      "fixed_threshold_tpr": 0.006,
+      "fixed_threshold_fpr": 0.0
+    },
+    "strength_matched_single": {
+      "n_sources": 300,
+      "n_samples": 600,
+      "auc": 0.5746777777777777,
+      "auc_ci_95": [
+        0.5544208333333334,
+        0.5955336111111111
+      ],
+      "tpr_at_1pct_fpr": 0.05,
+      "tpr_at_1pct_fpr_ci_95": [
+        0.02,
+        0.07333333333333333
+      ],
+      "fixed_threshold_tpr": 0.21666666666666667,
+      "fixed_threshold_fpr": 0.14
+    },
+    "matched_noise_control": {
+      "n_sources": 300,
+      "n_samples": 600,
+      "auc": 0.7295777777777778,
+      "auc_ci_95": [
+        0.7032205555555555,
+        0.7566675
+      ],
+      "tpr_at_1pct_fpr": 0.05,
+      "tpr_at_1pct_fpr_ci_95": [
+        0.016666666666666666,
+        0.10333333333333333
+      ],
+      "fixed_threshold_tpr": 0.21666666666666667,
+      "fixed_threshold_fpr": 0.06333333333333334
+    },
+    "rwguard_common_500_test": {
+      "n_sources": 500,
+      "n_samples": 1000,
+      "auc": 0.847696,
+      "auc_ci_95": [
+        0.8241474,
+        0.8701924
+      ],
+      "tpr_at_1pct_fpr": 0.062,
+      "tpr_at_1pct_fpr_ci_95": [
+        0.01,
+        0.182
+      ],
+      "fixed_threshold_tpr": 0.198,
+      "fixed_threshold_fpr": 0.026
+    }
+  }
+}

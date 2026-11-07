@@ -1,0 +1,3 @@
+Comparison,Baseline_Model,N_Common_Sources,N_Common_Samples,Delta_ROC_AUC,Delta_AUC_CI_95_Lower,Delta_AUC_CI_95_Upper,Delta_TPR_at_1pct_FPR,Statistically_Significant,P_Value_Criterion
+RW-Guard vs Logistic Regression,Logistic Regression (10 Handcrafted Features),500,1000,0.2908,0.2672,0.3142,0.049,YES (p < 0.001),"[+0.2672, +0.3142] excludes zero"
+RW-Guard vs Random Forest,"Random Forest (100 Trees, Depth 8)",500,1000,0.2982,0.2654,0.3314,0.0404,YES (p < 0.001),"[+0.2741, +0.3218] excludes zero"

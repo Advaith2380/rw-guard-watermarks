@@ -1,0 +1,32 @@
+RW-GUARD AUTOMATED REGRESSION TEST SUITE RESULTS
+Status: PASS
+Total Tests Run: 22
+Passed: 22
+Failures: 0
+Errors: 0
+Execution Time: 23.282 seconds
+
+Detailed Test Breakdown:
+--------------------------------------------------------------------------------
+test_determinism.TestDeterminism.test_eval_dataset_sample_reproducibility [PASS] (0.001s)
+test_determinism.TestDeterminism.test_split_paths_deterministic   [PASS] (0.001s)
+test_determinism.TestDeterminism.test_split_paths_isolation       [PASS] (0.000s)
+test_integration_faculty.TestFacultyIntegrations.test_feature_extraction_dimension_and_finite [PASS] (0.040s)
+test_integration_faculty.TestFacultyIntegrations.test_four_attack_outcome_categories [PASS] (0.002s)
+test_integration_faculty.TestFacultyIntegrations.test_grouped_source_bootstrap_reproducibility [PASS] (0.120s)
+test_integration_faculty.TestFacultyIntegrations.test_strength_matching_binary_search [PASS] (0.003s)
+test_metrics.TestMetrics.test_bootstrap_ci                        [PASS] (0.116s)
+test_metrics.TestMetrics.test_rates_at                            [PASS] (0.000s)
+test_metrics.TestMetrics.test_roc_auc_chance                      [PASS] (0.000s)
+test_metrics.TestMetrics.test_roc_auc_inverted                    [PASS] (0.000s)
+test_metrics.TestMetrics.test_roc_auc_perfect                     [PASS] (0.001s)
+test_metrics.TestMetrics.test_summarize_format                    [PASS] (0.000s)
+test_metrics.TestMetrics.test_threshold_at_fpr                    [PASS] (0.000s)
+test_models.TestModels.test_all_architectures_forward             [PASS] (16.414s)
+test_models.TestModels.test_highpass_filter_shape_and_range       [PASS] (0.006s)
+test_models.TestModels.test_resolution_invariance                 [PASS] (0.814s)
+test_outcomes.TestOutcomes.test_classify_attack_outcome_logic     [PASS] (0.000s)
+test_outcomes.TestOutcomes.test_compute_bit_accuracy              [PASS] (0.000s)
+test_watermarks.TestWatermarks.test_all_seven_schemes_embed_and_extract [PASS] (0.319s)
+test_watermarks.TestWatermarks.test_same_scheme_overwriting       [PASS] (0.019s)
+test_watermarks.TestWatermarks.test_stegastamp_embed_and_decode   [PASS] (5.394s)

@@ -1,0 +1,35 @@
+RW-GUARD FACULTY FINAL SUBMISSION DIRECTORY MANIFEST
+============================================================
+README.md                                         15,933 bytes
+SUBMISSION_FILE_MANIFEST.txt                           0 bytes
+audit\matched_controls_results.json                8,991 bytes
+audit\outcome_stratification_results.json          4,323 bytes
+audit\pacs_calibration_results.json                8,609 bytes
+audit\shortcut_baseline_results.json               5,925 bytes
+audit\stegastamp_evaluation_results.json           2,291 bytes
+audit\trustmark_evaluation_results.json           13,326 bytes
+checkpoints\adv_defended_eps1.pt               9,909,673 bytes
+checkpoints\CHECKPOINT_SHA256_MANIFEST.txt           175 bytes
+checkpoints\rwguard_final_7scheme.pt           9,909,673 bytes
+configs\final_model_config.json                    1,927 bytes
+docs\ARCHITECTURE.md                               6,580 bytes
+docs\DATASET_AND_SPLITS.md                         6,661 bytes
+docs\EXPERIMENT_PROTOCOLS.md                       5,584 bytes
+docs\faculty_requirement_matrix.csv               29,448 bytes
+docs\faculty_requirement_matrix.json              48,233 bytes
+docs\FACULTY_REQUIREMENT_TRACEABILITY.md           9,168 bytes
+docs\LIMITATIONS_AND_THREAT_MODEL.md               5,009 bytes
+docs\PROJECT_OVERVIEW.md                           8,114 bytes
+docs\REFERENCE_VERIFICATION_REPORT.md              6,959 bytes
+docs\RELEASE_NOTES.md                              3,473 bytes
+docs\REPRODUCIBILITY.md                            4,392 bytes
+docs\RESULTS_REFERENCE.md                          6,574 bytes
+docs\STATISTICAL_METHODS.md                        5,033 bytes
+docs\SUBMISSION_CONTENTS.md                        5,095 bytes
+manuscript\corrected_final_manuscript.docx     3,087,478 bytes
+manuscript\corrected_final_manuscript.pdf      1,052,901 bytes
+results\adversarial_results.json                   2,977 bytes
+results\FINAL_RESOLUTION_METRICS_VERIFIED.csv      1,585 bytes
+results\resolution_predictions.npz                48,338 bytes
+results\seed_statistics.json                       2,610 bytes
+scripts\verify_faculty_submission.py              15,395 bytes

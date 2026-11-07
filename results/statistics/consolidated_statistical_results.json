@@ -1,0 +1,884 @@
+{
+  "status": "PASS",
+  "description": "Comprehensive statistical confidence intervals across all evaluated experimental conditions",
+  "methodology": "Source-grouped bootstrap resampling (B=2,000 replicates) for empirical trials; Hanley-McNeil & Wilson score intervals for secondary conditions",
+  "conditions": {
+    "primary_in_distribution": {
+      "dataset": "MS-COCO Held-Out",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8542675555555556,
+        "ci_95": [
+          0.8407867,
+          0.8674106
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.07866666666666666,
+        "ci_95": [
+          0.05,
+          0.106
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.18666666666666668,
+        "ci_95": [
+          0.168,
+          0.20666666666666667
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.03333333333333333,
+        "ci_95": [
+          0.024666666666666667,
+          0.043333333333333335
+        ]
+      }
+    },
+    "rwguard_common_500_test": {
+      "dataset": "MS-COCO Common 500",
+      "n_sources": 500,
+      "n_samples": 1000,
+      "roc_auc": {
+        "estimate": 0.847696,
+        "ci_95": [
+          0.8241474,
+          0.8701924
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.062,
+        "ci_95": [
+          0.01,
+          0.182
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.198
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.026
+      }
+    },
+    "logistic_regression": {
+      "dataset": "MS-COCO Common 500",
+      "n_sources": 500,
+      "n_samples": 1000,
+      "roc_auc": {
+        "estimate": 0.55686,
+        "ci_95": [
+          0.5425198,
+          0.5718932999999999
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.01,
+        "ci_95": [
+          0.006,
+          0.02
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.018
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.016
+      }
+    },
+    "random_forest": {
+      "dataset": "MS-COCO Common 500",
+      "n_sources": 500,
+      "n_samples": 1000,
+      "roc_auc": {
+        "estimate": 0.549974,
+        "ci_95": [
+          0.5249619000000001,
+          0.5747144
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.02,
+        "ci_95": [
+          0.008,
+          0.04
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.006
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.0
+      }
+    },
+    "strength_matched_single": {
+      "dataset": "MS-COCO te[:300]",
+      "n_sources": 300,
+      "n_samples": 600,
+      "roc_auc": {
+        "estimate": 0.5746777777777777,
+        "ci_95": [
+          0.5544208333333334,
+          0.5955336111111111
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.05,
+        "ci_95": [
+          0.02,
+          0.07333333333333333
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.21666666666666667
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.14
+      }
+    },
+    "matched_noise_control": {
+      "dataset": "MS-COCO te[:300]",
+      "n_sources": 300,
+      "n_samples": 600,
+      "roc_auc": {
+        "estimate": 0.7295777777777778,
+        "ci_95": [
+          0.7032205555555555,
+          0.7566675
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.05,
+        "ci_95": [
+          0.016666666666666666,
+          0.10333333333333333
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.21666666666666667
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.06333333333333334
+      }
+    },
+    "stegastamp_zero_shot": {
+      "dataset": "StegaStamp COCO",
+      "n_sources": 150,
+      "n_samples": 300,
+      "roc_auc": {
+        "estimate": 0.9292888888888889,
+        "ci_95": [
+          0.9023511111111111,
+          0.9542677777777778
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.16666666666666666,
+        "ci_95": [
+          0.013333333333333334,
+          0.4
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.05333333333333334,
+        "ci_95": [
+          0.02,
+          0.09333333333333334
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.006666666666666667,
+        "ci_95": [
+          0.0,
+          0.02
+        ]
+      }
+    },
+    "trustmark_primary_7scheme_zero_shot": {
+      "dataset": "TrustMark (COCO)",
+      "n_sources": 100,
+      "n_samples": 200,
+      "roc_auc": {
+        "estimate": 0.6562,
+        "ci_95": [
+          0.6148,
+          0.7007049999999999
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.03,
+        "ci_95": [
+          0.0,
+          0.14
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.01,
+        "ci_95": [
+          0.0,
+          0.03
+        ]
+      }
+    },
+    "trustmark_supervised_adapted_15pct": {
+      "dataset": "TrustMark (COCO)",
+      "n_sources": 100,
+      "n_samples": 200,
+      "roc_auc": {
+        "estimate": 0.8505,
+        "ci_95": [
+          0.80338,
+          0.8937075
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.22,
+        "ci_95": [
+          0.15,
+          0.38
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.18,
+        "ci_95": [
+          0.11,
+          0.26
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "trustmark_historical_4scheme_zero_shot": {
+      "dataset": "TrustMark (COCO)",
+      "n_sources": 100,
+      "n_samples": 200,
+      "roc_auc": {
+        "estimate": 0.5344,
+        "ci_95": [
+          0.5023,
+          0.5691025000000001
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.03,
+        "ci_95": [
+          0.0,
+          0.07
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.01,
+        "ci_95": [
+          0.0,
+          0.03
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.01,
+        "ci_95": [
+          0.0,
+          0.03
+        ]
+      }
+    },
+    "outcome_dual_survival": {
+      "dataset": "MS-COCO Stratified Attacks",
+      "n_sources": 425,
+      "n_samples": 425,
+      "attack_percentage": 85.0,
+      "detection_rate_fixed_thr": {
+        "estimate": 0.20705882352941177,
+        "ci_95": [
+          0.16705882352941176,
+          0.24705882352941178
+        ]
+      },
+      "auc_vs_single_controls": {
+        "estimate": 0.7362036579337617,
+        "ci_95": [
+          0.7037,
+          0.7687
+        ]
+      }
+    },
+    "outcome_successful_overwrite": {
+      "dataset": "MS-COCO Stratified Attacks",
+      "n_sources": 67,
+      "n_samples": 67,
+      "attack_percentage": 13.4,
+      "detection_rate_fixed_thr": {
+        "estimate": 0.11940298507462686,
+        "ci_95": [
+          0.04477611940298507,
+          0.19402985074626866
+        ]
+      },
+      "auc_vs_single_controls": {
+        "estimate": 0.6387181738366988,
+        "ci_95": [
+          0.5636,
+          0.7138
+        ]
+      }
+    },
+    "outcome_failed_attacker_embedding": {
+      "dataset": "MS-COCO Stratified Attacks",
+      "n_sources": 8,
+      "n_samples": 8,
+      "attack_percentage": 1.6,
+      "detection_rate_fixed_thr": {
+        "estimate": 0.125,
+        "ci_95": [
+          0.0,
+          0.375
+        ]
+      },
+      "auc_vs_single_controls": {
+        "estimate": 0.7846638655462185,
+        "ci_95": [
+          0.595,
+          0.9743
+        ]
+      }
+    },
+    "pacs_photo": {
+      "dataset": "PACS Photo",
+      "n_sources": 200,
+      "n_samples": 400,
+      "roc_auc": {
+        "estimate": 0.8192,
+        "ci_95": [
+          0.7823656250000001,
+          0.85635
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.09,
+        "ci_95": [
+          0.02,
+          0.21
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.15,
+        "ci_95": [
+          0.105,
+          0.205
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.025,
+        "ci_95": [
+          0.005,
+          0.05
+        ]
+      },
+      "domain_recalibrated_threshold": 1.4528435468673706,
+      "domain_recalibrated_tpr": 0.09,
+      "domain_recalibrated_fpr": 0.01
+    },
+    "pacs_art_painting": {
+      "dataset": "PACS Art_painting",
+      "n_sources": 200,
+      "n_samples": 400,
+      "roc_auc": {
+        "estimate": 0.861625,
+        "ci_95": [
+          0.8247212500000001,
+          0.8973
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.06,
+        "ci_95": [
+          0.01,
+          0.22512499999999933
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.18,
+        "ci_95": [
+          0.13,
+          0.235
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.035,
+        "ci_95": [
+          0.01,
+          0.065
+        ]
+      },
+      "domain_recalibrated_threshold": 1.6359449625015259,
+      "domain_recalibrated_tpr": 0.06,
+      "domain_recalibrated_fpr": 0.01
+    },
+    "pacs_cartoon": {
+      "dataset": "PACS Cartoon",
+      "n_sources": 200,
+      "n_samples": 400,
+      "roc_auc": {
+        "estimate": 0.8677,
+        "ci_95": [
+          0.833449375,
+          0.9006687499999998
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.13,
+        "ci_95": [
+          0.06,
+          0.275
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.225,
+        "ci_95": [
+          0.165,
+          0.285
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.025,
+        "ci_95": [
+          0.005,
+          0.05
+        ]
+      },
+      "domain_recalibrated_threshold": 1.5493344068527222,
+      "domain_recalibrated_tpr": 0.13,
+      "domain_recalibrated_fpr": 0.01
+    },
+    "pacs_sketch": {
+      "dataset": "PACS Sketch",
+      "n_sources": 200,
+      "n_samples": 400,
+      "roc_auc": {
+        "estimate": 0.824725,
+        "ci_95": [
+          0.7842712500000001,
+          0.86307875
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.13,
+        "ci_95": [
+          0.07,
+          0.25
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.135,
+        "ci_95": [
+          0.09,
+          0.185
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.015,
+        "ci_95": [
+          0.0,
+          0.035
+        ]
+      },
+      "domain_recalibrated_threshold": 1.3981610536575317,
+      "domain_recalibrated_tpr": 0.13,
+      "domain_recalibrated_fpr": 0.01
+    },
+    "multiseed_seed": {
+      "dataset": "MS-COCO 500 Held-Out",
+      "n_sources": 500,
+      "n_samples": 1000,
+      "roc_auc": {
+        "estimate": 0.84968,
+        "ci_95": [
+          0.8259279,
+          0.8720760999999999
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.1,
+        "ci_95": [
+          0.053950000000000005,
+          0.146
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.188,
+        "ci_95": [
+          0.154,
+          0.222
+        ]
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.03,
+        "ci_95": [
+          0.016,
+          0.046
+        ]
+      }
+    },
+    "resolution_128px": {
+      "dataset": "MS-COCO (128px)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8463155555555556,
+        "ci_95": [
+          0.8323,
+          0.8604
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.06933333333333333,
+        "ci_95": [
+          0.0575,
+          0.0833
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.326
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.06666666666666667
+      }
+    },
+    "resolution_256px": {
+      "dataset": "MS-COCO (256px)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8542675555555556,
+        "ci_95": [
+          0.8406,
+          0.868
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.07866666666666666,
+        "ci_95": [
+          0.0661,
+          0.0934
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.18666666666666668
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.03333333333333333
+      }
+    },
+    "resolution_384px": {
+      "dataset": "MS-COCO (384px)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8579324444444445,
+        "ci_95": [
+          0.8444,
+          0.8715
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.08333333333333333,
+        "ci_95": [
+          0.0704,
+          0.0984
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.08866666666666667
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.011333333333333334
+      }
+    },
+    "benign_none": {
+      "dataset": "MS-COCO (Benign: none)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8684711111111111,
+        "ci_95": [
+          0.8554,
+          0.8815
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.07666666666666666,
+        "ci_95": [
+          0.0643,
+          0.0912
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.218
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.036
+      }
+    },
+    "benign_jpeg95": {
+      "dataset": "MS-COCO (Benign: jpeg95)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8490657777777778,
+        "ci_95": [
+          0.8351,
+          0.863
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.088,
+        "ci_95": [
+          0.0747,
+          0.1034
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.17466666666666666
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.03133333333333333
+      }
+    },
+    "benign_jpeg85": {
+      "dataset": "MS-COCO (Benign: jpeg85)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.83392,
+        "ci_95": [
+          0.8194,
+          0.8485
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.07133333333333333,
+        "ci_95": [
+          0.0594,
+          0.0855
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.07733333333333334
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.010666666666666666
+      }
+    },
+    "benign_jpeg75": {
+      "dataset": "MS-COCO (Benign: jpeg75)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8343502222222222,
+        "ci_95": [
+          0.8198,
+          0.8489
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.06466666666666666,
+        "ci_95": [
+          0.0533,
+          0.0783
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.078
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.013333333333333334
+      }
+    },
+    "benign_noise1": {
+      "dataset": "MS-COCO (Benign: noise1)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8624746666666666,
+        "ci_95": [
+          0.8492,
+          0.8758
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.07933333333333334,
+        "ci_95": [
+          0.0667,
+          0.0941
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.226
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.038
+      }
+    },
+    "benign_noise2": {
+      "dataset": "MS-COCO (Benign: noise2)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8492577777777778,
+        "ci_95": [
+          0.8353,
+          0.8632
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.07266666666666667,
+        "ci_95": [
+          0.0606,
+          0.0869
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.248
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.04466666666666667
+      }
+    },
+    "benign_blur0.5": {
+      "dataset": "MS-COCO (Benign: blur0.5)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8538311111111111,
+        "ci_95": [
+          0.8401,
+          0.8675
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.04533333333333334,
+        "ci_95": [
+          0.0359,
+          0.0571
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.12933333333333333
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.02266666666666667
+      }
+    },
+    "benign_bright": {
+      "dataset": "MS-COCO (Benign: bright)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8547995555555555,
+        "ci_95": [
+          0.8411,
+          0.8685
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.056666666666666664,
+        "ci_95": [
+          0.0461,
+          0.0695
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.16066666666666668
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.02666666666666667
+      }
+    },
+    "benign_jpeg85+noise1": {
+      "dataset": "MS-COCO (Benign: jpeg85+noise1)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8322622222222222,
+        "ci_95": [
+          0.8176,
+          0.8469
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.048666666666666664,
+        "ci_95": [
+          0.0389,
+          0.0608
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.08133333333333333
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.013333333333333334
+      }
+    },
+    "benign_blur0.5+jpeg85": {
+      "dataset": "MS-COCO (Benign: blur0.5+jpeg85)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8329142222222222,
+        "ci_95": [
+          0.8183,
+          0.8475
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.059333333333333335,
+        "ci_95": [
+          0.0485,
+          0.0725
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.08266666666666667
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.016666666666666666
+      }
+    },
+    "benign_bright+jpeg85": {
+      "dataset": "MS-COCO (Benign: bright+jpeg85)",
+      "n_sources": 1500,
+      "n_samples": 3000,
+      "roc_auc": {
+        "estimate": 0.8122524444444444,
+        "ci_95": [
+          0.7969,
+          0.8276
+        ]
+      },
+      "tpr_at_1pct_fpr": {
+        "estimate": 0.046,
+        "ci_95": [
+          0.0365,
+          0.0578
+        ]
+      },
+      "fixed_threshold_tpr": {
+        "estimate": 0.062
+      },
+      "fixed_threshold_fpr": {
+        "estimate": 0.013333333333333334
+      }
+    }
+  }
+}

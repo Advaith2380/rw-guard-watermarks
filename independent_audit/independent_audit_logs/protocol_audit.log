@@ -1,0 +1,30 @@
+================================================================================
+RW-GUARD INDEPENDENT PROTOCOL & PROVENANCE AUDIT LOG
+================================================================================
+
+[PROVENANCE] Selected Training Epoch: 14 / 15
+[PROVENANCE] Best Validation AUC:     0.856689
+[PROVENANCE] Checkpoint Origin Path:  runs/seed0/best.pt
+[PROVENANCE] Selection Rule:         Argmax Validation ROC-AUC (strictly pre-test)
+[STATUS] Primary Checkpoint Validation Selection: PASS
+
+[THRESHOLD] Frozen Operating Threshold: tau = 1.3394016027450562
+[THRESHOLD] Calibration Set:            300 validation negative sources
+[THRESHOLD] Calibration Target:         1.00% validation FPR
+[THRESHOLD] Test Data Usage:            Zero test data involved in threshold search
+[STATUS] Operating Threshold Discipline: PASS
+
+[SCHEMES] Checkpoint Schemes: ['dct_qim', 'dwt_qim', 'ss_spatial', 'fft_ring', 'nmp_freq', 'svd_qim', 'dct_svd']
+[STATUS] Seven-Scheme Identification: PASS
+
+[ADVERSARIAL] Primary Checkpoint SHA-256:  37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+[ADVERSARIAL] Defended Checkpoint SHA-256: 27954fd43360830d76fa107036567e9486844fa85d6a058c84d438b2e6caefed
+[STATUS] Adversarial Checkpoint Isolation: PASS
+
+[OWNERSHIP] Total Attacks Classified: 500 / 500
+[OWNERSHIP] Percentage Sum:           100.00%
+[STATUS] Ownership Outcome Partition: PASS
+
+[RECONCILIATION] Dual-Survival Rate: 425 / 500 = 85.0% [95% CI: 81.6%, 87.9%]
+[RECONCILIATION] Historical Prototype: 88.7% (early 4-scheme subset)
+[RECONCILIATION] Ground Truth Reconciled: PASS

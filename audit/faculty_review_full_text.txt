@@ -1,0 +1,219 @@
+Peer Review Report: Forensic Detection of Re-Watermarking Attacks
+Overall Assessment and Research-Gap Verification
+Manuscript: Forensic Detection of Re-Watermarking Attacks: A Deep Learning Approach to Identifying Ownership Forgery in Digital Images 
+Target journal: Scientific Reports
+Review recommendation: Major Revision
+Current publication status: Not suitable for acceptance in its present form, but the study is sufficiently promising to justify major revision rather than outright rejection.
+Scientific Reports evaluates papers principally on scientific validity, technical soundness, support of claims by data, appropriate statistical analysis, literature context, reproducibility, data availability, and clarity rather than on perceived impact alone. [1] The manuscript is within the journal's broad engineering/computational-science scope, but several experimental-design and reproducibility issues currently prevent the major claims from being considered fully supported. [2]
+Does the claimed research gap actually exist?
+Yes, but only in a narrower form than the manuscript currently states.
+My recommendation
+Rather than positioning the paper as the first approach to detecting re-watermarking attacks, position it as a systematic forensic detection framework for distinguishing adversarial re-watermarking from legitimate watermarking, provided your experiments actually establish that distinction.
+My literature search through October 2026 did not identify a prior work whose central task is exactly the following combination:
+passive, key-free classification of whether an image has undergone sequential independent watermark embedding, distinguishing re-watermarked images from appropriately matched singly-watermarked controls while testing generalization to unseen watermark families.
+That is a defensible and potentially useful research gap. However, the surrounding field is considerably more developed than the present manuscript suggests.
+Bulychev, Marchant, and Rubinstein already established re-watermarking itself as a generic watermark-removal strategy and additionally trained a classifier to identify the presence and identity of the existing watermark, reporting overall identification accuracies of approximately 0.878–0.953. Their classifier serves attack selection rather than the precise single-vs-double forensic classification proposed by RW-Guard, but the distinction must be made explicit. [3]
+Likewise, watermark-attack forensics is no longer an almost unexplored area. Evennou and Kijak formulate Watermark Removal Detection, showing that removal pipelines leave forensic traces detectable at very low false-positive rates. [4] Goonatilake and Ateniese similarly report that attack-specific classifiers detect at least 99% of removal outputs at a 1% false-positive target in the current version of their study. [5] Most importantly for an October 2026 submission, the September 2026 RemTraceNet paper explicitly studies watermark-attack-specific forensics, separates attacked images from both clean and unattacked-watermarked controls to prevent watermark-presence shortcuts, and reports three-seed macro TPR@1%FPR values of 82.75–88.17% across its evaluation settings. [6]
+There is also now a closely related key-free detection task. Ao et al.'s CVPR Workshops 2026 AWPD/FSNet work introduces agnostic watermark-presence detection—determining whether an image carries an invisible watermark without requiring decoding information—and uses frequency-sensitive modeling specifically to support generalization across embedding algorithms. [7] Earlier research also examined overwriting attacks before the 2026 WAW paper, including Chen et al.'s frequency-domain overwriting work and DLOVE's neural watermark overwriting attack study. [8]
+The manuscript should therefore replace broad novelty language such as “detection of watermark overwriting remains mostly unexplored” with something substantially more precise, for example:
+“Prior work has studied re-watermarking as an attack, watermark-method identification, watermark-presence detection, and forensic traces left by watermark-removal pipelines. We instead investigate a distinct passive processing-history task: determining from image pixels alone whether sequential independent watermark embedding has occurred, without watermark keys or a scheme-specific decoder, and evaluating transfer to watermark families excluded from training.”
+That formulation appears defensible from the literature reviewed. It also makes clear that the novelty is in the specific forensic decision problem and generalization setting, not in watermark-attack forensics broadly. [9]
+A second literature correction is important. The manuscript treats the PECCVAI-inspired method as part of a seven-method watermark testbed, but the code describes nmp_freq explicitly as a cheap stand-in that approximates PECCVAI's Non-Melting-Point selection with local variance and combines it with custom block-DCT QIM. It should therefore be called a PECCVAI-inspired simulator, not an implementation or reproduction of PECCVAI. The actual PECCVAI CVPR 2026 method embeds watermarks in semantically stable Non-Melting Points using multi-channel frequency-domain encoding and noisy burnishing; this is materially richer than the approximation used here. [10]
+Strengths
+The manuscript has several genuine strengths that make major revision worthwhile.
+First, the research question is timely and technically meaningful. Re-watermarking is not simply another image corruption: a second watermark can both weaken an earlier provenance signal and install an alternative claim, creating a forensic problem different from ordinary watermark-presence detection or straightforward watermark removal. The underlying threat has been demonstrated experimentally in contemporary research. [3]
+Second, the proposed detector has a clear forensic inductive bias rather than being an arbitrary image classifier. The public implementation uses fixed high-pass residual filters followed by a residual CNN and combined global average/max pooling, allowing the same model weights to process different spatial dimensions. The manuscript's ablation finding—that performance degrades sharply without the residual front end or under generic comparison architectures—is therefore scientifically interesting, although the current ablation design needs strengthening before a causal architectural conclusion can be made. 
+Third, the authors have attempted a broad evaluation rather than reporting only a favorable in-distribution number. The manuscript includes benign transformations, several resolutions, scheme holdout, PACS cross-domain data, neural-watermarker testing, architecture ablations, repeated seeds, combined crop/JPEG processing, and white-box adversarial evaluation. The willingness to report failures—including poor unseen-both generalization, domain calibration failure, and strong PGD vulnerability—is particularly positive. This is well aligned with Scientific Reports, which explicitly accepts technically sound negative results and does not require every experiment to produce a positive outcome. [2]
+Fourth, the data split is designed at the source-image level, so the same COCO source photograph does not intentionally occur across train, validation, and test partitions. The repository function split_paths explicitly performs a deterministic source-level split. This is an important safeguard against a common form of image-level leakage.
+Fifth, the public repository materially improves transparency. It includes data downloading, watermark generation, model architecture, training, evaluation, neural-watermarker integrations, cross-domain testing, and PGD code. TrustMark caching also explicitly uses only the training and validation source partitions and does not touch the test split, which is a sensible leakage-prevention design.
+Finally, integrating a real pretrained neural watermarker is an important step beyond a purely synthetic testbed. TrustMark itself is a peer-reviewed ICCV 2025 system offering robust watermarking and watermark removal for arbitrary-resolution images. [11] Although the current TrustMark experiment is insufficient to establish universal generalization, it is the right direction scientifically.
+Weaknesses
+The principal conceptual problem is the definition of a “re-watermarking attack”
+This is the most important scientific issue in the manuscript.
+The positive class is generated by applying a victim watermark and then an attacker watermark. In code, any pair of selected schemes is labeled positive after two embedding calls; success of the second operation at suppressing the victim is not part of the label definition. Yet the manuscript's own watermark-interference experiments show that for several cross-scheme combinations, the original watermark remains highly readable.
+Accordingly, the positive class presently means:
+“an image that has received two watermark-embedding operations”
+rather than necessarily:
+“an image in which an ownership watermark was successfully overwritten or forged.”
+Those are related but scientifically distinct problems.
+This matters because the title and much of the discussion use the stronger language of ownership forgery and watermark suppression. If both watermarks survive, the example may still create ownership ambiguity, but it is not equivalent to successful removal of the victim signal. If the second watermark also fails to decode, the example is weaker still.
+The final study should therefore stratify positive cases prospectively. At minimum, I recommend:
+Successful overwrite: attacker payload remains reliably recoverable while victim detection/bit recovery falls below a predefined failure criterion.
+Dual-survival or ownership-ambiguity case: both signals remain recoverable.
+Failed attack: attacker embedding or the intended interference does not meet the stated success condition.
+The detector should be evaluated separately on these strata. Otherwise the manuscript needs to rename its task from “forensic detection of re-watermarking attacks/ownership forgery” to the more neutral “detection of sequential double watermark embedding.”
+There is a serious shortcut-learning risk
+The current data-generating process permits a much simpler explanation for the headline performance than the manuscript presently considers.
+For positive samples, the image is passed through two watermark embedding operations. For negative samples, the code first chooses a negative label and then uses either a clean image or a singly-watermarked image. In other words, the detector can potentially exploit the amount or structure of accumulated residual energy:
+clean image: zero watermark perturbations;
+singly-watermarked negative: one watermark perturbation;
+re-watermarked positive: two watermark perturbations.
+Because ForensicNet intentionally suppresses image content and emphasizes high-frequency residuals, this is precisely the kind of shortcut to which it may be especially sensitive. An AUC of 0.859 is therefore not yet sufficient evidence that the network recognizes a uniquely forensic signature of overwriting rather than simply “more watermark-like high-frequency perturbation.”
+The recently released RemTraceNet work is especially relevant here because it deliberately evaluates attack outputs separately against clean controls and unattacked-watermarked controls in order to prevent watermark-presence shortcuts. [6] RW-Guard needs an equally careful control design.
+The strongest primary benchmark should therefore be single-watermarked versus re-watermarked, with clean images reported as a secondary negative category rather than mixed into the principal task.
+Additional matched controls are essential:
+singly-watermarked images at increased embedding strength such that their PSNR or residual norm matches the re-watermarked images;
+single watermarking followed by matched Gaussian/high-frequency noise;
+two benign processing passes with matched residual energy;
+same total perturbation budget distributed through one versus two embedding operations;
+residual-energy or frequency-energy logistic regression as a trivial baseline.
+If ForensicNet still performs substantially above these controls, the forensic interpretation becomes much stronger. If it does not, the paper would still contain an interesting result, but the conclusion would need to shift from “re-watermarking leaves a specific trace” toward “sequential embedding increases detectable residual statistics.”
+The seven-scheme narrative and the headline checkpoint are not internally coherent
+The manuscript states that the primary headline model was trained before three additional watermark schemes were introduced; consequently the central checkpoint underlying several main results used only four watermark families, while later experiments used an expanded seven-scheme testbed. 
+This is a major reporting problem for a final journal article. Readers should not need to track which figures arise from four-scheme models, seven-scheme models, holdout-specific retraining, neural-mix models, or later experiment variants.
+The final submission should select one frozen primary protocol, retrain the final detector, and rerun all major evaluation axes from that same protocol. This should include the main test result, benign robustness, resolution, external-domain evaluation, architecture comparison, seed replication, successful-attack stratification, and real-watermarker tests.
+Without this consolidation, claims such as “our seven-scheme testbed produces AUC 0.859” can easily be read more strongly than the experiment actually demonstrates.
+The custom watermark testbed does not yet support broad “scheme-agnostic” claims
+The repository is commendably candid that these are simulated watermark schemes, and its source comments explain that neural methods were initially replaced because pretrained models were heavier and more difficult to run. The seven schemes cover useful transform and spatial patterns, but several are custom constructions rather than faithful implementations of independently developed state-of-the-art systems. nmp_freq, in particular, is explicitly described in code as an approximation to PECCVAI's learned mechanism.
+The zero-shot TrustMark result is therefore highly informative: AUC 0.696 suggests that transfer beyond the hand-coded artifact families is present but limited. fileciteturn0file0 The AUC of 0.925 after mixing TrustMark examples into training is valuable, but that is supervised in-family adaptation, not evidence of zero-shot scheme-agnostic behavior.
+The repository already contains support for both TrustMark and StegaStamp, as well as mixed training. This should be completed before journal submission. At minimum, I recommend a final study containing TrustMark and StegaStamp, with one real neural system excluded from training and used only for final testing. A still stronger paper would add another qualitatively different production/research watermark system.
+Until then, terms such as “general-purpose,” “universal,” and “scheme-agnostic” should be avoided or heavily qualified. “Cross-scheme detector” or “partially scheme-generalizing detector” would better match the present evidence.
+The unseen-scheme result is informative but the low-FPR result is much weaker than the AUC implies
+A central positive claim is the approximately 0.82 AUC obtained when the attacker scheme is unseen. However, the manuscript also reports very low TPR at the strict 1% FPR operating point in that setting. 
+For a forensic detector intended to avoid false allegations of manipulation or forged ownership, performance in the low-FPR region is arguably more important than global ROC AUC. This distinction needs to become central to the Results and Discussion.
+The main in-distribution result also illustrates an important calibration issue: the manuscript describes a threshold selected to target 1% FPR on validation, yet its observed test FPR is approximately 3.5%. This is not a “1% FPR operating point” on the test distribution. It is correctly described as:
+a threshold selected on validation to target 1% FPR.
+The code indeed computes a fixed threshold from validation negatives and subsequently applies it unchanged across evaluation conditions. That methodology is defensible, but the terminology must be exact.
+Statistical reporting is below the level expected for the claims
+The manuscript mostly presents point estimates. Yet Scientific Reports asks authors to report sample sizes, descriptive variability, statistical methods, and appropriate uncertainty, and specifically emphasizes clear error analysis for statistical tables and figures. [12]
+This is particularly important at FPR targets of 1% or 0.1%. With limited validation negatives, the threshold is determined from only a very small tail of the score distribution. The repository's custom metric function directly selects the empirical threshold from sorted negative scores. Nothing is inherently wrong with that method, but the uncertainty surrounding such a threshold should not be ignored.
+The final manuscript should report:
+95% confidence intervals for AUC;
+confidence intervals for TPR and FPR at the fixed operating threshold;
+confidence intervals for TPR@1%FPR;
+variation across independent training seeds on the test set, not only validation AUC;
+paired model-comparison intervals/tests for principal ablations and baselines;
+uncertainty in the validation-derived operating threshold.
+Bootstrap confidence intervals are a practical choice for many of these quantities. For simple binomial rates, Wilson or exact intervals would also be appropriate.
+Three validation seeds lying in a narrow 0.003 AUC range are encouraging, but that result is not enough to establish reproducibility of all headline test conclusions.
+Exact seed reproducibility is not currently supported by the code
+This is a concrete implementation issue that should be fixed before making claims such as “a fixed logged random seed is applied to every experiment.”
+train.py sets torch.manual_seed(args.seed) and np.random.seed(args.seed). However, the training dataset independently creates:
+np.random.default_rng()
+without passing a seed. That generator controls training-image crop location, flipping, positive/negative label generation, watermark scheme selection, key, message, embedding strength, and benign operations. A seed set through the legacy global NumPy RNG therefore does not deterministically reproduce those sampled training examples.
+This is not a minor documentation problem. It directly conflicts with the strongest reproducibility wording in the manuscript.
+The authors should seed all relevant random generators, including worker-specific generators; document CUDA/cuDNN deterministic settings where applicable; archive the exact commands; and confirm reproducibility by rerunning at least one seed from a clean environment.
+There is a second reproducibility discrepancy: train.py has a default of 300 validation source images, although the manuscript describes a 500-image validation split. The precise checkpoint arguments may have overridden this default, so I would not assume the reported model actually used 300. However, the final paper must provide the saved checkpoint configuration or another machine-readable record proving exactly which value produced each reported result.
+The public repository also currently exposes source code but does not visibly include the reported runs/ directories, trained checkpoints, result JSON files, or an immutable archival release in the inspected repository root. Scientific Reports requires supporting data to be available for review and strongly encourages public availability of data needed to interpret and reproduce conclusions; it also requires central custom code to be made available on editor/reviewer request. [13]
+For publication, I recommend archiving:
+source-image split manifests;
+final checkpoint weights;
+all result JSON/CSV files;
+exact command lines;
+environment lock file;
+final source commit/tag;
+generated aggregate data underlying each table/figure.
+A persistent DOI-bearing archive would be substantially preferable to relying only on a mutable GitHub branch.
+The architecture ablation does not yet prove the mechanism claimed
+The current ablations are useful, especially the same-architecture high-pass/no-high-pass comparison. However, the stronger statement that the result depends specifically on the “particular combination” of fixed high-pass filters and the proposed residual architecture is not fully demonstrated.
+The plain CNN and ResNet-18 comparisons simultaneously change several factors: preprocessing, backbone, optimization dynamics, pooling, effective capacity, and downsampling pattern. A better factorial design would include:
+ForensicNet with versus without fixed high-pass filtering;
+ResNet-18 with versus without the same fixed high-pass preprocessing;
+simple CNN with versus without high-pass preprocessing;
+perhaps fixed versus trainable high-pass filters;
+identical data, augmentation, epochs, and tuned learning-rate conditions;
+multiple seeds for each major baseline.
+Steganalysis-specific baselines are also necessary. RemTraceNet, for example, compares against retrained SRNet, ZhuNet, and SiaStegNet under the same labels and protocol. [6] RW-Guard should ideally evaluate such architectures on its own task. AWPD/FSNet is also particularly relevant because it is a contemporary frequency-oriented, scheme-agnostic watermark detector. [7]
+At present, the manuscript demonstrates that the proposed design outperforms the selected generic baselines under this training setup, not that its exact architecture is uniquely necessary for re-watermarking forensics.
+Required Revisions
+I regard the following revisions as essential for acceptance rather than optional extensions.
+First, redefine the scientific task and rebuild the primary evaluation around appropriate controls. The final benchmark should make singly-watermarked versus re-watermarked images the central comparison. Clean images can remain as an auxiliary control. Positives should be stratified by whether the re-watermarking attack genuinely suppresses the victim, produces dual-readable ownership ambiguity, or fails. Add perturbation-matched single-watermark controls so the detector cannot succeed merely from total residual energy.
+Second, rerun the entire manuscript under one final protocol. The primary model should use the finalized watermark set, and the same model definition should support the main in-distribution result, robustness studies, domain studies, and principal conclusions. Holdout models can of course be separately trained where the hypothesis requires them, but this should be clearly labeled rather than intermixed with the primary checkpoint.
+Third, expand real-watermarker validation. Complete the StegaStamp integration that already exists in the repository and treat TrustMark and StegaStamp as first-class experiments rather than appendices to a mostly simulated benchmark. TrustMark's published version is ICCV 2025 and should be cited as such. [11] The manuscript should distinguish carefully between zero-shot performance and performance after including examples from a system during training.
+Fourth, add same-task forensic baselines and shortcut baselines. At minimum, compare against strong image/steganalysis classifiers under identical train/test data. Include simple residual-energy and frequency-statistics classifiers. This is necessary to establish whether the deep model is learning something beyond the most elementary consequence of applying two watermark transformations.
+Fifth, strengthen generalization. PACS is useful for style shift, but it is not a substitute for an independent natural-image source dataset. The final trained detector and threshold should be frozen and evaluated on an external natural-image corpus to establish whether performance is tied to COCO preprocessing/content statistics.
+Sixth, report statistical uncertainty throughout. Repeat the final primary experiment and principal baselines over multiple complete training seeds, report test-set means/distributions and confidence intervals, and quantify uncertainty in low-FPR rates and threshold calibration. The journal's statistical guidance explicitly expects sample size, center/variability measures, appropriate error analysis, and clear description of statistical procedures. [12]
+Seventh, correct deterministic reproducibility. Fix the unseeded NumPy Generator, seed DataLoader workers, pin the complete environment, state the exact validation sample count, and archive final checkpoints and result files. The code and manuscript should produce the same numbers from the same documented commands.
+Eighth, temper conclusions. Under the current results, “resolution-agnostic” should mean that the architecture accepts variable sizes and has been tested at the reported 128–384-pixel conditions; it should not imply arbitrary-resolution robustness. Similarly, “scheme-agnostic” is too strong when performance falls to approximately 0.58 AUC when both watermark families are unseen and to 0.696 zero-shot on TrustMark. fileciteturn0file0 “Generalizes partially to unseen embedding schemes” is a more accurate conclusion.
+The cross-domain conclusion also needs adjustment. High AUC with a poor fixed operating point is consistent with score-distribution shift and calibration problems, but it does not by itself prove that the internal representation is unaffected. A calibration analysis—reliability diagrams, Brier score/ECE, score histograms, and a prospective recalibration protocol—would support that interpretation.
+The adversarial section should remain, because reporting the vulnerability is a strength, but the wording should be limited to the attack actually tested. The repository PGD implementation uses an L∞-bounded random start followed by sign-gradient steps. A stronger journal version should report the norm, step size, random starts, restarts, sample count, attack objective, and confidence intervals and preferably verify the result under an additional strong first-order attack configuration.
+Section-by-Section Language, Reporting, and Format Review
+Title and front matter
+The present title contains approximately 16 words and is therefore within the journal's recommended maximum of 20 words. Scientific Reports recommends titles of no more than 20 words and abstracts of no more than 200 words. [12] However, “A Deep Learning Approach to Identifying Ownership Forgery” is broader than the measurement performed.
+A more defensible title would be:
+RW-Guard: Key-free forensic detection of sequential re-watermarking in digital images
+The title page currently reads like an academic project report, including “Team 12” and registration numbers. The journal expects author names, institutional affiliations with city/country, contact information, and an identified corresponding author. [12] Registration numbers and the team label should normally be removed from the journal manuscript.
+Abstract and keywords
+The current abstract is approximately 438 words, well above the journal's recommended 200-word maximum. Scientific Reports asks for an unstructured abstract of no more than 200 words that introduces the topic and summarizes the principal findings and implications. [12]
+It should be rewritten rather than merely shortened.
+A suitable structure would be:
+problem and exact research gap → method and data → principal result → unseen-scheme/real-watermarker result → major limitations → restrained conclusion.
+The current abstract also contains many expressions that are unsuitable for scientific English, including formulations such as “thoroughly implemented,” “lately showed,” “one more uncomplicated attack,” “every person collapses,” “sturdiness,” “clean exactness,” and repeated phrases such as “at least in law,” “in actual application,” “in many respects,” “broadly speaking,” and “all things considered.” These should not be locally patched; the abstract needs a complete professional rewrite.
+The keyword line accidentally contains “all things considered” as an additional keyword. The journal permits up to six keywords/key phrases. [12] I suggest:
+image watermarking; re-watermarking; digital forensics; watermark attacks; provenance; steganalysis.
+Introduction and literature review
+The Introduction contains good motivation but should be substantially shortened and made more precise.
+The regulatory discussion also requires correction. The EU AI Act wording is machine-readable marking and detectability of artificially generated/manipulated outputs, not a universal statutory requirement to use one specific form of invisible watermarking. The currently consolidated Article 50 states that providers generating synthetic audio, image, video, or text content must ensure outputs are marked in a machine-readable format and detectable as artificially generated or manipulated, subject to the stated technical and scope qualifications. [14] The 2026 amendment also introduced transition timing for systems placed on the market before 2 August 2026. [15]
+California SB 942 is similarly more specific than the manuscript's generalized wording: the legislation defines covered providers and requires latent disclosures in qualifying AI-generated image, video, or audio content subject to specified conditions. [16] The paper should accurately describe such measures as motivation, not imply that they universally mandate the exact type of invisible watermark studied here.
+The literature review should then be reorganized around research tasks rather than a long narrative:
+watermark-removal and overwriting attacks → watermark presence/identity detection → watermark-removal forensics → re-watermarking → precise unresolved problem.
+The following 2026 work must be added because it materially changes the novelty context: AWPD/FSNet and RemTraceNet. [17] Earlier overwriting studies should also be acknowledged. [8]
+Methods and Results
+The present “System Overview,” “Dataset,” and “Experimental Setup Results Examination” material should be converted into a clean Methods section.
+For reproducibility, Methods should report, without requiring readers to inspect code:
+exact COCO source split identifiers and sizes;
+exact validation/calibration set used for the fixed threshold;
+preprocessing and resize/crop order;
+watermark message length;
+precise strength distributions for every scheme;
+key/message sampling;
+mathematical or algorithmic description of each custom simulator;
+which methods are simulations versus independent pretrained implementations;
+optimizer, weight decay, scheduler, batch size, crop size, epochs, loss, augmentation probabilities and model-selection rule;
+all seed/determinism settings;
+hardware, OS, CUDA/cuDNN, Python, PyTorch and torchvision versions;
+exact threshold-selection method;
+statistical analysis;
+exact adversarial attack parameters.
+The code does contain explicit per-scheme strength ranges—for example, DCT-QIM 18–40, spread spectrum 1.5–4.0, FFT ring 0.05–0.20 and SVD-based schemes 20–70—but these details need to appear in the final Methods rather than remaining hidden in source code.
+The Results should be reordered so that the strongest validity test comes first:
+single vs re-watermarked with distortion-matched controls → same-task baselines → main in-distribution performance → unseen schemes → real watermarkers → benign edits/resolution → independent domains → calibration → adaptive adversary.
+This ordering would substantially strengthen the scientific argument because it first establishes what signal the classifier is actually using.
+Discussion, conclusion, figures, and references
+The manuscript needs a dedicated Discussion that clearly separates demonstrated facts from interpretation. Claims such as “strong proof,” “specifically responsible,” “general-purpose,” or “calibration failure rather than representation failure” should be replaced with appropriately conditional language unless the additional experiments establish those conclusions.
+The Conclusion should be much shorter. It should state that sequential watermark embedding is detectably above chance under the tested distributions, but that unseen-both performance, neural zero-shot transfer, low-FPR sensitivity, calibration and adaptive robustness remain important limitations. fileciteturn0file0 That is a stronger scientific conclusion than trying to obscure those limitations.
+The bibliography is currently not publication-ready. It contains conversational text inside reference entries, inconsistent capitalization and punctuation, outdated versions, and a stray “99” immediately before the references. fileciteturn0file0 Scientific Reports uses sequential numerical references in square brackets and standard Nature reference formatting. [12] Final published versions should replace old preprints where available—for example, TrustMark should cite ICCV 2025, and PECCVAI should cite its CVPR 2026 proceedings version. [18]
+The manuscript also appears organized and typeset as a student project report rather than a journal article. The journal describes Introduction, Results, Discussion and Methods as a commonly suitable organization, followed by References, optional Acknowledgements, Author Contributions, a mandatory Data Availability statement, Additional Information including Competing Interests, figure legends and tables. [12] These declarations are presently incomplete or absent. 
+The manuscript is approximately 21 PDF pages and more than 9,000 total extracted words including references. Scientific Reports recommends approximately 11 typeset pages and no more than about 4,500 words of main text excluding Abstract, Methods, References and figure legends, although these are presented as recommendations rather than universal hard limits. It also limits main-text display items to eight figures/tables. [12] The paper should therefore move large pairwise matrices, detailed scheme tables, secondary robustness plots, extensive hyperparameters and diagnostic outputs into Supplementary Information.
+Final Recommendation and Q1 Submission Readiness
+Recommendation to the editor: Major Revision.
+I would not recommend acceptance in the present form, because the central forensic interpretation is not yet isolated from a plausible perturbation-count/distortion shortcut; the positive class does not consistently correspond to successful watermark overwriting; the main experimental narrative mixes four-scheme and seven-scheme checkpoints; statistical uncertainty is insufficient; broad scheme-agnostic claims exceed the real-watermarker and unseen-both evidence; and the strict reproducibility claim conflicts with an unseeded training RNG in the released code. 
+I nevertheless would not reject the underlying study outright at this stage. The narrower research gap appears genuine, the proposed residual-based approach is technically plausible, the authors report important negative findings rather than suppressing them, and the public implementation creates a strong basis for a reproducible revision. Contemporary literature supports the general premise that watermark attacks can leave detectable forensic evidence while also showing that carefully controlled clean/watermarked comparisons are essential. [19]
+For a strong Scientific Reports-level resubmission, the acceptance-critical sequence should be:
+First: establish that the detector recognizes re-watermarking rather than simply a second perturbation through single-vs-double and matched-distortion controls.
+Second: define successful overwrite/ownership-forgery cases objectively and report them separately from dual-survival cases.
+Third: rerun one coherent finalized model protocol, with strong same-task forensic baselines and at least two real watermark systems.
+Fourth: add full uncertainty analysis, multiple deterministic training seeds, external natural-image validation, and calibrated low-FPR reporting.
+Fifth: archive the final splits, checkpoint, result data, exact environment and immutable code release in accordance with the journal's data/code expectations. [13]
+Sixth: completely rewrite the English and restructure the document from project-report form into a journal article. The language problems are pervasive enough that ordinary proofreading will not be sufficient.
+The accompanying editable revision file contains the research-gap correction, priority-ranked scientific issues, experimental acceptance gates, repository audit, section-by-section rewriting instructions, grammar corrections, a provisional abstract structure, and a Scientific Reports formatting checklist:
+Download the Q1 Scientific Reports Revision Roadmap (.docx)
+
+[1] [2] Guide to referees | Scientific Reports
+https://www.nature.com/srep/guide-to-referees?utm_source=chatgpt.com
+[3] [9] [2605.16796] Watermarks Attack Watermarks: Re-Watermarking as a Generic Removal Strategy
+https://arxiv.org/abs/2605.16796
+[4] [19] The Forensic Cost of Watermark Removal
+https://arxiv.org/abs/2604.25491?utm_source=chatgpt.com
+[5] Removing the Watermark Is Not Enough: Forensic Stealth in Generative-AI Watermark Removal
+https://arxiv.org/abs/2605.09203?utm_source=chatgpt.com
+[6] RemTraceNet: Few-Shot Forensic Detection of Invisible Watermark Attacks
+https://arxiv.org/abs/2609.31694?utm_source=chatgpt.com
+[7] [17] CVPR 2026 Open Access Repository
+https://openaccess.thecvf.com/content/CVPR2026W/SAFE/html/Ao_AWPD_Frequency_Shield_Network_for_Agnostic_Watermark_Presence_Detection_CVPRW_2026_paper.html?utm_source=chatgpt.com
+[8] High-frequency Matters: An Overwriting Attack and defense for Image-processing Neural Network Watermarking
+https://arxiv.org/abs/2302.08637?utm_source=chatgpt.com
+[10] CVPR 2026 Open Access Repository
+https://openaccess.thecvf.com/content/CVPR2026/html/Dixit_PECCVAI_Overcoming_the_Brittleness_of_AI_Image_Watermarking_Under_Visual_CVPR_2026_paper.html?utm_source=chatgpt.com
+[11] [18] ICCV 2025 Open Access Repository
+https://openaccess.thecvf.com/content/ICCV2025/html/Bui_TrustMark_Robust_Watermarking_and_Watermark_Removal_for_Arbitrary_Resolution_Images_ICCV_2025_paper.html?utm_source=chatgpt.com
+[12] Submission guidelines | Scientific Reports
+https://www.nature.com/srep/author-instructions/submission-guidelines?utm_source=chatgpt.com
+[13] Editorial and publishing policies | Scientific Reports
+https://www.nature.com/srep/journal-policies/editorial-policies?utm_source=chatgpt.com
+[14] EUR-Lex - 02024R1689-20260727 - DE - EUR-Lex
+https://eur-lex.europa.eu/eli/reg/2024/1689/2026-07-27/eng?utm_source=chatgpt.com
+[15] Regulation - EU - 2026/1744 - EN - EUR-Lex
+https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1788807714929&uri=CELEX%3A32026R1744&utm_source=chatgpt.com
+[16] Compare Versions - SB-942 California AI Transparency Act. California AI Transparency Act.
+https://leginfo.legislature.ca.gov/faces/billVersionsCompareClient.xhtml?bill_id=202320240SB942&utm_source=chatgpt.com

@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "protocol_investigation": "Reconciliation of historical TrustMark reported values across model checkpoints and negative control constructions",
+  "comparisons": [
+    {
+      "run_id": "historical_4scheme_zero_shot",
+      "checkpoint": "runs/baseline/best.pt (4-scheme)",
+      "reported_auc": 0.5344,
+      "reproduced_auc": 0.5344,
+      "negative_controls": "Stratified single-watermarked TrustMark controls",
+      "status": "EXACT MATCH (Historical baseline confirmed)"
+    },
+    {
+      "run_id": "historical_unstratified_zero_shot",
+      "checkpoint": "Early prototype (unstratified)",
+      "reported_auc": 0.696,
+      "negative_controls": "Clean-only unwatermarked images (easier negative population)",
+      "reproducibility": "Documented as unstratified control artifact; superseded by stratified protocol"
+    },
+    {
+      "run_id": "primary_7scheme_zero_shot",
+      "checkpoint": "checkpoints/final/rwguard_final_7scheme.pt (7-scheme)",
+      "reported_auc": 0.6562,
+      "reproduced_auc": 0.6562,
+      "negative_controls": "Stratified single-watermarked TrustMark controls",
+      "status": "EXACT MATCH (Authoritative primary zero-shot result)"
+    },
+    {
+      "run_id": "supervised_adapted_15pct",
+      "checkpoint": "runs/trustmark_mix/best.pt",
+      "reported_auc": 0.8505,
+      "reproduced_auc": 0.8505,
+      "training_exposure": "15% TrustMark samples during fine-tuning",
+      "status": "EXACT MATCH (Authoritative supervised adaptation result)"
+    }
+  ]
+}

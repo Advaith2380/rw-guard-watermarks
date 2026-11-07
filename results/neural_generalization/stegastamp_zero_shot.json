@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "description": "Zero-shot forensic detection on StegaStamp deep spatial watermarking",
+  "checkpoint": "checkpoints/final/rwguard_final_7scheme.pt",
+  "n_sources": 150,
+  "n_samples": 300,
+  "metrics": {
+    "n": 300,
+    "auc": 0.9292888888888889,
+    "tpr_at_1pct_fpr": 0.16666666666666666,
+    "tpr_at_0p1pct_fpr": 0.006666666666666667,
+    "tpr_fixed_thr": 0.05333333333333334,
+    "fpr_fixed_thr": 0.006666666666666667
+  },
+  "confidence_intervals_95": {
+    "auc": {
+      "point_estimate": 0.9292888888888889,
+      "bootstrap_mean": 0.9296441777777777,
+      "bootstrap_std": 0.013660424082060132,
+      "ci_95": [
+        0.9023511111111111,
+        0.9542677777777778
+      ]
+    },
+    "tpr_at_1pct_fpr": {
+      "point_estimate": 0.16666666666666666,
+      "bootstrap_mean": 0.17811,
+      "bootstrap_std": 0.1231905710226594,
+      "ci_95": [
+        0.013333333333333334,
+        0.4
+      ]
+    },
+    "tpr_at_0p1pct_fpr": {
+      "point_estimate": 0.006666666666666667,
+      "bootstrap_mean": 0.08231999999999999,
+      "bootstrap_std": 0.10135458022868693,
+      "ci_95": [
+        0.006666666666666667,
+        0.31333333333333335
+      ]
+    },
+    "tpr_fixed_thr": {
+      "point_estimate": 0.05333333333333334,
+      "bootstrap_mean": 0.05377,
+      "bootstrap_std": 0.01871447419631245,
+      "ci_95": [
+        0.02,
+        0.09333333333333334
+      ]
+    },
+    "fpr_fixed_thr": {
+      "point_estimate": 0.006666666666666667,
+      "bootstrap_mean": 0.00658,
+      "bootstrap_std": 0.006551780080422589,
+      "ci_95": [
+        0.0,
+        0.02
+      ]
+    }
+  },
+  "finding": "Frozen 7-scheme model achieves ROC-AUC 0.9293 [95% CI: 0.9024, 0.9543] on StegaStamp without retraining, confirming cross-architecture forensic sensitivity."
+}

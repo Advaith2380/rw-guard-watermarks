@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "description": "Deterministic bit-level watermark extraction criteria",
+  "message_length_bits": 64,
+  "bit_accuracy_formula": "mean(extracted_bits == ground_truth_bits)",
+  "recovery_threshold": 0.75,
+  "classification_rules": {
+    "successful_overwrite": "attacker_acc >= 0.75 AND victim_acc < 0.75",
+    "dual_survival": "attacker_acc >= 0.75 AND victim_acc >= 0.75",
+    "failed_attacker_embedding": "attacker_acc < 0.75 AND victim_acc >= 0.75",
+    "both_unrecoverable": "attacker_acc < 0.75 AND victim_acc < 0.75"
+  }
+}

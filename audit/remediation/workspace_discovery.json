@@ -1,0 +1,33 @@
+{
+  "timestamp_utc": "2026-11-06T16:30:55.402465+00:00",
+  "assigned_project_directory": "D:\\projects\\rwg-push",
+  "operating_system": "Windows-11-10.0.26300-SP0",
+  "python_interpreter": "D:\\projects\\rewm-guard\\.venv\\Scripts\\python.exe",
+  "python_version": "3.13.7",
+  "pytorch_version": "2.14.0+cu126",
+  "cuda_available": true,
+  "gpu_device": "NVIDIA GeForce GTX 1650",
+  "gpu_memory_bytes": 4294639616,
+  "gpu_memory_gb": 4.0,
+  "parent_workspace_root": "D:\\projects",
+  "sibling_directories": [
+    "D:\\projects\\rewm-guard",
+    "D:\\projects\\rw-guard-watermarks"
+  ],
+  "authoritative_datasets": {
+    "coco_source_images": "D:/projects/rewm-guard/data/coco",
+    "coco_source_count": 5000,
+    "coco_archive": "D:/projects/rewm-guard/data/val2017.zip",
+    "pacs_source_images": "D:/projects/rewm-guard/data/pacs",
+    "pacs_source_count": 1600,
+    "trustmark_cache": "D:/projects/rewm-guard/data/trustmark_cache"
+  },
+  "authoritative_checkpoints": {
+    "primary_frozen": "checkpoints/final/rwguard_final_7scheme.pt",
+    "primary_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+    "seed0_checkpoint": "runs/seed0/best.pt",
+    "seed1_checkpoint": "runs/seed1/best.pt",
+    "seed2_checkpoint": "runs/seed2/best.pt",
+    "external_runs": "D:/projects/rewm-guard/runs"
+  }
+}

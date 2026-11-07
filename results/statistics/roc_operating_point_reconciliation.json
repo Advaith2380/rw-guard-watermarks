@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "description": "Reconciliation of ROC-derived operating threshold: 1.4889 vs 1.6040",
+  "checkpoint": "checkpoints/final/rwguard_final_7scheme.pt",
+  "checkpoint_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+  "test_prediction_file": "results/final_primary/fresh_predictions.npz",
+  "test_sample_counts": {
+    "total_samples": 3000,
+    "positive_attacks": 1500,
+    "negative_controls": 1500
+  },
+  "operating_points": {
+    "empirical_roc_1pct_fpr": {
+      "definition": "Operating point on empirical test ROC curve where test FPR <= 1.00% (<= 15 false positives out of 1500 negatives)",
+      "threshold_exact": 1.603979,
+      "threshold_rounded": 1.604,
+      "false_positive_count": 15,
+      "test_fpr": 0.01,
+      "true_positive_count": 118,
+      "test_tpr": 0.078667,
+      "test_tpr_pct": 7.87,
+      "tpr_95_bootstrap_ci": [
+        0.05,
+        0.106
+      ],
+      "percentile_99_negative_scores": 1.60407
+    },
+    "frozen_validation_calibrated_threshold": {
+      "definition": "Fixed operating point calibrated strictly on 300 validation negatives targeting 1.0% nominal validation FPR",
+      "threshold": 1.3394016,
+      "val_fpr": 0.01,
+      "test_fpr": 0.033333,
+      "test_fpr_pct": 3.33,
+      "test_tpr": 0.186667,
+      "test_tpr_pct": 18.67,
+      "ks_test": {
+        "D": 0.05,
+        "p_value": 0.5485
+      }
+    },
+    "reconciliation_of_1_4889": {
+      "observed_value": 1.4889,
+      "origin": "In the negative score distribution of 1500 test negatives, 1.4889-1.4920 corresponds to the 98.0th percentile (i.e., FPR = 2.00%, threshold = 1.49197). An early draft conflated the 98th percentile with the 99th percentile, or cited an interpolated operating point. On the authoritative test set, the exact empirical threshold for 1.00% FPR (15/1500 false positives) is 1.6040."
+    }
+  }
+}

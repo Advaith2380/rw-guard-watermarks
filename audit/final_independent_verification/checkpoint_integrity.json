@@ -1,0 +1,8 @@
+{
+  "checkpoint_path": "D:/projects/rwg-push/checkpoints/final/rwguard_final_7scheme.pt",
+  "file_size_bytes": 9909673,
+  "actual_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+  "expected_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+  "hash_verified": true,
+  "status": "PASS"
+}

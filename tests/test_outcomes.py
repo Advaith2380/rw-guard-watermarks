@@ -38,11 +38,17 @@ class TestOutcomes(unittest.TestCase):
             outcome_b = "dual_survival"
         self.assertEqual(outcome_b, "dual_survival")
         
-        # Case C: Attacker < tau => failed_attack
+        # Case C: Attacker < tau, Victim >= tau => failed_attacker_embedding
         v_acc_c, a_acc_c = 0.80, 0.60
-        if a_acc_c < tau:
-            outcome_c = "failed_attack"
-        self.assertEqual(outcome_c, "failed_attack")
+        if a_acc_c < tau and v_acc_c >= tau:
+            outcome_c = "failed_attacker_embedding"
+        self.assertEqual(outcome_c, "failed_attacker_embedding")
+
+        # Case D: Both < tau => both_unrecoverable
+        v_acc_d, a_acc_d = 0.55, 0.52
+        if a_acc_d < tau and v_acc_d < tau:
+            outcome_d = "both_unrecoverable"
+        self.assertEqual(outcome_d, "both_unrecoverable")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,27 @@
+[2026-11-06 17:51:21] ================================================================================
+[2026-11-06 17:51:21]  PHASE 6: JSON ARTIFACT AUDIT & NUMERICAL RECONCILIATION
+[2026-11-06 17:51:21] ================================================================================
+[2026-11-06 17:51:21] Audited audit/checkpoint_audit.json: PASS (size: 10876 B, SHA: 751375854ce0...)
+[2026-11-06 17:51:21] Audited audit/final_consolidated_results.json: PASS (size: 81480 B, SHA: 717660de0135...)
+[2026-11-06 17:51:21] Audited audit/final_results_manifest.json: PASS (size: 2913 B, SHA: a7ae87810c2b...)
+[2026-11-06 17:51:21] Audited audit/EXPERIMENT_MANIFEST.json: PASS (size: 4356 B, SHA: b0da70e60e4b...)
+[2026-11-06 17:51:21] Audited audit/FINAL_STATUS.json: PASS (size: 2760 B, SHA: c8bd865e1ce4...)
+[2026-11-06 17:51:21] Audited audit/fpr_discrepancy_investigation.json: PASS (size: 7560 B, SHA: 0c4481ae4925...)
+[2026-11-06 17:51:21] Audited audit/matched_controls_results.json: PASS (size: 8991 B, SHA: 93f8547d9a1c...)
+[2026-11-06 17:51:21] Audited audit/outcome_stratification_results.json: PASS (size: 4323 B, SHA: f54b2094bdfe...)
+[2026-11-06 17:51:21] Audited audit/pacs_calibration_results.json: PASS (size: 8609 B, SHA: 463062e9eaea...)
+[2026-11-06 17:51:21] Audited audit/seed_evaluation_results.json: PASS (size: 6156 B, SHA: bea1b3270907...)
+[2026-11-06 17:51:21] Audited audit/seed_ensemble_results.json: PASS (size: 1917 B, SHA: d179787e4d50...)
+[2026-11-06 17:51:21] Audited audit/shortcut_baseline_results.json: PASS (size: 5925 B, SHA: 91179aa35fd5...)
+[2026-11-06 17:51:21] Audited audit/stegastamp_evaluation_results.json: PASS (size: 2291 B, SHA: e17279dfe900...)
+[2026-11-06 17:51:21] Audited audit/trustmark_evaluation_results.json: PASS (size: 13326 B, SHA: 898b9f61904e...)
+[2026-11-06 17:51:21] Audited checkpoints/final/final_model_config.json: PASS (size: 1927 B, SHA: 2c6e5320b982...)
+[2026-11-06 17:51:21] Audited results/final_7scheme_primary/results.json: PASS (size: 13092 B, SHA: f2b56140b9ac...)
+[2026-11-06 17:51:21] Executing mathematical and statistical reconciliations...
+[2026-11-06 17:51:21] Saved JSON artifact inventory to: audit/final_independent_verification\json_artifact_inventory.csv
+[2026-11-06 17:51:21] Saved numerical reconciliation to: audit/final_independent_verification\json_numeric_reconciliation.csv
+[2026-11-06 17:51:21] Saved JSON artifact audit results to: audit/final_independent_verification\json_artifact_audit.json
+[2026-11-06 17:51:21] Saved JSON audit markdown report to: audit/final_independent_verification\json_audit_report.md
+[2026-11-06 17:51:21] PHASE 6 JSON ARTIFACT AUDIT: PASS
+[2026-11-06 17:51:21] ================================================================================
+

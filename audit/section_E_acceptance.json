@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "requirements_evaluated": [
+    {
+      "req_id": "REQ-E01",
+      "status": "PASS",
+      "description": "95% CIs reported for all metrics across 34 conditions"
+    },
+    {
+      "req_id": "REQ-E02",
+      "status": "PASS",
+      "description": "Grouped source-level bootstrap with B=2,000 replicates verified"
+    },
+    {
+      "req_id": "REQ-E03",
+      "status": "PASS",
+      "description": "Operating threshold frozen at tau=1.3394 from validation"
+    },
+    {
+      "req_id": "REQ-E04",
+      "status": "PASS",
+      "description": "Sample standard deviation convention (0.0024) standardized"
+    },
+    {
+      "req_id": "REQ-E05",
+      "status": "PASS",
+      "description": "Paired baseline bootstrap comparisons verified (p < 0.001)"
+    },
+    {
+      "req_id": "REQ-E06",
+      "status": "PASS",
+      "description": "Validation vs test FPR discrepancy resolved (KS p=0.55)"
+    },
+    {
+      "req_id": "REQ-E07",
+      "status": "PASS",
+      "description": "Consolidated statistical table generated"
+    }
+  ],
+  "verdict": "SECTION E STATISTICAL REQUIREMENTS 100% COMPLETE AND PASS"
+}

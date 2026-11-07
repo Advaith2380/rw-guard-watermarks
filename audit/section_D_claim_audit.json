@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "claim_id": "CLAIM-05",
+  "classification": "SUPPORTED",
+  "scientific_statement": "Bit-level extraction across 500 double-watermarked images confirms that re-watermarking attacks overwhelmingly result in dual survival (85.0%, 425/500 cases), with true overwrite occurring in only 13.4% (67/500 cases). Re-watermarking attacks fail to erase the original watermark in 86.6% of attempts, refuting the assumption that a second watermark obliterates prior ownership evidence.",
+  "requirements_satisfied": [
+    "REQ-D01",
+    "REQ-D02",
+    "REQ-D03",
+    "REQ-D04",
+    "REQ-D05"
+  ]
+}

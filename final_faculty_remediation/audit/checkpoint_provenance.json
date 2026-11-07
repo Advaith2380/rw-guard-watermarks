@@ -1,0 +1,288 @@
+{
+  "seed0": {
+    "run": "seed0",
+    "best_pt_exists": true,
+    "size_bytes": 9909673,
+    "sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "14",
+    "val_auc": "0.8482555555555555",
+    "args": "{'data': 'data/coco', 'out': 'runs/seed0', 'arch': 'forensic', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 15, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': [], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'init': '', 'seed': 0}",
+    "num_epochs": 15,
+    "best_val_entry": {
+      "epoch": 14,
+      "train_loss": 0.5181305530071258,
+      "train_acc": 0.73925,
+      "val_auc": 0.8482555555555555,
+      "val_tpr_at_1pct_fpr": 0.15333333333333332,
+      "seconds": 357.4229733943939,
+      "adversarial": false
+    }
+  },
+  "seed1": {
+    "run": "seed1",
+    "best_pt_exists": true,
+    "size_bytes": 9909673,
+    "sha256": "c074415b70d96dd0086d580bc5fae8fc4542b60bee7163872fab810d5ec476a6",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "15",
+    "val_auc": "0.8472777777777778",
+    "args": "{'data': 'data/coco', 'out': 'runs/seed1', 'arch': 'forensic', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 15, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': [], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'init': '', 'seed': 1}",
+    "num_epochs": 15,
+    "best_val_entry": {
+      "epoch": 15,
+      "train_loss": 0.5176708401838939,
+      "train_acc": 0.7463333333333333,
+      "val_auc": 0.8472777777777778,
+      "val_tpr_at_1pct_fpr": 0.10333333333333333,
+      "seconds": 363.4442524909973,
+      "adversarial": false
+    }
+  },
+  "seed2": {
+    "run": "seed2",
+    "best_pt_exists": true,
+    "size_bytes": 9909673,
+    "sha256": "d0c8f6e6fd4da4f1281490f3d26f11a6e91cd394f69348ea4bed2cc016b4507d",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "15",
+    "val_auc": "0.8452777777777778",
+    "args": "{'data': 'data/coco', 'out': 'runs/seed2', 'arch': 'forensic', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 15, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': [], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'init': '', 'seed': 2}",
+    "num_epochs": 15,
+    "best_val_entry": {
+      "epoch": 15,
+      "train_loss": 0.5256793558597564,
+      "train_acc": 0.7396666666666667,
+      "val_auc": 0.8452777777777778,
+      "val_tpr_at_1pct_fpr": 0.08666666666666667,
+      "seconds": 347.184113740921,
+      "adversarial": false
+    }
+  },
+  "baseline_e9": {
+    "run": "baseline_e9",
+    "best_pt_exists": true,
+    "size_bytes": 9909609,
+    "sha256": "c3bae0ba2ec25505aff5e743ea2c38d9dd7f7fc4bc61d74e19a1afe96e2e6272",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "9",
+    "val_auc": "0.8601888888888889",
+    "args": "{'data': 'data/coco', 'out': 'runs/baseline', 'arch': 'forensic', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 15, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': [], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'seed': 0}",
+    "num_epochs": 9,
+    "best_val_entry": {
+      "epoch": 9,
+      "train_loss": 0.5123970273335775,
+      "train_acc": 0.7459166666666667,
+      "val_auc": 0.8601888888888889,
+      "val_tpr_at_1pct_fpr": 0.20666666666666667,
+      "seconds": 376.5579824447632,
+      "adversarial": false
+    }
+  },
+  "baseline_full": {
+    "run": "baseline_full",
+    "best_pt_exists": true,
+    "size_bytes": 9909673,
+    "sha256": "245ff35328879b1b8d5eb3b6c2335f9f324a2b2f3762f0c8a1a0ffbbf9460c56",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "6",
+    "val_auc": "0.8466888888888889",
+    "args": "{'data': 'data/coco', 'out': 'runs/baseline_full', 'arch': 'forensic', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 6, 'bs': 32, 'lr': 0.0005, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': [], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'init': 'runs/baseline_e9/best.pt', 'seed': 0}",
+    "num_epochs": 6,
+    "best_val_entry": {
+      "epoch": 6,
+      "train_loss": 0.5122775355974833,
+      "train_acc": 0.7435833333333334,
+      "val_auc": 0.8466888888888889,
+      "val_tpr_at_1pct_fpr": 0.11333333333333333,
+      "seconds": 537.3439817428589,
+      "adversarial": false
+    }
+  },
+  "holdout_dct": {
+    "run": "holdout_dct",
+    "best_pt_exists": true,
+    "size_bytes": 9909673,
+    "sha256": "2a5954e01ad1266023f2a6456e1af9e789f3bef5351a42682f0720f1f8247101",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "15",
+    "val_auc": "0.8524444444444444",
+    "args": "{'data': 'data/coco', 'out': 'runs/holdout_dct', 'arch': 'forensic', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 15, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': ['dct_qim'], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'init': '', 'seed': 0}",
+    "num_epochs": 15,
+    "best_val_entry": {
+      "epoch": 15,
+      "train_loss": 0.5201574104626974,
+      "train_acc": 0.737,
+      "val_auc": 0.8524444444444444,
+      "val_tpr_at_1pct_fpr": 0.11666666666666667,
+      "seconds": 585.6837706565857,
+      "adversarial": false
+    }
+  },
+  "holdout_fft": {
+    "run": "holdout_fft",
+    "best_pt_exists": true,
+    "size_bytes": 9909673,
+    "sha256": "5107ac964e46bb4f779cc3a23842e5dce302c6553a7e206292a33e5736dbf225",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "15",
+    "val_auc": "0.8576111111111111",
+    "args": "{'data': 'data/coco', 'out': 'runs/holdout_fft', 'arch': 'forensic', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 15, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': ['fft_ring'], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'init': '', 'seed': 0}",
+    "num_epochs": 15,
+    "best_val_entry": {
+      "epoch": 15,
+      "train_loss": 0.5033614196777344,
+      "train_acc": 0.7473333333333333,
+      "val_auc": 0.8576111111111111,
+      "val_tpr_at_1pct_fpr": 0.14,
+      "seconds": 546.7854335308075,
+      "adversarial": false
+    }
+  },
+  "trustmark_mix": {
+    "run": "trustmark_mix",
+    "best_pt_exists": true,
+    "size_bytes": 9908457,
+    "sha256": "5c103f7d2a0365098f591bb24c8d5287316612da0cc29475dedaed998f00ec09",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "15",
+    "val_auc": "0.8328555555555556",
+    "args": "{'data': 'data/coco', 'out': 'runs/trustmark_mix', 'arch': 'forensic', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 15, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': [], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'seed': 0, 'trustmark_dir': 'data/trustmark_cache', 'trustmark_p': 0.25}",
+    "num_epochs": 15,
+    "best_val_entry": {
+      "epoch": 15,
+      "train_loss": 0.5350197588602702,
+      "train_acc": 0.726,
+      "val_auc": 0.8328555555555556,
+      "val_tpr_at_1pct_fpr": 0.06666666666666667,
+      "seconds": 1819.988830089569,
+      "adversarial": false
+    }
+  },
+  "nohp_ablation": {
+    "run": "nohp_ablation",
+    "best_pt_exists": true,
+    "size_bytes": 9901487,
+    "sha256": "55c575df5d760e12a35c2b21bfab23885e42d73e945edcf64a0cc76d5c3c160b",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "9",
+    "val_auc": "0.5150222222222223",
+    "args": "{'data': 'data/coco', 'out': 'runs/nohp_ablation', 'arch': 'forensic_nohp', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 10, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': [], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'init': '', 'seed': 0}",
+    "num_epochs": 10,
+    "best_val_entry": {
+      "epoch": 9,
+      "train_loss": 0.6939567917188009,
+      "train_acc": 0.5093333333333333,
+      "val_auc": 0.5150222222222223,
+      "val_tpr_at_1pct_fpr": 0.01,
+      "seconds": 548.488612651825,
+      "adversarial": false
+    }
+  },
+  "resnet18_baseline": {
+    "run": "resnet18_baseline",
+    "best_pt_exists": true,
+    "size_bytes": 44750859,
+    "sha256": "a173825ac69c186dd0cbe5840fdfba8544fb8ff1ab09dcbd1c63d3492cf682da",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "7",
+    "val_auc": "0.5034333333333333",
+    "args": "{'data': 'data/coco', 'out': 'runs/resnet18_baseline', 'arch': 'resnet18', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 10, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': [], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'init': '', 'seed': 0}",
+    "num_epochs": 10,
+    "best_val_entry": {
+      "epoch": 7,
+      "train_loss": 0.6958640786806742,
+      "train_acc": 0.496,
+      "val_auc": 0.5034333333333333,
+      "val_tpr_at_1pct_fpr": 0.013333333333333334,
+      "seconds": 766.3064663410187,
+      "adversarial": false
+    }
+  },
+  "simple_baseline": {
+    "run": "simple_baseline",
+    "best_pt_exists": true,
+    "size_bytes": 3933713,
+    "sha256": "0e37eaa00156b5010ad4caf6567dd562ee36011f06b3f066f37abcc4122754cf",
+    "keys": [
+      "model",
+      "args",
+      "train_schemes",
+      "epoch",
+      "val_auc"
+    ],
+    "epoch": "4",
+    "val_auc": "0.5019444444444444",
+    "args": "{'data': 'data/coco', 'out': 'runs/simple_baseline', 'arch': 'simple', 'width': 32, 'size': 256, 'crop': 128, 'epochs': 10, 'bs': 32, 'lr': 0.001, 'n_train': 0, 'n_val': 300, 'repeat': 4, 'holdout': [], 'benign_p': 0.5, 'adv_eps': 0.0, 'adv_steps': 3, 'adv_start': 2, 'workers': 0, 'init': '', 'seed': 0}",
+    "num_epochs": 10,
+    "best_val_entry": {
+      "epoch": 4,
+      "train_loss": 0.6954451847076416,
+      "train_acc": 0.5025,
+      "val_auc": 0.5019444444444444,
+      "val_tpr_at_1pct_fpr": 0.013333333333333334,
+      "seconds": 314.3281669616699,
+      "adversarial": false
+    }
+  }
+}

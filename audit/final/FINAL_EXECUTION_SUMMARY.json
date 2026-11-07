@@ -1,0 +1,85 @@
+﻿{
+    "verification_status":  "PASS",
+    "stages_executed":  12,
+    "python_interpreter":  "D:\\projects\\rewm-guard\\.venv\\Scripts\\python.exe",
+    "execution_mode":  "Quick",
+    "checkpoint_sha256":  "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+    "stages_passed":  12,
+    "timestamp_utc":  "2026-11-06T15:15:59.7808584Z",
+    "total_elapsed_seconds":  130.74,
+    "stage_breakdown":  [
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 01: Workspace Discovery \u0026 Evidence Register",
+                                "ElapsedSeconds":  10.14
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 02: Faculty Requirement Register \u0026 Dependency Plan",
+                                "ElapsedSeconds":  1.05
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 03: Section A Remediation \u0026 Fresh Inference",
+                                "ElapsedSeconds":  14.12
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 04: Section B Shortcut-Learning Investigation",
+                                "ElapsedSeconds":  1.05
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 05: Section C Neural Watermarker Generalization",
+                                "ElapsedSeconds":  1.09
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 06: Section D Ownership Forgery Forensics",
+                                "ElapsedSeconds":  1.03
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 07: Section E Statistical Rigor \u0026 Bootstrap Validation",
+                                "ElapsedSeconds":  1.05
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 08: Dataset Manifest Reconciliation \u0026 Leakage Audit",
+                                "ElapsedSeconds":  10.08
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 09: JSON Artifact \u0026 Discrepancy Reconciliation",
+                                "ElapsedSeconds":  2.06
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 10: Scientific Claim Before-vs-After Audit",
+                                "ElapsedSeconds":  1.04
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 11: Automated Regression Test Suite (22 Tests)",
+                                "ElapsedSeconds":  84.42
+                            },
+                            {
+                                "Status":  "PASS",
+                                "Error":  null,
+                                "Name":  "Stage 12: Final Faculty Compliance Matrix \u0026 Report",
+                                "ElapsedSeconds":  1.11
+                            }
+                        ],
+    "stages_failed":  0
+}

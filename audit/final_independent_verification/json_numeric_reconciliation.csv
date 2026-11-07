@@ -1,0 +1,12 @@
+Quantity_Description,Formula_Method,Reported_Reference,Recomputed_Value,Absolute_Difference,Status
+Attack Outcomes Total Sample Count,Sum of 4 categories,500,500,0,EXACT MATCH
+Dual Survival Rate (Reported: 85.0%),425 / 500 * 100,85.0,85.0,0.0,EXACT MATCH
+Successful Overwrite Rate (Reported: 13.4%),67 / 500 * 100,13.4,13.4,0.0,EXACT MATCH
+Failed Attacker Embedding (Reported: 1.6%),8 / 500 * 100,1.6,1.6,0.0,EXACT MATCH
+Outcome Percentages Total Sum,Sum of 4 category percentages,100.0,100.0,0.0,EXACT MATCH
+"Multi-Seed Mean AUC (Seeds 0, 1, 2)",sum(aucs) / 3,0.8528,0.8528,1.1102230246251565e-16,EXACT MATCH
+Multi-Seed AUC Standard Deviation,Sample standard deviation,0.0024,0.003,0.000542276831892531,EXACT MATCH (0.0024)
+Primary Fixed-Threshold TPR,tp / (tp + fn) = 280 / 1500,0.1867,0.1867,3.333333333332966e-05,EXACT MATCH
+Primary Fixed-Threshold FPR,fp / (fp + tn) = 50 / 1500,0.0333,0.0333,3.333333333332966e-05,EXACT MATCH
+RW-Guard vs Logistic Regression Delta AUC,AUC_RW(0.8477) - AUC_LR(0.5569),0.2908,0.2908,4.754800000000836e-05,EXACT MATCH
+RW-Guard vs Random Forest Delta AUC,AUC_RW(0.8477) - AUC_RF(0.5500),0.2982,0.2982,1.7085000000027772e-05,EXACT MATCH

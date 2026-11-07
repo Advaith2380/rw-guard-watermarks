@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "claim_id": "CLAIM-03_AND_CLAIM-04",
+  "classification": "SUPPORTED_WITH_QUALIFICATION",
+  "scientific_statement": "RW-Guard exhibits strong forensic ranking discriminability on StegaStamp (AUC 0.9293) and moderate ranking discriminability on zero-shot TrustMark (AUC 0.6562). However, zero-shot detection on TrustMark at frozen validation threshold yields 0.0% TPR due to domain score distribution shift. Effective detection on TrustMark requires either threshold recalibration (22.0% TPR) or 15% supervised adaptation (AUC 0.8505). Claims of universal, threshold-invariant zero-shot generalization are formally qualified.",
+  "requirements_satisfied": [
+    "REQ-C01",
+    "REQ-C02",
+    "REQ-C03",
+    "REQ-C04",
+    "REQ-C05"
+  ]
+}

@@ -1,0 +1,27 @@
+Category,Condition_or_Scenario,Baseline_Historical_Metric,Baseline_95_CI,Updated_Stage2_Metric,Updated_95_CI,Scientific_Significance_Notes
+In-Distribution Test,COCO 256px ROC-AUC,0.8586,N/A (single point),0.8770,[0.8388 - 0.9111],ForensicNet residual CNN on seen classical watermarks
+In-Distribution Test,COCO 256px TPR@1% FPR,0.1647,N/A,0.2133,[0.1533 - 0.3635],Low-FPR operating point for forensic applications
+In-Distribution Test,COCO 256px Fixed-Threshold TPR,0.2947,N/A,0.1333,[0.0867 - 0.1867],Operating threshold frozen on validation negatives
+In-Distribution Test,COCO 256px Fixed-Threshold Test FPR,0.0353,N/A,0.0000,[0.0000 - 0.0000],Validates zero false alarm rate at threshold 1.3842
+Shortcut Baseline,High-Pass Residual Energy + FFT Logistic Regression AUC,N/A (untested),N/A,0.5713,[0.5262 - 0.6166],Disproves reviewer concern that detector relies on raw perturbation magnitude
+Shortcut Baseline,High-Pass Residual Energy + FFT Logistic Regression TPR@1% FPR,N/A (untested),N/A,0.0100,[0.0000 - 0.0333],Near-zero forensic sensitivity for energy-based linear model
+Attack Outcome Stratification,Dual-Survival Positives (Attacker + Victim Both Decodable),N/A (pooled),N/A,0.1353 (Mean logit +0.628),N/A (N=133),Represents 88.7% of all re-watermarking collisions; detector triggers on dual trace
+Attack Outcome Stratification,Successful-Overwrite Positives (Victim Destroyed),N/A (pooled),N/A,0.1176 (Mean logit -0.114),N/A (N=17),Represents 11.3% of collisions; lower logit confirms forensic ambiguity
+Attack Outcome Stratification,Negative Controls (Clean + Singly Watermarked),N/A (pooled),N/A,0.0000 (Mean logit -1.776),N/A (N=150),Zero false positives on negative controls
+Distortion-Matched Controls,Condition 1: Re-watermarked Positives (PSNR 37.2 dB),N/A (untested),N/A,0.1700 (Mean score +0.799),N/A (N=100),Reference re-watermarked sample pair
+Distortion-Matched Controls,Condition 2: Single Watermark Scaled (PSNR 37.1 dB),N/A (untested),N/A,0.2300 (Mean score +0.537),N/A (N=100),Equal distortion single watermark reveals artifact overlap
+Distortion-Matched Controls,Condition 3: Single Watermark + Gaussian Noise (PSNR 37.2 dB),N/A (untested),N/A,0.0900 (Mean score -0.079),N/A (N=100),Additive noise does not fool detector into high positive logit
+Distortion-Matched Controls,Condition 4: Standard Single Watermark Negative (PSNR 40.0 dB),N/A (untested),N/A,0.0600 (Mean score -0.095),N/A (N=100),Standard singly watermarked negative control
+Distortion-Matched Controls,Condition 5: Clean Controls Negative (PSNR Inf),N/A (untested),N/A,0.0000 (Mean score -3.239),N/A (N=100),Pristine images cleanly rejected with high confidence
+Neural Watermarker (Zero-Shot),TrustMark on baseline_e9 ROC-AUC,0.6960 (unstratified),N/A,0.5344,[0.4531 - 0.6053],Near chance zero-shot cross-family transfer; refutes 'universal' claim
+Neural Watermarker (Zero-Shot),TrustMark on baseline_e9 TPR@1% FPR,N/A,N/A,0.0300,[0.0000 - 0.1000],Demonstrates architectural limitation without in-family training
+Neural Watermarker (Adapted),TrustMark on trustmark_mix ROC-AUC,0.9250 (historical),N/A,0.8505,[0.7958 - 0.8998],In-family supervised fine-tuning recovers strong forensic detection
+Neural Watermarker (Adapted),TrustMark on trustmark_mix TPR@1% FPR,N/A,N/A,0.2200,[0.0900 - 0.3500],Substantial operating point recovery with 15% neural watermarking exposure
+Architecture Ablation,ForensicNet with High-Pass Front-End (1.83M params),0.8602,N/A,0.8602,N/A,Full proposed architecture (Laplacian/Sobel 9ch + ResNet trunk)
+Architecture Ablation,ForensicNet without High-Pass (1.83M params),0.5150,N/A,0.5150,N/A,Removal of HP filter causes complete failure (near chance 0.5150 AUC)
+Architecture Ablation,ResNet-18 without High-Pass (11.18M params),0.5034,N/A,0.5034,N/A,Standard deep vision backbones fail to extract forensic traces directly from RGB
+Architecture Ablation,SimpleClassifier without High-Pass (40.5K params),0.5019,N/A,0.5019,N/A,Shallow CNN directly on RGB fails (0.5019 AUC)
+Unseen Scheme Generalization,Unseen Attacker (Held-out DCT),0.8170,N/A,0.8170,N/A,Robust generalization when victim is known but attacker is unseen
+Unseen Scheme Generalization,Unseen Both (Victim and Attacker Unseen),0.5800,N/A,0.5800,N/A,Expected forensic boundary when both embedding mechanisms are novel
+Adversarial Robustness,PGD L_inf eps=1/255 (Clean Detected Rate),0.4000,N/A,0.4000,N/A,Baseline detector detection rate on clean positives
+Adversarial Robustness,PGD L_inf eps=1/255 (Post-Attack Detected Rate),0.0000,N/A,0.0000,N/A,Vulnerability confirmed under multi-restart gradient-based perturbations

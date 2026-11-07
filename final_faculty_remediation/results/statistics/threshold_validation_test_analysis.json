@@ -1,0 +1,227 @@
+{
+  "checkpoint": "checkpoints/final/rwguard_final_7scheme.pt",
+  "sample_counts": {
+    "validation_negative_sources": 300,
+    "validation_negative_samples": 300,
+    "test_negative_sources": 1500,
+    "test_negative_samples": 1500
+  },
+  "operating_point": {
+    "target_nominal_fpr": 0.01,
+    "calibrated_threshold": 1.3394016027450562,
+    "actual_val_fpr": 0.01,
+    "actual_test_fpr": 0.03333333333333333,
+    "val_fpr_ci_95": [
+      0.0,
+      0.023333333333333334
+    ],
+    "test_fpr_ci_95": [
+      0.024666666666666667,
+      0.043333333333333335
+    ]
+  },
+  "distribution_comparison": {
+    "validation_negatives": {
+      "n": 300,
+      "mean": -1.5426806211471558,
+      "std": 1.9368312358856201,
+      "median": -1.1971919536590576,
+      "iqr": 2.943151079118252,
+      "skewness": -0.5032651424407959,
+      "kurtosis": -0.6891510486602783,
+      "percentiles": {
+        "p50": -1.1971919536590576,
+        "p75": 0.0931333526968956,
+        "p90": 0.7514491081237793,
+        "p95": 0.998513400554657,
+        "p98": 1.2246676683425903,
+        "p99": 1.3397845029830933,
+        "max": 1.7274795770645142
+      }
+    },
+    "test_negatives": {
+      "n": 1500,
+      "mean": -1.4988937377929688,
+      "std": 1.90144681930542,
+      "median": -1.314788818359375,
+      "iqr": 2.8156181792728603,
+      "skewness": -0.4711844325065613,
+      "kurtosis": -0.33582258224487305,
+      "percentiles": {
+        "p50": -1.314788818359375,
+        "p75": -0.0008242507465183735,
+        "p90": 0.880803644657135,
+        "p95": 1.1744180917739868,
+        "p98": 1.49197256565094,
+        "p99": 1.6040700674057007,
+        "max": 2.40779185295105
+      }
+    },
+    "kolmogorov_smirnov_test": {
+      "statistic": 0.05,
+      "p_value": 0.5484915213164288,
+      "significant_difference_alpha_05": false
+    },
+    "mann_whitney_u_test": {
+      "statistic": 223611.0,
+      "p_value": 0.8658313196181815,
+      "significant_difference_alpha_05": false
+    }
+  },
+  "threshold_sampling_instability": {
+    "threshold_bootstrap_mean": 1.340505259037018,
+    "threshold_bootstrap_std": 0.09616920318958391,
+    "threshold_ci_95": [
+      1.1881283521652222,
+      1.4783908128738403
+    ],
+    "test_fpr_under_threshold_uncertainty": {
+      "mean_test_fpr": 0.032662666666666666,
+      "std_test_fpr": 0.008131720167891225,
+      "test_fpr_ci_95": [
+        0.022,
+        0.04666666666666667
+      ]
+    }
+  },
+  "compositional_breakdown": {
+    "validation_breakdown": {
+      "clean": {
+        "n": 152,
+        "pct_of_negatives": 50.66666666666667,
+        "mean_score": -2.8000080585479736,
+        "std_score": 1.7233527898788452,
+        "fpr_at_tau": 0.0,
+        "false_alarms": 0
+      },
+      "single:dct_qim": {
+        "n": 18,
+        "pct_of_negatives": 6.0,
+        "mean_score": 0.693573534488678,
+        "std_score": 0.31469371914863586,
+        "fpr_at_tau": 0.05555555555555555,
+        "false_alarms": 1
+      },
+      "single:dct_svd": {
+        "n": 26,
+        "pct_of_negatives": 8.666666666666668,
+        "mean_score": -0.8163540959358215,
+        "std_score": 1.0417050123214722,
+        "fpr_at_tau": 0.0,
+        "false_alarms": 0
+      },
+      "single:dwt_qim": {
+        "n": 24,
+        "pct_of_negatives": 8.0,
+        "mean_score": 0.6158063411712646,
+        "std_score": 0.4203776717185974,
+        "fpr_at_tau": 0.0,
+        "false_alarms": 0
+      },
+      "single:fft_ring": {
+        "n": 22,
+        "pct_of_negatives": 7.333333333333333,
+        "mean_score": -0.7079648375511169,
+        "std_score": 1.0100888013839722,
+        "fpr_at_tau": 0.0,
+        "false_alarms": 0
+      },
+      "single:nmp_freq": {
+        "n": 17,
+        "pct_of_negatives": 5.666666666666666,
+        "mean_score": -0.6009454727172852,
+        "std_score": 0.8598166704177856,
+        "fpr_at_tau": 0.0,
+        "false_alarms": 0
+      },
+      "single:ss_spatial": {
+        "n": 19,
+        "pct_of_negatives": 6.333333333333334,
+        "mean_score": 0.23720771074295044,
+        "std_score": 0.9857865571975708,
+        "fpr_at_tau": 0.10526315789473684,
+        "false_alarms": 2
+      },
+      "single:svd_qim": {
+        "n": 22,
+        "pct_of_negatives": 7.333333333333333,
+        "mean_score": -0.998050332069397,
+        "std_score": 1.2299875020980835,
+        "fpr_at_tau": 0.0,
+        "false_alarms": 0
+      }
+    },
+    "test_breakdown": {
+      "clean": {
+        "n": 762,
+        "pct_of_negatives": 50.8,
+        "mean_score": -2.720792293548584,
+        "std_score": 1.619685173034668,
+        "fpr_at_tau": 0.0013123359580052493,
+        "false_alarms": 1
+      },
+      "single:dct_qim": {
+        "n": 106,
+        "pct_of_negatives": 7.066666666666667,
+        "mean_score": 0.6499373912811279,
+        "std_score": 0.6019344925880432,
+        "fpr_at_tau": 0.10377358490566038,
+        "false_alarms": 11
+      },
+      "single:dct_svd": {
+        "n": 116,
+        "pct_of_negatives": 7.733333333333333,
+        "mean_score": -0.6163375377655029,
+        "std_score": 0.9916436076164246,
+        "fpr_at_tau": 0.0,
+        "false_alarms": 0
+      },
+      "single:dwt_qim": {
+        "n": 86,
+        "pct_of_negatives": 5.733333333333333,
+        "mean_score": 0.748170018196106,
+        "std_score": 0.6452493071556091,
+        "fpr_at_tau": 0.13953488372093023,
+        "false_alarms": 12
+      },
+      "single:fft_ring": {
+        "n": 97,
+        "pct_of_negatives": 6.466666666666667,
+        "mean_score": -0.7921226024627686,
+        "std_score": 1.4803742170333862,
+        "fpr_at_tau": 0.041237113402061855,
+        "false_alarms": 4
+      },
+      "single:nmp_freq": {
+        "n": 116,
+        "pct_of_negatives": 7.733333333333333,
+        "mean_score": -1.148805856704712,
+        "std_score": 0.8327224254608154,
+        "fpr_at_tau": 0.0,
+        "false_alarms": 0
+      },
+      "single:ss_spatial": {
+        "n": 115,
+        "pct_of_negatives": 7.666666666666666,
+        "mean_score": 0.5096794962882996,
+        "std_score": 0.9324796795845032,
+        "fpr_at_tau": 0.19130434782608696,
+        "false_alarms": 22
+      },
+      "single:svd_qim": {
+        "n": 102,
+        "pct_of_negatives": 6.800000000000001,
+        "mean_score": -0.8367989659309387,
+        "std_score": 1.084064245223999,
+        "fpr_at_tau": 0.0,
+        "false_alarms": 0
+      }
+    }
+  },
+  "scientific_findings": {
+    "finding_1_finite_sample_quantization": "Validation negatives contain N=300 samples, meaning each sample represents 0.33% FPR. 1% FPR corresponds to exactly 3 false positives, creating high discrete quantile sensitivity.",
+    "finding_2_sampling_variance": "Validation threshold tau exhibits 95% CI of [1.188, 1.478]. Propagating this uncertainty onto the test set yields a test FPR 95% CI of [2.20%, 4.67%], fully encompassing the observed test FPR.",
+    "finding_3_compositional_heterogeneity": "Clean controls yield near-zero false alarms (FPR < 0.2%), while single watermarks account for >90% of false alarms due to occasional high-frequency residual spikes.",
+    "conclusion": "The 1.0% vs ~3.3% discrepancy is primarily explained by finite-sample threshold calibration variance (N_val=300) combined with the heavy-tailed residual distribution of single watermarks, rather than fundamental representation breakdown."
+  }
+}

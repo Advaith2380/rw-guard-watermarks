@@ -1,0 +1,46 @@
+{
+  "reproduced_at_utc": 1793967630.9992578,
+  "checkpoint": "D:/projects/rwg-push/checkpoints/final/rwguard_final_7scheme.pt",
+  "operating_threshold": 1.3394016,
+  "test_source_count": 1500,
+  "test_sample_count": 3000,
+  "reproduced_metrics": {
+    "roc_auc": 0.8542675555555556,
+    "roc_auc_95_ci": [
+      0.8407867,
+      0.8674106
+    ],
+    "tpr_at_1pct_fpr": 0.07866666666666666,
+    "tpr_at_1pct_fpr_95_ci": [
+      0.05,
+      0.106
+    ],
+    "fixed_threshold_tpr": 0.18666666666666668,
+    "fixed_threshold_tpr_95_ci": [
+      0.168,
+      0.20666666666666667
+    ],
+    "fixed_threshold_fpr": 0.03333333333333333,
+    "fixed_threshold_fpr_95_ci": [
+      0.024666666666666667,
+      0.043333333333333335
+    ]
+  },
+  "reported_reference": {
+    "test_sources": 1500,
+    "test_samples": 3000,
+    "roc_auc": 0.8543,
+    "tpr_at_1pct_fpr": 0.0787,
+    "fixed_threshold_tpr": 0.1867,
+    "fixed_threshold_fpr": 0.0333,
+    "operating_threshold": 1.3394016
+  },
+  "absolute_differences": {
+    "roc_auc_diff": 3.244444444439054e-05,
+    "tpr_at_1pct_fpr_diff": 3.333333333334354e-05,
+    "fixed_threshold_tpr_diff": 3.333333333332966e-05,
+    "fixed_threshold_fpr_diff": 3.333333333332966e-05
+  },
+  "split_isolation_verified": true,
+  "matches_reference_within_tol": true
+}

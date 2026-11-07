@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "claim_id": "CLAIM-01",
+  "classification": "SUPPORTED_WITH_QUALIFICATION",
+  "scientific_statement": "ForensicNet does not rely exclusively on residual energy shortcuts. Handcrafted linear and nonlinear baselines achieve near chance performance (0.550-0.557 AUC). While perturbation strength alone accounts for modest discrimination (+0.075 AUC over chance), structured multi-embedding interference provides the dominant forensic signal (0.7296 AUC vs. noise-matched control; 0.8543 vs. single watermark controls).",
+  "requirements_satisfied": [
+    "REQ-B01",
+    "REQ-B02",
+    "REQ-B03",
+    "REQ-B04"
+  ]
+}

@@ -21,6 +21,8 @@ BENIGN_TRAIN = ["jpeg", "noise", "blur", "bright"]
 
 
 def list_images(folder):
+    if not os.path.exists(folder) and os.path.exists(os.path.join("D:/projects/rewm-guard", folder)):
+        folder = os.path.join("D:/projects/rewm-guard", folder)
     out = []
     for root, _, files in os.walk(folder):
         for f in files:
@@ -56,8 +58,12 @@ def load_image(path, size, rng=None):
 
 
 def apply_benign(img, name, rng):
-    """name: none | jpeg | jpeg85 | noise | noise2 | blur | blur0.6 | bright"""
+    """name: none | jpeg | jpeg85 | noise | noise2 | blur | blur0.6 | bright | combined chains like jpeg85+noise1"""
     if name == "none":
+        return img
+    if "+" in name:
+        for sub_op in name.split("+"):
+            img = apply_benign(img, sub_op.strip(), rng)
         return img
     if name.startswith("jpeg"):
         q = int(name[4:]) if len(name) > 4 else int(rng.integers(70, 96))

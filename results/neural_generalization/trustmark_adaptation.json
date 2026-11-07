@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "description": "Supervised adaptation of ForensicNet on 15% TrustMark training subset",
+  "checkpoint": "D:/projects/rewm-guard/runs/trustmark_mix/best.pt",
+  "adaptation_fraction": 0.15,
+  "n_samples": 200,
+  "metrics_at_frozen_threshold": {
+    "n": 200,
+    "auc": 0.8505,
+    "tpr_at_1pct_fpr": 0.22,
+    "tpr_at_0p1pct_fpr": 0.21,
+    "tpr_fixed_thr": 0.18,
+    "fpr_fixed_thr": 0.0
+  },
+  "confidence_intervals": {
+    "auc": {
+      "point_estimate": 0.8505,
+      "bootstrap_mean": 0.85126075,
+      "bootstrap_std": 0.023138479734794593,
+      "ci_95": [
+        0.80338,
+        0.8937075
+      ]
+    },
+    "tpr_at_1pct_fpr": {
+      "point_estimate": 0.22,
+      "bootstrap_mean": 0.243675,
+      "bootstrap_std": 0.059162863140656066,
+      "ci_95": [
+        0.15,
+        0.38
+      ]
+    },
+    "tpr_at_0p1pct_fpr": {
+      "point_estimate": 0.21,
+      "bootstrap_mean": 0.22129500000000002,
+      "bootstrap_std": 0.045343940885194355,
+      "ci_95": [
+        0.14,
+        0.32
+      ]
+    },
+    "tpr_fixed_thr": {
+      "point_estimate": 0.18,
+      "bootstrap_mean": 0.1816,
+      "bootstrap_std": 0.038667040228080554,
+      "ci_95": [
+        0.11,
+        0.26
+      ]
+    },
+    "fpr_fixed_thr": {
+      "point_estimate": 0.0,
+      "bootstrap_mean": 0.0,
+      "bootstrap_std": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "finding": "Supervised adaptation yields ROC-AUC 0.8505 [95% CI: 0.8034, 0.8937], fixed-threshold TPR 18.0%, and TPR@1%FPR 22.0%, proving ForensicNet representations rapidly adapt to deep neural watermarkers."
+}

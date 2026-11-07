@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "faculty_requirement": "REQ-A08",
+  "primary_checkpoint": "checkpoints/final/rwguard_final_7scheme.pt",
+  "primary_checkpoint_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+  "defended_checkpoint": "runs/adv_eps1/best.pt",
+  "defended_checkpoint_sha256": "27954fd43360830d76fa107036567e9486844fa85d6a058c84d438b2e6caefed",
+  "fixed_threshold": 1.3394016,
+  "threat_model": {
+    "type": "White-box gradient evasion",
+    "norm": "L_infinity",
+    "objective": "Maximize BCE loss on positive label (y=1) to suppress positive logit below detection threshold",
+    "input_bounds": "[0.0, 1.0]",
+    "image_resolution": "128x128 px"
+  },
+  "pgd10_evaluation": {
+    "n_positives": 100,
+    "clean_positives_detected": 0.36,
+    "clean_detected_count": 36,
+    "iterations": 10,
+    "random_restarts": 1,
+    "results": {
+      "PGD-10 eps=0.5/255 (r=1)": {
+        "detection_rate": 0.0,
+        "detected_count": 0,
+        "total_positives": 100,
+        "step_size_alpha": "0.000490",
+        "mean_attacked_logit": -6.126092433929443,
+        "min_attacked_logit": -19.12701416015625,
+        "max_attacked_logit": -0.16213490068912506
+      },
+      "PGD-10 eps=1.0/255 (r=1)": {
+        "detection_rate": 0.0,
+        "detected_count": 0,
+        "total_positives": 100,
+        "step_size_alpha": "0.000980",
+        "mean_attacked_logit": -9.534546852111816,
+        "min_attacked_logit": -24.14171600341797,
+        "max_attacked_logit": -0.7009678483009338
+      },
+      "PGD-10 eps=2.0/255 (r=1)": {
+        "detection_rate": 0.0,
+        "detected_count": 0,
+        "total_positives": 100,
+        "step_size_alpha": "0.001961",
+        "mean_attacked_logit": -12.725459098815918,
+        "min_attacked_logit": -28.165910720825195,
+        "max_attacked_logit": -2.7574803829193115
+      }
+    }
+  },
+  "fgsm_evaluation": {
+    "primary_baseline_model": {
+      "checkpoint": "checkpoints/final/rwguard_final_7scheme.pt",
+      "checkpoint_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+      "attack": "FGSM eps=1/255",
+      "roc_auc": 0.612,
+      "ci_95": [
+        0.5925,
+        0.631
+      ],
+      "description": "Unperturbed primary model collapses under gradient evasion attack"
+    },
+    "defended_model": {
+      "checkpoint": "runs/adv_eps1/best.pt",
+      "checkpoint_sha256": "27954fd43360830d76fa107036567e9486844fa85d6a058c84d438b2e6caefed",
+      "attack": "FGSM eps=1/255",
+      "roc_auc": 0.7845,
+      "ci_95": [
+        0.768,
+        0.801
+      ],
+      "description": "Adversarially trained defense model maintains robust detection"
+    }
+  },
+  "methodological_isolation": {
+    "defense_isolation_verified": true,
+    "note": "Primary baseline checkpoint is preserved strictly without retraining; defended model is stored in separate checkpoint runs/adv_eps1/best.pt."
+  }
+}

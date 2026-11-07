@@ -1,0 +1,35 @@
+================================================================================
+RW-GUARD FINAL SUBMISSION ZIP & MANUSCRIPT AUDIT LOG
+================================================================================
+
+Archive File:    deliverables/RW_GUARD_FINAL_FACULTY_SUBMISSION.zip
+Archive Size:    12,581,544 bytes (12.00 MB)
+Archive SHA-256: 0378571b12a3df68038240f0a71f2e7e4421e7ec7e225b2214893528a598d4b4
+
+Total Files in ZIP: 83
+Archive CRC32 Integrity: PASS (0 corruptions)
+
+Extracting to sandbox directory: C:\Users\advai\AppData\Local\Temp\tmpt3s5smly
+Extracted Checkpoint SHA-256: 37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+Checkpoint Extracted Bit-Identical Match: PASS
+
+Extracted Manuscript SHA-256: f156e2ec6ca48e24261976f07f7b8da5bbe2c14f3200973090dffda16c76438b
+Manuscript Extracted Match: PASS
+
+Master Manifest Extracted: PASS
+
+Regression Tests Extracted: PASS
+
+PowerShell Entry Point Extracted: PASS
+
+Manuscript Paragraphs: 211
+Manuscript Tables:     17
+Abstract Word Count:   250 (Limit: <= 250)
+Abstract Length Check: PASS
+
+Manuscript Audit: Competing interests declaration     -> PASS
+Manuscript Audit: Checkpoint SHA-256 in manuscript    -> PASS
+Manuscript Audit: Operating threshold tau             -> PASS
+Manuscript Audit: Test ROC-AUC in text/table          -> PASS
+Manuscript Audit: Dual survival percentage            -> PASS
+Manuscript Audit: Trainable parameters count          -> PASS

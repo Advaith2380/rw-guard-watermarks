@@ -1,0 +1,48 @@
+RW-GUARD FINAL FACULTY SUBMISSION INTEGRITY REPORT
+===================================================
+Archive Name: RW_GUARD_FINAL_FACULTY_SUBMISSION.zip
+Archive Size: 22,395,198 bytes
+Archive Members: 33
+SHA-256 Checksum: 2db18226660354f9577d7aaa64a414f03520fc5d7b4b8e6a13d132e7e87ba91b
+
+Primary Checkpoint SHA-256: 37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+Defended Checkpoint SHA-256: 27954fd43360830d76fa107036567e9486844fa85d6a058c84d438b2e6caefed
+Frozen Validation Threshold: 1.3394016
+Primary Model: Seven-Scheme ForensicNet (2,466,099 weights)
+
+Verified Artifacts in Archive:
+- manuscript/corrected_final_manuscript.docx
+- manuscript/corrected_final_manuscript.pdf
+- checkpoints/rwguard_final_7scheme.pt
+- checkpoints/adv_defended_eps1.pt
+- configs/final_model_config.json
+- docs/faculty_requirement_matrix.csv (53/53 PASS)
+- docs/faculty_requirement_matrix.json
+- docs/FACULTY_REQUIREMENT_TRACEABILITY.md
+- docs/PROJECT_OVERVIEW.md
+- docs/ARCHITECTURE.md
+- docs/DATASET_AND_SPLITS.md
+- docs/EXPERIMENT_PROTOCOLS.md
+- docs/STATISTICAL_METHODS.md
+- docs/RESULTS_REFERENCE.md
+- docs/REPRODUCIBILITY.md
+- docs/RELEASE_NOTES.md
+- docs/REFERENCE_VERIFICATION_REPORT.md
+- docs/SUBMISSION_CONTENTS.md
+- docs/LIMITATIONS_AND_THREAT_MODEL.md
+- results/FINAL_RESOLUTION_METRICS_VERIFIED.csv
+- results/resolution_predictions.npz
+- results/adversarial_results.json
+- results/seed_statistics.json
+- audit/pacs_calibration_results.json
+- audit/shortcut_baseline_results.json
+- audit/matched_controls_results.json
+- audit/trustmark_evaluation_results.json
+- audit/stegastamp_evaluation_results.json
+- audit/outcome_stratification_results.json
+- scripts/verify_faculty_submission.py
+- README.md
+- SUBMISSION_FILE_MANIFEST.txt
+
+ZIP Integrity: PASSED (zero CRC errors)
+Verification Verdict: ALL AUDIT GATES PASSED

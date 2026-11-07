@@ -1,0 +1,142 @@
+{
+  "status": "PASS",
+  "total_tests": 22,
+  "passed": 22,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 23.282,
+  "tests": [
+    {
+      "test_id": "test_determinism.TestDeterminism.test_eval_dataset_sample_reproducibility",
+      "status": "PASS",
+      "elapsed_seconds": 0.0012,
+      "error": null
+    },
+    {
+      "test_id": "test_determinism.TestDeterminism.test_split_paths_deterministic",
+      "status": "PASS",
+      "elapsed_seconds": 0.0011,
+      "error": null
+    },
+    {
+      "test_id": "test_determinism.TestDeterminism.test_split_paths_isolation",
+      "status": "PASS",
+      "elapsed_seconds": 0.0002,
+      "error": null
+    },
+    {
+      "test_id": "test_integration_faculty.TestFacultyIntegrations.test_feature_extraction_dimension_and_finite",
+      "status": "PASS",
+      "elapsed_seconds": 0.0402,
+      "error": null
+    },
+    {
+      "test_id": "test_integration_faculty.TestFacultyIntegrations.test_four_attack_outcome_categories",
+      "status": "PASS",
+      "elapsed_seconds": 0.0022,
+      "error": null
+    },
+    {
+      "test_id": "test_integration_faculty.TestFacultyIntegrations.test_grouped_source_bootstrap_reproducibility",
+      "status": "PASS",
+      "elapsed_seconds": 0.1198,
+      "error": null
+    },
+    {
+      "test_id": "test_integration_faculty.TestFacultyIntegrations.test_strength_matching_binary_search",
+      "status": "PASS",
+      "elapsed_seconds": 0.0027,
+      "error": null
+    },
+    {
+      "test_id": "test_metrics.TestMetrics.test_bootstrap_ci",
+      "status": "PASS",
+      "elapsed_seconds": 0.1163,
+      "error": null
+    },
+    {
+      "test_id": "test_metrics.TestMetrics.test_rates_at",
+      "status": "PASS",
+      "elapsed_seconds": 0.0002,
+      "error": null
+    },
+    {
+      "test_id": "test_metrics.TestMetrics.test_roc_auc_chance",
+      "status": "PASS",
+      "elapsed_seconds": 0.0003,
+      "error": null
+    },
+    {
+      "test_id": "test_metrics.TestMetrics.test_roc_auc_inverted",
+      "status": "PASS",
+      "elapsed_seconds": 0.0003,
+      "error": null
+    },
+    {
+      "test_id": "test_metrics.TestMetrics.test_roc_auc_perfect",
+      "status": "PASS",
+      "elapsed_seconds": 0.0005,
+      "error": null
+    },
+    {
+      "test_id": "test_metrics.TestMetrics.test_summarize_format",
+      "status": "PASS",
+      "elapsed_seconds": 0.0004,
+      "error": null
+    },
+    {
+      "test_id": "test_metrics.TestMetrics.test_threshold_at_fpr",
+      "status": "PASS",
+      "elapsed_seconds": 0.0001,
+      "error": null
+    },
+    {
+      "test_id": "test_models.TestModels.test_all_architectures_forward",
+      "status": "PASS",
+      "elapsed_seconds": 16.4141,
+      "error": null
+    },
+    {
+      "test_id": "test_models.TestModels.test_highpass_filter_shape_and_range",
+      "status": "PASS",
+      "elapsed_seconds": 0.0059,
+      "error": null
+    },
+    {
+      "test_id": "test_models.TestModels.test_resolution_invariance",
+      "status": "PASS",
+      "elapsed_seconds": 0.8135,
+      "error": null
+    },
+    {
+      "test_id": "test_outcomes.TestOutcomes.test_classify_attack_outcome_logic",
+      "status": "PASS",
+      "elapsed_seconds": 0.0001,
+      "error": null
+    },
+    {
+      "test_id": "test_outcomes.TestOutcomes.test_compute_bit_accuracy",
+      "status": "PASS",
+      "elapsed_seconds": 0.0003,
+      "error": null
+    },
+    {
+      "test_id": "test_watermarks.TestWatermarks.test_all_seven_schemes_embed_and_extract",
+      "status": "PASS",
+      "elapsed_seconds": 0.3186,
+      "error": null
+    },
+    {
+      "test_id": "test_watermarks.TestWatermarks.test_same_scheme_overwriting",
+      "status": "PASS",
+      "elapsed_seconds": 0.0192,
+      "error": null
+    },
+    {
+      "test_id": "test_watermarks.TestWatermarks.test_stegastamp_embed_and_decode",
+      "status": "PASS",
+      "elapsed_seconds": 5.3942,
+      "error": null
+    }
+  ]
+}

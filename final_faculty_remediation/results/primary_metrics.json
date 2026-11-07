@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "evaluation_mode": "FRESH_MODEL_INFERENCE_NO_CACHE",
+  "timestamp_utc": "2026-11-06T15:14:14.245146+00:00",
+  "checkpoint": "D:\\projects\\rwg-push\\checkpoints\\final\\rwguard_final_7scheme.pt",
+  "checkpoint_sha256": "37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573",
+  "operating_threshold": 1.3394016,
+  "n_sources": 1500,
+  "n_samples": 3000,
+  "metrics": {
+    "roc_auc": 0.8542675555555556,
+    "roc_auc_95_ci": [
+      0.8407867,
+      0.8674106
+    ],
+    "tpr_at_1pct_fpr": 0.07866666666666666,
+    "tpr_at_1pct_fpr_95_ci": [
+      0.05,
+      0.106
+    ],
+    "fixed_threshold_tpr": 0.18666666666666668,
+    "fixed_threshold_tpr_95_ci": [
+      0.168,
+      0.20666666666666667
+    ],
+    "fixed_threshold_fpr": 0.03333333333333333,
+    "fixed_threshold_fpr_95_ci": [
+      0.024666666666666667,
+      0.043333333333333335
+    ]
+  },
+  "bootstrap_parameters": {
+    "replicates": 2000,
+    "grouping_unit": "independent_source_image_id",
+    "confidence_level": 0.95
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "description": "Multi-seed training convergence and variance reconciliation across protocols and standard deviation definitions",
+  "protocols": {
+    "protocol_A_1000_samples": {
+      "source_count": 500,
+      "sample_count": 1000,
+      "checkpoint_paths": {
+        "seed0": "runs/seed0/best.pt",
+        "seed1": "runs/seed1/best.pt",
+        "seed2": "runs/seed2/best.pt"
+      },
+      "individual_aucs": {
+        "seed0": 0.855564,
+        "seed1": 0.853104,
+        "seed2": 0.84968
+      },
+      "mean_auc": 0.852783,
+      "sample_std_ddof1": 0.002955,
+      "population_std_ddof0": 0.002413,
+      "range": 0.005884,
+      "provenance": "Evaluated via scripts/evaluate_three_seeds.py (--n-test 500)"
+    },
+    "protocol_B_3000_samples_reproduced": {
+      "source_count": 1500,
+      "sample_count": 3000,
+      "checkpoint_paths": {
+        "seed0": "runs/seed0/best.pt",
+        "seed1": "runs/seed1/best.pt",
+        "seed2": "runs/seed2/best.pt"
+      },
+      "individual_aucs": {
+        "seed0": 0.854268,
+        "seed1": 0.854453,
+        "seed2": 0.850294
+      },
+      "mean_auc": 0.853005,
+      "sample_std_ddof1": 0.00235,
+      "population_std_ddof0": 0.001918,
+      "range": 0.004159,
+      "provenance": "Freshly evaluated on full 1500 test sources (3000 samples) on GPU"
+    },
+    "protocol_B_3000_samples_historical": {
+      "source_count": 1500,
+      "sample_count": 3000,
+      "individual_aucs": {
+        "seed0": 0.8543,
+        "seed1": 0.8502,
+        "seed2": 0.8499
+      },
+      "mean_auc": 0.851467,
+      "sample_std_ddof1": 0.002458,
+      "population_std_ddof0": 0.002007,
+      "range": 0.0044,
+      "provenance": "Historical 3000-sample test split report"
+    }
+  },
+  "discrepancy_explanation": "The numerical difference between 0.002955 and 0.0024/0.0020 stems from two distinct factors: (1) Sample size: Protocol A evaluated 1,000 samples (500 sources) yielding AUCs [0.8556, 0.8531, 0.8497], whereas Protocol B evaluated 3,000 samples (1,500 sources) yielding AUCs [0.8543, 0.8545, 0.8503] (reproduced) or [0.8543, 0.8502, 0.8499] (historical). (2) Degrees of freedom: In Protocol A, the population SD (ddof=0) is exactly 0.002413 (which rounds to 0.0024) while the sample SD (ddof=1) is 0.002955. In Protocol B historical, the sample SD (ddof=1) is 0.002458 (rounds to 0.0024) while population SD (ddof=0) is 0.002007 (rounds to 0.0020). A previous report mistakenly transposed the 0.0024 population SD of Protocol A with the 0.0024/0.0020 figures of Protocol B."
+}

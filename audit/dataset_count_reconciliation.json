@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "reconciled_discrepancies": [
+    {
+      "discrepancy_name": "COCO Split Source Counts vs Total 5,000",
+      "clarification": "5,000 total images in val2017 are deterministically partitioned into 3,200 train sources (64%), 300 validation sources (6%), and 1,500 test sources (30%). 3,200 + 300 + 1,500 = 5,000 exact.",
+      "status": "RECONCILED"
+    },
+    {
+      "discrepancy_name": "Test Sources (1,500) vs Test Samples (3,000)",
+      "clarification": "Each of the 1,500 held-out test source images yields exactly 2 derived evaluation samples: 1 negative control (single-watermarked) and 1 positive attack (double-watermarked). 1,500 * 2 = 3,000 derived samples.",
+      "status": "RECONCILED"
+    },
+    {
+      "discrepancy_name": "PACS 1,600 Sources vs 3,200 Samples",
+      "clarification": "PACS contains 1,600 unique source images (400 per domain across Photo, Art, Cartoon, Sketch). Each source image yields 2 derived test samples, resulting in 3,200 derived evaluation samples (800 per domain).",
+      "status": "RECONCILED"
+    },
+    {
+      "discrepancy_name": "Baseline 500 Sources vs Primary 1,500 Sources",
+      "clarification": "The handcrafted baselines (Logistic Regression and Random Forest) in shortcut_baseline.py evaluated te[:500] (1,000 samples). RW-Guard was also evaluated on those exact 500 sources (AUC 0.8477) for a strictly paired comparison.",
+      "status": "RECONCILED"
+    }
+  ]
+}

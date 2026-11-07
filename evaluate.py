@@ -34,14 +34,15 @@ def get_args():
     p.add_argument("--out", default="results/baseline")
     p.add_argument("--n-test", type=int, default=0, help="limit test source images (0 = all)")
     p.add_argument("--sizes", type=int, nargs="*", default=[128, 256, 384])
-    p.add_argument("--benign", nargs="*", default=["none", "jpeg95", "jpeg85", "jpeg75", "noise1", "noise2", "blur0.5", "bright"])
+    p.add_argument("--benign", nargs="*", default=["none", "jpeg95", "jpeg85", "jpeg75", "noise1", "noise2", "blur0.5", "bright", "jpeg85+noise1", "blur0.5+jpeg85", "bright+jpeg85"])
     p.add_argument("--adv-eps-list", type=float, nargs="*", default=[0.5, 1.0, 2.0], help="PGD eps in /255 units")
     p.add_argument("--adv-steps", type=int, default=10, help="Number of PGD optimization steps")
     p.add_argument("--adv-restarts", type=int, default=1, help="Number of random restarts for PGD")
     p.add_argument("--adv-n", type=int, default=100, help="positives attacked per eps")
     p.add_argument("--adv-size", type=int, default=128)
     p.add_argument("--bs", type=int, default=32)
-    p.add_argument("--workers", type=int, default=4)
+    p.add_argument("--workers", type=int, default=0)
+    p.add_argument("--thr", type=float, default=None, help="Frozen operating threshold (default: compute on val)")
     p.add_argument("--bootstrap-ci", action="store_true", default=True, help="Compute 95% bootstrap CIs")
     p.add_argument("--save-preds", action="store_true", default=True, help="Save predictions to test_preds.npz")
     return p.parse_args()
@@ -69,6 +70,12 @@ def main():
     print(f"loaded {a.ckpt} (epoch {ck['epoch']}, val AUC {ck['val_auc']:.4f}); seen={seen} unseen={unseen}")
 
     paths = list_images(a.data)
+    if not paths and os.path.exists(os.path.join("D:/projects/rewm-guard", a.data)):
+        a.data = os.path.join("D:/projects/rewm-guard", a.data)
+        paths = list_images(a.data)
+    if not os.path.isdir(a.pacs) and os.path.isdir(os.path.join("D:/projects/rewm-guard", a.pacs)):
+        a.pacs = os.path.join("D:/projects/rewm-guard", a.pacs)
+        
     _, va, te = split_paths(paths)
     te = te[: a.n_test] if a.n_test else te
     va = va[: targs["n_val"]]
@@ -81,9 +88,13 @@ def main():
     seen_kw = dict(victim_schemes=seen, attacker_schemes=seen, single_schemes=seen)
 
     # operating point: threshold that gives 1 % FPR on the *validation* negatives (in-distribution, 256 px)
-    sv, yv, _ = run(va, size=256, benign_p=0.5, **seen_kw)
-    thr = threshold_at_fpr(sv[yv == 0], 0.01)
-    print(f"fixed operating threshold (val, 1% FPR): logit > {thr:.3f}")
+    if a.thr is not None:
+        thr = float(a.thr)
+        print(f"using specified frozen operating threshold: logit > {thr:.4f}")
+    else:
+        sv, yv, _ = run(va, size=256, benign_p=0.5, **seen_kw)
+        thr = float(threshold_at_fpr(sv[yv == 0], 0.01))
+        print(f"fixed operating threshold (val, 1% FPR): logit > {thr:.4f}")
 
     results, rows, curves, kinds_out = {"threshold": thr}, [], {}, {}
 
@@ -105,8 +116,9 @@ def main():
         np.savez_compressed(os.path.join(a.out, "test_preds.npz"), scores=s, labels=y, kinds=k, threshold=thr)
 
     if a.bootstrap_ci:
-        print("Computing 95% bootstrap confidence intervals for in-distribution test set...")
-        ci_res = compute_bootstrap_cis(y, s, thr=thr, n_bootstraps=500, seed=42)
+        print("Computing 95% bootstrap confidence intervals (2,000 source-grouped replicates) for in-distribution test set...")
+        sids = np.array([i // 2 for i in range(len(y))])
+        ci_res = compute_bootstrap_cis(y, s, thr=thr, source_ids=sids, n_bootstraps=2000, seed=42)
         results["in_distribution_ci_95"] = ci_res["metrics"]
 
     # 2 benign post-processing

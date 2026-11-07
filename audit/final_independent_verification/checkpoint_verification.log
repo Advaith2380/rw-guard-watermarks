@@ -1,0 +1,24 @@
+[2026-11-06 17:49:46] ================================================================================
+[2026-11-06 17:49:46]  PHASE 2: CHECKPOINT INTEGRITY AND PROVENANCE VERIFICATION
+[2026-11-06 17:49:46] ================================================================================
+[2026-11-06 17:49:46] Target checkpoint: checkpoints/final/rwguard_final_7scheme.pt
+[2026-11-06 17:49:46] Actual SHA-256:   37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+[2026-11-06 17:49:46] Expected SHA-256: 37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+[2026-11-06 17:49:46] Hash match status: PASS
+[2026-11-06 17:49:46] File size:        9909673 bytes
+[2026-11-06 17:49:46] Loading checkpoint PyTorch state dictionary...
+[2026-11-06 17:49:46] Reported architecture in args: forensic (width=32)
+[2026-11-06 17:49:46] State dict strict load: missing_keys=[], unexpected_keys=[]
+[2026-11-06 17:49:46] Total parameter count:     2466099
+[2026-11-06 17:49:46] Trainable parameter count: 2466099 (Expected: 2466099)
+[2026-11-06 17:49:46] NaN check: 0 tensors with NaN
+[2026-11-06 17:49:46] Inf check: 0 tensors with Inf
+[2026-11-06 17:49:46] High-pass front end present: False (weight shape: None)
+[2026-11-06 17:49:46] Seed0 source checkpoint: runs/seed0/best.pt (SHA-256: 37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573)
+[2026-11-06 17:49:46] Byte-level identity with seed0/best.pt: True
+[2026-11-06 17:49:46] Tensor-level weight equality with seed0/best.pt: True
+[2026-11-06 17:49:46] Checkpoint Metadata: epoch=14, val_auc=0.8483, schemes=['dct_qim', 'dwt_qim', 'ss_spatial', 'fft_ring', 'nmp_freq', 'svd_qim', 'dct_svd']
+[2026-11-06 17:49:46] --------------------------------------------------------------------------------
+[2026-11-06 17:49:46] CHECKPOINT VERIFICATION OVERALL: PASS
+[2026-11-06 17:49:46] ================================================================================
+

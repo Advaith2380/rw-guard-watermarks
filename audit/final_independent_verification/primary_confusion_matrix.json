@@ -1,0 +1,12 @@
+{
+  "operating_threshold": 1.3394016,
+  "true_positives": 280,
+  "false_positives": 50,
+  "true_negatives": 1450,
+  "false_negatives": 1220,
+  "sensitivity_tpr": 0.18666666666666668,
+  "specificity_tnr": 0.9666666666666667,
+  "false_positive_rate": 0.03333333333333333,
+  "precision": 0.8484848484848485,
+  "accuracy": 0.5766666666666667
+}

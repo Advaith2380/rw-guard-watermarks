@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "description": "Single-watermark control with perturbation strength scaled to match double-watermarking residual energy",
+  "n_sources": 300,
+  "n_samples": 600,
+  "matching_target": "MSE approximately 9.14 (PSNR ~38.5 dB)",
+  "metrics": {
+    "n": 600,
+    "auc": 0.5746777777777777,
+    "tpr_at_1pct_fpr": 0.05,
+    "tpr_at_0p1pct_fpr": 0.0,
+    "tpr_fixed_thr": 0.21666666666666667,
+    "fpr_fixed_thr": 0.14
+  },
+  "confidence_intervals_95": {
+    "auc": {
+      "point_estimate": 0.5746777777777777,
+      "bootstrap_mean": 0.5746601166666667,
+      "bootstrap_std": 0.01051327031492979,
+      "ci_95": [
+        0.5544208333333334,
+        0.5955336111111111
+      ]
+    },
+    "tpr_at_1pct_fpr": {
+      "point_estimate": 0.05,
+      "bootstrap_mean": 0.04663333333333334,
+      "bootstrap_std": 0.013761419500424608,
+      "ci_95": [
+        0.02,
+        0.07333333333333333
+      ]
+    },
+    "tpr_at_0p1pct_fpr": {
+      "point_estimate": 0.0,
+      "bootstrap_mean": 0.011788333333333333,
+      "bootstrap_std": 0.017196145482184212,
+      "ci_95": [
+        0.0,
+        0.05333333333333334
+      ]
+    },
+    "tpr_fixed_thr": {
+      "point_estimate": 0.21666666666666667,
+      "bootstrap_mean": 0.21583166666666664,
+      "bootstrap_std": 0.023782287935445668,
+      "ci_95": [
+        0.17,
+        0.2633333333333333
+      ]
+    },
+    "fpr_fixed_thr": {
+      "point_estimate": 0.14,
+      "bootstrap_mean": 0.1398466666666667,
+      "bootstrap_std": 0.019492985633013965,
+      "ci_95": [
+        0.10333333333333333,
+        0.18
+      ]
+    }
+  },
+  "finding": "Perturbation energy alone yields AUC 0.5747 [95% CI: 0.5544, 0.5955], confirming energy accounts for a modest portion of detection over chance."
+}

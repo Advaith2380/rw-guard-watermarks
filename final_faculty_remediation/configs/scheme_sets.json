@@ -1,0 +1,21 @@
+{
+  "protocols": {
+    "v1_four": {
+      "version": "1.0",
+      "description": "Original headline 4-scheme benchmark protocol",
+      "schemes": ["dct_qim", "dwt_qim", "ss_spatial", "fft_ring"]
+    },
+    "v2_seven": {
+      "version": "2.0",
+      "description": "Expanded 7-scheme protocol (incorporating PECCVAI-inspired nmp_freq, svd_qim, dct_svd)",
+      "schemes": ["dct_qim", "dwt_qim", "ss_spatial", "fft_ring", "nmp_freq", "svd_qim", "dct_svd"]
+    },
+    "v3_neural_extended": {
+      "version": "3.0",
+      "description": "Extended protocol incorporating real pretrained neural watermarking systems (TrustMark ICCV 2025, StegaStamp)",
+      "schemes": ["dct_qim", "dwt_qim", "ss_spatial", "fft_ring", "nmp_freq", "svd_qim", "dct_svd", "trustmark", "stegastamp"]
+    }
+  },
+  "default_headline_protocol": "v1_four",
+  "default_evaluation_protocol": "v2_seven"
+}

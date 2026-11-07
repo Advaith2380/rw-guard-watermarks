@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "reconciliation_target": "Historical 88.7% dual survival claim vs. verified 85.0% empirical records",
+  "historical_claim": {
+    "reported_percentage": 88.7,
+    "origin": "Preliminary 4-scheme prototype evaluation on unstratified subset"
+  },
+  "verified_current_evaluation": {
+    "double_watermarked_attacks": 500,
+    "dual_survival_count": 425,
+    "formula": "425 / 500 * 100",
+    "exact_percentage": 85.0,
+    "bootstrap_95_ci": [
+      81.8,
+      88.2
+    ]
+  },
+  "reconciliation_finding": "The true verified dual survival rate under all 7 schemes is 85.0% (425/500). The historical 88.7% is fully reconciled as a prototype artifact, and the 85.0% figure is the authoritative result."
+}

@@ -1,0 +1,3 @@
+rwguard_final_7scheme.pt SHA-256: 37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+Frozen Validation Threshold tau: 1.3394016
+Parameters: 2,466,099 weights

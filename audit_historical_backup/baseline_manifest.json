@@ -1,0 +1,135 @@
+{
+  "audit_timestamp": "2026-10-31T22:47:13.891668",
+  "primary_baseline_checkpoint": "D:/projects/rewm-guard/runs/baseline_e9/best.pt",
+  "primary_results_file": "D:/projects/rewm-guard/results/baseline_e9_final/results.json",
+  "source_code_version": "17a54fc",
+  "model_architecture": "ForensicNet (Fixed HP front-end + Residual CNN + GAP/GMP)",
+  "watermarking_protocol_trained": [
+    "dct_qim",
+    "dwt_qim",
+    "ss_spatial",
+    "fft_ring"
+  ],
+  "watermarking_protocol_unseen": [
+    "nmp_freq",
+    "svd_qim",
+    "dct_svd"
+  ],
+  "dataset": {
+    "source": "MS-COCO val2017 (5000 images)",
+    "split": "60% train (3000), 10% val (500 nominal, 300 truncated by default), 30% test (1500)",
+    "seed": 0,
+    "image_size": 256,
+    "crop_size": 128
+  },
+  "operating_threshold": 1.1413229703903198,
+  "operating_threshold_selection": "Empirical 1% FPR on validation split (300 images)",
+  "primary_metrics": {
+    "in_distribution_test": {
+      "condition": "COCO 256px (seen schemes)",
+      "n_samples": 3000,
+      "roc_auc": 0.8585848888888888,
+      "tpr_at_1pct_fpr": 0.16466666666666666,
+      "tpr_at_0p1pct_fpr": 0.04533333333333334,
+      "tpr_fixed_threshold": 0.2946666666666667,
+      "fpr_fixed_threshold": 0.035333333333333335
+    },
+    "unseen_schemes": {
+      "unseen_attacker": {
+        "auc": 0.817,
+        "tpr_at_1pct_fpr": 0.031,
+        "tpr_fixed_thr": 0.077,
+        "fpr_fixed_thr": 0.024
+      },
+      "unseen_victim_and_attacker": {
+        "auc": 0.58,
+        "tpr_at_1pct_fpr": 0.001,
+        "tpr_fixed_thr": 0.003,
+        "fpr_fixed_thr": 0.024
+      }
+    },
+    "robustness": {
+      "jpeg95": {
+        "auc": 0.863,
+        "tpr_at_1pct_fpr": 0.12
+      },
+      "jpeg85": {
+        "auc": 0.853,
+        "tpr_at_1pct_fpr": 0.171
+      },
+      "jpeg75": {
+        "auc": 0.846,
+        "tpr_at_1pct_fpr": 0.141
+      },
+      "noise1": {
+        "auc": 0.871,
+        "tpr_at_1pct_fpr": 0.206
+      },
+      "noise2": {
+        "auc": 0.862,
+        "tpr_at_1pct_fpr": 0.194
+      },
+      "blur0.5": {
+        "auc": 0.868,
+        "tpr_at_1pct_fpr": 0.151
+      },
+      "bright": {
+        "auc": 0.83,
+        "tpr_at_1pct_fpr": 0.164
+      }
+    },
+    "resolution_invariance": {
+      "128px": {
+        "auc": 0.86,
+        "tpr_at_1pct_fpr": 0.109
+      },
+      "256px": {
+        "auc": 0.859,
+        "tpr_at_1pct_fpr": 0.165
+      },
+      "384px": {
+        "auc": 0.859,
+        "tpr_at_1pct_fpr": 0.191
+      }
+    },
+    "cross_domain_pacs": {
+      "art_painting": {
+        "auc": 0.842,
+        "tpr_at_1pct_fpr": 0.147
+      },
+      "cartoon": {
+        "auc": 0.891,
+        "tpr_at_1pct_fpr": 0.297
+      },
+      "photo": {
+        "auc": 0.819,
+        "tpr_at_1pct_fpr": 0.105
+      },
+      "sketch": {
+        "auc": 0.897,
+        "tpr_at_1pct_fpr": 0.345
+      }
+    },
+    "adversarial_pgd": {
+      "clean_detected_rate": 0.4,
+      "pgd_eps_0.5": 0.0,
+      "pgd_eps_1.0": 0.0,
+      "pgd_eps_2.0": 0.0
+    }
+  },
+  "architecture_ablations_val_auc": {
+    "ForensicNet_with_HP (headline baseline_e9)": 0.8602,
+    "ForensicNet_no_HP (nohp_ablation)": 0.515,
+    "ResNet-18_no_HP (resnet18_baseline)": 0.5034,
+    "SimpleClassifier_no_HP (simple_baseline)": 0.5019
+  },
+  "reproducibility_seeds_val_auc": {
+    "seed0": 0.8483,
+    "seed1": 0.8473,
+    "seed2": 0.8453
+  },
+  "real_neural_watermarker_trustmark": {
+    "zero_shot_auc": 0.696,
+    "mixed_training_p0.15_auc": 0.925
+  }
+}

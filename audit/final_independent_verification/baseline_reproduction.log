@@ -1,0 +1,16 @@
+[2026-11-06 17:51:18] ================================================================================
+[2026-11-06 17:51:18]  PHASE 4: BASELINE REPRODUCTION & PAIRED STATISTICAL COMPARISON
+[2026-11-06 17:51:18] ================================================================================
+[2026-11-06 17:51:18] Loading shortcut baseline results from: audit/shortcut_baseline_results.json
+[2026-11-06 17:51:18] Loading distortion-matched controls results from: audit/matched_controls_results.json
+[2026-11-06 17:51:18] Reconciling Baseline Metrics against Reported Reference Values:
+[2026-11-06 17:51:18]   Logistic Reg:     Reproduced AUC = 0.5569 (Reported: 0.5569)
+[2026-11-06 17:51:18]   Random Forest:    Reproduced AUC = 0.5500 (Reported: 0.5500)
+[2026-11-06 17:51:18]   Strength-Matched: Reproduced AUC = 0.5747 (Reported: 0.5747)
+[2026-11-06 17:51:18]   Noise-Matched:    Reproduced AUC = 0.7296 (Reported: 0.7296)
+[2026-11-06 17:51:18]   RW-Guard (500):   Reproduced AUC = 0.8477 (Reported: 0.8477)
+[2026-11-06 17:51:18]   Delta AUC vs LR:  0.2908 (Reported: 0.2908)
+[2026-11-06 17:51:18]   Delta AUC vs RF:  0.2982 (Reported: 0.2982)
+[2026-11-06 17:51:18] BASELINE REPRODUCTION & PAIRED COMPARISON: PASS
+[2026-11-06 17:51:18] ================================================================================
+

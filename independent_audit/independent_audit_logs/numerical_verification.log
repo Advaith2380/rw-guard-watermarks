@@ -1,0 +1,111 @@
+================================================================================
+INDEPENDENT NUMERICAL VERIFICATION AUDIT
+================================================================================
+
+--- PART 1: DATASET SPLIT INTEGRITY & SOURCE COUNTS ---
+Total Unique Sources: 5000 (Expected: 5,000)
+Train Sources:        3000 (Expected: 3,000, 60.0%)
+Validation Sources:   500 (Expected: 500, 10.0%, 300 active calibration subset)
+Held-Out Test Sources:1500 (Expected: 1,500, 30.0%)
+Overlap Train/Val:    0
+Overlap Train/Test:   0
+Overlap Val/Test:     0
+Derived Test Samples: 3000 (Expected: 3,000, 1500 neg + 1500 pos)
+Derived Negatives:    1500 | Positives: 1500
+
+--- PART 2: PRIMARY CHECKPOINT INTEGRITY & ARCHITECTURE ---
+Checkpoint SHA-256: 37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+Expected SHA-256:   37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+State Dict Tensor Keys: 92
+Total Parameters Count: 2,470,709 (Expected: 2,466,099)
+HighPass Filter Params: 0
+Training Schemes In Checkpoint: ['dct_qim', 'dwt_qim', 'ss_spatial', 'fft_ring', 'nmp_freq', 'svd_qim', 'dct_svd']
+Validation Epoch Selected: 14 | Validation AUC: 0.8482555555555555
+
+--- PART 3: PRIMARY METRICS & SOURCE-GROUPED BOOTSTRAP (B=2,000) ---
+Loaded test predictions: 3000 samples across 1500 source IDs.
+Primary Test ROC-AUC: 0.854268 (Reported: 0.8543)
+Operating Threshold (tau): 1.3394016
+Fixed-Threshold TPR:       18.67% (280/1500)
+  Wilson 95% CI:           [16.78%, 20.72%]
+  Clopper-Pearson 95% CI:  [16.72%, 20.73%]
+Fixed-Threshold FPR:       3.33% (50/1500)
+  Wilson 95% CI:           [2.54%, 4.37%]
+  Clopper-Pearson 95% CI:  [2.48%, 4.37%]
+ROC-derived TPR @ 1% FPR:  7.87% (tau_test = 1.6040)
+
+Executing Source-Grouped Bootstrap Resampling (B = 2,000)...
+Bootstrap 95% CI for ROC-AUC:          [0.8410, 0.8672]
+Bootstrap 95% CI for Fixed TPR:         [16.67%, 20.67%]
+Bootstrap 95% CI for Fixed FPR:         [2.47%, 4.27%]
+Bootstrap 95% CI for ROC TPR@1%FPR:     [5.13%, 10.67%]
+
+--- PART 4: STATISTICAL AUDIT OF VALIDATION VS TEST FPR SHIFT ---
+Validation FPR:          1.00% (3/300)
+Held-Out Test FPR:       3.33% (50/1500)
+Kolmogorov-Smirnov Test: D = 0.0500, p = 0.5485
+Mann-Whitney U Test:     U = 223611.0, p = 0.8658
+
+--- PART 5: MULTI-SEED TRAINING STABILITY AUDIT ---
+Seed 0 AUC: 0.8556 | Seed 1 AUC: 0.8531 | Seed 2 AUC: 0.8497
+Mean AUC:   0.8528
+Sample Std (ddof=1):     0.002955 (0.0024)
+Population Std (ddof=0): 0.002413 (0.0020)
+
+--- PART 6: SHORTCUT CONTROLS & NONLINEAR BASELINES ---
+Single Watermark MSE:    9.1428
+Re-Watermarked MSE:      9.1257
+MSE Matching Difference: 0.187% (Target: < 0.19%)
+RW-Guard AUC on Distortion-Matched Single: 0.5747
+Logistic Regression AUC: 0.5569
+Random Forest AUC:       0.5500
+Matched Noise AUC:       0.7296
+Delta AUC vs LR:         0.2908 (p < 0.001)
+Delta AUC vs RF:         0.2982 (p < 0.001)
+
+--- PART 7: NEURAL WATERMARKER GENERALIZATION ---
+TrustMark Zero-Shot AUC (Stratified): 0.6562
+TrustMark Zero-Shot Fixed TPR:        0.0%
+TrustMark Zero-Shot Recalibrated TPR: 22.0%
+TrustMark Supervised Adapted AUC:     0.8505
+StegaStamp Zero-Shot AUC:             0.9293
+
+--- PART 8: OWNERSHIP ATTACK RECOVERY & DUAL SURVIVAL RECALCULATION ---
+Total Attacks Audited: 500 (Expected: 500)
+Category: dual_survival              Count: 425 ( 85.0%) | Wilson: [81.60%, 87.86%] | CP: [81.56%, 88.02%]
+Category: successful_overwrite       Count:  67 ( 13.4%) | Wilson: [10.69%, 16.67%] | CP: [10.54%, 16.70%]
+Category: failed_attacker_embedding  Count:   8 (  1.6%) | Wilson: [ 0.81%,  3.13%] | CP: [ 0.69%,  3.13%]
+Category: both_unrecoverable         Count:   0 (  0.0%) | Wilson: [ 0.00%,  0.76%] | CP: [ 0.00%,  0.74%]
+
+--- PART 9: SECONDARY EVALUATIONS AUDIT ---
+PACS Cross-Domain Generalization:
+  Domain: photo        AUC: 0.8192
+  Domain: art_painting AUC: 0.8616
+  Domain: cartoon      AUC: 0.8677
+  Domain: sketch       AUC: 0.8247
+Resolution Invariance:
+  Resolution: 128px      AUC: 0.8463
+  Resolution: 256px      AUC: 0.8543
+  Resolution: 384px      AUC: 0.8579
+Benign Post-Processing Operations:
+  Operation: none                 AUC: 0.8685
+  Operation: jpeg95               AUC: 0.8491
+  Operation: jpeg85               AUC: 0.8339
+  Operation: jpeg75               AUC: 0.8344
+  Operation: noise1               AUC: 0.8625
+  Operation: noise2               AUC: 0.8493
+  Operation: blur0.5              AUC: 0.8538
+  Operation: bright               AUC: 0.8548
+  Operation: jpeg85+noise1        AUC: 0.8323
+  Operation: blur0.5+jpeg85       AUC: 0.8329
+  Operation: bright+jpeg85        AUC: 0.8123
+Adversarial Evasion & Defense:
+  Clean Detected: 0.36
+  PGD-10 eps=0.5: 0.0
+  PGD-10 eps=1.0: 0.0
+  PGD-10 eps=2.0: 0.0
+  Defended Checkpoint SHA-256: 27954fd43360830d76fa107036567e9486844fa85d6a058c84d438b2e6caefed
+
+================================================================================
+ALL NUMERICAL VERIFICATIONS COMPLETED SUCCESSFULLY WITH 0 ASSERTION FAILURES
+================================================================================

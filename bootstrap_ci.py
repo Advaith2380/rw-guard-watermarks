@@ -21,14 +21,15 @@ from rewm.engine import predict
 from torch.utils.data import DataLoader
 
 
-def compute_bootstrap_cis(y_true, scores, thr=None, n_bootstraps=1000, seed=42, alpha=0.05):
-    """Compute empirical percentile bootstrap confidence intervals.
+def compute_bootstrap_cis(y_true, scores, thr=None, source_ids=None, n_bootstraps=2000, seed=42, alpha=0.05):
+    """Compute empirical percentile bootstrap confidence intervals with source-image grouping.
     
     Args:
         y_true: 1D array of ground truth binary labels (0 or 1).
         scores: 1D array of continuous classifier logits/scores.
-        thr: Operating threshold (if None, selects threshold at 1% FPR on negative scores).
-        n_bootstraps: Number of bootstrap iterations (>= 1000 recommended).
+        thr: Operating threshold (fixed validation-calibrated threshold).
+        source_ids: 1D array of source image IDs for grouped resampling (preserves paired dependencies).
+        n_bootstraps: Number of bootstrap iterations (>= 2000 per faculty requirement).
         seed: Random seed for bootstrap generation.
         alpha: Significance level (default 0.05 for 95% CI).
         
@@ -40,6 +41,12 @@ def compute_bootstrap_cis(y_true, scores, thr=None, n_bootstraps=1000, seed=42, 
     n = len(y_true)
     assert n == len(scores), f"Length mismatch: {n} vs {len(scores)}"
 
+    if source_ids is None:
+        # Default pairing assumption: sequential evaluation pairs even/odd indices to same source
+        source_ids = np.array([i // 2 for i in range(n)])
+    else:
+        source_ids = np.asarray(source_ids)
+
     if thr is None:
         neg_scores = scores[y_true == 0]
         thr = threshold_at_fpr(neg_scores, 0.01)
@@ -49,30 +56,44 @@ def compute_bootstrap_cis(y_true, scores, thr=None, n_bootstraps=1000, seed=42, 
     rng = np.random.default_rng(seed)
     boot_stats = {
         "auc": [],
-        "tpr_at_1pct_fpr": [],
-        "tpr_at_0p1pct_fpr": [],
-        "tpr_fixed_thr": [],
-        "fpr_fixed_thr": []
+        "tpr_at_1pct_fpr": [],      # Metric A: Test ROC-based TPR@1%FPR
+        "tpr_at_0p1pct_fpr": [],    # Metric A: Test ROC-based TPR@0.1%FPR
+        "tpr_fixed_thr": [],        # Metric B: Fixed validation threshold TPR
+        "fpr_fixed_thr": []         # Metric B: Fixed validation threshold FPR
     }
+
+    # Group sample indices by unique source image ID
+    from collections import defaultdict
+    source_to_indices = defaultdict(list)
+    for idx, sid in enumerate(source_ids):
+        source_to_indices[sid].append(idx)
+    unique_sources = np.array(list(source_to_indices.keys()))
+    n_sources = len(unique_sources)
     
-    pos_idx = np.where(y_true == 1)[0]
-    neg_idx = np.where(y_true == 0)[0]
-    n_pos = len(pos_idx)
-    n_neg = len(neg_idx)
-    
+    invalid_replicates = 0
     for _ in range(n_bootstraps):
-        # Stratified bootstrap resampling to preserve positive/negative balance
-        b_pos = rng.choice(pos_idx, size=n_pos, replace=True)
-        b_neg = rng.choice(neg_idx, size=n_neg, replace=True)
-        b_idx = np.concatenate([b_pos, b_neg])
+        # Source-image-level resampling with replacement
+        sampled_sources = rng.choice(unique_sources, size=n_sources, replace=True)
+        b_idx = []
+        for s in sampled_sources:
+            b_idx.extend(source_to_indices[s])
+        b_idx = np.array(b_idx, dtype=int)
         
         yb = y_true[b_idx]
         sb = scores[b_idx]
         
+        # Check for single-class degeneracy
+        if len(np.unique(yb)) < 2:
+            invalid_replicates += 1
+            continue
+            
         try:
             auc = roc_auc(yb, sb)
         except Exception:
             auc = np.nan
+            invalid_replicates += 1
+            continue
+
         tpr1 = tpr_at_fpr(yb, sb, 0.01)
         tpr01 = tpr_at_fpr(yb, sb, 0.001)
         tpr_f, fpr_f = rates_at(yb, sb, thr)
@@ -89,7 +110,10 @@ def compute_bootstrap_cis(y_true, scores, thr=None, n_bootstraps=1000, seed=42, 
     ci_results = {
         "threshold": float(thr),
         "n_samples": int(n),
-        "n_bootstraps": int(n_bootstraps),
+        "n_unique_sources": int(n_sources),
+        "n_bootstraps_requested": int(n_bootstraps),
+        "n_bootstraps_valid": int(len(boot_stats["auc"])),
+        "n_bootstraps_invalid": int(invalid_replicates),
         "metrics": {}
     }
     

@@ -1,0 +1,33 @@
+RW-GUARD FINAL ACCEPTANCE GATE EXECUTION LOG
+================================================================================
+Generated: 2026-11-07T13:36:28.657337
+Environment: Windows 11, Python 3.13 / PyTorch CUDA, NVIDIA GeForce GTX 1650 4GB
+
+1. Phase 1: Frozen Submission Identification
+   - Command: python independent_audit/phase1_freeze_submission.py
+   - Primary Checkpoint Hash: 37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+
+2. Phase 2: Authoritative Checklist Extraction
+   - Command: python independent_audit/phase2_authoritative_checklist.py
+   - Extracted 53 granular faculty requirements from Final Review.docx
+
+3. Phase 3: Raw Evidence Collection
+   - Command: python independent_audit/phase3_collect_evidence.py
+   - Preserved 77 evidence artifacts on disk (0 missing)
+
+4. Phase 4: Independent Recalculation
+   - Command: python independent_audit/phase4_independent_recalculation.py
+   - Computed 2,000 source-grouped bootstrap replicates across 1,500 test sources
+
+5. Phase 5 & 6: Protocol, Archive, and Manuscript Audit
+   - Command: python independent_audit/phase5_phase6_audit.py
+   - Verified ZIP CRC32, test split isolation, and manuscript consistency
+
+6. Phase 8 Discrepancy Resolution:
+   - Gate 2.1: python scripts/remediation/evaluate_five_resolutions.py (128, 256, 384, 512, 1024 px)
+   - Gate 2.2: python scripts/remediation/evaluate_pgd10_adversarial.py (PGD-10 vs FGSM vs Defended Model)
+   - Gate 2.3: python scripts/remediation/cleanse_fpr_causal_claims.py (Enforce verbatim mandatory phrasing)
+   - Gate 2.4: python scripts/remediation/update_manuscript_discrepancies.py (Wilson CIs in Table 15)
+   - Gate 2.5: Documented independent script hashes, commands, inputs, and portability boundary
+
+Execution completed successfully with exit code 0 across all gates.

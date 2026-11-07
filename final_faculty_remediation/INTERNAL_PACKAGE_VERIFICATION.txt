@@ -1,0 +1,50 @@
+================================================================================
+RW-GUARD: INTERNAL PACKAGE MANIFEST & COMPONENT INTEGRITY
+================================================================================
+Packaging Timestamp: 2026-11-07 13:38:42
+Package Root:        final_faculty_remediation/
+
+COMPONENT INTEGRITY VERIFICATION:
+--------------------------------------------------------------------------------
+1. Primary 7-Scheme Checkpoint:   checkpoints/primary_checkpoint.pt
+   - Checkpoint SHA-256:          37680cdd2d4e5100cbb8aa1642e78b9bb3df373e79efd9f8512f89e15d0c0573
+   - Architecture:                Fully Convolutional ForensicNet (Width=64)
+   - Parameters:                  2,466,099 trainable parameters
+   - Status:                      BIT-IDENTICAL MATCH TO AUTHORITATIVE MODEL
+
+2. Defended Checkpoint:           checkpoints/defended_checkpoint_adv_eps1.pt
+   - Checkpoint SHA-256:          27954fd43360830d76fa107036567e9486844fa85d6a058c84d438b2e6caefed
+   - Status:                      ISOLATED RESEARCH ARTIFACT VERIFIED
+
+3. Corrected Final Manuscript:    manuscript/corrected_final_manuscript.docx
+   - Manuscript SHA-256:          f156e2ec6ca48e24261976f07f7b8da5bbe2c14f3200973090dffda16c76438b
+   - Size:                        3,085,905 bytes
+   - Abstract:                    250 words (compliant with <=250 ceiling)
+   - Status:                      BIT-IDENTICAL MATCH TO FROZEN MANUSCRIPT
+
+4. Faculty Acceptance Matrix:     FINAL_ACCEPTANCE_MATRIX.csv
+   - Total Rows:                  53 / 53 (100.0% coverage)
+   - Unresolved Paths:            0 / 53
+   - Self References to .zip:     0 / 53 (all replaced with internal artifacts)
+   - Status:                      10/10 VALIDATOR CHECKS PASS
+
+5. Evidence Traceability Audit:   EVIDENCE_TRACEABILITY_AUDIT.csv
+   - Populated Records:           53 itemized rows
+   - Package-Internal Coverage:   53 / 53 accessible files
+
+6. Multi-Resolution Evaluation:   results/final_primary/FINAL_RESOLUTION_METRICS_VERIFIED.csv
+   - 128px:                       AUC 0.8463, Fixed TPR 32.60%, Fixed FPR 6.67%
+   - 256px:                       AUC 0.8543, Fixed TPR 18.67%, Fixed FPR 3.33%
+   - 384px:                       AUC 0.8579, Fixed TPR  8.87%, Fixed FPR 1.13%
+   - 512px:                       AUC 0.8501, Fixed TPR  9.47%, Fixed FPR 1.13%
+   - 1024px:                      AUC 0.7998, Fixed TPR 18.50%, Fixed FPR 1.50%
+   - Status:                      ALL COUNTS AGREE WITH RAW NPZ AND TABLE 7
+
+ARCHIVAL HASHING ARCHITECTURE:
+--------------------------------------------------------------------------------
+To prevent circular hashing dependency, this internal manifest certifies the
+internal component files. The archive-level SHA-256 checksum and exact compressed
+byte size are computed after compression and stored in external deliverables:
+  * deliverables/RW_GUARD_FINAL_FACULTY_SUBMISSION.sha256
+  * deliverables/FINAL_PACKAGE_INTEGRITY_REPORT.txt
+================================================================================
